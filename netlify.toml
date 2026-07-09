@@ -1,0 +1,10 @@
+# ASPATH 静的サイト（Netlify）
+[build]
+  publish = "."
+  command = ""
+
+# フォーム送信後の簡易リダイレクト（任意）
+[[redirects]]
+  from = "/contact-success"
+  to = "/contact.html"
+  status = 200
