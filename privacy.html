@@ -929,6 +929,12 @@ body{ overflow-wrap:break-word; word-break:normal; }
   .hbtn-line{ font-size:clamp(11px,1.2vw,15px) !important; padding:9px clamp(8px,1vw,16px) !important; }
   .hbtn-line .hbtn-ico{ width:18px !important; height:18px !important; }
 }
+
+/* ===== 目次/カテゴリ撤去・本文を中央寄せ（TOP以外／50-70代の視認性重視） ===== */
+.side-toc{ display:none !important; }
+.page-wrap{ grid-template-columns:minmax(0,1fr) !important; gap:0 !important; max-width:900px !important; }
+.page-main{ margin:0 auto !important; }
+@media (max-width:760px){ .page-wrap{ max-width:100% !important; } }
 </style>
 </head>
 <body>
@@ -988,20 +994,7 @@ body{ overflow-wrap:break-word; word-break:normal; }
 </div>
 
   <div class="page-wrap">
-    <aside class="side-toc">
-      <h4 data-en="Contents">目次</h4>
-      <ul>
-        <li><a href="#p1" data-en="Definition of Personal Information">個人情報の定義</a></li>
-        <li><a href="#p2" data-en="Collection of Personal Information">個人情報の収集</a></li>
-        <li><a href="#p3" data-en="Purpose of Use">利用目的</a></li>
-        <li><a href="#p4" data-en="Provision to Third Parties">第三者への提供</a></li>
-        <li><a href="#p5" data-en="Management of Personal Information">個人情報の管理</a></li>
-        <li><a href="#p6" data-en="Disclosure, Correction &amp; Deletion">開示・訂正・削除</a></li>
-        <li><a href="#p7" data-en="Contact for Inquiries">お問い合わせ窓口</a></li>
-      </ul>
-    </aside>
-
-    <div class="page-main">
+<div class="page-main">
       <p style="color:#5E7681; font-size:14.5px; margin-bottom:28px;" data-en="Last updated: July 1, 2026">最終更新日：2026年7月1日</p>
       <p data-en="ASPATH (&quot;the Studio&quot;) considers the protection of users' personal information an important responsibility and handles it appropriately based on the following policy.">ASPATH（アスパス）（以下「当スタジオ」）は、ご利用者の個人情報の保護を重要な責務と考え、以下の方針に基づき適切に取り扱います。</p>
 

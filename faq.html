@@ -989,6 +989,12 @@ body{ overflow-wrap:break-word; word-break:normal; }
   .hbtn-line{ font-size:clamp(11px,1.2vw,15px) !important; padding:9px clamp(8px,1vw,16px) !important; }
   .hbtn-line .hbtn-ico{ width:18px !important; height:18px !important; }
 }
+
+/* ===== 目次/カテゴリ撤去・本文を中央寄せ（TOP以外／50-70代の視認性重視） ===== */
+.side-toc{ display:none !important; }
+.page-wrap{ grid-template-columns:minmax(0,1fr) !important; gap:0 !important; max-width:900px !important; }
+.page-main{ margin:0 auto !important; }
+@media (max-width:760px){ .page-wrap{ max-width:100% !important; } }
 </style>
 </head>
 <body>
@@ -1048,14 +1054,7 @@ body{ overflow-wrap:break-word; word-break:normal; }
 </div>
 
   <div class="page-wrap">
-    <aside class="side-toc">
-      <h4 data-en="Contents">目次</h4>
-      <ul>
-        <li><a href="#faq-list" data-en="FAQ">よくあるご質問</a></li>
-      </ul>
-    </aside>
-
-    <div class="page-main">
+<div class="page-main">
       <h2 id="faq-list" data-en="Frequently Asked Questions">よくあるご質問</h2>
       <p data-en="If you have any questions, please feel free to contact us.">ご不明な点があれば、お気軽にお問い合わせください。</p>
 <div class="faq reveal">

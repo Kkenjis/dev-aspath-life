@@ -951,6 +951,12 @@ body{ overflow-wrap:break-word; word-break:normal; }
   .hbtn-line{ font-size:clamp(11px,1.2vw,15px) !important; padding:9px clamp(8px,1vw,16px) !important; }
   .hbtn-line .hbtn-ico{ width:18px !important; height:18px !important; }
 }
+
+/* ===== 目次/カテゴリ撤去・本文を中央寄せ（TOP以外／50-70代の視認性重視） ===== */
+.side-toc{ display:none !important; }
+.page-wrap{ grid-template-columns:minmax(0,1fr) !important; gap:0 !important; max-width:900px !important; }
+.page-main{ margin:0 auto !important; }
+@media (max-width:760px){ .page-wrap{ max-width:100% !important; } }
 </style>
 </head>
 <body>
@@ -1010,15 +1016,7 @@ body{ overflow-wrap:break-word; word-break:normal; }
 </div>
 
   <div class="page-wrap">
-    <aside class="side-toc">
-      <h4 data-en="Contents">目次</h4>
-      <ul>
-        <li><a href="#studio" data-en="Locations">活動拠点</a></li>
-        <li><a href="#online" data-en="Online &amp; Home Visits">オンライン・訪問対応</a></li>
-      </ul>
-    </aside>
-
-    <div class="page-main">
+<div class="page-main">
       <h2 id="studio" data-en="Three Convenient, Reassuring Locations in Kagoshima">通いやすい、鹿児島の3つの安心活動拠点</h2>
       <p data-en-html="We conduct training at three rental studios in Kagoshima City. All are easy to visit, and we can adjust the studio to suit each person's needs.">鹿児島市内の<strong>3カ所</strong>のレンタルスタジオでトレーニングを実施しています。いずれも通いやすい立地で、ご利用者のニーズに応じて実施スタジオを調整できます。</p>
 <div class="access-grid">
