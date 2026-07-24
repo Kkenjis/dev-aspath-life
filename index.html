@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)index.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+  ASPATH（アスパス）LP v6.0 ―― SOHGO PLANNING型デザイン移植版
+  - 参考サイト（sohgo-planning.com）のデザインシステムを解析し移植：
+    ・書体：Kiwi Maru（見出し）＋ Noto Sans JP（本文）※サイズはシニア基準を維持
+    ・ヒーロー：全画面クロスフェードスライダー（Ken Burns）＋大コピー
+      ＋お知らせカード＋キャンペーンバッジ
+    ・浮遊装飾（float-item）：太陽・若葉・ロゴ円がゆっくり漂う
+    ・スクロールで立ち上がる要素（.reveal 強化・時差あり）
+    ・円形サービスカード（色分け）／画像×テキスト交互配置（is-reverse）
+    ・ドット柄背景／やわらかい大円背景
+  - 画像はすべて【差し替えスロット】化：
+      .img-slot に background-image を1行足すだけで実写に置換可
+  - jQuery/slick不使用（vanilla JS）・prefers-reduced-motion対応
+  - データ（料金/実績/アクセス/CV導線/SEO/JSON-LD）はv4-v5確定版を継承
+============================================================ -->
+
+<title data-en="ASPATH｜Parkinson's &amp; Stroke Specialized Training Studio (Kagoshima)">鹿児島初 パーキンソン病専門トレーニングスタジオ｜ASPATH（アスパス）</title>
+<meta name="description" content="鹿児島のパーキンソン病専門パーソナルトレーニングスタジオASPATH（アスパス）。理学療法士・保健学修士・LSVT-BIG認定療法士が、体幹「芯」に特化した独自メソッド「シンプラ」で早期からの進行予防に伴走します。鹿児島初の専門スタジオ。初回体験は期間限定 半額4,400円。">
+<meta name="robots" content="noindex,nofollow"><!-- 開発中：本番公開時に index,follow へ戻す -->
+<link rel="canonical" href="#" onclick="return false;" aria-disabled="true">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ASPATH（アスパス）">
+<meta property="og:title" content="鹿児島初 パーキンソン病専門トレーニングスタジオ｜ASPATH">
+<meta property="og:description" content="「諦める」を、「希望」に変える。鹿児島初・早期パーキンソン病専門トレーニングスタジオ（鹿児島）。初回体験は期間限定 半額4,400円。">
+<meta property="og:url" content="https://aspath-life.com/">
+<meta property="og:image" content="https://aspath-life.com/wp-content/uploads/ogp.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthClub",
+  "name": "ASPATH（アスパス）",
+  "alternateName": "パーキンソン病専門トレーニングスタジオ アスパス",
+  "description": "鹿児島県のパーキンソン病・脳卒中に特化した保険外パーソナルトレーニングスタジオ。理学療法士・保健学修士による体幹特化の独自メソッド「芯おこしプラクティス（シンプラ）」を提供。",
+  "url": "https://aspath-life.com/",
+  "image": "https://aspath-life.com/wp-content/uploads/studio.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "鹿児島県",
+    "addressLocality": "鹿児島市",
+    "streetAddress": "天文館・鹿児島中央駅エリア（レンタルスタジオ／ご予約確定後に詳細をご案内）"
+  },
+  "areaServed": ["鹿児島県", "オンライン（全国）", "ご自宅への訪問トレーニング"],
+  "founder": {
+    "@type": "Person",
+    "name": "山口 祐弥",
+    "jobTitle": "代表・理学療法士",
+    "description": "理学療法士／保健学修士／LSVT-BIG認定療法士／脳卒中療養指導士"
+  },
+  "priceRange": "¥13,200〜¥79,600",
+  "makesOffer": [
+    { "@type": "Offer", "name": "初回トレーニング体験（90分）", "price": "8800", "priceCurrency": "JPY", "description": "営業開始キャンペーンにより2026年9月30日まで半額の4,400円" },
+    { "@type": "Offer", "name": "パーソナルトレーニング 月8回コース（週2回／60分）", "price": "79600", "priceCurrency": "JPY" },
+    { "@type": "Offer", "name": "パーソナルトレーニング 月4回コース（週1回／60分）", "price": "39800", "priceCurrency": "JPY" },
+    { "@type": "Offer", "name": "パーソナルトレーニング 月2回コース（隔週1回／60分）", "price": "22000", "priceCurrency": "JPY" },
+    { "@type": "Offer", "name": "単発パーソナルトレーニング（60分）", "price": "13200", "priceCurrency": "JPY" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "病院のリハビリが終了してしまいましたが、利用できますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "はい、大丈夫です。ASPATHは医療保険・介護保険の枠外の自費サービスのため、リハビリ期限に関係なくご利用いただけます。行き場を失って不安な方のための場所です。" } },
+    { "@type": "Question", "name": "パーキンソン病と診断されたばかりでも通えますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "むしろ早期・軽度の段階からのトレーニングを最もおすすめしています。適切な運動で進行を抑制できることが研究で示されており、ASPATHは早期からの予防トレーニングに特化しています。" } },
+    { "@type": "Question", "name": "遠方に住んでいますが、オンラインでも受けられますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "はい。パーソナルトレーニングはオンラインでも実施可能です。ご自宅からビデオ通話で、来店時と同じ担当者が指導します。" } },
+    { "@type": "Question", "name": "料金はいくらですか？保険は使えますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "初回トレーニング体験（90分）は8,800円ですが、営業開始キャンペーンにより2026年9月30日まで半額の4,400円でご利用いただけます。継続プランは1回60分で、月8回79,600円・月4回39,800円・月2回22,000円（税込）、単発は60分13,200円です。保険外（自費）サービスのため保険は適用されませんが、期限や回数の制限なく専門的なトレーニングを継続できます。" } },
+    { "@type": "Question", "name": "スタジオはどこにありますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "鹿児島市内の3カ所（天文館・鹿児島中央町・城西）のレンタルスタジオでトレーニングを実施しています。いずれも駅からのアクセスが良く、建物内スタジオまでエレベーターがあります。ご予約確定後に場所の詳細をご案内します。ご希望の方にはご自宅への訪問トレーニングやオンラインも可能です。" } },
+    { "@type": "Question", "name": "申し込みはどうすればいいですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "初回体験・オンライン個別相談のお申し込みフォームからお申し込みください。迷っている段階なら、公式LINEにスタンプ一つ送っていただくだけでも構いません。" } }
+  ]
+}
+</script>
+
+<!-- 書体：Kiwi Maru（参考サイトと同一の見出し書体）＋ Noto Sans JP -->
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./index_files/css2" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho+B1:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================
+   トークン：ASPATHブラウン・ゴールド × SOHGO型のやわらかさ
+========================================================== */
+:root{
+  --ink:       #26383F;
+  --brown:     #264653;
+  --gold:      #3F6A76;
+  --gold-deep: #1E3A44;
+  --gold-soft: #E7D9C1;
+  --paper:     #F4E9D8;
+  --card:      #FFFFFF;
+  --sun:       #F4A261;
+  --leaf:      #3F6A76;
+  --line-green:#06C755;
+  --line-dark: #05a648;
+  --shadow: 0 6px 20px rgba(38,70,83,.10);
+  --radius: 20px;
+  --maxw: 1080px;
+  --font-head:"Kiwi Maru","Zen Maru Gothic",sans-serif;
+  --font-body:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; scroll-padding-top:96px; }
+body{
+  font-family:var(--font-body); font-size:18px; line-height:1.95;
+  color:var(--ink); background:var(--paper); -webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+}
+img{ max-width:100%; height:auto; display:block; }
+a{ color:var(--gold-deep); }
+a:focus-visible, button:focus-visible, summary:focus-visible{ outline:3px solid var(--sun); outline-offset:3px; border-radius:6px; }
+h1,h2,h3{ font-family:var(--font-head); font-weight:500; color:var(--brown); line-height:1.55; }
+h2{ font-size:clamp(25px,3.8vw,36px); letter-spacing:.04em; }
+h3{ font-size:clamp(19px,2.5vw,23px); }
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 20px; position:relative; }
+
+/* ==========================================================
+   動き（SOHGO移植）：reveal立ち上がり／浮遊装飾／Ken Burns
+========================================================== */
+.reveal{ opacity:1; transform:none; transition:none; }
+.reveal.on{ opacity:1; transform:none; }
+.reveal.d1{ transition-delay:.12s; } .reveal.d2{ transition-delay:.24s; } .reveal.d3{ transition-delay:.36s; }
+
+@keyframes floaty{ 0%,100%{ transform:translateY(0) rotate(0deg);} 50%{ transform:translateY(-16px) rotate(4deg);} }
+@keyframes floaty2{ 0%,100%{ transform:translateY(0) rotate(0deg);} 50%{ transform:translateY(14px) rotate(-5deg);} }
+.float-item{ display:none; }
+.float-circle{
+  border-radius:50%; display:grid; place-items:center;
+  background:#fff; box-shadow:var(--shadow);
+}
+
+@keyframes kenburns{ 0%{ transform:scale(1);} 100%{ transform:scale(1.09);} }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation:none!important; transition:none!important; }
+  .reveal{ opacity:1; transform:none; }
+  /* ヒーローのスライドショーは体験の核なので、緩やかなクロスフェードのみ例外的に維持 */
+  .hero-slide{ transition:opacity 2.2s ease!important; }
+  /* ローディング演出：ブランド体験の核として reduce 設定でもフル演出を維持
+     クラスセレクタ（詳細度 0,1,0）で universal (*) より優先し、
+     各要素のアニメ／トランジションを個別に復活させる */
+  .ldr-logo{ animation:ldrLogo 1.5s cubic-bezier(.2,.7,.2,1) .3s forwards !important; }
+  .ldr-id-brand{ animation:ldrUp 1s ease .5s forwards !important; }
+  .ldr-id-brand::after{ animation:ldrBrandLine .8s ease .95s forwards !important; }
+  .ldr-id-spec{ animation:ldrUp 1s ease .8s forwards !important; }
+  .ldr-main{ animation:ldrUp 1.2s ease 1.35s forwards !important; }
+  .ldr-path{ animation:ldrFade .7s ease 2.15s forwards !important; }
+  .ldr-path i{ animation:ldrRun 2s ease-in-out 2.4s infinite !important; }
+  .ldr-path b{ animation:ldrWalk 2s ease-in-out 2.4s infinite !important; }
+  .ldr-glow{ animation:ldrGlowIn 1.4s ease .2s forwards, ldrGlow 3.8s ease-in-out .2s infinite !important; }
+  .ldr-rings i{ animation:ldrRing 3.6s ease-out infinite !important; }
+  .ldr-rings i:nth-child(2){ animation-delay:1.2s !important; }
+  .ldr-rings i:nth-child(3){ animation-delay:2.4s !important; }
+  .ldr-particles span{ animation:ldrFloat linear infinite !important; }
+  .ldr-phrase{ transition:opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1) !important; }
+  #aspath-loader.is-hidden{ transition:opacity 2.6s ease, visibility 2.6s ease, transform 2.6s cubic-bezier(.33,0,.2,1), filter 2.6s ease !important; }
+}
+
+/* ドット柄（SOHGOのbg_dot移植） */
+.dots{ display:none; }
+
+/* ==========================================================
+   統一画像システム（v6.4）
+   使い方：スロット内に <img src="写真URL" alt="..."> を1行入れるだけ。
+   仮置きのイラスト・ラベルは自動で非表示になります。
+   サイズ違いへの柔軟対応（スロットの style 属性で指定）：
+     --ratio:3/4        … 縦横比を変更（例 1/1, 16/9, 3/4）
+     --pos:center 20%   … 切り抜き位置（顔写真は上寄せ推奨）
+   クラスで挙動変更：
+     fit-contain … 切り抜かず全体を表示（資料・ロゴ向き）
+     h-auto      … 比率固定をやめ、画像の高さに追従
+     plain       … 枠・背景なし（透過イラスト向き）
+========================================================== */
+.img-slot{
+  position:relative; overflow:hidden; border-radius:26px;
+  aspect-ratio:var(--ratio, 4/3);
+  background:linear-gradient(160deg,#EBDDC6,#DCCBAA);
+  box-shadow:var(--shadow); border:1px solid var(--gold-soft);
+}
+.img-slot > img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:var(--fit, cover); object-position:var(--pos, 50% 40%);
+}
+.img-slot.fit-contain{ --fit:contain; background:#fff; }
+.img-slot.h-auto{ aspect-ratio:auto; }
+.img-slot.h-auto > img{ position:static; height:auto; }
+.img-slot.plain{ background:none; border:none; box-shadow:none; }
+/* 写真が入ったら仮置き（イラスト・ラベル・文字）を自動非表示 */
+.img-slot:has(> img) .fallback,
+.img-slot:has(> img) .slot-label,
+.img-slot.has-photo .fallback,
+.img-slot.has-photo .slot-label{ display:none; }
+.img-slot .fallback{ position:absolute; inset:0; display:grid; place-items:center; text-align:center; color:#46666F; font-size:15px; font-weight:700; padding:10px; }
+.img-slot.plain .fallback{ position:static; display:block; padding:0; }
+.img-slot .slot-label{
+  position:absolute; inset:auto 10px 10px auto; z-index:2; background:rgba(255,255,255,.85);
+  color:#46666F; font-size:14px; font-weight:700; border-radius:8px; padding:4px 10px;
+}
+
+/* ==========================================================
+   ヘッダー
+========================================================== */
+.site-header{
+  position:absolute; top:0; left:0; right:0; z-index:100;
+  background:transparent; backdrop-filter:none;
+  border-bottom:1px solid transparent; box-shadow:none;
+  will-change:transform;
+  transition:background .55s ease, backdrop-filter .55s ease, border-color .55s ease, box-shadow .55s ease, transform 1.5s cubic-bezier(.34,1.42,.5,1);
+}
+.site-header::after{ content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:linear-gradient(180deg, rgba(16,30,36,.40) 0%, rgba(16,30,36,0) 100%); transition:opacity .35s ease; }
+.site-header.scrolled{
+  position:fixed; transform:translateY(0);
+  background:rgba(253,249,240,.97); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--gold-soft); box-shadow:0 2px 14px rgba(38,70,83,.10);
+}
+/* 固定ヘッダーを一旦画面上に隠す（この状態からtranslateY(0)へ→ひょっこり降りる） */
+.site-header.scrolled.prehide{ transform:translateY(-105%); transition:none; }
+.site-header.scrolled::after{ opacity:0; }
+/* メニュー：画像上は白、スクロール後は茶 */
+.site-header .gnav a{ color:#fff; text-shadow:0 1px 8px rgba(0,0,0,.4); }
+.site-header.scrolled .gnav a{ color:var(--brown); text-shadow:none; }
+/* ロゴ：大きく主張 → スクロールでメニュー大へ縮小 */
+.brand-logo{ transition:height .35s ease, filter .35s ease, transform .35s ease; filter:drop-shadow(0 3px 12px rgba(0,0,0,.30)); }
+.site-header.scrolled .brand-logo{ height:48px; filter:none; transform:none; }
+/* ハンバーガーも画像上は白 */
+.site-header:not(.scrolled) .hamburger span{ background:#fff; }
+.header-in{ max-width:100%; margin:0 auto; padding:12px clamp(20px,4vw,56px); display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.brand{ display:flex; align-items:center; gap:14px; text-decoration:none; min-width:0; margin-right:auto; }
+.brand > span{ min-width:0; }
+.brand-sub{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.brand-logo{ height:152px; width:auto; padding:0; background:none; box-shadow:none; transform:translate(48px,30px); }
+@media (max-width:760px){ .brand-logo{ height:92px; transform:none; } .site-header .brand-logo{ transform:none; } .brand{ margin-right:auto; } .header-in{ padding-left:clamp(14px,4vw,22px); } }
+.brand-name{ font-family:var(--font-head); font-weight:600; font-size:25px; letter-spacing:.12em; color:var(--gold-deep); }
+.brand-sub{ font-size:14px; color:#46666F; }
+.header-right{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.gnav{ display:flex; gap:4px 24px; flex-wrap:wrap; justify-content:flex-end; }
+.gnav a{ text-decoration:none; color:var(--brown); font-family:var(--font-head); font-size:24px; padding:8px 2px; border-bottom:3px solid transparent; white-space:nowrap; }
+.gnav a:hover{ border-bottom-color:var(--sun); }
+.header-sns{ display:flex; align-items:center; gap:9px; }
+.header-sns a{ width:36px; height:36px; border-radius:50%; display:grid; place-items:center; color:#fff;
+  box-shadow:0 3px 8px rgba(30,45,52,.18); transition:transform .22s ease, box-shadow .22s ease, filter .22s ease; }
+.header-sns a:hover{ transform:translateY(-2px); box-shadow:0 6px 14px rgba(30,45,52,.28); filter:saturate(1.08); }
+.header-sns a[aria-label="Instagram"]{ background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF); }
+.header-sns a[aria-label="YouTube"]{ background:#FF0000; }
+.header-sns a[aria-label="Facebook"]{ background:#1877F2; }
+.header-sns a[aria-label="公式LINE"]{ background:#06C755; }
+.header-cta{ display:flex; align-items:center; gap:10px; }
+.hbtn{ font-family:var(--font-head); font-weight:700; font-size:17px; line-height:1; padding:13px 20px; border-radius:999px; text-decoration:none; white-space:nowrap; display:inline-flex; align-items:center; gap:6px; transition:transform .2s, box-shadow .2s, filter .2s; }
+.hbtn:hover{ transform:translateY(-2px); box-shadow:0 6px 16px rgba(30,45,52,.22); filter:saturate(1.05); }
+.hbtn-reserve{ background:var(--sun); color:#fff; box-shadow:0 4px 12px rgba(244,162,97,.28); }
+.hbtn-line{ background:#06C755; color:#fff; }
+.hbtn-line .hbtn-ico{ width:18px; height:18px; }
+@media (max-width:760px){ .hbtn{ font-size:16px; padding:11px 15px; } .header-cta{ gap:8px; } }
+
+.header-sns a.sns-line-hd{ position:relative; margin-left:6px; }
+.header-sns a.sns-line-hd::before{ content:""; position:absolute; left:-9px; top:50%; transform:translateY(-50%);
+  width:1px; height:20px; background:var(--gold-soft); }
+.header-sns svg{ width:18px; height:18px; }
+
+/* ハンバーガー（モバイルのみ表示） */
+.hamburger{ display:none; flex-direction:column; justify-content:center; gap:5px; width:44px; height:44px; padding:0 10px; background:none; border:none; cursor:pointer; }
+.hamburger span{ display:block; height:3px; border-radius:3px; background:var(--brown); transition:transform .3s, opacity .3s; }
+.hamburger[aria-expanded="true"] span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.hamburger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+
+/* ドロワー */
+.drawer-overlay{ position:fixed; inset:0; background:rgba(30,45,52,.5); z-index:300; opacity:0; transition:opacity .3s; }
+.drawer-overlay.open{ opacity:1; }
+.drawer{ position:fixed; top:0; right:0; bottom:0; width:min(82vw,320px); background:var(--paper); z-index:310; box-shadow:-8px 0 30px rgba(30,45,52,.2); transform:translateX(100%); transition:transform .32s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column; padding:20px 22px calc(24px + env(safe-area-inset-bottom)); overflow-y:auto; }
+.drawer.open{ transform:translateX(0); }
+.drawer-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.drawer-head img{ height:50px; width:auto; }
+.drawer-close{ width:44px; height:44px; background:none; border:none; font-size:34px; line-height:1; color:var(--brown); cursor:pointer; }
+.drawer-links{ list-style:none; display:grid; gap:2px; margin-bottom:20px; }
+.drawer-links a{ display:block; padding:15px 8px; font-family:var(--font-head); font-size:17px; color:var(--brown); text-decoration:none; border-bottom:1px solid var(--gold-soft); }
+.drawer-links a:hover{ color:var(--sun); }
+.drawer-sns{ display:flex; gap:12px; justify-content:center; margin-bottom:20px; }
+.drawer-sns a{ width:44px; height:44px; border-radius:50%; display:grid; place-items:center; color:#fff; }
+.drawer-sns a[aria-label="Instagram"]{ background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF); }
+.drawer-sns a[aria-label="YouTube"]{ background:#FF0000; }
+.drawer-sns a[aria-label="Facebook"]{ background:#1877F2; }
+.drawer-sns a[aria-label="公式LINE"]{ background:#06C755; }
+.drawer-sns svg{ width:22px; height:22px; }
+.drawer-cta{ width:100%; }
+body.drawer-open{ overflow:hidden; }
+@media (max-width:760px){ .gnav{ gap:4px 18px; } .gnav a{ font-size:18px; } .header-right{ gap:12px; } }
+@media (max-width:760px){ .gnav{ order:3; width:100%; justify-content:center; padding-top:8px; border-top:1px solid var(--gold-soft); } }
+@media (max-width:760px){ .header-right{ display:none; } .hamburger{ display:flex; } }
+/* タブレット幅：PC版ヘッダーを縮小して1行に収める（スマホ=760px以下はハンバーガー） */
+@media (max-width:1180px) and (min-width:761px){
+  .header-in{ flex-wrap:nowrap; gap:clamp(6px,1.1vw,16px); padding-top:10px; padding-bottom:10px; padding-left:clamp(10px,1.9vw,40px); padding-right:clamp(10px,1.9vw,40px); }
+  .brand{ margin-right:clamp(4px,0.9vw,14px); }
+  .brand-logo{ height:clamp(52px,6.2vw,92px); transform:none; }
+  .site-header .brand-logo{ transform:none; }
+  .header-right{ gap:clamp(5px,0.8vw,14px); flex-wrap:nowrap; min-width:0; }
+  .brand,.gnav,.gnav a,.header-cta,.header-sns{ flex-shrink:0; }
+  .gnav{ gap:clamp(2px,0.55vw,12px); flex-wrap:nowrap; }
+  .gnav a{ font-size:clamp(12px,1.28vw,17px); padding:6px 1px; white-space:nowrap; }
+  .header-cta{ gap:clamp(3px,0.5vw,8px); }
+  .hbtn{ font-size:clamp(11px,1.15vw,14px); padding:8px clamp(7px,0.9vw,14px); }
+  .header-sns{ gap:5px; }
+  .header-sns a{ width:clamp(28px,2.9vw,36px); height:clamp(28px,2.9vw,36px); }
+  .header-sns svg{ width:16px; height:16px; }
+}
+
+/* ボタン（c-btn01移植：丸ピル＋矢印スライド） */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  font-family:var(--font-head); font-weight:500; text-decoration:none;
+  border-radius:999px; transition:transform .25s, box-shadow .25s, background .25s;
+  position:relative;
+}
+.btn .arw{ transition:transform .25s; }
+.btn:hover{ transform:translateY(-3px); }
+.btn:hover .arw{ transform:translateX(5px); }
+.btn-form{ background:linear-gradient(135deg,var(--sun),#DD8236); color:#fff; box-shadow:0 10px 22px rgba(244,162,97,.35); }
+.btn-line{ background:var(--line-green); color:#fff; box-shadow:var(--shadow); }
+.btn-primary{ background:var(--sun); color:#fff; box-shadow:var(--shadow); }
+.btn-line:hover{ background:var(--line-dark); }
+.btn-ghost{ background:#fff; color:var(--brown); border:2px solid var(--gold); }
+.btn-ghost:hover{ background:var(--gold-soft); }
+.btn.big{ padding:19px 42px; font-size:clamp(17px,2.3vw,21px); }
+.btn.mid{ padding:13px 30px; font-size:16px; }
+.btn.small{ padding:10px 20px; font-size:15.5px; }
+.zero{ background:#fff; color:var(--sun); border-radius:8px; padding:1px 10px; font-size:.85em; font-weight:700; }
+.line-ico{ width:1.3em; height:1.3em; flex:none; }
+
+/* ==========================================================
+   ヒーロー（v6.2：全サイズでフレックス配置＝衝突しない構造）
+========================================================== */
+/* ===== 中央配置ヒーロー（nsleep型：背景写真＋中央テキスト＋SCROLL） ===== */
+.hero{
+  position:relative; overflow:hidden;
+  min-height:100vh; min-height:100svh;
+  display:flex; align-items:center; justify-content:flex-start;
+  padding:150px 5% 90px; text-align:left;
+}
+.hero-scrim{ position:absolute; inset:0; z-index:2;
+  background:linear-gradient(90deg, rgba(38,70,83,.66) 0%, rgba(38,70,83,.40) 34%, rgba(38,70,83,.12) 64%, rgba(38,70,83,0) 84%), linear-gradient(180deg, rgba(38,70,83,.14) 0%, rgba(38,70,83,.05) 45%, rgba(38,70,83,.30) 100%); }
+.hero-center{ position:relative; z-index:3; max-width:920px; }
+.hero-badge-center{ display:inline-block; background:rgba(255,255,255,.92); color:var(--brown);
+  font-size:clamp(12px,1.5vw,14px); font-weight:700; padding:8px 22px; border-radius:30px; margin-bottom:26px;
+  box-shadow:0 4px 14px rgba(0,0,0,.15); }
+.hero-title{ font-family:var(--font-head); color:#fff; font-weight:700;
+  font-size:clamp(30px,5.2vw,56px); line-height:1.5; letter-spacing:.02em;
+  text-shadow:0 2px 20px rgba(0,0,0,.35); margin-bottom:26px; }
+.hero-title .accent{ color:#F6D9AC; }
+.hero-subtitle{ font-family:"Shippori Mincho B1",serif; color:#fff; font-weight:600;
+  font-size:clamp(14px,2vw,19px); line-height:1.9; text-shadow:0 2px 14px rgba(0,0,0,.4);
+  border-top:1px solid rgba(255,255,255,.5); border-bottom:1px solid rgba(255,255,255,.5);
+  display:inline-block; padding:14px 8px; }
+.hst-mark{ color:#F6D9AC; font-weight:700; }
+/* ===== v7 ヒーロー左寄せ・専門性主転（議事録3-1／ローディングと二段構えで統一） ===== */
+.hero-eyebrow{ display:inline-block; color:#fff; font-weight:700; margin-bottom:16px;
+  font-family:var(--font-body); font-size:clamp(12px,1.5vw,15px); letter-spacing:.14em;
+  text-shadow:0 2px 10px rgba(0,0,0,.6); }
+.hero-eyebrow .west{ color:#F6D9AC; font-weight:900; }
+.hero-eyebrow .mid{ opacity:.65; font-weight:400; margin:0 .5em; }
+.hero-brand{ display:block; font-family:"Zen Kaku Gothic New",var(--font-head); font-weight:900;
+  color:#fff; line-height:1; font-size:clamp(46px,8vw,92px); letter-spacing:.12em;
+  text-shadow:0 3px 22px rgba(0,0,0,.45); }
+.hero-brand .read{ font-family:var(--font-body); font-size:.2em; letter-spacing:.34em;
+  font-weight:500; opacity:.9; margin-left:.28em; }
+.hero-spec{ font-family:"Zen Kaku Gothic New",var(--font-head); font-weight:700; color:#fff;
+  white-space:nowrap; font-size:clamp(13px,3.15vw,27px); letter-spacing:.02em; line-height:1.4;
+  margin-top:18px; text-shadow:0 2px 16px rgba(0,0,0,.5); }
+.hero-spec .hl{ color:#F4E9D8; font-weight:900; }
+.hero-spec .loc{ color:#FFFFFF; font-weight:900; }
+.hero-spec .sep{ color:rgba(255,255,255,.7); margin:0 .35em; font-weight:400; }
+.hero-div{ height:2px; width:70px; background:#F4A261; border:0; margin:24px 0 20px; }
+.hero-copy2{ font-family:var(--font-head); font-weight:600; color:#FFFFFF;
+  font-size:clamp(13px,1.7vw,18px); line-height:1.85; text-shadow:0 2px 12px rgba(0,0,0,.5); }
+.hero-copy2 .accent{ color:#F6D9AC; }
+@media(max-width:600px){ .hero-spec{ white-space:normal; font-size:clamp(15px,4.6vw,21px); line-height:1.5; color:#FFFFFF; } }
+/* SCROLLインジケーター */
+.hero-scroll{ position:absolute; z-index:4; left:50%; bottom:30px; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; }
+.hero-scroll-dot{ width:26px; height:44px; border:2px solid rgba(255,255,255,.75); border-radius:16px; position:relative; }
+.hero-scroll-dot::before{ content:""; position:absolute; left:50%; top:8px; transform:translateX(-50%);
+  width:4px; height:8px; background:#fff; border-radius:2px; animation:scrolldot 1.8s ease-in-out infinite; }
+@keyframes scrolldot{ 0%{ opacity:0; top:8px; } 40%{ opacity:1; } 80%{ opacity:0; top:22px; } 100%{ opacity:0; } }
+.hero-scroll-label{ font-size:12.5px; letter-spacing:.2em; color:rgba(255,255,255,.85); font-family:var(--font-body); }
+@media(max-width:640px){
+  .hero{ min-height:100vh; min-height:100svh; padding:70px 6% 80px; }
+  .hero-subtitle{ padding:12px 4px; }
+}
+@media (prefers-reduced-motion: reduce){ .hero-scroll-dot::before{ animation:none; opacity:1; } }
+
+.hero-slides{ position:absolute; inset:0; z-index:0; }
+.hero-slide{
+  position:absolute; inset:0; opacity:0; transition:opacity 2.2s ease;
+  background-size:cover; background-repeat:no-repeat;
+  background-position:var(--pos, center);
+}
+.hero-slide > img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:var(--pos, center);
+}
+.hero-slide:has(> img) .kb{ display:none; }  /* 写真使用時は装飾グラデ停止 */
+.hero-slide:has(> img) .slot-label{ display:none; }
+.hero-slide.on{ opacity:1; }
+.hero-slide .kb{ position:absolute; inset:0; background:inherit; }
+.hero-slide .slot-label{
+  position:absolute; left:14px; top:14px;   /* バッジ（右上）と反対側へ */
+  background:rgba(255,255,255,.85); color:#46666F; font-size:14px; font-weight:700;
+  border-radius:8px; padding:4px 10px; z-index:2;
+}
+.hero::after{
+  content:""; position:absolute; inset:auto 0 0 0; height:110px; z-index:1;
+  background:linear-gradient(to bottom, transparent, var(--paper));
+}
+.hero-copy-box{
+  position:relative; z-index:5;
+  max-width:640px;
+  background:rgba(253,249,240,.85); backdrop-filter:blur(4px);
+  border-radius:26px; padding:32px 36px 28px;
+  box-shadow:var(--shadow);
+}
+.hero-copy-box h1{
+  font-size:clamp(29px,4.4vw,48px); font-weight:500; color:var(--brown);
+  letter-spacing:.05em; line-height:1.45; margin-bottom:14px;
+}
+.hero-copy-box h1 .accent{ color:var(--sun); }
+.hero-sub{
+  display:inline-block; background:#fff; border-radius:12px;
+  padding:11px 18px; font-family:"Shippori Mincho B1",serif; font-size:clamp(13px,1.6vw,15.5px); font-weight:600; color:var(--brown);
+  margin-bottom:16px; box-shadow:var(--shadow); line-height:1.7;
+}
+.hero-sub-mark{
+  display:inline-block; background:linear-gradient(135deg,var(--gold),var(--gold-deep)); color:#fff;
+  font-family:"Shippori Mincho B1",serif; font-weight:800; font-size:.95em;
+  padding:2px 12px; border-radius:6px; letter-spacing:.05em; margin-right:8px; vertical-align:middle;
+}
+.hero-sub strong{ color:var(--sun); font-weight:800; }
+.hero-sub-loc{ font-size:.88em; color:#5E7681; white-space:nowrap; }
+.hero-sub-loc::before{ content:"｜"; color:var(--gold-soft); margin:0 2px; }
+.hero-cta{ display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
+.hero-note{ font-size:14.5px; color:#52707A; }
+.hero-news{
+  position:absolute; z-index:6; right:20px; bottom:22px;
+  background:#fff; border-radius:14px; box-shadow:var(--shadow);
+  padding:12px 18px; max-width:min(430px,86vw); text-decoration:none;
+}
+.hero-news .tag{ background:var(--leaf); color:#fff; border-radius:999px; font-size:14px; padding:2px 12px; font-weight:700; margin-right:10px; }
+.hero-news .t{ color:var(--ink); font-size:15px; font-weight:500; }
+/* （旧モバイル調整は削除済み → 末尾「レスポンシブ強化v6.1」ブロックに統合） */
+
+/* ==========================================================
+   セクション共通＋芯ライン（ASPATH独自シグネチャー維持）
+========================================================== */
+.spine-page{ position:relative; }
+.section{ position:relative; padding:92px 0; }
+.sec-head{ text-align:center; margin-bottom:46px; position:relative; z-index:1; }
+.sec-node{ width:34px; height:34px; margin:0 auto 12px; display:grid; place-items:center; background:var(--paper); border-radius:50%; box-shadow:0 0 0 8px var(--paper); position:relative; z-index:1; }
+.sec-node svg{ width:26px; height:26px; }
+.eyebrow{ display:inline-block; font-family:var(--font-head); font-size:15px; letter-spacing:.2em; color:var(--sun); margin-bottom:6px; }
+.lede{ margin-top:14px; font-size:16.5px; color:#52707A; max-width:780px; margin-left:auto; margin-right:auto; }
+.sec-alt{ background:#F4E9D8; }
+#pillars{ background:#FBF7F0; }
+#pillars .lede{ color:#55717B; }
+#column .wave{ color:var(--paper); }
+.wave{ display:block; width:100%; height:44px; position:absolute; top:-43px; left:0; }
+@media (max-width:760px){
+  .sec-head{ text-align:center; padding-left:0; }
+  .sec-node{ margin:0 auto 12px; }
+}
+
+/* メッセージ（home-msg移植：丸画像＋テキスト、浮遊ロゴ） */
+.msg-set{ display:grid; grid-template-columns:.9fr 1.1fr; gap:48px; align-items:center; position:relative; z-index:1; }
+.msg-img{ --ratio:1/1; border-radius:46% 54% 52% 48% / 52% 46% 54% 48%; }
+.msg-txt h2{ margin-bottom:18px; }
+.msg-txt p{ margin-bottom:14px; }
+@media (max-width:760px){ .msg-set{ grid-template-columns:1fr; } .msg-img{ max-width:400px; margin:0 auto; } }
+
+/* 円形サービスカード（home-service-list移植） */
+.svc-list{ list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:26px; position:relative; z-index:1; }
+.svc-item{ text-align:center; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:30px 22px 26px; border-top:6px solid; }
+.svc-item.is-gold{ border-color:var(--gold); } .svc-item.is-leaf{ border-color:var(--leaf); } .svc-item.is-sun{ border-color:var(--sun); }
+.svc-circle{ width:150px; --ratio:1/1; margin:0 auto 16px; border-radius:50%; --pos:50% 30%; }
+.svc-item h3{ margin-bottom:8px; }
+.svc-item p{ font-size:15.5px; text-align:left; }
+@media (max-width:760px){ .svc-list{ grid-template-columns:1fr; } }
+
+/* 交互配置セクション（home-service-sec / is-reverse移植） */
+.zigzag{ display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; margin-top:58px; position:relative; z-index:1; }
+.zigzag .img-slot{ --ratio:4/3; }
+.zigzag.is-reverse .z-img{ order:2; } .zigzag.is-reverse .z-txt{ order:1; }
+.zigzag h3{ font-size:clamp(21px,2.8vw,26px); margin-bottom:12px; }
+.zigzag .z-tag{ display:inline-block; background:var(--gold); color:#fff; font-family:var(--font-head); font-size:14.5px; border-radius:999px; padding:3px 16px; margin-bottom:10px; }
+.zigzag.is-reverse .z-tag{ background:var(--leaf); }
+@media (max-width:760px){ .zigzag{ grid-template-columns:1fr; gap:22px; } .zigzag.is-reverse .z-img{ order:0; } }
+
+/* お悩み */
+.worry-list{ list-style:none; display:grid; gap:14px; max-width:820px; margin:0 auto; position:relative; z-index:1; }
+.worry-list li{
+  background:#FFFFFF; border:1.5px solid #FAD1B2; border-radius:16px;
+  padding:17px 20px 17px 58px; position:relative; font-weight:700; text-wrap:pretty;
+  font-size:clamp(15.5px,2vw,18px); color:#264653; box-shadow:0 6px 18px rgba(38,70,83,.14);
+}
+.worry-list li::before{
+  content:"✔"; position:absolute; left:20px; top:50%; transform:translateY(-50%);
+  width:28px; height:28px; border-radius:50%; background:var(--sun); color:#fff;
+  display:grid; place-items:center; font-size:15px;
+}
+.worry-close{ text-align:center; margin-top:36px; font-family:var(--font-head); font-size:clamp(19px,2.9vw,26px); color:var(--brown); position:relative; z-index:1; }
+.worry-close b{ color:var(--sun); }
+.spot-illust{ width:min(330px,78%); margin:0 auto 10px; position:relative; z-index:1; }
+.illust{ width:100%; height:auto; display:block; }
+.worry-visual{ width:min(200px,50%); margin:0 auto 24px; position:relative; z-index:1; }
+.worry-visual .worry-emblem{ width:150px; height:150px; margin:0 auto; }
+.worry-visual .worry-emblem svg{ width:100%; height:100%; }
+.worry-visual > img{ position:static; width:100%; height:auto; object-fit:contain; }
+
+/* 芯 */
+.shin-hero{ display:grid; grid-template-columns:200px 1fr; gap:34px; align-items:center; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:38px 34px; position:relative; z-index:1; }
+.shin-kanji{ font-family:"Kiwi Maru",serif; font-size:110px; line-height:1; color:var(--gold); text-align:center; }
+.shin-kanji small{ display:block; font-size:15px; color:var(--brown); letter-spacing:.3em; margin-top:12px; }
+.core-label{ display:inline-block; background:var(--gold); color:#fff; font-family:var(--font-head); font-size:14px; letter-spacing:.06em; padding:3px 14px; border-radius:999px; margin-bottom:4px; }
+@media (max-width:760px){ .shin-hero{ grid-template-columns:1fr; text-align:center; } }
+.sinpla-steps{ counter-reset:step; list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:16px; margin-top:30px; position:relative; z-index:1; }
+.sinpla-steps li{ counter-increment:step; background:#fff; border-radius:16px; box-shadow:var(--shadow); padding:20px 18px 16px; font-size:15.5px; border-top:5px solid var(--gold-soft); }
+.sinpla-steps li::before{ content:counter(step); display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--leaf); color:#fff; font-family:var(--font-head); margin-bottom:8px; }
+.sinpla-steps b{ display:block; color:var(--brown); font-size:16.5px; }
+.sinpla-note{ text-align:center; margin-top:26px; font-family:var(--font-head); font-size:clamp(18px,2.5vw,23px); color:var(--brown); position:relative; z-index:1; }
+
+/* エビデンス・カード */
+.grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; position:relative; z-index:1; }
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; position:relative; z-index:1; }
+@media (max-width:760px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+.card{ background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:30px 28px; }
+.ev-card h3{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.ev-num{ flex:none; width:36px; height:36px; border-radius:12px; background:var(--gold); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-size:18px; }
+.ev-src{ font-size:14.5px; color:#5E7681; margin-top:14px; }
+.ev-point{ background:var(--gold-soft); border-radius:12px; padding:10px 16px; font-weight:700; color:var(--brown); margin-top:14px; }
+.more-link{ text-align:center; margin-top:34px; position:relative; z-index:1; }
+
+/* Before/After・声 */
+.ba{ display:grid; grid-template-columns:1fr 70px 1fr; gap:16px; align-items:center; margin-top:8px; }
+.ba .img-slot{ --ratio:3/4; display:grid; place-items:center; color:#46666F; text-align:center; font-size:15px; font-weight:700; }
+.ba-arrow{ text-align:center; font-size:34px; color:var(--sun); }
+.ba-caption{ text-align:center; font-weight:700; margin-top:12px; color:var(--brown); }
+.ba-caption b{ color:var(--sun); font-size:1.2em; }
+@media (max-width:640px){ .ba{ grid-template-columns:1fr; } .ba-arrow{ transform:rotate(90deg); } }
+.voices{ display:grid; grid-template-columns:repeat(2,1fr); gap:26px 22px; position:relative; z-index:1; }
+.voice{ background:#fff; border-radius:22px; box-shadow:var(--shadow); padding:24px 24px 18px; position:relative; border:1.5px solid var(--gold-soft); }
+.voice::after{ content:""; position:absolute; bottom:-14px; left:38px; border:14px solid transparent; border-top-color:#fff; border-bottom:0; }
+.voice p{ font-size:16px; }
+.voice-meta{ display:flex; align-items:center; gap:10px; margin-top:14px; }
+.voice-face{ width:38px; height:38px; border-radius:50%; background:var(--gold-soft); display:grid; place-items:center; font-size:19px; }
+.voice-meta cite{ font-style:normal; font-size:15px; color:#5E7681; font-weight:700; }
+@media (max-width:760px){ .voices{ grid-template-columns:1fr; } }
+
+/* 料金 */
+.trial-card{ max-width:760px; margin:0 auto 34px; background:#fff; border:3px solid var(--sun); border-radius:var(--radius); box-shadow:0 12px 30px rgba(244,162,97,.18); padding:34px 30px; text-align:center; position:relative; z-index:1; }
+.trial-card::before{ content:"まずはこれから！"; position:absolute; top:-17px; left:50%; transform:translateX(-50%); background:var(--sun); color:#fff; font-family:var(--font-head); font-size:15px; padding:6px 22px; border-radius:999px; white-space:nowrap; }
+.price-plan{ font-family:var(--font-head); font-size:20px; color:var(--brown); }
+.trial-price{ display:flex; align-items:baseline; justify-content:center; gap:14px; flex-wrap:wrap; margin:10px 0 4px; }
+.trial-price .strike{ text-decoration:line-through; color:#6E888F; font-size:clamp(19px,2.5vw,25px); }
+.trial-price .z{ font-family:var(--font-head); color:var(--sun); font-size:clamp(42px,6vw,58px); line-height:1; }
+.trial-price .z small{ font-size:.4em; }
+.price-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch; position:relative; z-index:1; }
+.price-card{ background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:34px 26px; text-align:center; border:2px solid transparent; display:flex; flex-direction:column; }
+.price-card.recommend{ border-color:var(--sun); position:relative; }
+.price-card.recommend::before{ content:"いちばん選ばれています"; position:absolute; top:-16px; left:50%; transform:translateX(-50%); background:var(--sun); color:#fff; font-family:var(--font-head); font-size:14.5px; padding:5px 18px; border-radius:999px; white-space:nowrap; }
+.price-yen{ font-family:var(--font-head); font-size:clamp(29px,3.3vw,37px); color:var(--gold-deep); margin:12px 0 4px; }
+.price-yen small{ font-size:15px; color:var(--ink); }
+.single-plan{ max-width:760px; margin:26px auto 0; background:#fff; border-radius:14px; box-shadow:var(--shadow); padding:18px 24px; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; position:relative; z-index:1; }
+.single-plan b{ font-family:var(--font-head); color:var(--brown); font-size:16.5px; }
+.single-plan .yen{ font-family:var(--font-head); color:var(--gold-deep); font-size:21px; }
+.price-foot{ text-align:center; margin-top:26px; font-size:15px; color:#52707A; position:relative; z-index:1; }
+@media (max-width:760px){ .price-grid{ grid-template-columns:1fr; } }
+
+/* 実績 */
+.awards{ max-width:820px; margin:0 auto; list-style:none; display:grid; gap:12px; position:relative; z-index:1; }
+.awards li{ background:#fff; border-radius:14px; box-shadow:var(--shadow); padding:16px 20px 16px 56px; position:relative; font-size:15px; line-height:1.75; }
+.awards li::before{ content:""; position:absolute; left:16px; top:15px; width:26px; height:26px; background:url(images/icon-award.webp) center/contain no-repeat; }
+.awards li b{ color:var(--brown); }
+.awards li .place{ color:#5E7681; font-size:14.5px; }
+.awards li.award-plain{ background:none; box-shadow:none; padding:8px 8px 0; text-align:center; }
+.awards li.award-plain::before{ content:none; }
+.awards li.award-plain .place{ color:#5E7681; }
+.award-more{ display:none; }
+.awards.is-open .award-more{ display:block; animation:fadein .4s ease; }
+@keyframes fadein{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
+#awards-toggle .arw{ display:inline-block; transition:transform .3s; }
+#awards-toggle[aria-expanded="true"] .arw{ transform:rotate(180deg); }
+
+/* 代表 */
+.profile{ display:grid; grid-template-columns:320px 1fr; gap:60px; align-items:start; max-width:1000px; margin:36px auto 0; position:relative; z-index:1; background:#FFFFFF; border-radius:24px; padding:38px 42px; box-shadow:0 10px 30px rgba(38,70,83,.08); }
+.profile .img-slot{ --ratio:3/4; display:grid; place-items:center; color:#46666F; font-size:15px; font-weight:700; text-align:center; border:1px solid #264653; border-radius:18px; overflow:hidden; }
+.yomi{ font-size:15px; color:#55717B; margin-bottom:14px; letter-spacing:.12em; }
+.profile p:not(.yomi){ color:#264653; }
+.cred-table{ width:100%; border-collapse:collapse; margin:16px 0; font-size:15.5px; }
+.cred-table th{ text-align:left; white-space:nowrap; color:#264653; padding:9px 18px 9px 0; vertical-align:top; border-bottom:none; }
+.cred-table td{ padding:12px 16px; background:#FAF3E7; border-radius:12px; color:#264653; line-height:1.7; }
+.profile blockquote{ margin-top:30px; padding:26px 30px; line-height:2.0; background:#FBF7F0; border-radius:18px; font-size:16px; color:#264653; border-left:6px solid var(--sun); }
+html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
+.profile blockquote::before{ content:"代表の想い"; display:block; font-family:var(--font-head); color:var(--sun); font-size:15px; margin-bottom:6px; }
+.profile strong, .greeting-lead strong{ color:#264653; font-weight:700; }
+@media (max-width:760px){ .profile{ grid-template-columns:1fr; } .profile .img-slot{ width:min(300px,80vw); max-width:300px; margin:0 auto; min-height:360px; } }
+
+/* 流れ */
+.flow{ list-style:none; display:grid; max-width:680px; margin:0 auto; position:relative; z-index:1; }
+.flow li{ position:relative; padding:0 0 34px 76px; }
+.flow li:last-child{ padding-bottom:0; }
+.flow li::before{ content:attr(data-step); position:absolute; left:0; top:0; width:54px; height:54px; border-radius:50%; background:var(--leaf); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-size:22px; }
+.flow li:not(:last-child)::after{ content:""; position:absolute; left:26px; top:58px; bottom:6px; border-left:3px dotted var(--gold-soft); }
+.flow b{ display:block; font-family:var(--font-head); font-size:18px; color:var(--brown); margin-bottom:4px; }
+
+/* アクセス */
+.access-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; max-width:820px; margin:0 auto; position:relative; z-index:1; }
+.access-card{ background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:0 0 24px; text-align:center; overflow:hidden; }
+.access-photo{ --ratio:16/10; border-radius:0; box-shadow:none; border:none; margin-bottom:18px; }
+.access-card .st{ display:inline-block; background:var(--gold-soft); color:var(--brown); border-radius:999px; padding:4px 18px; font-weight:700; font-size:15px; margin-bottom:10px; }
+.access-note{ max-width:820px; margin:24px auto 0; background:#FAF3E7; border-radius:14px; padding:18px 24px; font-size:15px; position:relative; z-index:1; }
+@media (max-width:760px){ .access-grid{ grid-template-columns:1fr; } }
+
+/* お知らせ・コラム（サムネイル付きカード：VOICE型） */
+
+/* お知らせカテゴリタブ */
+.news-tabs{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:28px; }
+.news-tab{ font-family:var(--font-body); font-size:15px; font-weight:600; padding:9px 22px;
+  border-radius:30px; border:1.5px solid var(--gold-soft); background:#fff; color:var(--brown);
+  cursor:pointer; transition:all .22s; }
+.news-tab:hover{ border-color:var(--gold); color:var(--sun); }
+.news-tab.on{ background:var(--brown); color:#fff; border-color:var(--brown); }
+@media(max-width:560px){ .news-tab{ font-size:14.5px; padding:8px 16px; } .news-tabs{ gap:7px; } }
+
+.news-box{ max-width:1000px; margin:0 auto; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:34px 34px 30px; position:relative; z-index:1; }
+.news-box h2{ text-align:center; margin-bottom:6px; }
+.news-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.news-card{ display:flex; flex-direction:column; text-decoration:none; color:var(--ink); border-radius:16px; overflow:hidden; background:#fff; border:1px solid var(--gold-soft); transition:transform .2s, box-shadow .2s; }
+.news-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+.news-thumb{ --ratio:16/10; border-radius:0; box-shadow:none; border:none; }
+.news-card-body{ padding:14px 16px 18px; }
+.news-meta{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.news-meta time{ font-size:14.5px; color:#5E7681; font-weight:700; }
+.news-meta .tag{ background:var(--leaf); color:#fff; border-radius:999px; font-size:13.5px; padding:2px 12px; font-weight:700; }
+.news-card b{ font-family:var(--font-head); font-weight:500; font-size:15.5px; line-height:1.6; color:var(--brown); }
+.news-card:hover b{ color:var(--sun); }
+@media (max-width:760px){ .news-grid{ grid-template-columns:1fr 1fr; gap:16px; } .news-card b{ font-size:15px; } .news-card-body{ padding:12px 12px 14px; } .news-meta{ gap:6px; margin-bottom:6px; } .news-meta time{ font-size:13.5px; } .news-meta .tag{ font-size:12.5px; padding:2px 9px; } }
+@media (max-width:420px){ .news-grid{ gap:12px; } .news-card b{ font-size:14.5px; line-height:1.5; } }
+
+/* ブランドストーリー */
+.story-hero{ text-align:center; margin-bottom:30px; position:relative; z-index:1; }
+.story-logo{ width:200px; height:200px; margin:0 auto 20px; border-radius:0; background:none; padding:0; box-shadow:none; }
+.story-tagline{ font-family:var(--font-head); font-size:clamp(17px,2.4vw,21px); color:var(--brown); }
+.story-letters{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:720px; margin:0 auto 34px; position:relative; z-index:1; }
+.story-letters .sl{ background:#fff; border-radius:14px; box-shadow:var(--shadow); padding:16px 14px; text-align:center; }
+.story-letters .sl b{ display:block; font-family:"Kiwi Maru",serif; font-size:34px; color:var(--gold); line-height:1; margin-bottom:6px; }
+.story-letters .sl span{ font-size:14.5px; color:#52707A; }
+.story-body{ max-width:800px; margin:0 auto; position:relative; z-index:1; }
+.story-body p{ margin-bottom:14px; }
+.story-sign{ text-align:right; font-family:var(--font-head); color:var(--brown); margin-top:20px; margin-bottom:0; }
+@media (max-width:640px){ .story-letters{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:760px){ .story-body p{ text-align:left; } }
+
+/* FAQ */
+.faq{ max-width:780px; margin:0 auto; display:grid; gap:16px; position:relative; z-index:1; }
+.faq details{ background:#fff; border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
+.faq summary{ list-style:none; cursor:pointer; padding:19px 54px 19px 60px; font-weight:700; font-size:16.5px; color:var(--brown); position:relative; user-select:none; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::before{ content:"Q"; position:absolute; left:18px; top:16px; width:30px; height:30px; border-radius:50%; background:var(--gold); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-size:16px; }
+.faq summary::after{ content:"＋"; position:absolute; right:20px; top:50%; transform:translateY(-50%); color:var(--sun); font-size:22px; }
+.faq details[open] summary::after{ content:"－"; }
+.faq .a{ padding:0 24px 20px 60px; font-size:16px; }
+
+/* お問い合わせフォーム（サイト内オリジナル・CF7置換前提） */
+.contact-wrap{ display:grid; grid-template-columns:1.3fr .7fr; gap:30px; align-items:start; position:relative; z-index:1; }
+.contact-form{ background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:32px 30px; display:grid; gap:18px; }
+.contact-form label{ display:grid; gap:6px; font-family:var(--font-head); font-size:15px; color:var(--brown); }
+.cf-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.contact-form input, .contact-form select, .contact-form textarea{
+  font-family:var(--font-body); font-size:16px; color:var(--ink);
+  border:1.5px solid var(--gold-soft); border-radius:12px; padding:12px 14px; background:#FAF4E9; width:100%;
+}
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus{ outline:none; border-color:var(--sun); box-shadow:0 0 0 3px rgba(244,162,97,.15); }
+.req{ background:var(--sun); color:#fff; font-size:13px; border-radius:6px; padding:1px 8px; margin-left:6px; }
+.cf-check{ flex-direction:row; display:flex; align-items:center; gap:10px; font-size:15.5px; }
+.cf-check input{ width:20px; height:20px; accent-color:var(--sun); }
+.cf-submit{ text-align:center; margin-top:6px; }
+.cf-submit .btn{ width:100%; max-width:340px; }
+.cf-note{ font-size:14.5px; color:#5E7681; margin-top:12px; }
+.contact-side{ display:grid; gap:20px; }
+.contact-line, .contact-flow{ background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:26px 24px; text-align:center; }
+.cs-lead{ font-family:var(--font-head); color:var(--brown); font-size:17px; margin-bottom:14px; }
+.contact-line .btn{ width:100%; }
+.cs-sub{ font-size:14.5px; color:#5E7681; margin-top:12px; }
+.contact-flow{ text-align:left; }
+.contact-flow ol{ padding-left:0; list-style:none; counter-reset:cf; display:grid; gap:12px; }
+.contact-flow li{ counter-increment:cf; position:relative; padding-left:38px; font-size:15.5px; }
+.contact-flow li::before{ content:counter(cf); position:absolute; left:0; top:0; width:26px; height:26px; border-radius:50%; background:var(--leaf); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-size:15px; }
+.contact-flow li b{ color:var(--brown); }
+@media (max-width:760px){ .contact-wrap{ grid-template-columns:1fr; } .cf-row{ grid-template-columns:1fr; } }
+
+
+/* ASPATH理念ブロック（地域とともに歩む型） */
+.about-hsr{ display:grid; grid-template-columns:280px 1fr; gap:48px; align-items:center; max-width:980px; margin:0 auto 72px; position:relative; z-index:1; }
+.about-hsr-logo{ display:grid; place-items:center; }
+.about-hsr-logo img{ width:100%; max-width:240px; height:auto;
+  filter:drop-shadow(0 8px 24px rgba(38,70,83,.16)); }
+.about-hsr-text .eyebrow{ color:var(--sun); letter-spacing:.16em; font-size:14px; margin-bottom:10px; }
+.about-hsr-text h2{ font-family:var(--font-head); font-size:clamp(24px,3.4vw,32px); color:var(--brown);
+  margin-bottom:20px; line-height:1.5; }
+.about-hsr-text p{ font-size:17px; line-height:2.0; color:var(--ink); margin-bottom:16px; }
+.about-hsr-more{ margin-top:22px; }
+@media(max-width:760px){
+  .about-hsr{ grid-template-columns:1fr; gap:28px; text-align:center; margin-bottom:56px; }
+  .about-hsr-logo img{ max-width:180px; }
+  .about-hsr-text .eyebrow{ text-align:center; }
+  .about-hsr-more{ text-align:center; }
+}
+
+
+/* 重要なお知らせ帯（nsleep型：左ラベル＋右に日付・タイトル・2導線） */
+.important-news{ padding:36px 20px 56px; }
+.imp-news-inner{ display:grid; grid-template-columns:auto 1fr auto; align-items:stretch;
+  max-width:var(--maxw); margin:0 auto; background:#fff; border-radius:16px; overflow:hidden;
+  box-shadow:0 6px 22px rgba(38,70,83,.12); border:1px solid var(--gold-soft); }
+.imp-label{ background:linear-gradient(135deg,var(--brown),#2F5560); color:#fff;
+  display:flex; align-items:center; gap:10px; padding:22px 30px; font-weight:700; font-size:15px; flex-shrink:0; }
+.imp-ico{ width:22px; height:22px; flex-shrink:0; }
+.imp-body{ padding:18px 28px; display:flex; flex-direction:column; justify-content:center; gap:6px; min-width:0; }
+.imp-body time{ font-size:14.5px; color:#5E7681; font-weight:600; }
+.imp-title{ font-size:15.5px; color:var(--brown); font-weight:600; line-height:1.5; margin:0; }
+.imp-title strong{ color:var(--sun); font-size:1.15em; }
+.imp-actions{ display:flex; flex-direction:column; gap:8px; justify-content:center; padding:16px 24px 16px 0; flex-shrink:0; }
+.imp-btn{ display:inline-flex; align-items:center; gap:6px; white-space:nowrap; font-size:14.5px; font-weight:700;
+  padding:9px 18px; border-radius:24px; text-decoration:none; transition:all .2s; }
+.imp-btn .arw{ transition:transform .2s; }
+.imp-btn:hover .arw{ transform:translateX(3px); }
+.imp-btn-detail{ background:var(--paper); color:var(--brown); border:1px solid var(--gold-soft); }
+.imp-btn-detail:hover{ background:#fff; border-color:var(--gold); }
+.imp-btn-apply{ background:var(--sun); color:#fff; }
+.imp-btn-apply:hover{ background:#E08A3C; box-shadow:0 4px 12px rgba(244,162,97,.4); }
+@media(max-width:760px){
+  .imp-news-inner{ grid-template-columns:1fr; }
+  .imp-label{ padding:14px 20px; justify-content:center; }
+  .imp-body{ padding:18px 22px 8px; text-align:center; align-items:center; }
+  .imp-actions{ flex-direction:row; padding:0 22px 20px; justify-content:center; flex-wrap:wrap; }
+}
+
+/* ② 2大サービス写真バナー */
+.service-banners{ padding:60px 20px; background:#FBF7F0; }
+.sb-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; max-width:var(--maxw); margin:0 auto; }
+.sb-card{ background:#fff; border-radius:20px; overflow:hidden; text-decoration:none; box-shadow:var(--shadow); transition:transform .25s, box-shadow .25s; display:flex; flex-direction:column; }
+.sb-card:hover{ transform:translateY(-5px); box-shadow:0 16px 36px rgba(38,70,83,.18); }
+.sb-img{ aspect-ratio:16/10; overflow:hidden; }
+.sb-img img{ width:100%; height:100%; object-fit:cover; object-position:var(--pos,center); transition:transform .5s; }
+.sb-card:hover .sb-img img{ transform:scale(1.05); }
+.sb-body{ padding:26px 28px 30px; }
+.sb-en{ font-size:13px; letter-spacing:.16em; color:var(--sun); font-weight:700; }
+.sb-body h3{ font-family:var(--font-head); font-size:22px; color:var(--brown); margin:6px 0 12px; }
+.sb-body p{ font-size:15px; color:#55717B; line-height:1.85; margin-bottom:16px; }
+.sb-link{ font-size:15px; color:#264653; font-weight:700; }
+.sb-link::after{ content:"\00a0→"; color:#F4A261; }
+@media(max-width:720px){ .sb-grid{ grid-template-columns:1fr; gap:20px; } .service-banners{ padding:44px 16px; } }
+
+/* ⑥ 三本柱 */
+.pillar-list{ display:grid; gap:40px; max-width:920px; margin:0 auto; position:relative; z-index:1; }
+.pillar{ display:grid; grid-template-columns:300px 1fr; gap:36px; align-items:center; position:relative; z-index:1; background:#FAF3E7; border-radius:22px; padding:26px 30px; }
+.pillar.is-reverse{ grid-template-columns:1fr 300px; }
+.pillar.is-reverse .pillar-img{ order:2; }
+.pillar.is-reverse .pillar-txt{ order:1; }
+.pillar-num{ position:absolute; top:-18px; left:-8px; z-index:3; }
+.pillar:not(.is-reverse) .pillar-num{ left:328px; }
+.pillar-num span{ font-family:"Kiwi Maru",serif; font-size:40px; color:#F4A261; opacity:.85; font-weight:700; }
+.pillar-img{ aspect-ratio:4/3; border-radius:18px; overflow:hidden; box-shadow:var(--shadow); border:1px solid #264653; }
+.pillar-img img{ width:100%; height:100%; object-fit:cover; object-position:var(--pos,center); }
+.pillar-txt h3{ font-family:var(--font-head); font-size:clamp(19px,2.6vw,23px); color:var(--brown); margin-bottom:12px; text-wrap:balance; }
+.pillar-txt p{ font-size:15px; line-height:1.95; color:#264653; }
+
+/* 選ばれる理由：項目間の装飾（縦ガイドライン＋オレンジの線・丸） */
+.pillar-list::before{ content:""; position:absolute; left:50%; top:8px; bottom:8px; width:2px; z-index:0;
+  background:repeating-linear-gradient(#FAD1B2 0 7px, rgba(250,209,178,0) 7px 14px); transform:translateX(-50%); opacity:.85; }
+.pillar:not(:last-child)::after{ content:""; position:absolute; left:50%; bottom:-24px; width:11px; height:11px; border-radius:50%;
+  background:#F4A261; transform:translateX(-50%); z-index:2; box-shadow:0 0 0 5px #FBF7F0; }
+
+@media(max-width:720px){ .pillar, .pillar.is-reverse{ grid-template-columns:1fr; gap:18px; } .pillar.is-reverse .pillar-img{ order:0; } .pillar.is-reverse .pillar-txt{ order:1; } .pillar-num{ position:static; margin-bottom:-8px; } .pillar-num span{ font-size:32px; } }
+
+
+/* メッセージ帯（写真を右に全面配置＋左へクリームフェード／文章は左に重ねる） */
+.message-band{ position:relative; overflow:hidden; min-height:clamp(420px,42vw,520px); display:flex; align-items:center; background:#FBF7F0; }
+.message-band-bg{ position:absolute; top:0; right:0; bottom:0; left:auto; width:min(1000px,92%); z-index:0; }
+.message-band-bg img{ width:100%; height:100%; object-fit:cover; object-position:60% 40%; }
+.message-band-bg::after{ content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(90deg, #FBF7F0 0%, rgba(251,247,240,.9) 14%, rgba(251,247,240,.45) 30%, rgba(251,247,240,.12) 42%, rgba(251,247,240,0) 54%); }
+.message-band-overlay{ position:absolute; inset:0; z-index:1;
+  background:linear-gradient(90deg, rgba(251,247,240,1) 0%, rgba(251,247,240,.96) 30%, rgba(251,247,240,.6) 48%, rgba(251,247,240,.2) 62%, rgba(251,247,240,0) 78%); }
+.message-band .wrap{ position:relative; z-index:2; width:100%; padding-left:clamp(16px,3.5vw,52px); box-sizing:border-box; }
+.message-band-inner{ max-width:700px; }
+.mb-en{ font-size:14px; letter-spacing:.18em; color:var(--sun); font-weight:700; margin-bottom:12px; }
+.message-band-inner h2{ font-family:var(--font-head); font-size:clamp(22px,2.9vw,30px); color:var(--brown); line-height:1.6; margin-bottom:20px; word-break:keep-all; text-wrap:balance; }
+.message-band-inner p{ font-size:15px; line-height:1.95; color:#264653; margin-bottom:14px; }
+.message-band-inner p:last-of-type{ color:#55717B; }
+.hl-hope{ color:#F4A261; }
+@media(max-width:1180px){
+  .message-band{ min-height:0; padding:0 0 52px; flex-direction:column; background:#fff; }
+  .message-band-bg{ position:relative; width:100%; height:auto; aspect-ratio:3/2; }
+  .message-band-bg img{ object-position:70% 42%; }
+  .message-band-overlay{ display:none; }
+  .message-band .wrap{ padding:22px 18px 8px; }
+  .message-band-inner{ max-width:100%; }
+  .message-band-inner p{ font-size:15.5px; line-height:2; }
+}
+
+/* SNSセクション（ASPATHデザイン：カードグリッド） */
+.sns-section{ position:relative; padding:74px 20px 82px; overflow:hidden;
+  background:linear-gradient(160deg, #2B5361 0%, #264653 55%, #20404A 100%); }
+.sns-section::before{ content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(130% 90% at 50% -12%, rgba(255,244,214,.16), transparent 62%); }
+.sns-section .sns-overlay{ position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 58%, rgba(0,0,0,.18) 100%); }
+.sns-section .wrap{ position:relative; z-index:1; }
+.sns-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:880px; margin:0 auto; }
+.sns-tile{ position:relative; background:#fff; border:1px solid rgba(30,45,52,.06); border-radius:20px;
+  padding:32px 18px 26px; text-decoration:none; text-align:center; display:flex; flex-direction:column;
+  align-items:center; gap:9px; transition:transform .28s ease, box-shadow .28s ease;
+  box-shadow:0 10px 26px rgba(30,18,6,.18), 0 2px 6px rgba(30,18,6,.10); }
+.sns-tile:hover{ transform:translateY(-7px); box-shadow:0 22px 44px rgba(30,18,6,.30), 0 4px 10px rgba(30,18,6,.14); }
+.sns-tile-ico{ width:62px; height:62px; border-radius:18px; display:grid; place-items:center; color:#fff;
+  margin-bottom:4px; box-shadow:0 6px 15px rgba(0,0,0,.20); }
+.sns-tile-ico svg{ width:32px; height:32px; filter:drop-shadow(0 1px 1px rgba(0,0,0,.16)); }
+.sns-instagram{ background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF); }
+.sns-facebook{ background:#1877F2; }
+.sns-youtube{ background:#FF0000; }
+.sns-line{ background:#06C755; }
+.sns-tile-name{ font-family:var(--font-head); font-size:16.5px; color:var(--brown); font-weight:700; letter-spacing:.02em; }
+.sns-tile-desc{ font-size:14px; color:#55717B; line-height:1.55; }
+.sns-tile-cta{ font-size:14px; color:#264653; font-weight:700; margin-top:8px; letter-spacing:.02em; transition:color .2s; }
+.sns-tile-cta::after{ content:"\00a0→"; color:#F4A261; }
+.sns-tile:hover .sns-tile-cta{ color:#1E3A44; }
+@media(max-width:720px){ .sns-grid{ grid-template-columns:repeat(2,1fr); gap:16px; max-width:420px; } }
+@media(max-width:360px){ .sns-grid{ grid-template-columns:1fr; } }
+
+.site-footer{ background:var(--brown); color:#fff; margin-top:0; }
+.footer-in{ max-width:var(--maxw); margin:0 auto; padding:56px 20px 36px; display:grid; grid-template-columns:1.8fr 1fr 1fr; gap:36px 48px; }
+.footer-logo{ width:120px; height:120px; margin-bottom:10px; }
+.footer-nav-col h5{ font-size:14px; font-weight:700; color:var(--gold); letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px; border-bottom:1px solid rgba(176,138,69,.3); padding-bottom:8px; }
+.footer-nav-col ul{ list-style:none; display:grid; gap:9px; }
+.footer-nav-col ul a{ color:rgba(220,205,176,.78); font-size:14.5px; text-decoration:none; display:flex; align-items:center; gap:5px; transition:color .2s; }
+.footer-nav-col ul a::before{ content:"\203A"; color:var(--gold); font-size:15px; line-height:1; }
+.footer-nav-col ul a:hover{ color:#fff; }
+.footer-in h4{ color:#fff; }
+.sub-footer{ background:rgba(0,0,0,.25); display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; padding:16px 28px; font-size:14px; color:rgba(220,205,176,.55); }
+.sub-footer a{ color:rgba(220,205,176,.6); text-decoration:none; transition:color .2s; }
+.sub-footer a:hover{ color:#fff; }
+.sub-footer-links{ display:flex; gap:18px; flex-wrap:wrap; }
+@media(max-width:760px){ .footer-in{ grid-template-columns:1fr 1fr; gap:24px; } }
+@media(max-width:560px){ .footer-in{ grid-template-columns:1fr; }  }
+.header-topbar{ background:var(--brown); color:#fff; font-size:14px; display:flex; justify-content:flex-end; align-items:center; gap:0; overflow:hidden; flex-wrap:wrap; }
+.header-topbar a{ display:flex; align-items:center; gap:5px; color:rgba(255,255,255,.88); text-decoration:none; padding:7px 16px; border-left:1px solid rgba(255,255,255,.15); transition:background .2s; white-space:nowrap; font-size:14px; }
+.header-topbar a:first-child{ border-left:none; }
+.header-topbar a:hover{ background:rgba(255,255,255,.12); color:#fff; }
+.header-topbar .tb-ico{ width:14px; height:14px; flex-shrink:0; fill:currentColor; }
+.header-topbar .lang-btn{ background:rgba(255,255,255,.18); border-radius:3px; font-weight:700; }
+@media(max-width:760px){ .header-topbar{ display:none; } }
+
+/* ===== ローディング（ブランドスプラッシュ） ===== */
+#aspath-loader{ position:fixed; inset:0; z-index:99999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;
+  background:radial-gradient(135% 105% at 50% 26%, #FBF4E8 0%, #F4E9D8 46%, #E7D9C1 100%);
+  opacity:1; will-change:opacity,transform,filter;
+  transition:opacity 2.6s ease, visibility 2.6s ease, transform 2.6s cubic-bezier(.33,0,.2,1), filter 2.6s ease;
+  animation:ldrAutohide 1.4s ease 12s forwards; /* JS無効時の保険 */ }
+#aspath-loader.is-hidden{ opacity:0; visibility:hidden; transform:translateY(-26px) scale(1.045); filter:blur(9px); pointer-events:none; }
+html.ldr-seen #aspath-loader{ display:none !important; }
+.ldr-inner{ position:relative; display:flex; flex-direction:column; align-items:center; gap:18px; padding:0 24px; }
+.ldr-logo{ width:clamp(78px,18vw,100px); height:auto; opacity:0; transform:translateY(10px) scale(.9);
+  animation:ldrLogo 1.5s cubic-bezier(.2,.7,.2,1) .3s forwards; filter:drop-shadow(0 12px 28px rgba(38,70,83,.18)); }
+/* ブランド識別ブロック：ASPATH／専門性／地域を最優先で刷り込む（ヒーローと二段構えで強調） */
+.ldr-id{ font-family:var(--font-head); text-align:center; line-height:1.4; }
+.ldr-id-brand{ position:relative; display:inline-block; font-size:clamp(17px,4vw,21px); font-weight:800; letter-spacing:.16em; color:var(--brown);
+  opacity:0; transform:translateY(9px); animation:ldrUp 1s ease .5s forwards; }
+.ldr-id-brand::after{ content:""; position:absolute; left:50%; bottom:-6px; width:0; height:2px; border-radius:2px; transform:translateX(-50%);
+  background:linear-gradient(90deg,var(--gold),var(--sun)); animation:ldrBrandLine .8s ease .95s forwards; }
+.ldr-id-spec{ display:block; margin-top:6px; font-family:var(--font-body); font-size:clamp(22.5px,6.3vw,30px); font-weight:700; color:var(--gold-deep); letter-spacing:.03em;
+  opacity:0; transform:translateY(8px); animation:ldrUp 1s ease .8s forwards; }
+.ldr-id-loc{ font-size:.9em; color:#5E7681; white-space:nowrap; }
+.ldr-id-loc::before{ content:"｜"; color:var(--gold-soft); margin:0 3px; }
+@keyframes ldrBrandLine{ to{ width:54px; } }
+.ldr-copy{ font-family:var(--font-head); color:var(--brown); text-align:center; line-height:1.55; }
+.ldr-main{ position:relative; display:block; height:calc(clamp(18px,4.2vw,25px)*1.6); font-size:clamp(18px,4.2vw,25px); letter-spacing:.02em;
+  opacity:0; transform:translateY(12px); animation:ldrUp 1.2s ease 1.35s forwards; }
+.ldr-main .accent{ color:var(--sun); }
+.ldr-phrase{ position:absolute; left:50%; top:0; width:max-content; max-width:88vw; transform:translate(-50%,14px); opacity:0;
+  transition:opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1); white-space:nowrap; }
+.ldr-phrase.is-active{ opacity:1; transform:translate(-50%,0); }
+.ldr-phrase.is-leaving{ opacity:0; transform:translate(-50%,-12px); }
+.ldr-path{ position:relative; width:min(230px,60vw); height:3px; border-radius:3px; margin-top:8px; overflow:visible; background:var(--gold-soft); opacity:0; animation:ldrFade .7s ease 2.15s forwards; }
+.ldr-path i{ display:block; height:100%; width:42%; border-radius:3px; background:linear-gradient(90deg,var(--gold),var(--sun)); transform:translateX(-120%); animation:ldrRun 2s ease-in-out 2.4s infinite; }
+/* 道を一歩ずつ歩む光の点 */
+.ldr-path b{ position:absolute; top:50%; left:0; width:9px; height:9px; margin-top:-4.5px; border-radius:50%;
+  background:radial-gradient(circle, #fff 0%, var(--sun) 55%, rgba(244,162,97,0) 100%);
+  box-shadow:0 0 10px rgba(244,162,97,.75); animation:ldrWalk 2s ease-in-out 2.4s infinite; }
+@keyframes ldrWalk{ 0%{ transform:translateX(-6px) scale(.8); opacity:0;} 12%{ opacity:1;} 88%{ opacity:1;} 100%{ transform:translateX(min(230px,60vw)) scale(1.05); opacity:0;} }
+/* ロゴから広がる陽だまりの波紋 */
+.ldr-rings{ position:absolute; top:calc(clamp(78px,18vw,100px)/2 - 2px); left:50%; width:4px; height:4px; z-index:-1; pointer-events:none; }
+.ldr-rings i{ position:absolute; left:50%; top:50%; width:120px; height:120px; margin:-60px 0 0 -60px; border-radius:50%;
+  border:1.5px solid rgba(176,138,69,.55); opacity:0; animation:ldrRing 3.6s ease-out infinite; }
+.ldr-rings i:nth-child(2){ animation-delay:1.2s; border-color:rgba(244,162,97,.45); }
+.ldr-rings i:nth-child(3){ animation-delay:2.4s; border-color:rgba(176,138,69,.35); }
+@keyframes ldrRing{ 0%{ opacity:0; transform:scale(.35);} 12%{ opacity:.75;} 100%{ opacity:0; transform:scale(2.6);} }
+/* ロゴを包む、呼吸する温かな光 */
+.ldr-glow{ position:absolute; top:-46px; left:50%; width:300px; height:300px; transform:translateX(-50%); z-index:-1;
+  background:radial-gradient(circle, rgba(244,162,97,.30) 0%, rgba(244,162,97,.10) 42%, rgba(244,162,97,0) 70%);
+  border-radius:50%; pointer-events:none; opacity:0; animation:ldrGlowIn 1.4s ease .2s forwards, ldrGlow 3.8s ease-in-out .2s infinite; }
+/* ゆっくり昇る光の粒 */
+.ldr-particles{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+.ldr-particles span{ position:absolute; bottom:-14px; border-radius:50%;
+  background:radial-gradient(circle, rgba(244,162,97,.55) 0%, rgba(244,162,97,0) 70%); animation:ldrFloat linear infinite; }
+@keyframes ldrGlowIn{ to{ opacity:1; } }
+@keyframes ldrGlow{ 0%,100%{ transform:translateX(-50%) scale(.92); } 50%{ transform:translateX(-50%) scale(1.08); } }
+@keyframes ldrFloat{ 0%{ transform:translateY(0) scale(.5); opacity:0; } 12%{ opacity:.85; } 85%{ opacity:.55; } 100%{ transform:translateY(-72vh) scale(1.15); opacity:0; } }
+@keyframes ldrLogo{ to{ opacity:1; transform:translateY(0) scale(1);} }
+@keyframes ldrUp{ to{ opacity:1; transform:translateY(0);} }
+@keyframes ldrFade{ to{ opacity:1;} }
+@keyframes ldrRun{ 0%{ transform:translateX(-120%);} 100%{ transform:translateX(320%);} }
+@keyframes ldrAutohide{ to{ opacity:0; visibility:hidden; pointer-events:none;} }
+html.is-loading{ overflow:hidden; }
+/* ローダーは OS のアニメーション削減設定に関わらずフル演出で表示（クライアント要望） */
+
+/* ===== FAQアコーディオン（faqページから移植：トップ集約用） ===== */
+.faq{ max-width:780px; margin:0 auto; display:grid; gap:16px; position:relative; z-index:1; }
+.faq details{ background:#fff; border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
+.faq summary{ list-style:none; cursor:pointer; padding:19px 54px 19px 60px; font-weight:700; font-size:16.5px; color:var(--brown); position:relative; user-select:none; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::before{ content:"Q"; position:absolute; left:18px; top:16px; width:30px; height:30px; border-radius:50%; background:var(--gold); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-size:16px; }
+.faq summary::after{ content:"＋"; position:absolute; right:20px; top:50%; transform:translateY(-50%); color:var(--sun); font-size:22px; }
+.faq details[open] summary::after{ content:"－"; }
+.faq .a{ padding:0 24px 20px 60px; font-size:16px; }
+@media(max-width:640px){ .faq summary{ font-size:15px; padding:17px 46px 17px 56px; } .faq .a{ font-size:15px; } }
+
+/* ===== お知らせ（簡易リスト）＋コラム（横型アイキャッチ）｜議事録3-6 ===== */
+.notice-block{ max-width:860px; margin:0 auto 64px; }
+.notice-list{ list-style:none; }
+.notice-row{ display:flex; align-items:center; gap:18px; padding:20px 10px; border-bottom:1px solid #E7D9C1; }
+.notice-row:first-child{ border-top:1px dashed var(--gold-soft); }
+.notice-row time{ font-size:15px; color:#5E7681; font-weight:700; white-space:nowrap; }
+.notice-row .tag{ background:var(--leaf); color:#fff; border-radius:999px; font-size:13.5px; padding:3px 12px; font-weight:700; white-space:nowrap; }
+.notice-row a{ color:var(--brown); font-weight:600; text-decoration:none; font-size:15.5px; line-height:1.6; }
+.notice-row a:hover{ color:var(--sun); }
+.notice-row.is-more{ display:none; }
+.notice-list.is-open .notice-row.is-more{ display:flex; animation:fadein .4s ease; }
+@media(max-width:560px){ .notice-row{ flex-wrap:wrap; gap:8px 12px; padding:14px 4px; } .notice-row a{ font-size:15px; width:100%; } }
+
+.column-block{ max-width:900px; margin:0 auto; }
+.column-list{ display:grid; gap:26px; }
+.col-card{ display:grid; grid-template-columns:260px 1fr; text-decoration:none; color:var(--ink); background:#fff; border:none; border-radius:20px; overflow:hidden; box-shadow:0 8px 26px rgba(38,70,83,.08); transition:transform .2s, box-shadow .2s; }
+.col-card:hover{ transform:translateY(-4px); box-shadow:0 14px 34px rgba(38,70,83,.14); }
+.col-thumb{ --ratio:16/11; border-radius:0; box-shadow:none; border:none; background:#fff; }
+.col-body{ padding:26px 30px; }
+.col-meta{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.col-meta time{ font-size:14.5px; color:#5E7681; font-weight:700; }
+.tag-col{ background:var(--gold); color:#fff; border-radius:999px; font-size:13.5px; padding:2px 12px; font-weight:700; }
+.col-card b{ font-family:var(--font-head); font-weight:500; font-size:17px; line-height:1.5; color:var(--brown); display:block; margin-bottom:8px; }
+.col-card:hover b{ color:var(--sun); }
+.col-excerpt{ font-size:15px; color:#52707A; line-height:1.8; margin:0; }
+.col-card.is-more{ display:none; }
+.column-list.is-open .col-card.is-more{ display:grid; animation:fadein .4s ease; }
+@media(max-width:640px){ .col-card{ grid-template-columns:1fr; }
+.col-card--noimg{ grid-template-columns:1fr; } }
+
+.greeting-lead{ margin-bottom:6px; line-height:2.0; }
+.drawer-line-note{ font-size:13.5px; color:var(--gold-deep); text-align:center; margin:9px 4px 0; line-height:1.7; }
+.faq-line-col{ display:flex; flex-direction:column; align-items:center; gap:7px; }
+.faq-line-note{ font-size:13.5px; color:var(--gold-deep); line-height:1.65; max-width:250px; text-align:center; margin:0; }
+.more-wrap{ text-align:center; margin-top:26px; }
+.more-btn{ font-family:var(--font-body); font-weight:700; font-size:15px; color:var(--brown); background:var(--paper); border:1px solid var(--gold-soft); border-radius:24px; padding:10px 28px; cursor:pointer; transition:all .2s; }
+.more-btn:hover{ border-color:var(--gold); color:var(--sun); }
+.more-btn .arw{ display:inline-block; margin-left:6px; transition:transform .3s; }
+.more-btn[aria-expanded="true"] .arw{ transform:rotate(180deg); }
+
+/* ===== モバイル安全策：横スクロール/はみ出し防止 ===== */
+html,body{ overflow-x:clip; max-width:100%; }
+img,video,iframe{ max-width:100%; height:auto; }
+body{ overflow-wrap:break-word; word-break:normal; }
+.br-pc{ display:inline; }
+@media(max-width:600px){
+  .cred-table{ font-size:14.5px; }
+  .cred-table th{ padding:8px 10px 8px 0; }
+  .br-pc{ display:none; }   /* PC用改行はスマホでは改行しない */
+}
+
+/* ===== スマホUI最適化（余白・サイズをモバイル基準へ｜iPhone SE想定） ===== */
+@media(max-width:600px){
+  .section{ padding:50px 0 !important; }
+  .wrap{ padding:0 16px; }
+  .sec-head{ margin-bottom:20px; }
+  .service-banners{ padding:38px 14px !important; }
+  .message-band{ padding:46px 16px 50px !important; min-height:0 !important; }
+  .sns-section{ padding:44px 14px 50px !important; }
+  .about-hsr{ gap:20px !important; }
+  .pillar-list{ gap:26px !important; }
+  .worry-list{ gap:12px; }
+  .worry-close{ margin-top:26px; }
+  /* 下層ページ */
+  .page-head{ padding-top:74px !important; padding-bottom:6px !important; }
+  .page-main{ padding-bottom:36px !important; }
+  .page-main h2:not(:first-child){ margin-top:32px !important; }
+  .side-toc{ margin-bottom:22px !important; }
+  /* ヒーロー */
+  .hero{ min-height:74vh !important; padding:60px 6% 66px !important; }
+  /* 見出し・本文を少し詰める */
+  h2{ line-height:1.4; }
+  .lede{ font-size:15px; }
+  /* コラム記事の図・引用の余白圧縮 */
+  .column-callout{ margin:24px 0 !important; padding:18px 18px !important; font-size:15px !important; }
+  .column-quote{ margin:18px 0 !important; }
+  .trial-detail, .trial-card{ padding:20px 16px !important; }
+}
+.awards a.aw-link{ color:#264653; font-weight:700; text-decoration:underline; text-decoration-color:#F4A261; text-decoration-thickness:2px; text-underline-offset:3px; transition:color .2s; }
+.awards a.aw-link:hover{ color:#E08A3C; }
+</style>
+</head>
+
+<body>
+<div id="aspath-loader" role="status" aria-label="読み込み中">
+  <div class="ldr-particles" aria-hidden="true">
+    <span style="left:10%;width:7px;height:7px;animation-duration:11s;animation-delay:0s"></span>
+    <span style="left:24%;width:11px;height:11px;animation-duration:14s;animation-delay:2.5s"></span>
+    <span style="left:42%;width:6px;height:6px;animation-duration:10s;animation-delay:1.2s"></span>
+    <span style="left:58%;width:9px;height:9px;animation-duration:13s;animation-delay:3.5s"></span>
+    <span style="left:74%;width:7px;height:7px;animation-duration:12s;animation-delay:0.8s"></span>
+    <span style="left:88%;width:10px;height:10px;animation-duration:15s;animation-delay:4.2s"></span>
+  </div>
+  <div class="ldr-inner">
+    <span class="ldr-glow" aria-hidden="true"></span>
+    <span class="ldr-rings" aria-hidden="true"><i></i><i></i><i></i></span>
+    <img class="ldr-logo" src="images/logo-aspath.webp" alt="ASPATH">
+    <p class="ldr-id">
+      <span class="ldr-id-spec">パーキンソン病・脳卒中専門トレーニングスタジオ<span class="ldr-id-loc">鹿児島</span></span>
+    </p>
+    <p class="ldr-copy">
+      <span class="ldr-main">
+        <span class="ldr-phrase is-active">不安を<span class="accent">希望</span>に。動くことを<span class="accent">楽しむ</span>。</span>
+      </span>
+    </p>
+    <span class="ldr-path"><i></i><b aria-hidden="true"></b></span>
+  </div>
+</div>
+<script>
+(function(){
+  var d=document, root=d.documentElement, ldr=d.getElementById('aspath-loader');
+  if(!ldr) return;
+  /* このブラウザ・セッション中は1回だけ表示（再訪・TOP再クリックはスキップ／ブラウザを閉じて開き直すと再表示） */
+  var seenLoader=false;
+  try{ seenLoader = sessionStorage.getItem('aspath_loader_shown')==='1'; }catch(e){}
+  if(seenLoader){
+    if(ldr.parentNode) ldr.parentNode.removeChild(ldr);
+    root.classList.remove('is-loading');
+    return;
+  }
+  try{ sessionStorage.setItem('aspath_loader_shown','1'); }catch(e){}
+  root.classList.add('is-loading');   // セッション中は最初の1回のみ表示
+  var MIN = 3000;      // 最低表示（約3秒）
+  var CAP = 6000;     // セーフティ上限
+  var start = Date.now(), done=false;
+
+  /* キャッチフレーズをふんわり順送り */
+  var phrases = ldr.querySelectorAll('.ldr-phrase'), pi = 0, rotTimer = null;
+  if(phrases.length > 1){
+    rotTimer = setInterval(function(){
+      var cur = phrases[pi];
+      pi = (pi + 1) % phrases.length;
+      var nxt = phrases[pi];
+      cur.classList.remove('is-active'); cur.classList.add('is-leaving');
+      nxt.classList.remove('is-leaving'); nxt.classList.add('is-active');
+      setTimeout(function(){ cur.classList.remove('is-leaving'); }, 1150);
+    }, 1700);
+  }
+  function hide(){
+    if(done) return; done=true;
+    if(rotTimer) clearInterval(rotTimer);
+    ldr.classList.add('is-hidden');                          // 上へ+ぼかしで徐々に溶ける
+    root.classList.remove('is-loading');
+    setTimeout(function(){ if(ldr && ldr.parentNode) ldr.parentNode.removeChild(ldr); }, 2650);
+  }
+  function schedule(){ setTimeout(hide, Math.max(0, MIN-(Date.now()-start))); }
+  if(d.readyState==='complete') schedule();
+  else window.addEventListener('load', schedule);
+  setTimeout(hide, CAP);
+  ldr.addEventListener('click', hide);                       // タップで即スキップ
+})();
+</script>
+
+<!-- ==========================================================
+  ■ 画像の入れ方（全スロット共通）
+  1. 各スロット内のコメントアウトされた <img> を有効化しURLを入れるだけ
+     → 仮置きのイラスト・ラベルは自動で消えます
+  2. サイズ違いへの対応（スロットまたはimgのstyleで指定）
+     --ratio:1/1      枠の縦横比を変更（3/4, 16/9 など）
+     --pos:50% 20%    切り抜き位置。顔写真は上寄せ（20%前後）推奨
+  3. クラス追加で挙動変更
+     fit-contain（切り抜かず全体表示） / h-auto（画像の高さに追従） / plain（枠なし）
+  例）縦長の顔写真を正方形枠に：
+     <div class="img-slot" style="--ratio:1/1; --pos:center 18%;"><img src="face.jpg" alt=""></div>
+========================================================== -->
+<header class="site-header">
+  <div class="header-in">
+    <a class="brand" href="index.html" aria-label="ASPATH（アスパス）トップへ">
+      <img class="brand-logo" src="images/logo-aspath.webp" alt="ASPATHロゴ" width="85" height="85">
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="header-right">
+        <nav class="gnav" aria-label="メインメニュー">
+      <a href="index.html" data-en="TOP">TOP</a>
+      <a href="about.html" data-en="About">ASPATHについて</a>
+      <a href="news.html" data-en="Column">コラム</a>
+      <a href="price.html" data-en="Pricing">プランと料金</a>
+      <a href="access.html" data-en="Access">交通アクセス</a>
+      <a href="contact.html" data-en="Contact">お問い合わせ</a>
+    </nav>
+    <div class="header-cta">
+      <a class="hbtn hbtn-line" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" aria-label="公式LINEに登録"><svg class="hbtn-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span data-en="Register on LINE">公式LINEに登録</span></a>
+    </div>
+    <div class="header-sns" aria-label="公式SNS">
+      <a href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg>
+      </a>
+      <a href="https://youtube.com/channel/UC4euclQEdu9IIrTNyNELFyg?si=Mgtef9o84be7vemE" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.57V8.43L15.8 12l-6.2 3.57z"></path></svg>
+      </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- モバイル用ドロワーメニュー -->
+<div class="drawer-overlay" id="drawer-overlay" hidden=""></div>
+<nav class="drawer" id="drawer" aria-label="メニュー" aria-hidden="true">
+  <div class="drawer-head">
+    <img src="images/logo-aspath.webp" alt="ASPATH" width="48" height="48">
+    <button class="drawer-close" id="drawer-close" aria-label="メニューを閉じる">×</button>
+  </div>
+    <ul class="drawer-links">
+    <li><a href="index.html" data-en="TOP">TOP</a></li>
+    <li><a href="about.html" data-en="About">ASPATHについて</a></li>
+    <li><a href="news.html" data-en="Column">コラム</a></li>
+    <li><a href="price.html" data-en="Pricing">プランと料金</a></li>
+    <li><a href="access.html" data-en="Access">交通アクセス</a></li>
+    <li><a href="contact.html" data-en="Contact">お問い合わせ</a></li>
+  </ul>
+  <div class="drawer-sns" aria-label="公式SNS">
+    <a href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" aria-label="公式LINE"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.63V7.008c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.63V7.008c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V7.008c0-.345.282-.63.63-.63.345 0 .63.285.63.63v5.871zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.63V7.008c0-.345.282-.63.63-.63.346 0 .628.285.628.63v5.871zm-2.466.629H4.917c-.345 0-.63-.285-.63-.63V7.008c0-.345.285-.63.63-.63.348 0 .63.285.63.63v5.242h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path></svg></a>
+    <a href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
+    <a href="https://youtube.com/channel/UC4euclQEdu9IIrTNyNELFyg?si=Mgtef9o84be7vemE" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.57V8.43L15.8 12l-6.2 3.57z"></path></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61583682097185" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.87 11.85v-8.38H7.08V12h3.05V9.36c0-3 1.8-4.67 4.53-4.67 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87V12h3.33l-.53 3.47h-2.8v8.38A12 12 0 0 0 24 12z"></path></svg></a>
+    </div>
+  <a class="btn btn-line big drawer-cta" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg>公式LINEに登録する</a>
+  <p class="drawer-line-note">友だち登録で、無料相談も、お役立ち情報の配信も。いつでも解除できます。</p>
+</nav>
+
+<main id="top" class="spine-page">
+
+  <!-- ============ ヒーロー：クロスフェードスライダー ============ -->
+  <section class="hero" aria-label="メインビジュアル">
+    <div class="hero-slides">
+      <!-- 実写真4枚（クロスフェード＋Ken Burns）。差し替えは <img src> を変更するだけ -->
+      <div class="hero-slide">
+        <img src="images/hero-01.webp" alt="タブレットを用いた姿勢・動作分析" style="--pos:50% 40%;">
+      </div>
+      <div class="hero-slide">
+        <img src="images/hero-02.webp" alt="マットの上でのマンツーマン・コンディショニング" style="--pos:50% 42%;">
+      </div>
+      <div class="hero-slide on">
+        <img src="images/hero-03.webp" alt="専門トレーナーによる運動指導" style="--pos:50% 40%;">
+      </div>
+      <div class="hero-slide">
+        <img src="images/hero-04.webp" alt="ASPATHのトレーニング風景" style="--pos:50% 40%;">
+      </div>
+    </div>
+
+    <div class="hero-scrim"></div>
+
+    <div class="hero-center">
+      <span class="hero-brand" data-en-html="ASPATH">ASPATH<span class="read">アスパス</span></span>
+      <p class="hero-spec" data-en-html="&lt;span class=&quot;loc&quot;&gt;Kagoshima&#39;s First&lt;/span&gt;&lt;span class=&quot;sep&quot;&gt;｜&lt;/span&gt;&lt;span class=&quot;hl&quot;&gt;Parkinson&#39;s&lt;/span&gt; Specialized Training Studio"><span class="loc">鹿児島初</span><span class="sep">｜</span><span class="hl">パーキンソン病専門</span> トレーニングスタジオ</p>
+      <hr class="hero-div">
+      <p class="hero-copy2" data-en="So you can move as yourself again, ASPATH walks alongside you.">あなたが自分らしく動けるように、アスパスが伴走します</p>
+    </div>
+
+
+  </section>
+
+  
+
+  <!-- ============ ブランドストーリー（なぜASPATHを立ち上げたか） ============ -->
+  <section class="section" id="worry">
+    <div class="dots" style="left:2%; bottom:60px;" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="worry-target" style="text-align:center; font-size:clamp(16px,2.4vw,20px); font-weight:700; color:var(--sun); margin:0 0 8px;" data-en="For those with Parkinson's disease or the aftereffects of stroke (cerebral infarction / hemorrhage)">パーキンソン病や脳卒中（脳梗塞・脳出血）後遺症のある方へ</p>
+         <h2 data-en="Do you have any of these concerns?">こんなお悩みはありませんか？</h2>
+      </div>
+      <div class="worry-visual img-slot plain h-auto reveal" aria-hidden="true">
+        <img src="images/icon-worry.webp" alt="悩んでいる方のイラスト" style="max-width:220px;margin:0 auto;">
+      </div>
+      <ul class="worry-list">
+        <li class="reveal" data-en="I've been told exercise matters for Parkinson's, but I don't know what to do.">パーキンソン病は運動が大事といわれたけど、何をしたらいいかわからない</li>
+        <li class="reveal d1" data-en="I'm anxious that my symptoms may keep progressing.">このまま症状が進行してしまうのではと不安</li>
+        <li class="reveal d2" data-en="Stroke aftereffects make walking hard, and I'm afraid of falling.">脳卒中後遺症でうまく歩けず、転ぶのが心配</li>
+        <li class="reveal d3" data-en="Everyday movements such as getting dressed are difficult.">着替えなどの生活での動きに支障がある</li>
+        <li class="reveal d3" data-en="I want to return to work and resume hobbies like travel and lessons.">仕事への復帰や、旅行・習い事などの趣味を再開したい</li>
+      </ul>
+      <p class="worry-close reveal" data-en="Let's resolve these concerns with ASPATH's training so you can live as yourself.">
+        アスパスのトレーニングでこれらのお悩みを解消し、<br class="br-pc">自分らしく過ごせるようにしましょう。
+      </p>
+    </div>
+  </section>
+
+  <section class="service-banners" id="service-banners">
+    <div class="wrap">
+      <div class="sb-grid">
+        <a class="sb-card reveal" href="about.html">
+          <div class="sb-img"><img src="images/index-inperson-training.webp" alt="対面でのマンツーマントレーニング" style="--pos:50% 40%;"></div>
+          <div class="sb-body">
+            <h3 data-en="In-Studio Training">対面トレーニング</h3>
+            <p data-en="Come to the studio and train in person. We check your physical condition and provide the best possible training.">スタジオにお越しいただき、対面でトレーニングをしていきます。お体の状態をチェックして、最適なトレーニングをしましょう。</p>
+            <span class="sb-link" data-en="Learn more">詳しく見る</span>
+          </div>
+        </a>
+        <a class="sb-card reveal d1" href="about.html">
+          <div class="sb-img"><img src="images/index-online-studio.webp" alt="オンライントレーニング" style="--pos:50% 30%;"></div>
+          <div class="sb-body">
+            <h3 data-en="Online Available">オンライン対応</h3>
+            <p data-en="Using video calls, you can have your body checked and receive specialized training right from home. Even if visiting is hard due to distance or fluctuating condition, we've got you covered.">テレビ通話を用いて、ご自宅からお体チェックと専門トレーニングをしていただけます。遠方や体調の変動で来所が難しい場合も、お任せください。</p>
+            <span class="sb-link" data-en="Learn more">詳しく見る</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- ============ サービス3本柱（円形カード：home-service-list型） ============ -->
+    <section class="section" id="guide">
+    <div class="dots" style="left:3%; top:40px;" aria-hidden="true"></div>
+    <div class="wrap">
+
+      <!-- ASPATH理念ブロック（nsleep「地域とともに歩む」型：左ロゴ＋右理念） -->
+      <div class="about-hsr reveal">
+        <div class="about-hsr-logo">
+          <img src="images/logo-aspath.webp" alt="ASPATHロゴ" width="220" height="220">
+        </div>
+        <div class="about-hsr-text">
+          <h2 data-en="Walking with you, ASPATH">あなたとともに歩む、ASPATH</h2>
+          <p data-en-html="ASPATH is a training studio specializing in Parkinson&#39;s disease and stroke that turns anxiety into &lt;strong&gt;&quot;hope.&quot;&lt;/strong&gt;">ASPATHは不安を「<strong>希望</strong>」に変える、<br class="br-pc">パーキンソン病・脳卒中専門のトレーニングスタジオです。</p>
+          <p data-en-html="The name ASPATH holds a wish—that everyone involved can walk toward their tomorrow: &lt;strong&gt;&quot;As = toward tomorrow, Path = a road that connects.&quot;&lt;/strong&gt; Delivering the right exercise at the right time becomes hope, and together we walk toward a better future.">ASPATHの名前は、関わった皆様が<strong>「アス＝明日へ、パス＝つなげる道」</strong>へ<br class="br-pc">伴走できるように、といった意味が込められています。<br>ASPATHが適切な時期に適した運動を届けることが希望となり、<br class="br-pc">より良い未来を共に歩みます。</p>
+          <p data-en-html="Easing the symptoms of Parkinson&#39;s disease and helping prevent their progression. Not giving up a life that is truly your own, even long after a stroke. To make these possible, nationally licensed physical therapists and highly experienced specialist trainers provide support. Our mission is to spread—from here in Kagoshima—a warm society where each person believes in their own physical and mental potential and can face forward and walk on.">パーキンソン病の症状を緩和し、進行を予防していく——<br>脳卒中発症後に時間が経過しても自分らしい生活を諦めない——<br>それらをかなえるべく、国家資格である理学療法士と豊富な経験を保有する<br class="br-pc">専門トレーナーがサポートします。<br>一人ひとりが自分自身の心身の可能性を信じ、前を向いて歩んでいける<br class="br-pc">温かい社会を、この鹿児島の地から広げることが使命です。</p>
+          <p class="about-hsr-more">
+            <a class="btn btn-ghost mid" href="about.html" data-en-html="More about ASPATH&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;">ASPATHについて詳しく<span class="arw">→</span></a>
+          </p>
+        </div>
+      </div>
+
+      
+    </div>
+  </section>
+
+  <section class="section sec-alt" id="pillars">
+    <svg class="wave" viewBox="0 0 1440 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0,44 C240,0 480,0 720,22 C960,44 1200,44 1440,10 L1440,44 Z" fill="#F4E9D8"></path></svg>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 data-en="3 Reasons to Choose ASPATH">ASPATHが選ばれる3つの理由</h2>
+        <p class="lede" data-en="With proven expertise, we walk with you from the early stage toward your own way of living.">確かな専門性で、早期からの「その人らしい歩み」に伴走します。</p>
+      </div>
+      <div class="pillar-list">
+        <div class="pillar reveal">
+          <div class="pillar-num"><span>01</span></div>
+          <div class="pillar-img"><img src="images/index-specialized-training.webp" alt="症状に特化した専門トレーニング" style="--pos:50% 50%;"></div>
+          <div class="pillar-txt">
+            <h3 data-en="Specialized training for your symptoms">症状に特化した専門トレーニング</h3>
+            <p data-en-html="Trainers with deep knowledge and experience in Parkinson's disease and stroke provide the training. Taking the characteristics of each condition into account, we deliver safe and effective programs.">パーキンソン病と脳卒中についての知識と経験が豊富なトレーナーがトレーニングを提供します。症状の特徴を踏まえながら、安全で効果的なプログラムを実施します。</p>
+          </div>
+        </div>
+        <div class="pillar reveal is-reverse">
+          <div class="pillar-num"><span>02</span></div>
+          <div class="pillar-img"><img src="images/index-body-check.webp" alt="分析ツールを使ったお体チェック" style="--pos:50% 42%;"></div>
+          <div class="pillar-txt">
+            <h3 data-en="A training plan just for you">あなた専用のトレーニングプラン</h3>
+            <p data-en-html="We objectively assess your physical condition and propose the best training, including a long-term outlook. Using analysis tools, we explain your current state in an easy-to-understand way. Depending on your condition, we also do preparation such as &lt;strong&gt;&quot;loosening&quot;&lt;/strong&gt; before exercise.">お体の状態を客観的にチェックし、今後の見通しを含めて最適なトレーニングをご提案。分析ツールも活用して、現状についてわかりやすくお伝えします。状態によっては<strong>『ゆるめる』</strong>といった、運動のための下準備もおこないます。</p>
+          </div>
+        </div>
+        <div class="pillar reveal">
+          <div class="pillar-num"><span>03</span></div>
+          <div class="pillar-img"><img src="images/index-online-training.webp" alt="オンライントレーニングの様子" style="--pos:50% 42%;"></div>
+          <div class="pillar-txt">
+            <h3 data-en="Online training available">オンライントレーニングも可能</h3>
+            <p data-en-html="ASPATH specializes not only in in-person sessions at the studio but also in &lt;strong&gt;online training&lt;/strong&gt; via video call. You can do effective training from home, and combine it with in-person sessions.">アスパスはスタジオでの対面だけでなく、テレビ通話を使った<strong style="white-space:nowrap;">オンライントレーニング</strong>も得意としています。ご自宅にいながら有効なトレーニングができ、対面との併用もできます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 重要なお知らせ帯（キャンペーン告知：詳細＋問い合わせの2導線） -->
+  <div class="important-news">
+    <div class="wrap">
+      <div class="imp-news-inner">
+        <div class="imp-label">
+          <svg class="imp-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm-1 5h2v7h-2V7zm0 9h2v2h-2v-2z"></path></svg>
+          <span data-en="Important Notice">重要なお知らせ</span>
+        </div>
+        <div class="imp-body">
+          <time datetime="2026-07-01">2026.07.01</time>
+          <p class="imp-title" data-en-html="🎁 First trial session (90 min) ¥8,800 → &lt;strong&gt;half price ¥4,400&lt;/strong&gt; for a limited time｜until 9/30">🎁 初回体験（90分）通常8,800円 → 期間限定 <strong>半額4,400円</strong>｜9/30まで</p>
+        </div>
+        <div class="imp-actions">
+          <a class="imp-btn imp-btn-detail" href="news-detail.html?id=campaign" data-en="Learn more">詳しくはこちら<span class="arw">→</span></a>
+          <a class="imp-btn imp-btn-apply" href="contact.html" data-en="Apply now">今すぐ申し込む<span class="arw">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ お知らせ／コラム（分離：議事録3-6） ============ -->
+  <section class="section sec-alt" id="column">
+    <svg class="wave" viewBox="0 0 1440 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0,44 C240,0 480,0 720,22 C960,44 1200,44 1440,10 L1440,44 Z" fill="currentColor"></path></svg>
+    <div class="wrap">
+
+      <!-- お知らせ：アイキャッチ無し・シンプル（もっと見るで過去を展開） -->
+      <div class="notice-block reveal">
+        <div class="sec-head"><p class="eyebrow">NEWS</p><h2 data-en="News">お知らせ</h2></div>
+        <ul class="notice-list more-list" id="noticeList" data-visible="2">
+          <li class="notice-row"><time datetime="2026-07-01">2026.07.01</time><span class="tag" data-en="News">お知らせ</span><a href="news-detail.html?id=campaign" data-en="Opening campaign｜First trial session (90 min) half price ¥4,400 for a limited time">営業開始キャンペーン｜初回体験（90分）が期間限定 半額4,400円</a></li>
+          <li class="notice-row"><time datetime="2026-08-01">2026.08.01</time><span class="tag" data-en="News">お知らせ</span><a href="contact.html" data-en="[Trial event] An exercise trial session for Parkinson's disease will be held">【体験会】パーキンソン病のための運動体験会を開催します</a></li>
+          <li class="notice-row"><time datetime="2026-07-05">2026.07.05</time><span class="tag" data-en="News">お知らせ</span><a href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener" data-en="Now sharing training on Instagram — please follow us!">Instagramでトレーニングの様子を配信中！フォローお願いします</a></li>
+        </ul>
+        <div class="more-wrap" data-more-for="noticeList"><button class="more-btn" type="button" aria-expanded="false"><span class="mb-label" data-en="See past news">過去のお知らせを見る</span><span class="arw">▼</span></button></div>
+      </div>
+
+      <!-- コラム：アイキャッチ有り・独立（もっと見るで展開） -->
+      <div class="column-block reveal">
+        <div class="sec-head"><p class="eyebrow">COLUMN</p><h2 data-en="Column">コラム</h2><p class="lede" data-en="Specialists explain Parkinson's disease and stroke in plain language.">パーキンソン病・脳卒中を、専門家がやさしく解説します。</p></div>
+        <div class="column-list" id="columnList">
+          <a class="col-card" href="column-parkinson.html">
+            <div class="img-slot col-thumb" role="img" aria-label="パーキンソン病とアスパスの歩み方"><img src="images/column-pk-thumbnail.webp" alt="パーキンソン病とアスパスの歩み方" style="--fit:contain; --pos:50% 50%;"></div>
+            <div class="col-body">
+              <div class="col-meta"><time datetime="2026-07-19">2026.07.19</time><span class="tag-col" data-en="Column">コラム</span></div>
+              <b data-en="Parkinson's Disease and ASPATH's Journey">パーキンソン病とアスパスの歩み方</b>
+              <p class="col-excerpt" data-en="From what Parkinson&#39;s disease is—to treatment, the effects of exercise, and ASPATH&#39;s training—an expert gently explains a path that turns anxiety into hope.">パーキンソン病とは？から治療・運動の効果、アスパスのトレーニングまで。不安を希望に変える歩み方を、専門家がやさしく解説します。</p>
+            </div>
+          </a>
+          <a class="col-card" href="column-stroke.html">
+            <div class="img-slot col-thumb" role="img" aria-label="記事のアイキャッチ画像"><span class="slot-label" data-en="📷 Thumbnail">📷 アイキャッチ</span></div>
+            <div class="col-body">
+              <div class="col-meta"><time datetime="2026-06-01">2026.06.01</time><span class="tag-col" data-en="Column">コラム</span></div>
+              <b data-en="Aftereffects of stroke and the potential of chronic-phase rehab">脳卒中の後遺症と、生活期リハビリの可能性</b>
+              <p class="col-excerpt" data-en="The brain retains the ability to keep learning at any age (neuroplasticity). Through continued training in the chronic phase, we pursue the potential of paralyzed limbs.">脳には何歳になっても学習し続ける力（神経可塑性）があります。生活期における継続的なトレーニングで、麻痺した手足の可能性を追求します。</p>
+            </div>
+          </a>
+        </div>
+        <div class="more-wrap"><a class="btn btn-ghost mid" href="news.html" data-en="See all columns">コラム一覧へ<span class="arw">→</span></a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ お知らせ・コラム（home-news型） ============ -->
+  
+
+  
+
+  
+
+  
+  <!-- メッセージ（採用情報型：全幅背景写真＋オーバーレイ） -->
+  <section class="message-band">
+    <div class="message-band-bg"><img src="images/index-counseling-yamaguchi.webp" alt="ご利用者にカウンセリングする代表 山口"></div>
+    <div class="message-band-overlay"></div>
+    <div class="wrap">
+      <div class="message-band-inner reveal">
+        <p class="mb-en">MESSAGE</p>
+        <h2 data-en-html="Turning anxiety into &lt;span class=&quot;hl-hope&quot;&gt;hope&lt;/span&gt;,&lt;br class=&quot;br-pc&quot;&gt;and helping more people thrive by walking alongside them.">不安を<span class="hl-hope">希望</span>に変え、<br class="br-pc">人生の伴走で元気な人を増やす。</h2>
+        <p data-en-html="ASPATH is a personal training studio in Kagoshima &lt;strong&gt;specializing in Parkinson's disease and stroke&lt;/strong&gt;. Even with symptoms from illness, you are still you. True to its name&mdash;&quot;As = toward tomorrow,&quot; &quot;Path = a road that connects&quot;&mdash;our specialist physical therapist delivers exercise that leads to a better tomorrow.">ASPATH（アスパス）は、鹿児島の<strong>パーキンソン病・脳卒中専門</strong>の<br class="br-pc">パーソナルトレーニングスタジオです。<br class="br-pc">病気による症状があっても、自分は自分。「アス＝明日へ」「パス＝つなげる道」の名前のとおり、<br class="br-pc">明日につながる運動を、専門の理学療法士がお届けします。</p>
+        <p data-en-html="More than just exercise, we value trust, empathy, and partnership&mdash;remaining a &lt;strong&gt;&quot;third place&quot; (a place to belong)&lt;/strong&gt; in your life.">ただ運動するのではなく、信頼・共感・パートナーシップを大切に、<br class="br-pc">あなたの人生の<strong>サードプレイス（拠り所）</strong>であり続けます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ スタッフ紹介（メニューから集約） ============ -->
+  <section class="section sec-alt" id="staff">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 data-en="Staff">スタッフ紹介</h2>
+      </div>
+      <h2 id="greeting" data-en="Message from the Representative">代表挨拶</h2>
+      <p class="greeting-lead" data-en="I am Yuya Yamaguchi, ASPATH's representative. Beyond providing effective exercise, I want to be a companion who walks alongside you through life.">ASPATH代表の山口祐弥です。効果的な運動をするだけでなく、人生の伴走者でありたいと考えています。</p>
+      <div class="profile reveal">
+        <div class="img-slot" role="img" aria-label="代表 山口祐弥の写真">
+          <img src="images/staff-yamaguchi.webp" alt="代表 山口祐弥" style="--pos:center 16%">
+          <!-- <img src="yamaguchi.jpg" alt="代表 山口祐弥" style="--pos:center 15%;"> 顔が上に来る写真は --pos を上寄せに -->
+          <span class="fallback" data-en="Representative photo">代表写真</span><span class="slot-label" data-en="📷 Replace">📷 差し替え</span></div>
+        <div>
+          <h3 style="margin-bottom:2px;" data-en="Yuya Yamaguchi">山口 祐弥</h3>
+          <p class="yomi" data-en="Yuya Yamaguchi｜ASPATH Representative">やまぐち ゆうや｜ASPATH代表</p>
+          <p data-en="Born in 1992 and raised in Kagoshima. After eight years of physical therapy centered on neurological disorders at a general hospital in Kagoshima, he spent four years at a Parkinson's-specialized exercise facility in Tokyo, supporting rehabilitation and training for many people with Parkinson's disease and stroke. In January 2026, he returned to his hometown of Kagoshima and founded ASPATH.">1992年生まれ、鹿児島生まれ鹿児島育ち。鹿児島の総合病院で8年間、神経疾患を中心とした理学療法に携わったのち、東京のパーキンソン病専門運動施設で4年間勤務。これまでに、多くのパーキンソン病・脳卒中の方のリハビリ・トレーニングを担当。2026年始めに、地元の鹿児島へUターンし、ASPATHを開業。</p>
+          <table class="cred-table">
+            <tr><th data-en="Qualifications">資格</th><td data-en="Physical Therapist / Master of Health Sciences / LSVT-BIG® Certified Therapist (Parkinson's specialization) / Stroke Care Instructor">理学療法士／保健学修士／LSVT-BIG®認定療法士（パーキンソン病特化）／脳卒中療養指導士</td></tr>
+          </table>
+          <blockquote data-en-html="At the right time, &lt;strong&gt;the necessary support is often unavailable&lt;/strong&gt;—something I have long felt to be a problem. Through ASPATH, delivering effective exercise to those who need it and walking alongside them in life is my mission.">適切な時期に、<strong>必要なサポートができない</strong>ことに課題を感じていました。ASPATHを通じて、必要とする方に効果的な運動を届け、人生の伴走をしていくことが私の使命です。</blockquote>
+        </div>
+      </div>
+      
+
+      <h2 id="career" style="margin-top:56px; margin-bottom:30px; text-align:center;" data-en="Achievements &amp; Awards">実績・受賞歴</h2>
+      <ul class="awards" id="awards-list">
+        <li class="reveal" data-en-html="&lt;b&gt;Published paper: &lt;/b&gt;&lt;a class=&quot;aw-link&quot; href=&quot;https://link.springer.com/chapter/10.1007/978-3-031-77584-0_39&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Effectiveness of Video-Based Intensive Core Training in Parkinson’s Disease&lt;/a&gt;, Converging Clinical and Engineering Research on Neurorehabilitation V, 2024."><b>論文執筆：</b><a class="aw-link" href="https://link.springer.com/chapter/10.1007/978-3-031-77584-0_39" target="_blank" rel="noopener">Effectiveness of Video-Based Intensive Core Training in Parkinson’s Disease（パーキンソン病における動画を用いた集中体幹トレーニングの有効性）</a>, Converging Clinical and Engineering Research on Neurorehabilitation V, 2024.</li>
+        <li class="reveal" data-en-html="&lt;b&gt;International presentation: &lt;/b&gt;&lt;a class=&quot;aw-link&quot; href=&quot;https://www.worldpdcoalition.org/page/PastCongresses&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Experiences and future perspectives with two patterns of intensive online exercise training in early-stage Parkinson’s disease&lt;/a&gt;, The 6th World Parkinson Congress (Barcelona, Spain), 2023."><b>国際学会発表：</b><a class="aw-link" href="https://www.worldpdcoalition.org/page/PastCongresses" target="_blank" rel="noopener">Experiences and future perspectives with two patterns of intensive online exercise training in early-stage Parkinson’s disease（初期パーキンソン病患者における2種類の集中的オンライン運動トレーニングの経験と将来展望）</a>, The 6th World Parkinson Congress（世界パーキンソン病学会、スペイン・バルセロナ）, 2023.</li>
+        <li class="award-more" data-en-html="&lt;b&gt;International presentation: &lt;/b&gt;&lt;a class=&quot;aw-link&quot; href=&quot;https://2024.icneurorehab.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Effectiveness of Video-based Intensive Core Training in Parkinson’s Disease&lt;/a&gt;, 6th International Conference on NeuroRehabilitation (Madrid, Spain), 2024."><b>国際学会発表：</b><a class="aw-link" href="https://2024.icneurorehab.org/" target="_blank" rel="noopener">Effectiveness of Video-based Intensive Core Training in Parkinson’s Disease（パーキンソン病における動画を用いた集中体幹トレーニングの有効性）</a>, 6th International Conference on NeuroRehabilitation（世界ニューロリハビリテーション学会、スペイン・マドリード）, 2024.</li>
+        <li class="award-more" data-en-html="&lt;b&gt;Contest: &lt;/b&gt;&lt;a class=&quot;aw-link&quot; href=&quot;https://hiwellbee.com/wellness-leaders-award-2026-osaka&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Semi-finalist, Wellness Leaders Award 2026 (one of Japan’s largest wellness pitch contests)&lt;/a&gt;, Presentation: “Energizing people with Parkinson’s in Japan—exercise and hope delivered from Kagoshima” (Tokyo), 2026."><b>コンテスト出場：</b><a class="aw-link" href="https://hiwellbee.com/wellness-leaders-award-2026-osaka" target="_blank" rel="noopener">日本最大級のウェルネスピッチコンテスト『Wellness Leaders Award 2026』準決勝出場</a>, 発表タイトル「日本のパーキンソン病の方を元気にさせたい！地方・鹿児島から届ける運動と希望」（東京）, 2026.</li>
+        <li class="award-more" data-en-html="&lt;b&gt;Domestic presentation: &lt;/b&gt;&lt;a class=&quot;aw-link&quot; href=&quot;https://infokpta.com/pages/128/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;A case of a recovery-phase right hemiplegic stroke patient whose gait improved by combining KAFO orthotic therapy with functional electrical stimulation of the gluteus maximus (Encouragement Award)&lt;/a&gt;, 31st Kagoshima Physical Therapy Academic Congress (Kagoshima), 2019."><b>国内学会発表：</b><a class="aw-link" href="https://infokpta.com/pages/128/" target="_blank" rel="noopener">長下肢装具による装具療法と大殿筋への機能的電気刺激療法を併用した事で歩行能力が向上した回復期脳卒中右片麻痺患者1例（学会奨励賞受賞）</a>, 第32回鹿児島県理学療法士学会学術集会（鹿児島）, 2019.</li>
+        <li class="award-more" data-en-html="&lt;b&gt;Published paper: &lt;/b&gt;&lt;a class=&quot;aw-link&quot; href=&quot;https://www.kufm.kagoshima-u.ac.jp/~g-health/subject/184-2021-03-25-10-44-35/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Analysis of lower-limb and trunk movement during sit-up motion in patients with stroke hemiplegia&lt;/a&gt;, Bulletin of Kagoshima University Graduate School of Health Sciences, 2021."><b>論文執筆：</b><a class="aw-link" href="https://www.kufm.kagoshima-u.ac.jp/~g-health/subject/184-2021-03-25-10-44-35/" target="_blank" rel="noopener">脳卒中片麻痺患者の起き上がり動作時の下肢・体幹運動の分析-自立群，非自立群，健常高齢者での検討-</a>, 鹿児島大学大学院保健学研究科紀要, 2021.</li>
+        <li class="award-more" data-en-html="&lt;b&gt;Medical lecture: &lt;/b&gt;&lt;a class=&quot;aw-link&quot; href=&quot;https://jpda.jp/date/2021/09/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;An ‘exercise’ talk for people with Parkinson’s disease and their families&lt;/a&gt;, Japan Parkinson’s Disease Association, Kagoshima Branch — 35th Anniversary Web Medical Seminar (Kagoshima), 2021."><b>医療講演：</b><a class="aw-link" href="https://jpda.jp/date/2021/09/" target="_blank" rel="noopener">パーキンソン病の方とそのご家族に知ってもらいたい「運動」の話</a>, 全国パーキンソン病友の会鹿児島県支部設立35周年記念事業 Web医療講演会（鹿児島）, 2021.</li>
+        <li class="award-more" data-en-html="&lt;b&gt;Medical lecture: &lt;/b&gt;The effects of exercise for people with Parkinson’s disease and simple tips to start tomorrow, Japan Parkinson’s Disease Association, Kagoshima Branch — Medical Seminar (Kagoshima), 2023."><b>医療講演：</b>パーキンソン病の方が行う運動の効果と明日からできる一工夫, 全国パーキンソン病友の会鹿児島県支部医療講演会（鹿児島）, 2023.</li>
+        <li class="award-more" data-en-html="&lt;b&gt;Co-authored paper: &lt;/b&gt;&lt;a class=&quot;aw-link&quot; href=&quot;https://www.cureus.com/articles/511155-toward-a-novel-phenotypic-classification-of-parkinsons-disease-for-rehabilitation-a-case-series&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Toward a Novel Phenotypic Classification of Parkinson's Disease for Rehabilitation: A Case Series&lt;/a&gt;, Cureus Journal of Medical Science, 2026."><b>論文共著：</b><a class="aw-link" href="https://www.cureus.com/articles/511155-toward-a-novel-phenotypic-classification-of-parkinsons-disease-for-rehabilitation-a-case-series" target="_blank" rel="noopener">Toward a Novel Phenotypic Classification of Parkinson's Disease for Rehabilitation: A Case Series（リハビリテーションのためのパーキンソン病の新たなサブタイプ分類に向けて：ケースシリーズ）</a>, Cureus Journal of Medical Science, 2026.</li>
+        <li class="award-more award-plain" data-en-html="&lt;span class=&quot;place&quot;&gt;and many more&lt;/span&gt;"><span class="place">ほか多数</span></li>
+      </ul>
+      <p style="text-align:center; margin-top:20px; position:relative; z-index:1;">
+        <button class="btn btn-ghost mid" id="awards-toggle" type="button" aria-expanded="false" aria-controls="awards-list" data-en-html="See more&lt;span class=&quot;arw&quot;&gt;▼&lt;/span&gt;">もっと見る<span class="arw">▼</span></button>
+      </p>
+    </div>
+  </section>
+
+
+  
+
+  <!-- SNSリンク（ASPATHデザイン：カードグリッド型） -->
+  <section class="sns-section">
+    <div class="sns-overlay"></div>
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:36px;">
+        <p class="eyebrow" style="color:#F4E9D8;">FOLLOW US</p>
+        <h2 style="color:#fff;" data-en="Follow Us on Social Media">SNSでも情報発信中</h2>
+        <p style="color:#FBF7F0; text-align:center;" data-en="We share daily training and updates. Please follow us!">日々のトレーニングの様子やお知らせを発信しています。ぜひフォローしてください。</p>
+      </div>
+      <div class="sns-grid">
+        <a class="sns-tile reveal" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" aria-label="公式LINE">
+          <span class="sns-tile-ico sns-line"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.63V7.008c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.63V7.008c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V7.008c0-.345.282-.63.63-.63.345 0 .63.285.63.63v5.871zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.63V7.008c0-.345.282-.63.63-.63.346 0 .628.285.628.63v5.871zm-2.466.629H4.917c-.345 0-.63-.285-.63-.63V7.008c0-.345.285-.63.63-.63.348 0 .63.285.63.63v5.242h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path></svg>
+          </span>
+          <span class="sns-tile-name" data-en="Official LINE">公式LINE</span>
+          <span class="sns-tile-desc" data-en="Consultation & booking">ご相談・ご予約</span>
+          <span class="sns-tile-cta" data-en="Add friend">友だち追加</span>
+        </a>
+        <a class="sns-tile reveal d1" href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener" aria-label="Instagram">
+          <span class="sns-tile-ico sns-instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg>
+          </span>
+          <span class="sns-tile-name">Instagram</span>
+          <span class="sns-tile-desc" data-en="Training & daily life">トレーニング風景・日常</span>
+          <span class="sns-tile-cta" data-en="Follow">フォローする</span>
+        </a>
+        <a class="sns-tile reveal d2" href="https://youtube.com/channel/UC4euclQEdu9IIrTNyNELFyg?si=Mgtef9o84be7vemE" target="_blank" rel="noopener" aria-label="YouTube">
+          <span class="sns-tile-ico sns-youtube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.57V8.43L15.8 12l-6.2 3.57z"></path></svg>
+          </span>
+          <span class="sns-tile-name">YouTube</span>
+          <span class="sns-tile-desc" data-en="Exercise explainer videos">運動の解説動画</span>
+          <span class="sns-tile-cta" data-en="Subscribe">登録する</span>
+        </a>
+        <a class="sns-tile reveal d3" href="https://www.facebook.com/profile.php?id=61583682097185" target="_blank" rel="noopener" aria-label="Facebook">
+          <span class="sns-tile-ico sns-facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"></path></svg>
+          </span>
+          <span class="sns-tile-name">Facebook</span>
+          <span class="sns-tile-desc" data-en="News & events">お知らせ・イベント情報</span>
+          <span class="sns-tile-cta" data-en="Follow">フォローする</span>
+        </a>
+        </div>
+    </div>
+  </section>
+
+  <!-- ============ よくある質問（メニューから集約） ============ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 data-en="FAQ">よくある質問</h2>
+        <p class="lede" data-en="If you have any questions, please feel free to contact us.">ご不明な点があれば、お気軽にお問い合わせください。</p>
+      </div>
+      <div class="faq reveal">
+
+        <details>
+          <summary data-en="My hospital rehabilitation has ended — can I still use your service?">病院のリハビリが終了してしまいましたが、利用できますか？</summary>
+          <p class="a" data-en="Yes, absolutely. Because ASPATH is a private-pay service outside of medical and long-term-care insurance, you can use it regardless of any rehabilitation time limit. It is a place for those who have lost somewhere to turn and feel anxious.">はい、大丈夫です。ASPATHは医療保険・介護保険の枠外の自費サービスのため、リハビリ期限に関係なくご利用いただけます。行き場を失って不安な方のための場所です。</p>
+        </details>
+        <details>
+          <summary data-en="Can I attend even if I was only just diagnosed with Parkinson's disease?">パーキンソン病と診断されたばかりでも通えますか？</summary>
+          <p class="a" data-en="In fact, we most strongly recommend training from the early, mild stage. Research shows that appropriate exercise can help slow progression, and ASPATH specializes in early preventive training.">むしろ早期・軽度の段階からのトレーニングを最もおすすめしています。適切な運動で進行を抑制できることが研究で示されており、ASPATHは早期からの予防トレーニングに特化しています。</p>
+        </details>
+        <details>
+          <summary data-en="I live far away — can I still receive sessions online?">遠方に住んでいますが、オンラインでも受けられますか？</summary>
+          <p class="a" data-en="Yes. Personal training can also be conducted online. From home, via video call, the same person who guides you in the studio will instruct you.">はい。パーソナルトレーニングはオンラインでも実施可能です。ご自宅からビデオ通話で、来店時と同じ担当者が指導します。</p>
+        </details>
+        <details>
+          <summary data-en="How much does it cost? Can I use insurance?">料金はいくらですか？保険は使えますか？</summary>
+          <p class="a" data-en-html="The first training trial (90 min) is 8,800 yen, but thanks to our opening campaign it is &lt;strong&gt;free until September 30, 2026&lt;/strong&gt;. Ongoing plans (per 60-minute session): 8/month 79,600 yen, 4/month 39,800 yen, 2/month 22,000 yen (tax incl.); a single session is 13,200 yen for 60 minutes. As a private-pay (out-of-insurance) service, insurance does not apply, but you can continue specialized training with no limit on term or number of sessions.">初回トレーニング体験（90分）は8,800円ですが、営業開始キャンペーンにより<strong>2026年9月30日まで半額の4,400円</strong>です。継続プランは1回60分で、月8回79,600円・月4回39,800円・月2回22,000円（税込）、単発は60分13,200円。保険外（自費）のため保険は適用されませんが、期限や回数の制限なく専門的なトレーニングを継続できます。</p>
+        </details>
+        <details>
+          <summary data-en="Where are your studios located?">スタジオはどこにありますか？</summary>
+          <p class="a" data-en="We operate at three rental studios in Kagoshima City (Tenmonkan, Kagoshima-Chuo-cho, and Josei). Tenmonkan is a 5-minute walk from the Tenmonkan-dori tram stop, Kagoshima-Chuo-cho is a 5-minute walk from JR Kagoshima-Chuo Station, and Josei is about a 5-minute drive from Kagoshima-Chuo Station. We can adjust the studio to suit your needs, and will share the exact location after your booking is confirmed. Home-visit training and online sessions are also available.">鹿児島市内の3カ所（天文館・鹿児島中央町・城西）のレンタルスタジオで実施しています。天文館は市電「天文館通」駅、鹿児島中央町はJR「鹿児島中央」駅よりいずれも徒歩5分、城西は鹿児島中央駅よりお車で約5分。ご利用者のニーズに応じて実施スタジオを調整できます。ご予約確定後に場所の詳細をご案内します。ご自宅への訪問トレーニングやオンラインも可能です。</p>
+        </details>
+        <details>
+          <summary data-en="How do I apply?">申し込みはどうすればいいですか？</summary>
+          <p class="a" data-en-html="Please use the &lt;a href=&quot;contact.html&quot;&gt;application form&lt;/a&gt;. If you are still unsure, simply sending a single sticker on our official LINE is perfectly fine."><a href="contact.html">お申し込みフォーム</a>からどうぞ。迷っている段階なら、公式LINEにスタンプ一つ送っていただくだけでも構いません。</p>
+        </details>
+      </div>
+      <div style="margin-top:32px; display:flex; gap:16px; justify-content:center; align-items:flex-start; flex-wrap:wrap;">
+        <a class="btn btn-ghost mid" href="contact.html?type=question" data-en="Ask via form">フォームで問い合わせる<span class="arw">→</span></a>
+        <div class="faq-line-col">
+          <a class="btn btn-line mid" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en="Register on Official LINE">公式LINEに登録する</a>
+          <p class="faq-line-note" data-en-html="Feel free to get in touch.&lt;br&gt;We also share helpful information regularly!">お気軽にお問い合わせできます。<br>お役立ち情報も定期配信中！</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-in">
+
+    <!-- 列1: ブランド情報 -->
+    <div>
+      
+      <h4 style="font-size:20px; margin-bottom:4px;">ASPATH</h4>
+      <p style="font-size:13.5px; color:var(--gold); letter-spacing:.06em; margin-bottom:12px;" data-en="Parkinson's &amp; Stroke Specialized Training Studio">パーキンソン病・脳卒中専門トレーニングスタジオ</p>
+      <p style="font-size:14px; line-height:1.9; color:rgba(220,205,176,.72);" data-en-html="Three rental studios in Kagoshima City&lt;br&gt;(Tenmonkan, Kagoshima-Chuo-cho, Josei)&lt;br&gt;* Exact location shared after booking is confirmed.&lt;br&gt;Home-visit and online sessions available.">
+        鹿児島市内3カ所のレンタルスタジオ<br>
+        （天文館・鹿児島中央町・城西）<br>
+        ※ご予約確定後に場所の詳細をご案内。<br>
+        訪問・オンラインも対応。
+      </p>
+      
+    </div>
+
+    <!-- 列2: メインナビ -->
+    <div class="footer-nav-col">
+      <h5 data-en="Site Navigation">サイトのご案内</h5>
+      <ul>
+        <li data-en="TOP"><a href="#" onclick="return false;" aria-disabled="true">TOPページ</a></li>
+        <li data-en="About ASPATH"><a href="about.html">ASPATHについて</a></li>
+        <li data-en="Staff"><a href="index.html#staff">スタッフ紹介</a></li>
+        <li data-en="News"><a href="news.html">コラム</a></li>
+        <li data-en="Pricing"><a href="price.html">プランと料金</a></li>
+        <li data-en="Contact"><a href="contact.html">お問い合わせ</a></li>
+        <li data-en="Blog"><a href="#" onclick="return false;" aria-disabled="true">ブログ</a></li>
+      </ul>
+    </div>
+
+    <!-- 列3: サポートナビ -->
+    <div class="footer-nav-col">
+      <h5 data-en="Support &amp; Info">サポート・情報</h5>
+      <ul>
+        <li data-en="FAQ"><a href="faq.html">よくある質問</a></li>
+        <li data-en="Access"><a href="access.html">交通アクセス</a></li>
+        <li data-en="About Official LINE"><a href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener">公式LINEについて</a></li>
+        <li data-en="Parkinson's Column"><a href="column-parkinson.html">パーキンソン病コラム</a></li>
+        <li data-en="Stroke Column"><a href="column-stroke.html">脳卒中コラム</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- サブフッター -->
+  <div class="sub-footer">
+    <span>© 2026 ASPATH All Rights Reserved.</span>
+    <div class="sub-footer-links">
+      <a href="privacy.html" data-en="Privacy Policy">プライバシーポリシー</a>
+      <a href="tokushoho.html" data-en="Legal Notice (Tokushoho)">特定商取引法に基づく表記</a>
+      <a href="sitemap.html" data-en="Sitemap">サイトマップ</a>
+      <a href="english.html" data-en="日本語">English</a>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+/* ===== ヒーロー：クロスフェードスライダー（vanilla・slick不使用） ===== */
+(function(){
+  var slides = document.querySelectorAll('.hero-slide');
+  if (slides.length < 2) return;
+  // ゆったりしたクロスフェードのみ（ズーム演出なし・DOM差し替えなし）
+  var i = 2;
+  setInterval(function(){
+    slides[i].classList.remove('on');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('on');
+  }, 5200);
+})();
+
+/* ===== モバイルドロワーメニュー ===== */
+(function(){
+  var ham = document.getElementById('hamburger');
+  var drawer = document.getElementById('drawer');
+  var overlay = document.getElementById('drawer-overlay');
+  var closeBtn = document.getElementById('drawer-close');
+  if(!ham || !drawer || !overlay) return;
+  function open(){
+    overlay.hidden = false;
+    requestAnimationFrame(function(){ overlay.classList.add('open'); drawer.classList.add('open'); });
+    ham.setAttribute('aria-expanded','true');
+    drawer.setAttribute('aria-hidden','false');
+    document.body.classList.add('drawer-open');
+  }
+  function close(){
+    overlay.classList.remove('open'); drawer.classList.remove('open');
+    ham.setAttribute('aria-expanded','false');
+    drawer.setAttribute('aria-hidden','true');
+    document.body.classList.remove('drawer-open');
+    setTimeout(function(){ overlay.hidden = true; }, 320);
+  }
+  ham.addEventListener('click', open);
+  overlay.addEventListener('click', close);
+  closeBtn.addEventListener('click', close);
+  drawer.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && drawer.classList.contains('open')) close(); });
+})();
+
+/* ===== 学会・受賞歴「もっと見る」トグル ===== */
+(function(){
+  var btn = document.getElementById('awards-toggle');
+  var list = document.getElementById('awards-list');
+  if(!btn || !list) return;
+  btn.addEventListener('click', function(){
+    var open = list.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.firstChild.textContent = open ? '閉じる' : 'もっと見る';
+  });
+})();
+
+/* ===== スクロール立ち上がり（js-c-anime-elem移植） ===== */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('on'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+    });
+  }, { threshold:.1 });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+<script>
+(function(){
+  document.querySelectorAll('.more-list').forEach(function(list){
+    var vis=parseInt(list.dataset.visible||'3',10);
+    var items=Array.prototype.slice.call(list.children);
+    var wrap=document.querySelector('[data-more-for="'+list.id+'"]');
+    if(items.length<=vis){ if(wrap){ wrap.style.display='none'; } return; }
+    items.forEach(function(it,i){ if(i>=vis){ it.classList.add('is-more'); } });
+    if(!wrap){ return; }
+    var btn=wrap.querySelector('.more-btn'), lbl=wrap.querySelector('.mb-label');
+    var base=lbl.textContent;
+    btn.addEventListener('click', function(){
+      var open=list.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open?'true':'false');
+      lbl.textContent = open ? '閉じる' : base;
+    });
+  });
+})();
+</script>
+
+<script>
+/* ===== 言語切替（日英トグル・ページ間で保持） ===== */
+(function(){
+  var KEY='aspath_lang';
+  var isEn=false;
+  try{ isEn = localStorage.getItem(KEY)==='en'; }catch(e){}
+  function applyLang(en){
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(!el.hasAttribute('data-ja')) el.setAttribute('data-ja', el.textContent);
+      el.textContent = en ? el.getAttribute('data-en') : el.getAttribute('data-ja');
+    });
+    document.querySelectorAll('[data-en-html]').forEach(function(el){
+      if(!el.hasAttribute('data-ja-html')) el.setAttribute('data-ja-html', el.innerHTML);
+      el.innerHTML = en ? el.getAttribute('data-en-html') : el.getAttribute('data-ja-html');
+    });
+    document.documentElement.lang = en ? 'en' : 'ja';
+  }
+  function bindToggle(){
+    document.querySelectorAll('a[href="english.html"], a[href$="english.html"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        isEn = !isEn;
+        try{ localStorage.setItem(KEY, isEn?'en':'ja'); }catch(e){}
+        applyLang(isEn);
+      });
+    });
+  }
+  function init(){ if(isEn){ applyLang(true); } bindToggle(); }
+  if(document.readyState!=='loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+
+<script>
+(function(){
+  var hdr=document.querySelector('.site-header');
+  if(!hdr) return;
+  var pinned=false;
+  function thresh(){ return Math.max(160, Math.round((window.innerHeight||640)*0.62)); }
+  function onScroll(){
+    var y=window.scrollY||document.documentElement.scrollTop;
+    var t=thresh();
+    if(!pinned && y>t){
+      pinned=true;
+      hdr.classList.add('prehide');   // 画面上に隠した状態で固定化
+      hdr.classList.add('scrolled');
+      void hdr.offsetHeight;          // reflow
+      hdr.classList.remove('prehide');// translateY(-100%)→0：上からひょっこり
+    } else if(pinned && y < t-56){    // 少し戻したら解除（ちらつき防止）
+      pinned=false;
+      hdr.classList.remove('scrolled');
+      hdr.classList.remove('prehide');
+    }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+})();
+</script>
+<script>
+/* タブレット：はみ出したら SNS→LINE文字 の順に自動で省いて1行に収める（余裕があれば全部表示） */
+(function(){
+  function q(s){return document.querySelector(s);}
+  var hin=q('.header-in'), sns=q('.header-sns'), lineTxt=q('.hbtn-line span');
+  if(!hin) return;
+  function over(){ return hin.scrollWidth > hin.clientWidth + 1; }
+  function adjust(){
+    if(sns) sns.style.display='';
+    if(lineTxt) lineTxt.style.display='';
+    var w=window.innerWidth;
+    if(w<=760 || w>1180) return;      // スマホ=ハンバーガー / PC=全表示
+    if(over() && sns) sns.style.display='none';
+    if(over() && lineTxt) lineTxt.style.display='none';
+  }
+  adjust();
+  window.addEventListener('resize', adjust, {passive:true});
+  window.addEventListener('load', adjust);
+})();
+</script>
+</body></html>
