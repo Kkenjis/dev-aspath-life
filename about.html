@@ -388,15 +388,17 @@ body.drawer-open{ overflow:hidden; }
 /* 円形サービスカード（home-service-list移植） */
 .svc-list{ list-style:none; display:flex; flex-direction:column; gap:18px; position:relative; z-index:1; }
 .svc-item{ display:grid; grid-template-columns:auto 1fr; align-items:center; gap:24px; text-align:left;
-  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 28px; border-left:6px solid; }
+  background:#fff; border-radius:16px; box-shadow:0 10px 28px rgba(38,70,83,.08); padding:24px 30px; }
 .svc-item.is-gold{ border-color:var(--gold); } .svc-item.is-leaf{ border-color:var(--leaf); } .svc-item.is-sun{ border-color:var(--sun); }
 .svc-circle{ width:104px; --ratio:1/1; margin:0; border-radius:50%; --pos:50% 30%; flex:none; }
-.svc-body h3{ margin:0 0 8px; font-size:18px; }
+.svc-body h3{ margin:0 0 10px; font-size:clamp(20px,2.6vw,23px); font-weight:700; color:var(--sun); letter-spacing:.01em; }
+.svc-body h3::before{ content:""; display:inline-block; width:26px; height:4px; border-radius:4px; background:var(--brown); margin-right:12px; vertical-align:middle; }
 .svc-body p{ font-size:15px; text-align:left; margin:0; line-height:1.85; }
 @media (max-width:560px){
   .svc-item{ grid-template-columns:72px 1fr; gap:16px; padding:18px; }
   .svc-circle{ width:72px; }
-  .svc-body h3{ font-size:16px; }
+  .svc-body h3{ font-size:19px; }
+  .svc-body h3::before{ width:20px; margin-right:9px; }
 }
 
 /* 交互配置セクション（home-service-sec / is-reverse移植） */
