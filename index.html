@@ -243,15 +243,15 @@ h3{ font-size:clamp(19px,2.5vw,23px); }
 /* ハンバーガーも画像上は白 */
 .site-header:not(.scrolled) .hamburger span{ background:#fff; }
 .header-in{ max-width:100%; margin:0 auto; padding:12px clamp(20px,4vw,56px); display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
-.brand{ display:flex; align-items:center; gap:14px; text-decoration:none; min-width:0; margin-right:auto; }
+.brand{ display:flex; align-items:center; gap:14px; text-decoration:none; min-width:0; margin-right:clamp(24px,3.5vw,52px); }
 .brand > span{ min-width:0; }
 .brand-sub{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .brand-logo{ height:152px; width:auto; padding:0; background:none; box-shadow:none; transform:translate(48px,30px); }
 @media (max-width:760px){ .brand-logo{ height:92px; transform:none; } .site-header .brand-logo{ transform:none; } .brand{ margin-right:auto; } .header-in{ padding-left:clamp(14px,4vw,22px); } }
 .brand-name{ font-family:var(--font-head); font-weight:600; font-size:25px; letter-spacing:.12em; color:var(--gold-deep); }
 .brand-sub{ font-size:14px; color:#46666F; }
-.header-right{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
-.gnav{ display:flex; gap:4px 24px; flex-wrap:wrap; justify-content:flex-end; }
+.header-right{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; flex:1; min-width:0; }
+.gnav{ display:flex; gap:4px 24px; flex-wrap:wrap; justify-content:flex-start; }
 .gnav a{ text-decoration:none; color:var(--brown); font-family:var(--font-head); font-size:24px; padding:8px 2px; border-bottom:3px solid transparent; white-space:nowrap; }
 .gnav a:hover{ border-bottom-color:var(--sun); }
 .header-sns{ display:flex; align-items:center; gap:9px; }
@@ -262,7 +262,7 @@ h3{ font-size:clamp(19px,2.5vw,23px); }
 .header-sns a[aria-label="YouTube"]{ background:#FF0000; }
 .header-sns a[aria-label="Facebook"]{ background:#1877F2; }
 .header-sns a[aria-label="公式LINE"]{ background:#06C755; }
-.header-cta{ display:flex; align-items:center; gap:10px; }
+.header-cta{ display:flex; align-items:center; gap:10px; margin-left:auto; padding:0 clamp(10px,2vw,26px); }
 .hbtn{ font-family:var(--font-head); font-weight:700; font-size:17px; line-height:1; padding:13px 20px; border-radius:999px; text-decoration:none; white-space:nowrap; display:inline-flex; align-items:center; gap:6px; transition:transform .2s, box-shadow .2s, filter .2s; }
 .hbtn:hover{ transform:translateY(-2px); box-shadow:0 6px 16px rgba(30,45,52,.22); filter:saturate(1.05); }
 .hbtn-reserve{ background:var(--sun); color:#fff; box-shadow:0 4px 12px rgba(244,162,97,.28); }
