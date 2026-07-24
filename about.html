@@ -812,7 +812,7 @@ h1,h2,h3{ text-wrap:balance; }           /* 見出しの行を均等に（対応
   line-break: strict;
   word-break: auto-phrase;   /* 文節（意味の区切り）で自然に折り返す。非対応ブラウザは自動的に従来動作 */
 }
-.page-main p, .origin-explain p{ line-height:1.82; }   /* 1.95→1.82 で行を少し締めて読みやすく */
+.page-main p, .origin-explain p{ line-height:1.82; word-break:auto-phrase; line-break:strict; }   /* 1.95→1.82／日本語を文節単位で折り返し不自然な改行を防ぐ */
 .page-head h1, .lede, .page-main h2, .page-main h3, .origin-tagline{
   text-wrap: balance;        /* 見出し・中央寄せ短文の行を均等化し、尻切れ改行を防ぐ */
 }
