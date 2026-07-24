@@ -948,14 +948,29 @@ body{ overflow-wrap:break-word; word-break:normal; }
   .site-header .brand-logo{ height:48px !important; }
   .site-header .gnav a{ font-size:clamp(12px,1.28vw,17px) !important; }
 }
+
+/* ===== ヘッダー統一（indexに合わせる：フォント/サイズ/レイアウト） ===== */
+.brand{ margin-right:clamp(24px,3.5vw,52px) !important; }
+.header-right{ flex:1 !important; min-width:0 !important; }
+.gnav{ gap:4px 58px !important; flex:1 !important; justify-content:center !important; padding-left:clamp(20px,5vw,90px) !important; }
+.gnav a{ font-size:24px !important; }
+.header-cta{ margin-left:auto !important; margin-right:clamp(14px,2.6vw,40px) !important; padding:0 clamp(10px,2vw,26px) !important; }
+.hbtn-line{ font-size:23px !important; padding:20px 42px !important; box-shadow:0 7px 20px rgba(6,199,85,.42) !important; }
+.hbtn-line .hbtn-ico{ width:26px !important; height:26px !important; }
+@media (max-width:1180px) and (min-width:761px){
+  .gnav{ gap:clamp(2px,0.55vw,12px) !important; padding-left:0 !important; }
+  .gnav a{ font-size:clamp(12px,1.28vw,17px) !important; }
+  .hbtn-line{ font-size:clamp(11px,1.2vw,15px) !important; padding:9px clamp(8px,1vw,16px) !important; }
+  .hbtn-line .hbtn-ico{ width:18px !important; height:18px !important; }
+}
 </style>
 </head>
 <body>
 <header class="site-header">
   <div class="header-in">
     <a class="brand" href="index.html" aria-label="ASPATH（アスパス）トップへ">
-      <img class="brand-logo" src="images/logo-aspath.webp" alt="ASPATHロゴ" width="48" height="48">
-      </a>
+      <img class="brand-logo" src="images/logo-aspath.webp" alt="ASPATHロゴ" width="85" height="85">
+    </a>
     <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="drawer">
       <span></span><span></span><span></span>
     </button>
@@ -969,16 +984,8 @@ body{ overflow-wrap:break-word; word-break:normal; }
       <a href="contact.html" data-en="Contact">お問い合わせ</a>
     </nav>
     <div class="header-cta">
-      <a class="hbtn hbtn-reserve" href="contact.html" data-en="Book Now">ご予約はこちら</a>
       <a class="hbtn hbtn-line" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" aria-label="公式LINEに登録"><svg class="hbtn-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span data-en="Register on LINE">公式LINEに登録</span></a>
     </div>
-    <div class="header-sns" aria-label="公式SNS">
-      <a href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg>
-      </a>
-      <a href="https://youtube.com/channel/UC4euclQEdu9IIrTNyNELFyg?si=Mgtef9o84be7vemE" target="_blank" rel="noopener" aria-label="YouTube">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.57V8.43L15.8 12l-6.2 3.57z"/></svg>
-      </a>
-      </div>
     </div>
   </div>
 </header>
