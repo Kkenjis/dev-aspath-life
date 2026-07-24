@@ -20,7 +20,7 @@
   - データ（料金/実績/アクセス/CV導線/SEO/JSON-LD）はv4-v5確定版を継承
 ============================================================ -->
 
-<title data-en="First Trial &amp; Contact｜ASPATH (Kagoshima)">初回体験・お問い合わせ｜ASPATH（アスパス）鹿児島</title>
+<title>初回体験 お申し込みフォーム｜ASPATH（アスパス）</title>
 <meta name="description" content="鹿児島のパーキンソン病・脳卒中専門パーソナルトレーニングスタジオASPATH（アスパス）。理学療法士・保健学修士・LSVT-BIG認定療法士が、体幹「芯」に特化した独自メソッド「シンプラ」で早期からの進行予防に伴走します。西日本初の専門スタジオ。初回体験は期間限定 半額4,400円。">
 <meta name="robots" content="noindex,nofollow"><!-- 開発中：本番公開時に index,follow へ戻す -->
 <link rel="canonical" href="index.html">
@@ -985,12 +985,6 @@ body{ overflow-wrap:break-word; word-break:normal; }
 .page-wrap{ grid-template-columns:minmax(0,1fr) !important; gap:0 !important; max-width:900px !important; }
 .page-main{ margin:0 auto !important; }
 @media (max-width:760px){ .page-wrap{ max-width:100% !important; } }
-
-/* 初回体験→公式LINE誘導ブロック */
-#trial-line{ background:var(--paper); border:1px solid var(--gold-soft); border-radius:16px; padding:30px 26px; text-align:center; }
-.trial-line-msg{ font-size:clamp(16px,2.4vw,18px); color:var(--brown); line-height:1.9; margin:0 0 20px; }
-.trial-line-btn{ font-size:clamp(17px,2.6vw,20px)!important; padding:16px 34px!important; }
-.trial-line-note{ font-size:13.5px; color:var(--gold); margin:18px 0 0; line-height:1.7; }
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho+B1:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -1046,8 +1040,8 @@ body{ overflow-wrap:break-word; word-break:normal; }
 
 <main>
   <div class="page-head">
-    <p class="crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / First Trial &amp; Contact"><a href="index.html">TOP</a> ／ 初回体験・お問い合わせ</p>
-    <h1 data-en-html="First Trial &amp; Contact">初回体験・お問い合わせ</h1>
+    <p class="crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / First Trial &amp; Contact"><a href="index.html">TOP</a> ／ 初回体験 お申し込みフォーム</p>
+    <h1 data-en="First Trial Application">初回体験 お申し込みフォーム</h1>
 </div>
 
   <div class="page-wrap-single">
@@ -1092,26 +1086,11 @@ body{ overflow-wrap:break-word; word-break:normal; }
         </div>
       </div>
 
-      <form class="cform" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="contact.html">
-        <input type="hidden" name="form-name" value="contact">
-        <input type="hidden" name="subject" id="form-subject" value="【その他】ASPATH お問い合わせ">
+      <form class="cform" name="trial" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="trial-entry.html">
+        <input type="hidden" name="form-name" value="trial">
+        <input type="hidden" name="subject" id="form-subject" value="【初回体験】ASPATH お申し込み">
         <p hidden=""><label data-en-html="Do not fill in:">入力しないでください：<input name="bot-field"></label></p>
 
-        <div class="field">
-          <label data-en-html="Type of inquiry &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">ご相談の種類 <span class="req">必須</span></label>
-          <select name="inquiry_type" id="inquiry-type" required="">
-            <option value="初回体験を申し込みたい" selected="" data-en="I'd like to apply for the first trial">初回体験を申し込みたい</option>
-            <option value="その他のお問い合わせ" data-en="Other inquiry">その他のお問い合わせ</option>
-          </select>
-        </div>
-
-        <div id="trial-line">
-          <p class="trial-line-msg" data-en-html="Applications for the first trial are handled via our &lt;strong&gt;Official LINE&lt;/strong&gt;. After adding us as a friend, we will send you the URL for the dedicated application form.">初回体験のお申し込みは、<strong>公式LINE</strong>から承っています。<br class="br-pc">友だち登録後、専用のお申し込みフォームのURLをお送りします。</p>
-          <a class="btn btn-line big trial-line-btn" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg>公式LINEに登録する</a>
-          <p class="trial-line-note" data-en="After you add us as a friend, we will guide you through the dedicated form and scheduling smoothly on LINE.">友だち登録後、専用フォームのご案内と日程調整を、LINEでスムーズにご案内します。</p>
-        </div>
-
-        <div id="contact-form-fields">
         <div class="field">
           <label data-en-html="Name &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">お名前 <span class="req">必須</span></label>
           <input type="text" name="name" required="">
@@ -1120,23 +1099,62 @@ body{ overflow-wrap:break-word; word-break:normal; }
           <label data-en-html="Name (kana) &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">お名前（フリガナ） <span class="req">必須</span></label>
           <input type="text" name="kana" required="">
         </div>
+        
+        <div class="field">
+          <label data-en-html="Date of birth &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;&lt;span class=&quot;note&quot;&gt;e.g., May 30, 1975 → 19750530&lt;/span&gt;">生年月日 <span class="req">必須</span><span class="note">記載例：1975年5月30日 → 19750530</span></label>
+          <input type="text" name="birthday" inputmode="numeric" placeholder="19750530" required="">
+        </div>
         <div class="field">
           <label data-en-html="Email address">メールアドレス</label>
-          <input type="email" name="email_q">
+          <input type="email" name="email">
         </div>
         <div class="field">
           <label data-en-html="Phone number">お電話番号</label>
-          <input type="tel" name="tel_q">
+          <input type="tel" name="tel">
         </div>
+        <div class="field">
+          <label data-en-html="Address &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;&lt;span class=&quot;note&quot;&gt;Used to arrange the trial location or for home-visit training. (e.g., 302 Roppongi Bldg., 10-30 Shimoibaki, Kagoshima City)&lt;/span&gt;">ご住所 <span class="req">必須</span><span class="note">体験場所の調整や、ご自宅での訪問トレーニングの際に使用します。（例：鹿児島県鹿児島市下伊敷10-30 六本木ビル302号）</span></label>
+          <input type="text" name="address" required="">
+        </div>
+        <div class="field">
+          <label data-en-html="Who is this inquiry about? &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">どなたについてのご相談ですか？ <span class="req">必須</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="who" value="ご本人様" required=""> <span data-en="The person themselves">ご本人様</span></label>
+            <label><input type="radio" name="who" value="ご家族様"> <span data-en="A family member">ご家族様</span></label>
+            <label><input type="radio" name="who" value="その他"> <span data-en="Other">その他</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label data-en-html="What diagnosis have you received from your doctor? &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">医師からの診断名を教えてください <span class="req">必須</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="diagnosis" value="パーキンソン病" required=""> <span data-en="Parkinson's disease">パーキンソン病</span></label>
+            <label><input type="radio" name="diagnosis" value="脳卒中（脳梗塞・脳出血）"> <span data-en="Stroke (cerebral infarction / hemorrhage)">脳卒中（脳梗塞・脳出血）</span></label>
+            <label><input type="radio" name="diagnosis" value="その他"> <span data-en="Other">その他</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label data-en-html="If you selected &quot;Other,&quot; please enter the diagnosis if you have one.">「その他」を選択した方は、医師からの診断名がありましたらご記入ください</label>
+          <input type="text" name="diagnosis_other">
+        </div>
+        <div class="field">
+          <label data-en-html="Is there anything you are particularly struggling with or want to improve?">現在、特に困っていることや、改善したいことはありますか？</label>
+          <textarea name="trouble"></textarea>
+        </div>
+        <div class="field">
+          <label data-en-html="How did you hear about ASPATH?">ASPATHを何で知りましたか？</label>
+          <input type="text" name="source">
+        </div>
+        
+        
         <div class="field">
           <label data-en-html="Feel free to write any message or questions">メッセージやご質問があればご自由にどうぞ</label>
           <textarea name="message"></textarea>
         </div>
+
         <div class="submit-area">
           <button type="submit" class="btn btn-form big" style="max-width:320px;" data-en-html="Submit this form">この内容で送信する<span class="arw">→</span></button>
         </div>
         <p class="privacy-note" data-en-html="* Personal information you provide will not be used for any purpose other than this consultation and training operations.">※お預かりした個人情報は、本相談・トレーニング運営以外の目的には使用いたしません。<br data-en="For details, see the ">詳しくは<a href="privacy.html" data-en="Privacy Policy">プライバシーポリシー</a>をご覧ください。</p>
-        </div>
       </form>
 
       <div class="contact-side">
@@ -1317,33 +1335,7 @@ body{ overflow-wrap:break-word; word-break:normal; }
 })();
 </script>
 
-<script>
-(function(){
-  var sel = document.getElementById('inquiry-type');
-  var lineBox = document.getElementById('trial-line');
-  var formBox = document.getElementById('contact-form-fields');
-  if(!sel) return;
-  var subjectField = document.getElementById('form-subject');
-  var nameField = document.querySelector('.cform [name="name"]');
-  function updateSubject(){
-    if(!subjectField) return;
-    var nm = nameField && nameField.value.trim();
-    subjectField.value = nm ? ('【その他】ASPATH お問い合わせ／'+nm+'様') : '【その他】ASPATH お問い合わせ';
-  }
-  function toggle(){
-    var isTrial = sel.value.indexOf('初回体験') === 0;
-    if(lineBox) lineBox.style.display = isTrial ? '' : 'none';
-    if(formBox) formBox.style.display = isTrial ? 'none' : '';
-    updateSubject();
-  }
-  var map = { trial:'初回体験を申し込みたい', other:'その他のお問い合わせ' };
-  var qt = new URLSearchParams(location.search).get('type');
-  if(qt && map[qt]){ sel.value = map[qt]; }
-  sel.addEventListener('change', toggle);
-  if(nameField){ nameField.addEventListener('input', updateSubject); }
-  toggle();
-})();
-</script>
+
 <script>
 /* ===== 言語切替（日英トグル・ページ間で保持） ===== */
 (function(){
