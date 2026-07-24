@@ -266,8 +266,22 @@ h3{ font-size:clamp(19px,2.5vw,23px); }
 .hbtn{ font-family:var(--font-head); font-weight:700; font-size:17px; line-height:1; padding:13px 20px; border-radius:999px; text-decoration:none; white-space:nowrap; display:inline-flex; align-items:center; gap:6px; transition:transform .2s, box-shadow .2s, filter .2s; }
 .hbtn:hover{ transform:translateY(-2px); box-shadow:0 6px 16px rgba(30,45,52,.22); filter:saturate(1.05); }
 .hbtn-reserve{ background:var(--sun); color:#fff; box-shadow:0 4px 12px rgba(244,162,97,.28); }
-.hbtn-line{ background:#06C755; color:#fff; }
-.hbtn-line .hbtn-ico{ width:18px; height:18px; }
+.hbtn-line{ background:#06C755; color:#fff; font-size:18.5px; padding:15px 26px; box-shadow:0 5px 16px rgba(6,199,85,.38); }
+.hbtn-line .hbtn-ico{ width:20px; height:20px; }
+/* ヒーロー右の縦SNS */
+.hero-sns-rail{ position:absolute; right:clamp(12px,2.4vw,30px); top:50%; transform:translateY(-50%); z-index:5; display:flex; flex-direction:column; align-items:center; gap:12px; }
+.hsr-label{ font-family:var(--font-head); font-size:12px; font-weight:700; color:#fff; letter-spacing:.03em; text-shadow:0 1px 5px rgba(0,0,0,.5); text-align:center; line-height:1.35; }
+.hero-sns-rail a{ width:44px; height:44px; border-radius:50%; display:grid; place-items:center; color:#fff; box-shadow:0 4px 12px rgba(0,0,0,.30); transition:transform .2s; }
+.hero-sns-rail a:hover{ transform:translateY(-2px); }
+.hero-sns-rail a[aria-label="YouTube"]{ background:#FF0000; }
+.hero-sns-rail a[aria-label="Instagram"]{ background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF); }
+.hero-sns-rail svg{ width:24px; height:24px; }
+/* 追従する公式LINE丸ボタン */
+.line-float{ position:fixed; right:16px; bottom:22px; z-index:300; width:66px; height:66px; border-radius:50%; background:#06C755; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 6px 20px rgba(6,199,85,.5); transition:transform .2s, box-shadow .2s; }
+.line-float:hover{ transform:translateY(-3px) scale(1.04); box-shadow:0 10px 26px rgba(6,199,85,.6); }
+.line-float-ico{ width:26px; height:26px; }
+.line-float-txt{ font-size:10px; font-weight:700; line-height:1; margin-top:1px; }
+@media (max-width:760px){ .hero-sns-rail a{ width:40px; height:40px; } .hero-sns-rail svg{ width:22px; height:22px; } .hsr-label{ font-size:11px; } .line-float{ width:58px; height:58px; right:12px; bottom:16px; } }
 @media (max-width:760px){ .hbtn{ font-size:16px; padding:11px 15px; } .header-cta{ gap:8px; } }
 
 .header-sns a.sns-line-hd{ position:relative; margin-left:6px; }
@@ -1134,13 +1148,6 @@ body{ overflow-wrap:break-word; word-break:normal; }
     <div class="header-cta">
       <a class="hbtn hbtn-line" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" aria-label="公式LINEに登録"><svg class="hbtn-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span data-en="Register on LINE">公式LINEに登録</span></a>
     </div>
-    <div class="header-sns" aria-label="公式SNS">
-      <a href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg>
-      </a>
-      <a href="https://youtube.com/channel/UC4euclQEdu9IIrTNyNELFyg?si=Mgtef9o84be7vemE" target="_blank" rel="noopener" aria-label="YouTube">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.57V8.43L15.8 12l-6.2 3.57z"></path></svg>
-      </a>
-      </div>
     </div>
   </div>
 </header>
@@ -1170,6 +1177,9 @@ body{ overflow-wrap:break-word; word-break:normal; }
   <p class="drawer-line-note">友だち登録で、無料相談も、お役立ち情報の配信も。いつでも解除できます。</p>
 </nav>
 
+<!-- 追従する公式LINE登録（丸・スクロール追従） -->
+<a class="line-float" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" aria-label="公式LINEに登録"><svg class="line-float-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span class="line-float-txt">登録</span></a>
+
 <main id="top" class="spine-page">
 
   <!-- ============ ヒーロー：クロスフェードスライダー ============ -->
@@ -1191,6 +1201,12 @@ body{ overflow-wrap:break-word; word-break:normal; }
     </div>
 
     <div class="hero-scrim"></div>
+
+    <div class="hero-sns-rail" aria-label="公式SNS">
+      <span class="hsr-label" data-en="Self-training<br>videos">自主トレ<br>動画多数</span>
+      <a href="https://youtube.com/channel/UC4euclQEdu9IIrTNyNELFyg?si=Mgtef9o84be7vemE" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.57V8.43L15.8 12l-6.2 3.57z"></path></svg></a>
+      <a href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
+    </div>
 
     <div class="hero-center">
       <span class="hero-brand" data-en-html="ASPATH">ASPATH<span class="read">アスパス</span></span>
