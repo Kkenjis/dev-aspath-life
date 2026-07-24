@@ -238,8 +238,11 @@ h3{ font-size:clamp(19px,2.5vw,23px); }
 .site-header .gnav a{ color:#fff; text-shadow:0 1px 8px rgba(0,0,0,.4); }
 .site-header.scrolled .gnav a{ color:var(--brown); text-shadow:none; }
 /* ロゴ：大きく主張 → スクロールでメニュー大へ縮小 */
-.brand-logo{ transition:height .35s ease, filter .35s ease, transform .35s ease; filter:drop-shadow(0 3px 12px rgba(0,0,0,.30)); }
+.brand-logo{ transition:height .35s ease, filter .35s ease, transform .35s ease; filter:drop-shadow(0 0 34px rgba(200,227,255,.60)) drop-shadow(0 0 16px rgba(200,227,255,.50)) drop-shadow(0 2px 8px rgba(20,40,60,.20)); }
 .site-header.scrolled .brand-logo{ height:48px; filter:none; transform:none; }
+.brand-logo--solid{ display:none; }
+.site-header.scrolled .brand-logo--hero{ display:none; }
+.site-header.scrolled .brand-logo--solid{ display:inline-block; }
 /* ハンバーガーも画像上は白 */
 .site-header:not(.scrolled) .hamburger span{ background:#fff; }
 .header-in{ max-width:100%; margin:0 auto; padding:12px clamp(20px,4vw,56px); display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
@@ -1117,7 +1120,8 @@ body{ overflow-wrap:break-word; word-break:normal; }
 <header class="site-header">
   <div class="header-in">
     <a class="brand" href="index.html" aria-label="ASPATH（アスパス）トップへ">
-      <img class="brand-logo" src="images/logo-aspath.webp" alt="ASPATHロゴ" width="85" height="85">
+      <img class="brand-logo brand-logo--hero" src="images/logo-aspath-white.webp" alt="ASPATHロゴ" width="85" height="85">
+      <img class="brand-logo brand-logo--solid" src="images/logo-aspath.webp" alt="ASPATHロゴ" width="85" height="85">
     </a>
     <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="drawer">
       <span></span><span></span><span></span>
