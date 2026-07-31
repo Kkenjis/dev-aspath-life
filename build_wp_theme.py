@@ -152,9 +152,17 @@ def main():
     open(os.path.join(OUT,"sub.css"),"w",encoding="utf-8").write(build_sub_css())
 
     # js
-    front_js = build_js("index.html","front")
-    sub_js   = build_js("about.html","sub")
-    for name,code in front_js + sub_js:
+    front_js   = build_js("index.html","front")
+    sub_js     = build_js("about.html","sub")
+    # ページ固有JS：aboutに無いものだけを拾う（重複読込を避ける）
+    sub_codes  = set(re.sub(r'\s+','',c) for _,c in sub_js)
+    contact_js = [(n.replace("contact-","contact-"),c) for n,c in build_js("contact.html","contact")
+                  if re.sub(r'\s+','',c) not in sub_codes]
+    column_js  = [(n,c) for n,c in build_js("column-parkinson.html","column")
+                  if re.sub(r'\s+','',c) not in sub_codes]
+    news_js    = [(n,c) for n,c in build_js("news.html","news")
+                  if re.sub(r'\s+','',c) not in sub_codes]
+    for name,code in front_js + sub_js + contact_js + column_js + news_js:
         open(os.path.join(OUT,"js",name),"w",encoding="utf-8").write(code)
 
     idx = read("index.html")
@@ -196,8 +204,11 @@ def main():
 "\n<?php wp_footer(); ?>\n</body>\n</html>\n")
 
     # functions.php
-    front_names = [n for n,_ in front_js]
-    sub_names   = [n for n,_ in sub_js]
+    front_names   = [n for n,_ in front_js]
+    sub_names     = [n for n,_ in sub_js]
+    contact_names = [n for n,_ in contact_js]
+    column_names  = [n for n,_ in column_js]
+    news_names    = [n for n,_ in news_js]
     def enq(names, indent="  "):
         return "\n".join(f"{indent}wp_enqueue_script('aspath-{n[:-3]}', $uri.'/js/{n}', array(), $ver, true);" for n in names)
     functions_php = f"""<?php
@@ -223,6 +234,16 @@ function aspath_assets() {{
 {enq(front_names,'    ')}
   }} else {{
 {enq(sub_names,'    ')}
+  }}
+  // ページ固有JS
+  if ( is_page('contact') ) {{
+{enq(contact_names,'    ')}
+  }}
+  if ( is_singular('post') ) {{
+{enq(column_names,'    ')}
+  }}
+  if ( is_home() || is_archive() ) {{
+{enq(news_names,'    ')}
   }}
 }}
 add_action('wp_enqueue_scripts','aspath_assets');
