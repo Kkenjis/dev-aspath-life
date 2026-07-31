@@ -168,6 +168,11 @@ def main():
     bo = re.search(r'<body[^>]*>', idx).end()
     ms = re.search(r'<main[ >]', idx).start()
     head_region = clean(idx[bo:ms])
+    # ローディング画面はTOP専用（サブページでは出さない）
+    if 'aspath-loader' in head_region and '<header' in head_region:
+        loader_part, rest = head_region.split('<header', 1)
+        head_region = ("<?php if ( is_front_page() ) : ?>\n" + loader_part.strip() +
+                       "\n<?php endif; ?>\n<header" + rest)
     open(os.path.join(OUT,"header.php"),"w",encoding="utf-8").write(
 """<?php /** header.php — 共通ヘッダー（build_wp_theme.py 自動生成） */ ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
