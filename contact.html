@@ -1058,13 +1058,13 @@ body{ overflow-wrap:break-word; word-break:normal; }
 
   <div class="page-wrap-single">
     <div class="page-main">
-      <div class="line-hero reveal">
+      <div class="line-hero reveal" id="line-hero">
         <p class="lh-lead" data-en-html="Register as a friend and&lt;br&gt;reach out anytime">お友達登録で<br class="br-sp">お気軽にご連絡ください</p>
         <a class="btn-line-white" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Ask on LINE"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg>LINEで相談する</a>
         <p class="lh-sub" data-en-html="We also share helpful tips!">お役立ち情報も発信中</p>
       </div>
 
-      <div class="contact-tel">
+      <div class="contact-tel" id="contact-tel">
         <p class="ct-label" data-en="By phone">お電話でのお問い合わせ</p>
         <a class="ct-num" href="tel:09082980433"><svg class="ct-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.57 1 1 0 0 1-.24 1.02l-2.21 2.2z"></path></svg>090-8298-0433</a>
       </div>
@@ -1340,10 +1340,16 @@ body{ overflow-wrap:break-word; word-break:normal; }
     var nm = nameField && nameField.value.trim();
     subjectField.value = nm ? ('【その他】ASPATH お問い合わせ／'+nm+'様') : '【その他】ASPATH お問い合わせ';
   }
+  var heroLine = document.getElementById('line-hero');
+  var telBox   = document.getElementById('contact-tel');
   function toggle(){
     var isTrial = sel.value.indexOf('初回体験') === 0;
-    if(lineBox) lineBox.style.display = isTrial ? '' : 'none';
-    if(formBox) formBox.style.display = isTrial ? 'none' : '';
+    // 初回体験：公式LINE登録のみ表示（フォームは非表示）
+    // その他　：フォームのみ表示（LINE登録ブロックは非表示）
+    if(lineBox)  lineBox.style.display  = isTrial ? '' : 'none';
+    if(formBox)  formBox.style.display  = isTrial ? 'none' : '';
+    if(heroLine) heroLine.style.display = isTrial ? '' : 'none';
+    if(telBox)   telBox.style.display   = isTrial ? '' : 'none';
     updateSubject();
   }
   var map = { trial:'初回体験を申し込みたい', other:'その他のお問い合わせ' };
