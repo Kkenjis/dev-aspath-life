@@ -173,6 +173,11 @@ def main():
         loader_part, rest = head_region.split('<header', 1)
         head_region = ("<?php if ( is_front_page() ) : ?>\n" + loader_part.strip() +
                        "\n<?php endif; ?>\n<header" + rest)
+    # 右下の追従LINEボタン（line-float）もTOP専用
+    head_region = re.sub(
+        r'(<a class="line-float"[\s\S]*?</a>)',
+        lambda m: "<?php if ( is_front_page() ) : ?>\n" + m.group(1) + "\n<?php endif; ?>",
+        head_region, count=1)
     open(os.path.join(OUT,"header.php"),"w",encoding="utf-8").write(
 """<?php /** header.php — 共通ヘッダー（build_wp_theme.py 自動生成） */ ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
