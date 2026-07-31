@@ -37,13 +37,20 @@ TPL = '<?php echo get_template_directory_uri(); ?>'
 
 def read(p): return open(os.path.join(SRC,p),encoding="utf-8").read()
 
+def php_url(path):
+    # サブディレクトリ(ステージング)でも本番でも正しく解決するよう home_url() で生成
+    return "<?php echo esc_url( home_url('" + path + "') ); ?>"
+
 def rewrite_links(s):
     def repl(m):
         base = LINKS.get(m.group(1))
-        return m.group(0) if base is None else f'href="{base}{m.group(2)}"'
+        if base is None: return m.group(0)
+        anchor = m.group(2)
+        return 'href="' + php_url(base) + anchor + '"'
     s = re.sub(r'href="([a-z0-9\-]+\.html)([^"]*)"', repl, s)
-    for f,base in LINKS.items():
-        s = s.replace('&quot;'+f+'&quot;', '&quot;'+base+'&quot;')
+    # data-en-html 内のエスケープ済みリンクも home_url() に（PHPは属性値内でも実行される）
+    for fname,base in LINKS.items():
+        s = s.replace('&quot;'+fname+'&quot;', '&quot;'+php_url(base)+'&quot;')
     return s
 
 def rewrite_imgs(s):
@@ -81,23 +88,30 @@ def split_rules(css):
                 rules.append(''.join(buf).strip()); buf = []
     return [r for r in rules if r]
 
-def build_css():
+def page_css(p):
+    t = read(p)
+    return '\n'.join(re.findall(r'<style[^>]*>([\s\S]*?)</style>', t))
+
+def build_front_css():
+    # TOP専用：index.htmlのCSSを丸ごと（上書き事故ゼロ＝devと完全一致）
+    return "/* front.css — index.html のCSSをそのまま抽出（TOP専用） */\n" + page_css("index.html")
+
+def build_sub_css():
+    # サブページ用：サブページ群のCSSを重複排除で結合（indexとは分離し衝突を防止）
     seen, out = set(), []
     for p in PAGES:
-        t = read(p)
-        styles = re.findall(r'<style[^>]*>([\s\S]*?)</style>', t)
-        page_rules = []
-        for block in styles:
-            for r in split_rules(block):
-                key = re.sub(r'\s+','',r)
-                if key not in seen:
-                    seen.add(key); page_rules.append(r)
-        if page_rules:
-            out.append(f"\n/* ==================== {p} 由来のスタイル ==================== */\n")
-            out.append('\n'.join(page_rules))
-    css = '\n'.join(out)
-    css = re.sub(r'url\(images/([^)]+)\)', r'url(images/\1)', css)  # テーマ相対のまま
-    header = f"""/*
+        if p == "index.html": continue
+        rules = []
+        for r in split_rules(page_css(p)):
+            key = re.sub(r'\s+','',r)
+            if key not in seen:
+                seen.add(key); rules.append(r)
+        if rules:
+            out.append(f"\n/* ==== {p} 由来 ==== */\n" + '\n'.join(rules))
+    return "/* sub.css — サブページ群のCSS（TOPとは分離読込） */\n" + '\n'.join(out)
+
+def theme_header_css():
+    return f"""/*
 Theme Name: ASPATH
 Theme URI: https://aspath-life.com/
 Description: ASPATH（アスパス）パーキンソン病専門トレーニングスタジオ 公式テーマ。devサイトから build_wp_theme.py で自動生成。
@@ -107,8 +121,8 @@ Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: aspath
 */
+/* 実スタイルは front.css（TOP）/ sub.css（サブページ）を条件読込 */
 """
-    return header + css
 
 # ---------- JS: index/サブ代表ページのインラインscriptを抽出 ----------
 def build_js(page, prefix):
@@ -132,8 +146,10 @@ def main():
     for f in os.listdir(imgdir):
         shutil.copy(os.path.join(imgdir,f), os.path.join(OUT,"images",f))
 
-    # style.css
-    open(os.path.join(OUT,"style.css"),"w",encoding="utf-8").write(build_css())
+    # style.css（テーマ情報のみ）＋ front.css / sub.css
+    open(os.path.join(OUT,"style.css"),"w",encoding="utf-8").write(theme_header_css())
+    open(os.path.join(OUT,"front.css"),"w",encoding="utf-8").write(build_front_css())
+    open(os.path.join(OUT,"sub.css"),"w",encoding="utf-8").write(build_sub_css())
 
     # js
     front_js = build_js("index.html","front")
@@ -188,7 +204,11 @@ function aspath_assets() {{
   $ver = wp_get_theme()->get('Version');
   $uri = get_template_directory_uri();
   wp_enqueue_style('aspath-gfonts','{fonts_url_php}',array(),null);
-  wp_enqueue_style('aspath-style', get_stylesheet_uri(), array('aspath-gfonts'), $ver);
+  if ( is_front_page() ) {{
+    wp_enqueue_style('aspath-front', $uri.'/front.css', array('aspath-gfonts'), $ver);
+  }} else {{
+    wp_enqueue_style('aspath-sub', $uri.'/sub.css', array('aspath-gfonts'), $ver);
+  }}
   if ( is_front_page() ) {{
 {enq(front_names,'    ')}
   }} else {{
