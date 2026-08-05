@@ -48,6 +48,9 @@ def rewrite_links(s):
         anchor = m.group(2)
         return 'href="' + php_url(base) + anchor + '"'
     s = re.sub(r'href="([a-z0-9\-]+\.html)([^"]*)"', repl, s)
+    # 自サイト(aspath-life.com)への絶対URLは home_url() に（ステージングでも本番でも正しく解決）
+    s = re.sub(r'href="https://aspath-life\.com(/[^"]*)"',
+               lambda m: 'href="' + php_url(m.group(1)) + '"', s)
     # data-en-html 内のエスケープ済みリンクも home_url() に（PHPは属性値内でも実行される）
     for fname,base in LINKS.items():
         s = s.replace('&quot;'+fname+'&quot;', '&quot;'+php_url(base)+'&quot;')
