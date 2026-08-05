@@ -993,6 +993,18 @@ main{ padding-top:76px; }
   .hbtn-line{ font-size:clamp(11px,1.2vw,15px) !important; padding:9px clamp(8px,1vw,16px) !important; }
   .hbtn-line .hbtn-ico{ width:18px !important; height:18px !important; }
 }
+
+/* ===== ヘッダーメニューを常に1行に（2段折り返し防止・indexと統一） ===== */
+@media (min-width:761px){
+  .header-in{ flex-wrap:nowrap !important; }
+  .header-right{ flex-wrap:nowrap !important; }
+  .gnav{ flex-wrap:nowrap !important; gap:4px clamp(14px,3.2vw,58px) !important; padding-left:clamp(0px,2.2vw,90px) !important; }
+  .gnav a{ white-space:nowrap; font-size:clamp(16px,1.55vw,24px) !important; }
+  .hbtn-line{ font-size:clamp(15px,1.45vw,23px) !important; padding:clamp(11px,1.2vw,20px) clamp(16px,2.3vw,42px) !important; }
+  .hbtn-line .hbtn-ico{ width:clamp(17px,1.6vw,26px) !important; height:clamp(17px,1.6vw,26px) !important; }
+  .header-cta{ margin-right:clamp(4px,1.4vw,40px) !important; padding:0 clamp(4px,1vw,26px) !important; }
+  .brand{ margin-right:clamp(10px,2.2vw,52px) !important; }
+}
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho+B1:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
