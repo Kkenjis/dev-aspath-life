@@ -954,6 +954,80 @@ body{ overflow-wrap:break-word; word-break:normal; }
   .hbtn-line{ font-size:clamp(12.5px,1.35vw,23px) !important; padding:clamp(9px,1.1vw,20px) clamp(12px,2vw,42px) !important; white-space:nowrap !important; }
   .hbtn-line .hbtn-ico{ width:clamp(15px,1.5vw,26px) !important; height:clamp(15px,1.5vw,26px) !important; }
 }
+
+/* ============================================================
+   レスポンシブ基盤：全デバイス対応（PCの見た目は維持）
+   ============================================================ */
+/* 共通：はみ出し防止・画像/表の追従 */
+html{ -webkit-text-size-adjust:100%; }
+body{ overflow-x:hidden; }
+img, video, svg{ max-width:100%; height:auto; }
+table{ max-width:100%; }
+*{ min-width:0; }
+
+/* ── 大型タブレット / 小型ノート（〜1180px） ── */
+@media (max-width:1180px){
+  .wrap, .page-wrap{ padding-left:clamp(16px,3vw,32px); padding-right:clamp(16px,3vw,32px); }
+  /* 3カラム→2カラム */
+  .price-grid{ grid-template-columns:repeat(2,1fr) !important; }
+  .reasons-grid, .rs-grid, .col-list, .column-list, .news-list, .sb-grid{ gap:20px; }
+}
+
+/* ── タブレット縦（〜1024px） ── */
+@media (max-width:1024px){
+  /* 2カラム構成を1カラムへ（プロフィール・ジグザグ・由来） */
+  .profile{ grid-template-columns:1fr !important; gap:28px !important; padding:30px 26px !important; }
+  .profile .img-slot{ max-width:330px; margin:0 auto; }
+  .zigzag{ grid-template-columns:1fr !important; gap:22px !important; }
+  .zigzag.is-reverse .z-img{ order:0 !important; }
+  .origin-hero{ grid-template-columns:1fr !important; gap:24px !important; margin:26px auto 8px !important; padding-right:0 !important; }
+  .origin-hero-logo{ max-width:200px; margin:0 auto; }
+  .origin-acr{ max-width:520px; margin:0 auto; }
+  .acr-en{ min-width:clamp(130px,26vw,205px) !important; }
+}
+
+/* ── 小型タブレット / 大型スマホ（〜900px） ── */
+@media (max-width:900px){
+  .price-grid{ grid-template-columns:1fr !important; max-width:420px; margin-left:auto; margin-right:auto; }
+  .price-card.recommend{ transform:none !important; }
+  .sb-grid{ grid-template-columns:1fr !important; }
+  .svc-item{ grid-template-columns:84px 1fr !important; gap:18px !important; padding:20px 18px !important; }
+  .train-flow{ margin-top:48px; }
+}
+
+/* ── スマホ（〜760px）：可読性重視 ── */
+@media (max-width:760px){
+  .wrap, .page-wrap{ padding-left:16px; padding-right:16px; }
+  h1{ font-size:clamp(23px,6.6vw,30px) !important; }
+  h2{ font-size:clamp(20px,5.6vw,26px) !important; }
+  h3{ font-size:clamp(17px,4.8vw,21px) !important; }
+  p, li, dd, td{ font-size:clamp(15px,4.1vw,17px) !important; line-height:1.9 !important; }
+  /* PC用の手動改行はスマホで無効化（変な位置で切れないように） */
+  br.br-pc{ display:none !important; }
+  /* ボタンは押しやすく */
+  .btn, .hbtn, .btn-line, .btn-form{ min-height:48px; }
+  .btn.big, .btn-line.big{ width:100%; max-width:340px; justify-content:center; }
+  /* カード内の余白を締める */
+  .card, .price-card, .svc-item, .news-list-item, .col-card{ padding:18px 16px !important; }
+  .train-flow .tf-list li{ padding-left:56px !important; }
+  .tf-list li::before{ width:38px !important; height:38px !important; font-size:15px !important; }
+  .tf-list li:not(:last-child)::after{ left:18px !important; }
+  /* 表は横スクロール可に */
+  .cred-table, .price-table{ display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+}
+
+/* ── 小型スマホ（〜400px） ── */
+@media (max-width:400px){
+  .wrap, .page-wrap{ padding-left:13px; padding-right:13px; }
+  .svc-item{ grid-template-columns:1fr !important; text-align:center; }
+  .svc-circle{ margin:0 auto !important; }
+  .svc-body h3::before{ display:none; }
+}
+
+/* ── 横向き（ランドスケープ）スマホ ── */
+@media (max-height:480px) and (orientation:landscape){
+  .hero{ min-height:520px; }
+}
 </style>
 <body>
 <header class="site-header">
