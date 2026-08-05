@@ -1050,6 +1050,14 @@ table{ max-width:100%; }
 @media (max-height:480px) and (orientation:landscape){
   .hero{ min-height:520px; }
 }
+
+/* ===== 公式LINEで相談する（CTAブロック） ===== */
+.online-cta{ margin-top:26px; background:linear-gradient(135deg,#F2FBF5 0%,#E8F7EE 100%); border:1px solid #BFE8CE; border-radius:18px; padding:26px 28px; text-align:center; box-shadow:0 6px 18px rgba(6,199,85,.10); }
+.online-cta .oc-title{ font-family:var(--font-head); font-size:clamp(19px,2.8vw,23px); font-weight:700; color:#0B7A3B; margin:0 0 6px; letter-spacing:.02em; }
+.online-cta .oc-title::before{ content:""; display:inline-block; width:1.05em; height:1.05em; margin-right:9px; vertical-align:-3px; background:#06C755; -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z'/></svg>") center/contain no-repeat; mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z'/></svg>") center/contain no-repeat; }
+.online-cta .oc-sub{ font-size:15px; color:#3E6B52; margin:0 0 18px; line-height:1.8; }
+.online-cta .oc-btnrow{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; align-items:center; margin:0; }
+@media (max-width:760px){ .online-cta{ padding:22px 18px; } .online-cta .oc-btnrow .btn{ width:100%; max-width:320px; } }
 </style>
 </head>
 <body>
@@ -1148,10 +1156,13 @@ table{ max-width:100%; }
 
       <h2 id="online" style="margin-top:48px;" data-en="Online &amp; Home-Visit Training">オンライン・自宅訪問トレーニング</h2>
       <p data-en="For those who find travel difficult or live far away, we offer online training via video call. Home-visit training is also available—please feel free to ask."><span class="nowrap-pc">移動が難しい方、遠方の方には、テレビ通話を使ったオンライントレーニングを実施しています。</span><br class="br-pc">ご自宅への訪問トレーニングも実施中。お気軽にご相談ください。</p>
-      <p class="online-line-note" style="margin-top:20px; margin-bottom:6px; font-weight:700; color:var(--brown); font-size:16.5px;" data-en="Ask us on our Official LINE">公式LINEで相談する</p>
-      <p style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+      <div class="online-cta reveal">
+        <p class="oc-title" data-en="Ask us on our Official LINE">公式LINEで相談する</p>
+        <p class="oc-sub" data-en="Feel free to message us—we usually reply within 24 hours.">お気軽にメッセージをお送りください。24時間以内にご返信します。</p>
+      <p class="oc-btnrow">
         <a class="btn btn-line big online-line" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" style="white-space:nowrap;" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg>公式LINEに登録</a>
       </p>
+      </div>
 
     </div>
   </div>
