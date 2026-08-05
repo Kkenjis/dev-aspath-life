@@ -472,8 +472,9 @@ body.drawer-open{ overflow:hidden; }
 .trial-price .z small{ font-size:.4em; }
 .price-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch; position:relative; z-index:1; }
 .price-card{ background:#fff; border-radius:16px; box-shadow:0 8px 22px rgba(38,70,83,.07); padding:30px 16px 28px; text-align:center; border:1px solid var(--gold-soft); display:flex; flex-direction:column; }
-.price-card.recommend{ border-color:var(--gold-soft); position:relative; }
-.price-card.recommend::before{ content:none; display:none; }
+.price-card.recommend{ border:2.5px solid var(--sun); position:relative; transform:scale(1.05); box-shadow:0 14px 34px rgba(244,162,97,.25); z-index:2; }
+.price-card.recommend::before{ content:"いちばん選ばれています"; position:absolute; top:-15px; left:50%; transform:translateX(-50%); background:var(--sun); color:#fff; font-family:var(--font-head); font-size:13.5px; font-weight:700; padding:5px 18px; border-radius:999px; white-space:nowrap; box-shadow:0 4px 10px rgba(244,162,97,.35); }
+@media (max-width:760px){ .price-card.recommend{ transform:none; margin-top:14px; } }
 .price-yen{ font-family:var(--font-head); font-size:clamp(29px,3.3vw,37px); color:var(--gold-deep); margin:12px 0 4px; }
 .price-yen small{ font-size:15px; color:var(--ink); }
 .single-plan{ max-width:760px; margin:26px auto 0; background:#fff; border-radius:14px; box-shadow:var(--shadow); padding:18px 24px; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; position:relative; z-index:1; }
@@ -947,6 +948,17 @@ main{ padding-top:76px; }
   .header-cta{ margin-right:clamp(4px,1.4vw,40px) !important; padding:0 clamp(4px,1vw,26px) !important; }
   .brand{ margin-right:clamp(10px,2.2vw,52px) !important; }
 }
+
+/* ===== トレーニングのながれ ===== */
+.train-flow{ max-width:760px; margin:64px auto 0; position:relative; z-index:1; }
+.train-flow h2{ text-align:center; font-family:var(--font-head); font-size:clamp(21px,3vw,26px); color:var(--brown); margin-bottom:8px; }
+.train-flow .tf-lead{ text-align:center; font-size:15.5px; color:#52707A; margin-bottom:28px; }
+.tf-list{ list-style:none; padding:0; display:grid; gap:0; counter-reset:tf; }
+.tf-list li{ counter-increment:tf; position:relative; padding:0 0 30px 66px; }
+.tf-list li::before{ content:counter(tf,decimal-leading-zero); position:absolute; left:0; top:-2px; width:44px; height:44px; border-radius:50%; background:var(--brown); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-weight:700; font-size:17px; }
+.tf-list li:not(:last-child)::after{ content:""; position:absolute; left:21px; top:46px; bottom:4px; border-left:3px dotted var(--gold-soft); }
+.tf-list b{ display:block; font-family:var(--font-head); font-size:18.5px; color:var(--brown); margin-bottom:4px; }
+.tf-list p{ margin:0; font-size:15.5px; line-height:1.85; color:var(--ink); }
 </style>
 </head>
 <body>
@@ -1053,6 +1065,24 @@ main{ padding-top:76px; }
         自主トレのサポート・身体機能の数値化・生活習慣の助言まで伴走します。
       </p>
       <p class="more-link reveal"><a class="btn btn-ghost mid" href="about.html#method" data-en-html="See service details&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;">サービス内容の詳細を見る<span class="arw">→</span></a></p>
+
+      <div class="train-flow reveal">
+        <h2 data-en="Training flow">トレーニングのながれ</h2>
+        <p class="tf-lead" data-en="From application to the day itself—and what comes after.">お申し込みから当日、その後までのながれをご紹介します。</p>
+        <ol class="tf-list">
+          <li><b data-en="Apply via Official LINE">公式LINEからお申し込み</b>
+            <p data-en="Register as a friend on our Official LINE and apply for the first trial from the dedicated form.">公式LINEに友だち登録し、専用フォームから初回体験をお申し込みください。</p></li>
+          <li><b data-en="Scheduling and location">日程調整・場所のご案内</b>
+            <p data-en="Our staff will contact you within 24 hours to arrange the date and studio location.">スタッフより24時間以内にご連絡し、日程とスタジオの場所をご案内します。</p></li>
+          <li><b data-en="Counseling and body check (on the day)">カウンセリング・お体チェック（当日）</b>
+            <p data-en="We listen carefully to your concerns and goals, then assess posture and movement with analysis tools.">お悩みや目標を丁寧にお聞きし、分析ツールも使って姿勢や動きをチェックします。</p></li>
+          <li><b data-en="First training session">体験トレーニング</b>
+            <p data-en="Based on the check, you experience training tailored to your symptoms and condition.">チェック結果をもとに、症状とお身体に合わせたトレーニングを体験いただきます。</p></li>
+          <li><b data-en="Feedback and next steps">結果のご説明・今後のご提案</b>
+            <p data-en="We explain the results and propose the best plan going forward. Take your time to consider—no pressure to continue.">結果をわかりやすくご説明し、今後の最適なプランをご提案します。継続はじっくりご検討ください。</p></li>
+        </ol>
+      </div>
+
 
     </div>
   </div>
