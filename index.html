@@ -1043,6 +1043,18 @@ body{ overflow-wrap:break-word; word-break:normal; }
 }
 .awards a.aw-link{ color:#264653; font-weight:700; text-decoration:underline; text-decoration-color:#F4A261; text-decoration-thickness:2px; text-underline-offset:3px; transition:color .2s; }
 .awards a.aw-link:hover{ color:#E08A3C; }
+
+/* ===== ヘッダーメニューを常に1行に（2段折り返し防止・PC見た目は維持） ===== */
+@media (min-width:761px){
+  .header-in{ flex-wrap:nowrap !important; }
+  .header-right{ flex-wrap:nowrap !important; }
+  .gnav{ flex-wrap:nowrap !important; gap:4px clamp(14px,3.2vw,58px) !important; padding-left:clamp(0px,2.2vw,90px) !important; }
+  .gnav a{ white-space:nowrap; font-size:clamp(16px,1.55vw,24px) !important; }
+  .hbtn-line{ font-size:clamp(15px,1.45vw,23px) !important; padding:clamp(11px,1.2vw,20px) clamp(16px,2.3vw,42px) !important; }
+  .hbtn-line .hbtn-ico{ width:clamp(17px,1.6vw,26px) !important; height:clamp(17px,1.6vw,26px) !important; }
+  .header-cta{ margin-right:clamp(4px,1.4vw,40px) !important; padding:0 clamp(4px,1vw,26px) !important; }
+  .brand{ margin-right:clamp(10px,2.2vw,52px) !important; }
+}
 </style>
 </head>
 
@@ -1225,18 +1237,18 @@ body{ overflow-wrap:break-word; word-break:normal; }
     <div class="dots" style="left:2%; bottom:60px;" aria-hidden="true"></div>
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="worry-target" style="text-align:center; font-size:clamp(16px,2.4vw,20px); font-weight:700; color:var(--sun); margin:0 0 8px;" data-en="For those with Parkinson's disease or the aftereffects of stroke (cerebral infarction / hemorrhage)">パーキンソン病や脳卒中（脳梗塞・脳出血）後遺症のある方へ</p>
+        <p class="worry-target" style="text-align:center; font-size:clamp(16px,2.4vw,20px); font-weight:700; color:var(--sun); margin:0 0 8px;" data-en="For those with Parkinson\'s disease">パーキンソン病の方へ</p>
          <h2 data-en="Do you have any of these concerns?">こんなお悩みはありませんか？</h2>
       </div>
       <div class="worry-visual img-slot plain h-auto reveal" aria-hidden="true">
         <img src="images/icon-worry.webp" alt="悩んでいる方のイラスト" style="max-width:220px;margin:0 auto;">
       </div>
       <ul class="worry-list">
-        <li class="reveal" data-en="I've been told exercise matters for Parkinson's, but I don't know what to do.">パーキンソン病は運動が大事といわれたけど、何をしたらいいかわからない</li>
-        <li class="reveal d1" data-en="I'm anxious that my symptoms may keep progressing.">このまま症状が進行してしまうのではと不安</li>
-        <li class="reveal d2" data-en="Stroke aftereffects make walking hard, and I'm afraid of falling.">脳卒中後遺症でうまく歩けず、転ぶのが心配</li>
-        <li class="reveal d3" data-en="Everyday movements such as getting dressed are difficult.">着替えなどの生活での動きに支障がある</li>
-        <li class="reveal d3" data-en="I want to return to work and resume hobbies like travel and lessons.">仕事への復帰や、旅行・習い事などの趣味を再開したい</li>
+        <li class="reveal" data-en="Freezing of gait—I'm afraid of falling.">足がすくみ、転ぶのが心配</li>
+        <li class="reveal d1" data-en="I'm concerned about stooped or tilted posture.">姿勢が前かがみや傾きがあって気になる</li>
+        <li class="reveal d2" data-en="My movements are slow and everything takes time.">動きがゆっくりで時間がかかる</li>
+        <li class="reveal d3" data-en="I'm anxious that my symptoms may keep progressing.">症状が進行してしまうのが不安</li>
+        <li class="reveal d3" data-en="I don't know which exercises suit me.">自分に合った運動が分からない</li>
       </ul>
       <p class="worry-close reveal" data-en="Let's resolve these concerns with ASPATH's training so you can live as yourself.">
         アスパスのトレーニングでこれらのお悩みを解消し、<br class="br-pc">自分らしく過ごせるようにしましょう。
@@ -1247,7 +1259,7 @@ body{ overflow-wrap:break-word; word-break:normal; }
   <section class="service-banners" id="service-banners">
     <div class="wrap">
       <div class="sb-grid">
-        <a class="sb-card reveal" href="about.html">
+        <a class="sb-card reveal" href="https://aspath-life.com/taimentraining/">
           <div class="sb-img"><img src="images/index-inperson-training.webp" alt="対面でのマンツーマントレーニング" style="--pos:50% 40%;"></div>
           <div class="sb-body">
             <h3 data-en="In-Studio Training">対面トレーニング</h3>
@@ -1255,7 +1267,7 @@ body{ overflow-wrap:break-word; word-break:normal; }
             <span class="sb-link" data-en="Learn more">詳しく見る</span>
           </div>
         </a>
-        <a class="sb-card reveal d1" href="about.html">
+        <a class="sb-card reveal d1" href="https://aspath-life.com/onlineaspath/">
           <div class="sb-img"><img src="images/index-online-studio.webp" alt="オンライントレーニング" style="--pos:50% 30%;"></div>
           <div class="sb-body">
             <h3 data-en="Online Available">オンライン対応</h3>
