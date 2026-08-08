@@ -860,11 +860,45 @@ main{ padding-top:76px; }
   border-bottom:1px solid var(--gold-soft); text-decoration:none; transition:background .2s; align-items:start; }
 .news-list-item:hover{ background:var(--paper); }
 .news-list-item:first-child{ padding-top:0; }
-.news-list-item:has(.nli-body--full){ grid-template-columns:1fr; gap:0; }
-/* --- 重要なお知らせ --- */
-.news-list-item.is-important{ background:#FFF6EC; border-left:4px solid var(--sun); padding-left:16px; border-radius:0 10px 10px 0; }
-.news-list-item.is-important .nli-title{ font-weight:700; }
-.nli-tag.tag-important{ background:var(--sun) !important; }
+/* ============ お知らせ一覧：サムネなしのカード型 ============ */
+#newsList .news-list-item{
+  grid-template-columns:1fr; gap:0;
+  padding:22px 26px; margin-bottom:14px;
+  background:#fff; border:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft);
+  border-radius:14px; align-items:stretch;
+  transition:border-color .2s, box-shadow .2s, transform .2s;
+}
+#newsList .news-list-item:first-child{ padding-top:22px; }
+#newsList .news-list-item:hover{
+  background:#fff; border-color:var(--sun);
+  box-shadow:0 10px 26px rgba(38,70,83,.10); transform:translateY(-2px);
+}
+#newsList .nli-meta{ gap:12px; margin-bottom:10px; }
+#newsList .nli-title{ margin-bottom:8px; }
+#newsList .nli-excerpt{ -webkit-line-clamp:2; }
+
+/* --- 重要なお知らせ（WPで「先頭に固定表示」にチェックした投稿） --- */
+.news-list-item.is-important{
+  background:linear-gradient(180deg,#FFFBF5 0%,#FFF4E7 100%);
+  border:1px solid #F0D3AE; border-left:5px solid var(--sun);
+  box-shadow:0 8px 24px rgba(244,162,97,.16);
+}
+.news-list-item.is-important:hover{
+  background:linear-gradient(180deg,#FFFBF5 0%,#FFF0DE 100%);
+  border-color:var(--sun); border-left-color:var(--sun);
+  box-shadow:0 12px 30px rgba(244,162,97,.24);
+}
+.news-list-item.is-important .nli-title{ font-weight:700; font-size:17.5px; color:var(--brown); }
+.news-list-item.is-important .nli-excerpt{ color:#6B5A45; }
+.nli-tag.tag-important{
+  background:var(--sun) !important; color:#fff;
+  font-family:var(--font-head); font-weight:700;
+  font-size:12.5px; letter-spacing:.14em; padding:3px 13px 3px 15px;
+}
+@media(max-width:600px){
+  #newsList .news-list-item{ padding:18px 16px; }
+  .news-list-item.is-important{ border-left-width:4px; }
+}
 .nli-thumb{ aspect-ratio:40/21; border-radius:12px; overflow:hidden; background:transparent; }  /* アイキャッチ比率に一致＝余白なし */
 .nli-thumb > img{ border-radius:12px; }
 .nli-meta{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
