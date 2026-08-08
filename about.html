@@ -1106,25 +1106,28 @@ table{ max-width:100%; }
     .tr-core-card{ padding:20px 16px; }
 }
 
+
+
 /* ===== 3つの芯：パズル図解 ===== */
-.tr-puzzle{ margin:34px auto 40px; max-width:720px; text-align:center; }
+.tr-puzzle{ margin:34px auto 44px; max-width:760px; text-align:center; }
 .tr-puzzle-svg{ width:100%; height:auto; display:block; overflow:visible; }
-.pz-piece path{ stroke:#fff; stroke-width:4; stroke-linejoin:round; filter:drop-shadow(0 6px 14px rgba(38,70,83,.16)); }
-.pz-body path{ fill:var(--brown); }
-.pz-mind path{ fill:var(--sun); }
-.pz-cause path{ fill:var(--leaf); }
-.pz-t{ font-family:var(--font-head); font-weight:700; font-size:27px; fill:#fff; text-anchor:middle; }
-.pz-s{ font-family:var(--font-head); font-size:16px; fill:rgba(255,255,255,.95); text-anchor:middle; }
-.pz-s2{ font-size:13.5px; fill:rgba(255,255,255,.82); text-anchor:middle; }
-.pz-goal rect{ fill:#fff; stroke:var(--gold-soft); stroke-width:2.5; filter:drop-shadow(0 6px 16px rgba(38,70,83,.12)); }
-.pz-goal-t{ font-family:var(--font-head); font-weight:700; font-size:21px; fill:var(--brown); text-anchor:middle; }
-.pz-arrow{ stroke:var(--sun); stroke-width:3.5; stroke-linecap:round; }
-.pz-arrow-head{ fill:var(--sun); }
-.tr-puzzle-note{ margin-top:18px; font-size:15px; color:#52707A; }
+.pz-piece path{ stroke:#fff; stroke-width:5; stroke-linejoin:round; filter:drop-shadow(0 8px 18px rgba(38,70,83,.18)); }
+.pz-body path{ fill:#3F6A76; }
+.pz-mind path{ fill:#F4A261; }
+.pz-cause path{ fill:#264653; }
+.pz-t{ font-family:"Kiwi Maru","Zen Maru Gothic",var(--font-head); font-weight:500; font-size:34px; fill:#fff; text-anchor:middle; letter-spacing:.06em; }
+.pz-en{ font-family:var(--font-body); font-size:15px; fill:rgba(255,255,255,.82); text-anchor:middle; letter-spacing:.26em; }
+.pz-s{ font-family:"Kiwi Maru","Zen Maru Gothic",var(--font-head); font-size:18px; fill:#fff; text-anchor:middle; }
+.pz-s2{ font-family:var(--font-body); font-size:14.5px; fill:rgba(255,255,255,.86); text-anchor:middle; }
+.pz-ico{ fill:rgba(255,255,255,.42); stroke:rgba(255,255,255,.55); stroke-width:3.5; stroke-linecap:round; }
+.pz-hub ellipse{ fill:#fff; stroke:var(--gold-soft); stroke-width:4; filter:drop-shadow(0 10px 22px rgba(38,70,83,.20)); }
+.pz-hub-t{ font-family:var(--font-head); font-weight:700; font-size:40px; fill:var(--brown); text-anchor:middle; letter-spacing:.06em; }
+.pz-hub-s{ font-family:"Kiwi Maru","Zen Maru Gothic",var(--font-head); font-size:16px; fill:var(--sun); text-anchor:middle; letter-spacing:.04em; }
+.tr-puzzle-note{ margin-top:20px; font-size:15.5px; color:#52707A; line-height:1.9; }
 @media (max-width:760px){
-  .pz-t{ font-size:24px; } .pz-s{ font-size:15px; } .pz-s2{ font-size:12.5px; }
-  .pz-goal-t{ font-size:19px; }
-  .tr-puzzle{ margin:26px auto 30px; }
+  .pz-t{ font-size:30px; } .pz-s{ font-size:16.5px; } .pz-s2{ font-size:13px; } .pz-en{ font-size:13px; }
+  .pz-hub-t{ font-size:34px; } .pz-hub-s{ font-size:14px; }
+  .tr-puzzle{ margin:26px auto 34px; }
 }
 </style>
 </head>
@@ -1262,39 +1265,57 @@ table{ max-width:100%; }
         <p class="tr-p">パーキンソン病の症状に向き合うとき、手足の震えや歩きにくさといった「目に見える症状」だけに囚われてしまうと、本当の意味での改善にはつながりません。アスパスでは、表面的な症状の奥深くにある「3つの芯」に焦点を当て、根本からお身体と心を整えていきます。</p>
 
         <div class="tr-puzzle reveal">
-          <svg viewBox="0 0 780 470" role="img" aria-labelledby="pzTitle pzDesc" class="tr-puzzle-svg">
-            <title id="pzTitle">3つの芯</title>
-            <desc id="pzDesc">身体の芯・心の芯・原因の芯という3つのピースが噛み合い、あなたらしい人生へつながる図</desc>
+          <svg viewBox="0 0 820 640" role="img" aria-labelledby="pzTitle pzDesc" class="tr-puzzle-svg">
+            <title id="pzTitle">ASPATHの3つの芯</title>
+            <desc id="pzDesc">身体の芯・心の芯・原因の芯という3つのピースが噛み合い、中央のASPATHにつながる図</desc>
+            <defs>
+              <clipPath id="pzClipBody"><path d="M70 110 H360 V214 a30 30 0 0 1 0 60 V400 a30 30 0 0 0-60 0 a30 30 0 0 1-60 0 H70 Z"/></clipPath>
+              <clipPath id="pzClipMind"><path d="M400 110 H750 V400 H520 a30 30 0 0 0-60 0 H400 V274 a30 30 0 0 0 0-60 Z"/></clipPath>
+              <clipPath id="pzClipCause"><path d="M150 440 H700 a0 0 0 0 1 0 0 V560 H150 Z"/></clipPath>
+            </defs>
 
             <g class="pz-piece pz-body">
-              <path d="M60 100 H265 V194 a26 26 0 0 1 0 52 V340 H60 a0 0 0 0 1 0 0 V100 Z"/>
-              <text x="162" y="205" class="pz-t">身体の芯</text>
-              <text x="162" y="238" class="pz-s">体幹・姿勢</text>
-              <text x="162" y="270" class="pz-s2">ほぐす／強くする</text>
+              <path d="M70 110 H360 V214 a30 30 0 0 1 0 60 V400 a30 30 0 0 0-60 0 a30 30 0 0 1-60 0 H70 Z"/>
+              <g class="pz-ico" transform="translate(112,196)">
+                <path d="M18 0 q10 8 0 16 q-10 8 0 16 q10 8 0 16 q-10 8 0 16 q10 8 0 16" />
+                <rect x="52" y="26" width="10" height="26" rx="3"/><rect x="86" y="26" width="10" height="26" rx="3"/>
+                <rect x="62" y="34" width="24" height="10" rx="4"/>
+              </g>
+              <text x="215" y="180" class="pz-t">身体の芯</text>
+              <text x="215" y="212" class="pz-en">BODY</text>
+              <text x="215" y="256" class="pz-s">体幹・姿勢を整える</text>
+              <text x="215" y="288" class="pz-s2">ほぐす／強くする／上手に使う</text>
             </g>
 
             <g class="pz-piece pz-mind">
-              <path d="M265 100 H470 V194 a26 26 0 0 1 0 52 V340 H265 V246 a26 26 0 0 0 0-52 Z"/>
-              <text x="368" y="205" class="pz-t">心の芯</text>
-              <text x="368" y="238" class="pz-s">本当の願い</text>
-              <text x="368" y="270" class="pz-s2">対話で汲み取る</text>
+              <path d="M400 110 H750 V400 H520 a30 30 0 0 0-60 0 H400 V274 a30 30 0 0 0 0-60 Z"/>
+              <g class="pz-ico" transform="translate(660,190)">
+                <path d="M20 8 a11 11 0 0 1 18 0 a11 11 0 0 1 -9 17 l-9 9 l-9-9 a11 11 0 0 1-9-17 a11 11 0 0 1 18 0 Z" transform="translate(-18,0)"/>
+              </g>
+              <text x="565" y="180" class="pz-t">心の芯</text>
+              <text x="565" y="212" class="pz-en">MIND</text>
+              <text x="565" y="256" class="pz-s">本当の願いを聴く</text>
+              <text x="565" y="288" class="pz-s2">対話から目標を描く</text>
             </g>
 
             <g class="pz-piece pz-cause">
-              <path d="M470 100 H720 V340 H470 V246 a26 26 0 0 0 0-52 Z"/>
-              <text x="595" y="205" class="pz-t">原因の芯</text>
-              <text x="595" y="238" class="pz-s">根本の課題</text>
-              <text x="595" y="270" class="pz-s2">専門的に見抜く</text>
+              <path d="M150 440 a30 30 0 0 1 60 0 a30 30 0 0 0 60 0 H700 V560 a20 20 0 0 1-20 20 H170 a20 20 0 0 1-20-20 Z"/>
+              <g class="pz-ico" transform="translate(214,486)">
+                <circle cx="16" cy="16" r="15" fill="none"/>
+                <path d="M27 27 L44 44" />
+              </g>
+              <text x="430" y="500" class="pz-t">原因の芯</text>
+              <text x="430" y="530" class="pz-en">CAUSE</text>
+              <text x="430" y="562" class="pz-s2">なぜ動きにくいのかを見抜く</text>
             </g>
 
-            <path class="pz-arrow" d="M390 352 L390 376" />
-            <path class="pz-arrow-head" d="M381 372 L390 386 L399 372 Z" />
-            <g class="pz-goal">
-              <rect x="248" y="396" width="284" height="60" rx="30"/>
-              <text x="390" y="434" class="pz-goal-t">あなたらしい人生へ</text>
+            <g class="pz-hub">
+              <ellipse cx="410" cy="392" rx="118" ry="76"/>
+              <text x="410" y="384" class="pz-hub-t">ASPATH</text>
+              <text x="410" y="416" class="pz-hub-s">3つの芯を整える</text>
             </g>
           </svg>
-          <p class="tr-puzzle-note">3つの芯が噛み合ってはじめて、根本からの変化が生まれます。</p>
+          <p class="tr-puzzle-note">「身体」「心」「原因」の芯が噛み合ってはじめて、<br class="br-pc">根本からの変化が生まれます。</p>
         </div>
 
         <div class="tr-core-card">
