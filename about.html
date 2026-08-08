@@ -1069,11 +1069,11 @@ table{ max-width:100%; }
 .tr-hero-bg{ position:absolute; inset:0; }
 .tr-hero-bg img{ width:100%; height:100%; object-fit:cover; opacity:.14; }
 .tr-hero-bg::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(251,247,240,.35), rgba(251,247,240,.92)); }
-.tr-vlabel{ order:1; writing-mode:vertical-rl; font-family:var(--font-head); font-weight:700; color:var(--brown); font-size:clamp(15px,1.7vw,20px); letter-spacing:.3em; flex:none; align-self:flex-start; margin-top:6px; padding-left:6px; border-left:2px solid var(--gold-soft); }
+.tr-vlabel{ position:absolute; left:clamp(10px,3vw,42px); top:70px; writing-mode:vertical-rl; font-family:var(--font-head); font-weight:700; color:var(--brown); font-size:clamp(15px,1.6vw,19px); letter-spacing:.3em; z-index:2; }
 .tr-vlabel-en{ display:block; writing-mode:vertical-rl; font-size:11px; color:var(--sun); letter-spacing:.28em; margin-left:6px; text-transform:uppercase; }
-.tr-hero-in{ position:relative; z-index:2; display:flex; gap:clamp(18px,3.4vw,52px); align-items:flex-start; justify-content:center; padding-left:clamp(16px,3vw,48px); }
-.tr-vcopy{ order:2; writing-mode:vertical-rl; font-family:var(--font-head); font-weight:700; font-size:clamp(24px,3.4vw,38px); color:var(--brown); line-height:1.9; letter-spacing:.14em; margin:0; flex:none; }
-.tr-lead{ order:3; max-width:620px; }
+.tr-hero-in{ position:relative; z-index:2; display:flex; gap:clamp(26px,5vw,70px); align-items:flex-start; justify-content:center; padding-left:clamp(46px,7vw,110px); }
+.tr-vcopy{ writing-mode:vertical-rl; font-family:var(--font-head); font-weight:700; font-size:clamp(24px,3.4vw,38px); color:var(--brown); line-height:1.9; letter-spacing:.14em; margin:0; flex:none; }
+.tr-lead{ max-width:640px; }
 .tr-lead p{ font-size:16px; line-height:2.1; color:var(--ink); margin-bottom:16px; word-break:auto-phrase; line-break:strict; }
 .tr-quote{ font-family:var(--font-head); color:var(--brown); background:#fff; border-left:4px solid var(--sun); border-radius:0 12px 12px 0; padding:14px 18px; line-height:2.05 !important; }
 .tr-pillars{ max-width:720px; margin:54px auto 0; text-align:center; }
@@ -1099,7 +1099,7 @@ table{ max-width:100%; }
   .tr-pillar-list{ grid-template-columns:1fr; }
 }
 @media (max-width:760px){
-  .tr-vlabel{ writing-mode:horizontal-tb; order:1; width:100%; border-left:none; border-bottom:2px solid var(--gold-soft); padding:0 0 8px; margin:0 0 12px; letter-spacing:.12em; }
+  .tr-vlabel{ position:static; writing-mode:horizontal-tb; display:block; padding:0 16px; margin-bottom:10px; letter-spacing:.12em; }
   .tr-vlabel-en{ writing-mode:horizontal-tb; display:inline; margin-left:10px; }
   .tr-hero{ padding:56px 0 40px; }
   .tr-hero-in{ padding-left:16px; }
@@ -1247,9 +1247,8 @@ table{ max-width:100%; }
 
     <div class="tr-hero">
       <div class="tr-hero-bg" aria-hidden="true"><img src="images/hero-02.webp" alt=""></div>
-      アスパスのトレーニング</span>
+      <span class="tr-vlabel"><span class="tr-vlabel-en">Training</span>アスパスのトレーニング</span>
       <div class="tr-hero-in wrap">
-        <span class="tr-vlabel"><span class="tr-vlabel-en">Training</span>
         <p class="tr-vcopy">「自分らしい人生」を、<br>取り戻す場所。</p>
         <div class="tr-lead">
           <p>パーキンソン病と診断された日、あるいは症状が少しずつ進行していくのを感じた時、多くの方が言葉にできないほどの大きな不安を抱えられます。</p>
