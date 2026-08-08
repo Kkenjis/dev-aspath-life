@@ -1088,7 +1088,10 @@ table{ max-width:100%; }
 .tcc-tag{ display:inline-block; font-family:var(--font-head); font-weight:700; color:#fff; border-radius:999px; padding:7px 20px; font-size:15.5px; margin:0 0 14px; }
 .tcc-body{ background:var(--brown); } .tcc-mind{ background:var(--sun); } .tcc-cause{ background:var(--leaf); }
 .tr-closing{ max-width:620px; margin:70px auto 0; text-align:center; background:#fff; border-radius:20px; padding:46px clamp(24px,4vw,44px); box-shadow:0 10px 28px rgba(38,70,83,.08); }
-.tr-closing p{ font-size:clamp(16px,2.2vw,17.5px); line-height:2.2; color:var(--ink); margin-bottom:20px; text-wrap:balance; }
+.tr-closing p{ font-size:clamp(16px,2.2vw,17.5px); line-height:2.2; color:var(--ink); margin-bottom:20px;
+  /* ※text-wrap:balance は auto-phrase を無効化するため使わない */
+  word-break:auto-phrase; line-break:strict; }
+.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 .tr-closing-em{ font-family:var(--font-head); font-weight:700; color:var(--brown); font-size:clamp(19px,3.2vw,25px); line-height:1.95; margin-top:26px; margin-bottom:0 !important; }
 @media (max-width:900px){
   .tr-hero-in{ flex-direction:column; padding-left:clamp(40px,10vw,60px); }
@@ -1353,7 +1356,7 @@ table{ max-width:100%; }
         <img src="images/ch05-walk-together.webp" alt="朝日に向かう道を、高齢の方とスタッフが並んで歩いていく後ろ姿" width="1600" height="900" loading="lazy">
       </figure>
       <div class="tr-closing">
-        <p>パーキンソン病は、確かに一筋縄ではいかない病気かもしれません。</p>
+        <p>パーキンソン病は、確かに<span class="nw">一筋縄では</span>いかない病気かもしれません。</p>
         <p>しかし、適切な時期に、適切な運動を、<br class="br-pc">正しい知識と温かいサポートの中で継続していくことで、<br class="br-pc">進行のスピードを緩やかにし、<br class="br-pc">あなたらしい人生を長く楽しむことは十分に可能です。</p>
         <p>どうか、一人で抱え込まずに、<br class="br-pc">まずはあなたのお話を私たちに聞かせてください。</p>
         <p class="tr-closing-em">これからの人生を、笑顔で、あなたらしく歩んでいくために。<br>私たちが全力で伴走いたします。</p>
