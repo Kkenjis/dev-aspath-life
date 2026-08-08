@@ -893,6 +893,32 @@ html.is-loading{ overflow:hidden; }
 .column-nav a:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(38,70,83,.16); }
 .column-nav .label{ display:block; font-size:14px; color:var(--gold-deep); letter-spacing:.1em; margin-bottom:6px; }
 .column-nav .title{ font-size:16px; }
+/* ============================================================
+   コラム記事テンプレート：WordPressブロックエディタ用の対応
+   （山口様がWPの「投稿」で書いた記事も、このデザインで表示されます）
+============================================================ */
+.column-eyecatch{ margin:0 0 34px; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:var(--card); }
+.column-eyecatch img{ display:block; width:100%; height:auto; }
+/* 画像ブロック → .column-figure と同じ見た目に */
+.column-body figure.wp-block-image{ margin:32px 0 40px; background:var(--card); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
+.column-body figure.wp-block-image img{ display:block; width:100%; height:auto; }
+.column-body figure.wp-block-image figcaption{ padding:14px 22px; background:#FFFAEE; font-size:15px; color:var(--gold-deep); text-align:center; letter-spacing:.04em; margin:0; }
+/* 引用ブロック → .column-callout と同じ見た目に */
+.column-body .wp-block-quote{ margin:36px auto; max-width:44em; padding:26px 28px; background:#FAF3E7; border-radius:16px; border-left:5px solid var(--sun); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; word-break:auto-phrase; line-break:strict; }
+.column-body .wp-block-quote p{ margin:0 0 .6em; font-size:inherit; line-height:inherit; max-width:none; }
+.column-body .wp-block-quote cite{ display:block; font-size:14px; color:var(--gold-deep); font-style:normal; }
+/* リストブロック */
+.column-body ul.wp-block-list, .column-body ol.wp-block-list{ max-width:44em; margin:0 auto 1.6em; }
+.column-body ol.wp-block-list{ padding-left:1.4em; }
+.column-body ol.wp-block-list li{ padding:6px 0; line-height:1.85; word-break:auto-phrase; line-break:strict; }
+/* 区切り・埋め込み・表 */
+.column-body .wp-block-separator{ max-width:44em; margin:44px auto; border:0; border-top:2px dotted var(--gold-soft); }
+.column-body .wp-block-embed, .column-body .wp-block-table{ max-width:44em; margin:32px auto; }
+.column-body .wp-block-table table{ width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:var(--shadow); }
+.column-body .wp-block-table th, .column-body .wp-block-table td{ padding:12px 14px; border-bottom:1px solid var(--gold-soft); text-align:left; font-size:15.5px; }
+.column-body .wp-block-table th{ background:var(--gold-soft); color:var(--brown); }
+.column-body .wp-block-buttons{ max-width:44em; margin:32px auto; }
+
 @media (max-width:600px){
   .column-hero{ padding:80px 0 36px; }
   .column-body{ padding:40px 0 64px; }
@@ -1158,7 +1184,7 @@ table{ max-width:100%; }
 
   <section class="column-hero">
     <div class="wrap">
-      <p class="column-crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / Training / In-person"><a href="index.html">TOP</a> ／ トレーニング ／ 対面</p>
+      <p class="column-crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / &lt;a href=&quot;news.html&quot;&gt;Column&lt;/a&gt; / In-person training"><a href="index.html">TOP</a> ／ <a href="news.html">コラム</a> ／ 対面トレーニング</p>
       <h1 data-en="In-Person Training at the ASPATH Studio">アスパススタジオでの<br class="br-pc">対面トレーニング</h1>
       <p class="lead" data-en-html="Specialists with over 14 years of experience with Parkinson's disease support the body you need to do what you want to do.">14年以上パーキンソン病の方と向き合ってきた専門家が、あなたの“やりたいこと”を叶える身体づくりをサポートします。</p>
       <p class="column-byline" data-en="By ASPATH ／ August 3, 2026">By ASPATH ／ 2026年8月3日</p>
