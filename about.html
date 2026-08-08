@@ -1062,6 +1062,59 @@ table{ max-width:100%; }
 @media (max-height:480px) and (orientation:landscape){
   .hero{ min-height:520px; }
 }
+
+/* ============ アスパスのトレーニング（大型リニューアル） ============ */
+.tr-sec{ background:#FBF7F0; }
+.tr-hero{ position:relative; overflow:hidden; padding:76px 0 60px; }
+.tr-hero-bg{ position:absolute; inset:0; }
+.tr-hero-bg img{ width:100%; height:100%; object-fit:cover; opacity:.14; }
+.tr-hero-bg::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(251,247,240,.35), rgba(251,247,240,.92)); }
+.tr-vlabel{ position:absolute; left:clamp(10px,3vw,42px); top:70px; writing-mode:vertical-rl; font-family:var(--font-head); font-weight:700; color:var(--brown); font-size:clamp(15px,1.6vw,19px); letter-spacing:.3em; z-index:2; }
+.tr-vlabel-en{ display:block; writing-mode:vertical-rl; font-size:11px; color:var(--sun); letter-spacing:.28em; margin-left:6px; text-transform:uppercase; }
+.tr-hero-in{ position:relative; z-index:2; display:flex; gap:clamp(26px,5vw,70px); align-items:flex-start; justify-content:center; padding-left:clamp(46px,7vw,110px); }
+.tr-vcopy{ writing-mode:vertical-rl; font-family:var(--font-head); font-weight:700; font-size:clamp(24px,3.4vw,38px); color:var(--brown); line-height:1.9; letter-spacing:.14em; margin:0; flex:none; }
+.tr-lead{ max-width:640px; }
+.tr-lead p{ font-size:15.5px; line-height:2.1; color:var(--ink); margin-bottom:16px; }
+.tr-quote{ font-family:var(--font-head); color:var(--brown); background:#fff; border-left:4px solid var(--sun); border-radius:0 12px 12px 0; padding:14px 18px; line-height:2.05 !important; }
+.tr-pillars{ max-width:760px; margin:54px auto 0; text-align:center; }
+.tr-pillars-lead{ font-size:16px; color:var(--brown); font-weight:700; margin-bottom:18px; }
+.tr-pillar-list{ list-style:none; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; text-align:left; }
+.tr-pillar-list li{ background:#fff; border:1px solid var(--gold-soft); border-radius:12px; padding:14px 18px; font-family:var(--font-head); font-weight:700; color:var(--brown); font-size:15.5px; display:flex; align-items:center; gap:12px; }
+.tr-pillar-list li b{ color:var(--sun); font-size:20px; flex:none; }
+.tr-pillars-sub{ margin-top:16px; font-size:14.5px; color:#52707A; }
+.tr-chapter{ max-width:820px; margin:66px auto 0; }
+.tr-num{ font-family:var(--font-head); font-weight:700; font-size:clamp(30px,4.4vw,40px); color:var(--sun); margin:0 0 2px; letter-spacing:.04em; }
+.tr-h{ font-family:var(--font-head); font-size:clamp(20px,3vw,25px); color:var(--brown); margin:0 0 18px; padding-bottom:10px; border-bottom:2px solid var(--gold-soft); line-height:1.6; }
+.tr-p{ font-size:15.5px; line-height:2.05; color:var(--ink); margin-bottom:15px; }
+.tr-p b{ color:var(--brown); }
+.tr-cores{ position:relative; display:flex; justify-content:center; align-items:center; gap:clamp(4px,1.2vw,14px); margin:30px auto 34px; flex-wrap:wrap; }
+.tr-core{ width:clamp(120px,16vw,160px); height:clamp(120px,16vw,160px); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; flex:none; box-shadow:0 8px 20px rgba(38,70,83,.15); }
+.tr-core-body{ background:var(--brown); }
+.tr-core-mind{ background:var(--sun); }
+.tr-core-cause{ background:var(--leaf); }
+.tc-label{ font-family:var(--font-head); font-weight:700; font-size:clamp(16px,2vw,19px); }
+.tc-sub{ font-size:12.5px; opacity:.9; margin-top:3px; }
+.tr-core-center{ position:absolute; left:50%; top:100%; transform:translate(-50%,-6px); background:#fff; color:var(--brown); border:2px solid var(--gold-soft); border-radius:999px; font-family:var(--font-head); font-weight:700; font-size:13.5px; padding:8px 22px; text-align:center; line-height:1.5; box-shadow:var(--shadow); }
+.tr-cores{ padding-bottom:52px; }
+.tr-core-card{ background:#fff; border-radius:18px; padding:26px 28px; margin-top:22px; box-shadow:0 8px 24px rgba(38,70,83,.07); }
+.tcc-tag{ display:inline-block; font-family:var(--font-head); font-weight:700; color:#fff; border-radius:999px; padding:7px 20px; font-size:15.5px; margin:0 0 14px; }
+.tcc-body{ background:var(--brown); } .tcc-mind{ background:var(--sun); } .tcc-cause{ background:var(--leaf); }
+.tr-closing{ max-width:720px; margin:70px auto 0; text-align:center; background:#fff; border-radius:20px; padding:40px 34px; box-shadow:0 10px 28px rgba(38,70,83,.08); }
+.tr-closing p{ font-size:15.5px; line-height:2.1; color:var(--ink); margin-bottom:14px; }
+.tr-closing-em{ font-family:var(--font-head); font-weight:700; color:var(--brown); font-size:clamp(17px,2.6vw,20px); margin-top:20px; }
+@media (max-width:900px){
+  .tr-hero-in{ flex-direction:column; padding-left:clamp(40px,10vw,60px); }
+  .tr-vcopy{ writing-mode:horizontal-tb; font-size:clamp(21px,5.6vw,27px); line-height:1.7; }
+  .tr-pillar-list{ grid-template-columns:1fr; }
+}
+@media (max-width:760px){
+  .tr-vlabel{ position:static; writing-mode:horizontal-tb; display:block; padding:0 16px; margin-bottom:10px; letter-spacing:.12em; }
+  .tr-vlabel-en{ writing-mode:horizontal-tb; display:inline; margin-left:10px; }
+  .tr-hero{ padding:56px 0 40px; }
+  .tr-hero-in{ padding-left:16px; }
+  .tr-core{ width:104px; height:104px; }
+  .tr-core-card{ padding:20px 16px; }
+}
 </style>
 </head>
 <body>
@@ -1161,37 +1214,113 @@ table{ max-width:100%; }
         </li>
       </ul>
 
-      <h2 id="method" style="margin-top:56px;" data-en="ASPATH Training">アスパスのトレーニング</h2>
-      <div class="zigzag reveal">
-        <div class="z-img">
-          <div class="img-slot" role="img" aria-label="体幹トレーニングの写真が入ります">
-            <!-- <img src="zig1.jpg" alt=""> 横長すぎる写真は style="--ratio:16/9" で枠ごと調整可 -->
-            <span class="slot-label" data-en="📷 Replace: core training scene">📷 差し替え：体幹トレーニング風景</span></div>
-        </div>
-        <div class="z-txt">
-          <span class="z-tag" data-en="The Core of ASPATH">アスパスの核</span>
-          <h3 data-en="Body and mind—realigning your &quot;core&quot; once again">身体も、心も。もう一度「芯」を整える</h3>
-          <p data-en-html="&lt;span class=&quot;core-label&quot;&gt;Physical Core&lt;/span&gt;　&lt;strong&gt;Physical core&lt;/strong&gt;—the spine and trunk, posture, and the core of movement. Our original method, &lt;strong&gt;&quot;Shin-okoshi Practice (Shimpla),&quot;&lt;/strong&gt; rebuilds the core of movement to draw out a smooth first step."><span class="core-label">Physical Core</span>　<strong>身体の芯</strong>——背骨と体幹、姿勢、動きの核。独自メソッド<strong>「芯おこしプラクティス（シンプラ）」</strong>で動きの核を再構築し、スムーズな第一歩を引き出します。</p>
-          <p style="margin-top:10px;" data-en-html="&lt;span class=&quot;core-label&quot; style=&quot;background:var(--leaf);&quot;&gt;Mental Core&lt;/span&gt;　&lt;strong&gt;Mental core&lt;/strong&gt;—rehabilitation is not &quot;training drills&quot; but &quot;a means to make life shine.&quot; We respect your values and build a program around your true wish (your core)."><span class="core-label" style="background:var(--leaf);">Mental Core</span>　<strong>心の芯</strong>——リハビリは「訓練」ではなく「人生を輝かせる手段」。あなたの価値観を尊重し、本当の願い（芯）に合わせたメニューをつくります。</p>
-        </div>
       </div>
-
-      <div class="zigzag is-reverse reveal">
-        <div class="z-img">
-          <div class="img-slot" role="img" aria-label="パーキンソン病トレーニングの写真が入ります">
-            <!-- <img src="zig2.jpg" alt=""> 横長すぎる写真は style="--ratio:16/9" で枠ごと調整可 -->
-            <span class="slot-label" data-en="📷 Replace: LSVT-BIG / large-movement practice">📷 差し替え：LSVT-BIG／大きな動きの練習</span></div>
-        </div>
-        <div class="z-txt">
-          <span class="z-tag" style="background:var(--gold);" data-en="Focus: Parkinson's Disease">主軸：パーキンソン病</span>
-          <h3 data-en="&quot;Starting exercise early&quot; can help slow progression">「早めにはじめる運動」で進行を抑制できます</h3>
-          <p data-en-html="While medication often starts early, public rehabilitation only begins after symptoms progress—leaving a &lt;strong&gt;gap in support for those in the early, mild stage&lt;/strong&gt;. Our world-standard &lt;strong&gt;LSVT-BIG® certified therapist&lt;/strong&gt; fills that gap. This is evidence-based training, informed by studies such as one where intensive rehab curbed increases in medication dosage (Frazzitta, 2017) and one where core-focused exercise improved stooped posture by an average of 9.7° (Gandolfi, 2019).">お薬は早く始まる一方、公的リハビリの開始は症状が進んでから——<strong>発症早期・軽度の方へのサポートが空白</strong>になっています。世界標準の<strong>LSVT-BIG®認定療法士</strong>が、その空白を埋めます。集中リハビリで服薬量の増加を抑えた研究（Frazzitta, 2017）、体幹特化運動で前かがみ姿勢が平均9.7°改善した研究（Gandolfi, 2019）など、エビデンスに基づくトレーニングです。</p>
-          <p class="more-link" style="text-align:left; margin-top:14px;"><a class="btn btn-ghost mid" href="column-parkinson.html" data-en-html="Learn more about Parkinson's&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;">パーキンソン病について詳しく<span class="arw">→</span></a></p>
-        </div>
-      </div>
-
-    </div>
   </div>
+
+  <section class="tr-sec" id="method">
+
+    <div class="tr-hero">
+      <div class="tr-hero-bg" aria-hidden="true"><img src="images/hero-02.webp" alt=""></div>
+      <span class="tr-vlabel"><span class="tr-vlabel-en">Training</span>アスパスのトレーニング</span>
+      <div class="tr-hero-in wrap">
+        <p class="tr-vcopy">「自分らしい人生」を、<br>取り戻す場所。</p>
+        <div class="tr-lead">
+          <p>パーキンソン病と診断された日、あるいは症状が少しずつ進行していくのを感じた時、多くの方が言葉にできないほどの大きな不安を抱えられます。</p>
+          <p class="tr-quote">「これから自分の身体はどうなってしまうのだろう」<br>「今まで当たり前にできていたことが、少しずつ難しくなっていくのではないか」</p>
+          <p>そんな深い悩みを抱え、立ちすくんでいる方にこそ、私たちアスパスのドアを叩いていただきたいと強く願っています。</p>
+          <p>ここは、あなたが「自分らしい人生」を取り戻し、これからの未来を笑顔で歩んでいくための場所です。私たちはパーキンソン病に特化した専門的な知識と技術、そして何よりも「あなたという一人の人間」に寄り添う熱い想いを持って、日々のトレーニングに伴走します。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="tr-pillars">
+        <p class="tr-pillars-lead">アスパスが提供するトレーニングの根底には、決してブレることのない確固たる理念があります。</p>
+        <ul class="tr-pillar-list">
+          <li><b>01</b>3つの芯を整えること</li>
+          <li><b>02</b>人生を豊かに彩ること</li>
+          <li><b>03</b>共同研究を通じた社会への貢献</li>
+          <li><b>04</b>地域社会が連携するサードプレイスであること</li>
+        </ul>
+        <p class="tr-pillars-sub">私たちが大切にしているこれらの想いと、具体的なトレーニングのあり方について、丁寧にお伝えさせてください。</p>
+      </div>
+
+      <div class="tr-chapter">
+        <p class="tr-num">01</p>
+        <h3 class="tr-h">根本から生まれ変わるための「3つの芯」</h3>
+        <p class="tr-p">パーキンソン病の症状に向き合うとき、手足の震えや歩きにくさといった「目に見える症状」だけに囚われてしまうと、本当の意味での改善にはつながりません。アスパスでは、表面的な症状の奥深くにある「3つの芯」に焦点を当て、根本からお身体と心を整えていきます。</p>
+
+        <div class="tr-cores" role="img" aria-label="3つの芯：身体の芯・心の芯・原因の芯">
+          <div class="tr-core tr-core-body"><span class="tc-label">身体の芯</span><span class="tc-sub">体幹</span></div>
+          <div class="tr-core tr-core-mind"><span class="tc-label">心の芯</span><span class="tc-sub">本当の想い</span></div>
+          <div class="tr-core tr-core-cause"><span class="tc-label">原因の芯</span><span class="tc-sub">根本課題</span></div>
+          <div class="tr-core-center">あなたらしい<br>人生へ</div>
+        </div>
+
+        <div class="tr-core-card">
+          <p class="tcc-tag tcc-body">① 身体の芯（体幹）を呼び覚ます</p>
+          <p class="tr-p">パーキンソン病において、多くの方が一番初めに動かしにくさを感じるのが、実は手足ではなく、身体の中心である「体幹（身体の芯）」です。</p>
+          <p class="tr-p">背骨周りの筋肉が硬くなり、しなやかさが失われることで、姿勢が前かがみになったり、寝返りや起き上がりが辛くなったりします。身体の芯が固まってしまうと、そこから繋がっている手足にもブレーキがかかり、歩幅が狭くなったり、足がすくんだりといった症状が引き起こされるのです。</p>
+          <p class="tr-p">だからこそ、アスパスのトレーニングは「身体の芯」をターゲットに据えることから始めます。まずは長年の緊張で強張ってしまった背骨や骨盤周りの筋肉を丁寧に<b>「ほぐす」</b>。そして、正しい姿勢を維持できるように深層の筋肉を<b>「強くする」</b>。ここで大切なのは、私たちが一方的に施術をするのではなく、お客様ご自身の力で身体を動かし、脳と身体の感覚のズレを正しく<b>「感じ取っていただく」</b>ことです。そのプロセスを共に重ねることで、最終的に日常生活のあらゆる場面でご自身の体幹を<b>「上手に使う」</b>ことができるようになります。</p>
+          <p class="tr-p">身体の芯がしなやかに動くようになれば、驚くほど手足の動きも軽くなり、スムーズな第一歩が踏み出せるようになります。これが、私たちが体幹にこだわる最大の理由です。</p>
+        </div>
+
+        <div class="tr-core-card">
+          <p class="tcc-tag tcc-mind">② 心の芯（本当の想い）に耳を澄ませる</p>
+          <p class="tr-p">どんなに優れた運動プログラムであっても、ご本人の「心」が置き去りにされていては、決して良い結果は生まれません。私たちが向き合っているのは「パーキンソン病という病気」ではなく、「パーキンソン病と共に生きる、あなた」です。</p>
+          <p class="tr-p">トレーニングを始める前、そして日々のセッションの中で、私たちは対話を何よりも大切にしています。</p>
+          <p class="tr-quote">「何に一番困っていますか？」<br>「どんな時に不安を感じますか？」<br>そして、<br>「本当は、これからどんな生活を送っていきたいですか？」</p>
+          <p class="tr-p">ご家族と一緒に旅行に行きたい。お孫さんと公園で思い切り遊びたい。趣味のガーデニングをもう一度楽しみたい。一人ひとりの中にある、そうした「大切にしている価値観」や「人生の目標」こそが、身体を前へ進めるための最大の原動力になります。</p>
+          <p class="tr-p">私たちは、対話を通じてあなたの奥底にある「心の芯（本当の願い）」を丁寧に汲み取ります。その目標に向かっていくために必要なプロセスを共に考え、あなただけの完全オーダーメイドのメニューを作り上げます。自らの人生を輝かせるためのトレーニングとして、共に歩みを進めていきます。</p>
+        </div>
+
+        <div class="tr-core-card">
+          <p class="tcc-tag tcc-cause">③ 原因の芯（根本的な課題）を見抜く</p>
+          <p class="tr-p">「歩くときに足を引きずってしまう」というお悩みがあったとします。このとき、足首の筋肉だけを鍛えても、歩き方はなかなか改善しません。なぜなら、その症状を引き起こしている「本当の原因」は、足首ではなく、骨盤のねじれや、体幹の使い方のクセ、あるいは脳からの運動指令のタイミングのズレなど、全く別の場所に隠れていることが多いからです。</p>
+          <p class="tr-p">アスパスでは、理学療法士としての長年の臨床経験と高度な専門知識をフル活用し、その方が気になっている動作のクセや、お身体の不調の「原因の芯」を鋭く見抜きます。</p>
+          <p class="tr-p">表面的な症状に場当たり的に対処するのではなく、根本的な原因となっている機能低下を見つけ出し、そこにダイレクトにアプローチします。これにより、悪い動きのクセが定着してしまうのを防ぎ、より根本的で持続性のある課題解決へと導くことができるのです。</p>
+        </div>
+      </div>
+
+      <div class="tr-chapter">
+        <p class="tr-num">02</p>
+        <h3 class="tr-h">運動を通じて、あなたの人生をさらに豊かに彩るために</h3>
+        <p class="tr-p">アスパスでのトレーニングが目指すのは、運動を通じた「人生のウェルネス（心身の健康と豊かさ）の最大化」です。</p>
+        <p class="tr-p">パーキンソン病の診断を受けると、多くの方が「もうあれはできない」「これも諦めなければ」と、人生の選択肢をご自身で狭めていってしまう傾向にあります。しかし、適切なトレーニングによって身体が動かしやすくなり、できることが一つ、また一つと増えていくと、心の中に新たな活力が生まれてくる瞬間が必ず訪れます。</p>
+        <p class="tr-quote">「また旅行に行けるかもしれない」<br>「新しい趣味にチャレンジしてみようかな」</p>
+        <p class="tr-p">ご自身でも考えついていなかったような「やりたいこと」や「トライしてみたいこと」が自然と溢れ出してくる。それこそが、私たちが目指す真のゴールです。</p>
+        <p class="tr-p">病気の進行に対する不安を和らげ、再び前を向いて人生の主役として生きていく。私たちは、あなたがご自身の人生を存分に楽しみ、豊かに彩っていくための「伴走者」として、全力でサポートさせていただきます。</p>
+      </div>
+
+      <div class="tr-chapter">
+        <p class="tr-num">03</p>
+        <h3 class="tr-h">世界的なエビデンスの活用と、大学・有識者との共同研究による社会貢献</h3>
+        <p class="tr-p">パーキンソン病の治療やリハビリテーションの世界は、今この瞬間も絶え間なく進歩しています。だからこそ、アスパスでは現場の経験則だけに頼るのではなく、海外の最新論文など、日々アップデートされる世界的な医学エビデンス（科学的根拠）を常にキャッチアップし、目の前のお客様にとっての「最善の選択」を提供し続けます。</p>
+        <p class="tr-p">さらに私たちは、得られた知見を自分たちのスタジオの中だけで終わらせることはありません。</p>
+        <p class="tr-p">現在アスパスでは、大学の研究機関やパーキンソン病治療の有識者の方々と連携し、共同研究を進めています。</p>
+        <p class="tr-p">現場のトレーニングを通じて得られた、パーキンソン病の方特有の身体の変化、適切な運動負荷のあり方、そしてサポートによる心理的な効果など、貴重なデータをしっかりと「見える化」し、専門的な視点から詳細な分析を行っています。</p>
+        <p class="tr-p">こうした学術的な研究活動を通じて、パーキンソン病に対するリハビリテーションの新たな知見を見出し、その成果を広く発信していくこと。それがひいては、パーキンソン病分野全体の発展に繋がり、同じ病気で苦しむ日本中・世界中の方々への社会貢献になると私たちは確信しています。</p>
+      </div>
+
+      <div class="tr-chapter">
+        <p class="tr-num">04</p>
+        <h3 class="tr-h">医療・地域と連携し、心から安心できる「第3の居場所（サードプレイス）」へ</h3>
+        <p class="tr-p">社会の中で生きていく上で、ご自宅でもなく、職場でもない、心から安心できる「第3の居場所（サードプレイス）」を持つことは、心の健康を保つために非常に重要です。</p>
+        <p class="tr-p">急性期の治療や専門的な医学管理を担う「病院」、そして広く一般の方々の健康増進を担う「フィットネスジム」。それぞれが社会において非常に重要で欠かせない役割を持っています。</p>
+        <p class="tr-p">アスパスは、それらの素晴らしい機関と競合するのではなく、それぞれの役割を尊重し合いながら、その「中間地点」として専門的なサポートを提供する場所でありたいと考えています。</p>
+        <p class="tr-p">地域の主治医の先生方、医療機関、介護事業所、ケアマネージャーの方々。それぞれの専門機関が持つ強みを活かし合い、密に連携を取り合うネットワークの中で、アスパスは「パーキンソン病に特化した運動専門施設」としての役割をしっかりと果たしていきます。</p>
+        <p class="tr-p">スタジオの扉を開けた瞬間から感じていただける、明るさ、優しさ、そして何でも受け止める包容力。ここでは、上手に動けない自分を気にする必要はありません。つらい時は「つらい」とありのままの感情を出していただいて構いません。</p>
+        <p class="tr-p">私たちは、ただストイックに運動を行うだけでなく、ここへ来て、スタッフや同じ想いを持つ仲間と会話をし、思い切り笑うことで「心まで元気になって帰っていただける」空間づくりを大切にしています。地域の皆様にとっての、温かい拠り所となることを目指して。</p>
+      </div>
+
+      <div class="tr-closing">
+        <p>パーキンソン病は、確かに一筋縄ではいかない病気かもしれません。</p>
+        <p>しかし、適切な時期に、適切な運動を、正しい知識と温かいサポートの中で継続していくことで、<br class="br-pc">進行のスピードを緩やかにし、あなたらしい人生を長く楽しむことは十分に可能です。</p>
+        <p>どうか、一人で抱え込まずに、まずはあなたのお話を私たちに聞かせてください。</p>
+        <p class="tr-closing-em">これからの人生を、笑顔で、あなたらしく歩んでいくために。<br>私たちが全力で伴走いたします。</p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
