@@ -1087,15 +1087,6 @@ table{ max-width:100%; }
 .tr-h{ font-family:var(--font-head); font-size:clamp(20px,3vw,25px); color:var(--brown); margin:0 0 18px; padding-bottom:10px; border-bottom:2px solid var(--gold-soft); line-height:1.6; }
 .tr-p{ font-size:16px; line-height:2.05; color:var(--ink); margin-bottom:15px; max-width:44em; word-break:auto-phrase; line-break:strict; }
 .tr-p b{ color:var(--brown); }
-.tr-cores{ position:relative; display:flex; justify-content:center; align-items:center; gap:clamp(4px,1.2vw,14px); margin:30px auto 34px; flex-wrap:wrap; }
-.tr-core{ width:clamp(120px,16vw,160px); height:clamp(120px,16vw,160px); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; flex:none; box-shadow:0 8px 20px rgba(38,70,83,.15); }
-.tr-core-body{ background:var(--brown); }
-.tr-core-mind{ background:var(--sun); }
-.tr-core-cause{ background:var(--leaf); }
-.tc-label{ font-family:var(--font-head); font-weight:700; font-size:clamp(16px,2vw,19px); }
-.tc-sub{ font-size:12.5px; opacity:.9; margin-top:3px; }
-.tr-core-center{ position:absolute; left:50%; top:100%; transform:translate(-50%,-6px); background:#fff; color:var(--brown); border:2px solid var(--gold-soft); border-radius:999px; font-family:var(--font-head); font-weight:700; font-size:13.5px; padding:8px 22px; text-align:center; line-height:1.5; box-shadow:var(--shadow); }
-.tr-cores{ padding-bottom:76px; margin-bottom:14px; }
 .tr-core-card{ background:#fff; border-radius:18px; padding:26px 28px; margin-top:22px; box-shadow:0 8px 24px rgba(38,70,83,.07); }
 .tcc-tag{ display:inline-block; font-family:var(--font-head); font-weight:700; color:#fff; border-radius:999px; padding:7px 20px; font-size:15.5px; margin:0 0 14px; }
 .tcc-body{ background:var(--brown); } .tcc-mind{ background:var(--sun); } .tcc-cause{ background:var(--leaf); }
@@ -1112,8 +1103,28 @@ table{ max-width:100%; }
   .tr-vlabel-en{ writing-mode:horizontal-tb; display:inline; margin-left:10px; }
   .tr-hero{ padding:56px 0 40px; }
   .tr-hero-in{ padding-left:16px; }
-  .tr-core{ width:104px; height:104px; }
-  .tr-core-card{ padding:20px 16px; }
+    .tr-core-card{ padding:20px 16px; }
+}
+
+/* ===== 3つの芯：パズル図解 ===== */
+.tr-puzzle{ margin:34px auto 40px; max-width:720px; text-align:center; }
+.tr-puzzle-svg{ width:100%; height:auto; display:block; overflow:visible; }
+.pz-piece path{ stroke:#fff; stroke-width:3; filter:drop-shadow(0 6px 14px rgba(38,70,83,.16)); }
+.pz-body path{ fill:var(--brown); }
+.pz-mind path{ fill:var(--sun); }
+.pz-cause path{ fill:var(--leaf); }
+.pz-t{ font-family:var(--font-head); font-weight:700; font-size:27px; fill:#fff; text-anchor:middle; }
+.pz-s{ font-family:var(--font-head); font-size:16px; fill:rgba(255,255,255,.95); text-anchor:middle; }
+.pz-s2{ font-size:13.5px; fill:rgba(255,255,255,.82); text-anchor:middle; }
+.pz-goal rect{ fill:#fff; stroke:var(--gold-soft); stroke-width:2.5; filter:drop-shadow(0 6px 16px rgba(38,70,83,.12)); }
+.pz-goal-t{ font-family:var(--font-head); font-weight:700; font-size:21px; fill:var(--brown); text-anchor:middle; }
+.pz-arrow{ stroke:var(--sun); stroke-width:3.5; stroke-linecap:round; }
+.pz-arrow-head{ fill:var(--sun); }
+.tr-puzzle-note{ margin-top:18px; font-size:15px; color:#52707A; }
+@media (max-width:760px){
+  .pz-t{ font-size:24px; } .pz-s{ font-size:15px; } .pz-s2{ font-size:12.5px; }
+  .pz-goal-t{ font-size:19px; }
+  .tr-puzzle{ margin:26px auto 30px; }
 }
 </style>
 </head>
@@ -1250,11 +1261,40 @@ table{ max-width:100%; }
         <h3 class="tr-h">根本から生まれ変わるための「3つの芯」</h3>
         <p class="tr-p">パーキンソン病の症状に向き合うとき、手足の震えや歩きにくさといった「目に見える症状」だけに囚われてしまうと、本当の意味での改善にはつながりません。アスパスでは、表面的な症状の奥深くにある「3つの芯」に焦点を当て、根本からお身体と心を整えていきます。</p>
 
-        <div class="tr-cores" role="img" aria-label="3つの芯：身体の芯・心の芯・原因の芯">
-          <div class="tr-core tr-core-body"><span class="tc-label">身体の芯</span><span class="tc-sub">体幹</span></div>
-          <div class="tr-core tr-core-mind"><span class="tc-label">心の芯</span><span class="tc-sub">本当の想い</span></div>
-          <div class="tr-core tr-core-cause"><span class="tc-label">原因の芯</span><span class="tc-sub">根本課題</span></div>
-          <div class="tr-core-center">あなたらしい<br>人生へ</div>
+        <div class="tr-puzzle reveal">
+          <svg viewBox="0 0 760 470" role="img" aria-labelledby="pzTitle pzDesc" class="tr-puzzle-svg">
+            <title id="pzTitle">3つの芯</title>
+            <desc id="pzDesc">身体の芯・心の芯・原因の芯という3つのピースが噛み合い、あなたらしい人生へつながる図</desc>
+
+            <g class="pz-piece pz-body">
+              <path d="M52 96 h150 a20 20 0 0 1 0 40 h-0 a20 20 0 0 0 0 40 h0 v150 a20 20 0 0 1-40 0 a20 20 0 0 0-40 0 h-70 a14 14 0 0 1-14-14 v-202 a14 14 0 0 1 14-14 z"/>
+              <text x="120" y="196" class="pz-t">身体の芯</text>
+              <text x="120" y="228" class="pz-s">体幹・姿勢</text>
+              <text x="120" y="262" class="pz-s2">ほぐす／強くする</text>
+            </g>
+
+            <g class="pz-piece pz-mind">
+              <path d="M262 96 h150 a14 14 0 0 1 14 14 v70 a20 20 0 0 0 0 40 a20 20 0 0 1 0 40 v70 a14 14 0 0 1-14 14 h-150 a20 20 0 0 0 0-40 a20 20 0 0 1 0-40 v-150 a20 20 0 0 0 0-40 z"/>
+              <text x="344" y="196" class="pz-t">心の芯</text>
+              <text x="344" y="228" class="pz-s">本当の願い</text>
+              <text x="344" y="262" class="pz-s2">対話で汲み取る</text>
+            </g>
+
+            <g class="pz-piece pz-cause">
+              <path d="M486 96 h180 a14 14 0 0 1 14 14 v230 a14 14 0 0 1-14 14 h-180 a20 20 0 0 1 0-40 a20 20 0 0 0 0-40 v-70 a20 20 0 0 1 0-40 a20 20 0 0 0 0-40 z"/>
+              <text x="586" y="196" class="pz-t">原因の芯</text>
+              <text x="586" y="228" class="pz-s">根本の課題</text>
+              <text x="586" y="262" class="pz-s2">専門的に見抜く</text>
+            </g>
+
+            <g class="pz-goal">
+              <rect x="238" y="382" width="284" height="62" rx="31"/>
+              <text x="380" y="421" class="pz-goal-t">あなたらしい人生へ</text>
+            </g>
+            <path class="pz-arrow" d="M380 352 L380 374" />
+            <path class="pz-arrow-head" d="M372 370 L380 382 L388 370 Z" />
+          </svg>
+          <p class="tr-puzzle-note">3つの芯が噛み合ってはじめて、根本からの変化が生まれます。</p>
         </div>
 
         <div class="tr-core-card">
