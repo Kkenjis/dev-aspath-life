@@ -20,10 +20,10 @@
   - データ（料金/実績/アクセス/CV導線/SEO/JSON-LD）はv4-v5確定版を継承
 ============================================================ -->
 
-<title data-en="About ASPATH｜ASPATH (Kagoshima)">ASPATHについて｜ASPATH（アスパス）鹿児島</title>
-<meta name="description" content="鹿児島のパーキンソン病専門パーソナルトレーニングスタジオASPATH（アスパス）。理学療法士・保健学修士・LSVT-BIG認定療法士が、体幹「芯」に特化した独自メソッド「シンプラ」で早期からの進行予防に伴走します。西日本初の専門スタジオ。初回体験は期間限定 半額4,400円。">
+<title data-en="News｜ASPATH (Kagoshima)">お知らせ｜ASPATH（アスパス）鹿児島</title>
+<meta name="description" content="鹿児島のパーキンソン病専門トレーニングスタジオ ASPATH（アスパス）からのお知らせ一覧。キャンペーン・体験会・イベントなどの最新情報をお届けします。">
 <meta name="robots" content="noindex,nofollow"><!-- 開発中：本番公開時に index,follow へ戻す -->
-<link rel="canonical" href="index.html">
+<link rel="canonical" href="https://aspath-life.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ASPATH（アスパス）">
@@ -386,20 +386,13 @@ body.drawer-open{ overflow:hidden; }
 @media (max-width:760px){ .msg-set{ grid-template-columns:1fr; } .msg-img{ max-width:400px; margin:0 auto; } }
 
 /* 円形サービスカード（home-service-list移植） */
-.svc-list{ list-style:none; display:flex; flex-direction:column; gap:18px; position:relative; z-index:1; }
-.svc-item{ display:grid; grid-template-columns:auto 1fr; align-items:center; gap:24px; text-align:left;
-  background:#fff; border-radius:16px; box-shadow:0 10px 28px rgba(38,70,83,.08); padding:24px 30px; }
+.svc-list{ list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:26px; position:relative; z-index:1; }
+.svc-item{ text-align:center; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:30px 22px 26px; border-top:6px solid; }
 .svc-item.is-gold{ border-color:var(--gold); } .svc-item.is-leaf{ border-color:var(--leaf); } .svc-item.is-sun{ border-color:var(--sun); }
-.svc-circle{ width:104px; --ratio:1/1; margin:0; border-radius:50%; --pos:50% 30%; flex:none; }
-.svc-body h3{ margin:0 0 10px; font-size:clamp(20px,2.6vw,23px); font-weight:700; color:var(--sun); letter-spacing:.01em; }
-.svc-body h3::before{ content:""; display:inline-block; width:26px; height:4px; border-radius:4px; background:var(--brown); margin-right:12px; vertical-align:middle; }
-.svc-body p{ font-size:15px; text-align:left; margin:0; line-height:1.85; }
-@media (max-width:560px){
-  .svc-item{ grid-template-columns:72px 1fr; gap:16px; padding:18px; }
-  .svc-circle{ width:72px; }
-  .svc-body h3{ font-size:19px; }
-  .svc-body h3::before{ width:20px; margin-right:9px; }
-}
+.svc-circle{ width:150px; --ratio:1/1; margin:0 auto 16px; border-radius:50%; --pos:50% 30%; }
+.svc-item h3{ margin-bottom:8px; }
+.svc-item p{ font-size:15.5px; text-align:left; }
+@media (max-width:760px){ .svc-list{ grid-template-columns:1fr; } }
 
 /* 交互配置セクション（home-service-sec / is-reverse移植） */
 .zigzag{ display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; margin-top:58px; position:relative; z-index:1; }
@@ -721,6 +714,7 @@ body.drawer-open{ overflow:hidden; }
 
   /* ■ カード類の内側余白 */
   .card, .svc-item{ padding:24px 20px; }
+  .svc-circle{ width:126px; height:126px; }
   .shin-hero{ padding:28px 20px; gap:18px; }
   .shin-kanji{ font-size:82px; }
   .trial-card{ padding:28px 18px 24px; }
@@ -792,10 +786,10 @@ h1,h2,h3{ text-wrap:balance; }           /* 見出しの行を均等に（対応
 .page-head .en{ font-size:14px; color:var(--sun); letter-spacing:.14em; text-transform:uppercase; }
 /* サイドナビ */
 .side-toc{ position:sticky; top:96px; }
-.side-toc h4{ font-size:15px; letter-spacing:.1em; color:var(--gold); border-bottom:1px solid var(--gold-soft);
+.side-toc h4{ font-size:14px; letter-spacing:.1em; color:var(--gold); border-bottom:1px solid var(--gold-soft);
   padding-bottom:10px; margin-bottom:14px; font-family:var(--font-body); font-weight:700; }
 .side-toc ul{ list-style:none; display:grid; gap:2px; }
-.side-toc a{ display:block; padding:11px 14px; font-size:15.5px; color:var(--brown); text-decoration:none;
+.side-toc a{ display:block; padding:10px 12px; font-size:15px; color:var(--brown); text-decoration:none;
   border-radius:8px; border-left:3px solid transparent; transition:all .2s; line-height:1.5; }
 .side-toc a:hover{ background:var(--paper); color:var(--sun); }
 .side-toc a.active{ background:var(--paper); color:var(--sun); border-left-color:var(--sun); font-weight:700; }
@@ -805,17 +799,6 @@ h1,h2,h3{ text-wrap:balance; }           /* 見出しの行を均等に（対応
 .page-main h2:not(:first-child){ margin-top:48px; }
 .page-main h3{ font-family:var(--font-head); font-size:18px; color:var(--sun); margin:28px 0 12px; }
 .page-main p{ line-height:1.95; margin-bottom:16px; color:var(--ink); }
-
-/* ▼ 日本語の読みやすさ最適化（改行位置・行幅・行間） */
-.page-main p, .page-main li, .lede, .price-foot,
-.origin-explain p, .origin-tagline{
-  line-break: strict;
-  word-break: auto-phrase;   /* 文節（意味の区切り）で自然に折り返す。非対応ブラウザは自動的に従来動作 */
-}
-.page-main p, .origin-explain p{ line-height:1.82; word-break:auto-phrase; line-break:strict; }   /* 1.95→1.82／日本語を文節単位で折り返し不自然な改行を防ぐ */
-.page-head h1, .lede, .page-main h2, .page-main h3, .origin-tagline{
-  text-wrap: balance;        /* 見出し・中央寄せ短文の行を均等化し、尻切れ改行を防ぐ */
-}
 @media(max-width:760px){
   .page-wrap{ grid-template-columns:1fr; gap:0; }
   .side-toc{ position:static; margin-bottom:32px; background:var(--paper); border-radius:12px; padding:16px; }
@@ -870,37 +853,83 @@ h1,h2,h3{ text-wrap:balance; }           /* 見出しの行を均等に（対応
 main{ padding-top:76px; }
 @media(max-width:760px){ main{ padding-top:84px; } }
 </style>
-
+</head>
 <style>
-/* ASPATH由来：左ロゴ＋右に頭文字（語源）、下に説明 */
-.origin-hero{ display:grid; grid-template-columns:230px 1fr; gap:40px; align-items:center; max-width:850px; margin:26px 0 8px auto; padding-right:clamp(0px,2vw,24px); }
-.origin-hero-logo{ display:grid; place-items:center; }
-.origin-logo{ width:100%; max-width:220px; height:auto; display:block; filter:drop-shadow(0 8px 22px rgba(38,70,83,.16)); }
-
-/* 頭文字＝語源：頭文字と日本語を大きく／残りの英字は小さく／“道”のスパイン */
-.origin-acr{ position:relative; padding:4px 0 4px 4px; }
-.origin-acr::before{ content:""; position:absolute; left:2px; top:14px; bottom:14px; width:3px; border-radius:3px;
-  background:linear-gradient(180deg, var(--gold) 0%, var(--sun) 100%); opacity:.55; }
-.acr-row{ display:flex; align-items:baseline; padding:8px 10px 8px 20px; border-radius:12px; transition:background .2s ease; }
-.acr-row:hover{ background:var(--paper); }
-.acr-en{ display:inline-flex; align-items:baseline; min-width:clamp(150px,20vw,205px); font-family:var(--font-head); color:#46666F; }
-.acr-cap{ font-size:clamp(34px,4.6vw,46px); line-height:1; color:var(--gold); font-weight:700; }
-.acr-rest{ font-size:clamp(15px,2vw,18px); font-weight:500; letter-spacing:.01em; }
-.acr-sep{ margin:0 12px; color:var(--sun); font-size:18px; }
-.acr-jp{ font-family:var(--font-body); font-size:clamp(16px,2.2vw,19px); color:var(--brown); font-weight:600; letter-spacing:.03em; }
-
-.origin-explain{ max-width:760px; margin:24px auto 0; }
-.origin-explain .origin-tagline{ font-family:var(--font-head); font-size:clamp(16px,2.4vw,20px); color:var(--brown); line-height:1.75; margin-bottom:14px; }
-.origin-explain p{ font-size:15px; line-height:1.95; color:var(--ink); margin-bottom:12px; }
-
-@media(max-width:760px){
-  .origin-hero{ grid-template-columns:1fr; gap:20px; }
-  .origin-logo{ max-width:160px; }
-  .origin-acr{ max-width:430px; margin:0 auto; }
-  .acr-cap{ font-size:38px; }
-  .acr-rest{ font-size:17px; }
-  .acr-jp{ font-size:18px; }
+.news-list{ display:grid; gap:0; }
+.news-list-item{ display:grid; grid-template-columns:200px 1fr; gap:22px; padding:24px 0;
+  border-bottom:1px solid var(--gold-soft); text-decoration:none; transition:background .2s; align-items:start; }
+.news-list-item:hover{ background:var(--paper); }
+.news-list-item:first-child{ padding-top:0; }
+.news-list-item:has(.nli-body--full){ grid-template-columns:1fr; gap:0; }
+.nli-thumb{ aspect-ratio:40/21; border-radius:12px; overflow:hidden; background:transparent; }  /* アイキャッチ比率に一致＝余白なし */
+.nli-thumb > img{ border-radius:12px; }
+.nli-meta{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+.nli-meta time{ font-size:14.5px; color:#5E7681; font-weight:600; }
+.nli-tag{ font-size:13px; color:#fff; padding:3px 12px; border-radius:20px; font-weight:600; }
+.nli-title{ font-family:var(--font-head); font-size:17px; color:var(--brown); margin:0 0 8px; line-height:1.5; }
+.news-list-item:hover .nli-title{ color:var(--sun); }
+.nli-excerpt{ font-size:15px; color:#52707A; line-height:1.75; margin:0;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+@media(max-width:600px){
+  .news-list-item{ grid-template-columns:110px 1fr; gap:14px; padding:18px 0; }
+  .nli-title{ font-size:15px; } .nli-excerpt{ font-size:14px; }
 }
+.side-toc .cat-link.on{ background:var(--paper); color:var(--sun); border-left-color:var(--sun); font-weight:700; }
+
+/* 最新情報→SNS誘導セクション */
+.news-sns{ margin-top:52px; padding:36px 24px 40px; background:var(--paper); border-radius:20px; text-align:center;
+  border:1px solid var(--gold-soft); }
+.news-sns .ns-eyebrow{ color:var(--sun); letter-spacing:.18em; font-size:13.5px; font-weight:700; margin:0 0 8px; }
+.news-sns h2{ border:none !important; padding:0 !important; margin:0 0 10px !important; }
+.news-sns .ns-lede{ font-size:15px; color:#52707A; margin:0 0 26px; line-height:1.85; }
+.ns-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; max-width:760px; margin:0 auto; }
+.ns-tile{ background:#fff; border:1px solid rgba(30,45,52,.06); border-radius:16px; padding:22px 12px 18px;
+  text-decoration:none; display:flex; flex-direction:column; align-items:center; gap:7px;
+  transition:transform .25s ease, box-shadow .25s ease; box-shadow:0 6px 16px rgba(30,18,6,.08); }
+.ns-tile:hover{ transform:translateY(-5px); box-shadow:0 14px 28px rgba(30,18,6,.16); }
+.ns-ico{ width:50px; height:50px; border-radius:14px; display:grid; place-items:center; color:#fff;
+  box-shadow:0 5px 12px rgba(0,0,0,.16); margin-bottom:2px; }
+.ns-ico svg{ width:26px; height:26px; filter:drop-shadow(0 1px 1px rgba(0,0,0,.14)); }
+.ns-instagram{ background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF); }
+.ns-youtube{ background:#FF0000; }
+.ns-facebook{ background:#1877F2; }
+.ns-line{ background:#06C755; }
+.ns-name{ font-family:var(--font-head); font-size:15.5px; color:var(--brown); font-weight:700; }
+.ns-desc{ font-size:13.5px; color:#5E7681; line-height:1.55; }
+.ns-cta{ font-size:14px; color:var(--sun); font-weight:700; margin-top:5px; transition:color .2s; }
+.ns-tile:hover .ns-cta{ color:#DD8236; }
+@media(max-width:720px){ .ns-grid{ grid-template-columns:repeat(2,1fr); gap:12px; max-width:420px; } }
+
+
+
+/* SNSセクション統一（TOPと同一デザイン） */
+/* SNSセクション（ASPATHデザイン：カードグリッド） */
+.sns-section{ position:relative; padding:74px 20px 82px; overflow:hidden;
+  background:linear-gradient(152deg, #1E3A44 0%, #264653 50%, #3F6A76 100%); }
+.sns-section::before{ content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(130% 90% at 50% -12%, rgba(255,244,214,.16), transparent 62%); }
+.sns-section .sns-overlay{ position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 58%, rgba(0,0,0,.18) 100%); }
+.sns-section .wrap{ position:relative; z-index:1; }
+.sns-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:880px; margin:0 auto; }
+.sns-tile{ position:relative; background:#fff; border:1px solid rgba(30,45,52,.06); border-radius:20px;
+  padding:32px 18px 26px; text-decoration:none; text-align:center; display:flex; flex-direction:column;
+  align-items:center; gap:9px; transition:transform .28s ease, box-shadow .28s ease;
+  box-shadow:0 10px 26px rgba(30,18,6,.18), 0 2px 6px rgba(30,18,6,.10); }
+.sns-tile:hover{ transform:translateY(-7px); box-shadow:0 22px 44px rgba(30,18,6,.30), 0 4px 10px rgba(30,18,6,.14); }
+.sns-tile-ico{ width:62px; height:62px; border-radius:18px; display:grid; place-items:center; color:#fff;
+  margin-bottom:4px; box-shadow:0 6px 15px rgba(0,0,0,.20); }
+.sns-tile-ico svg{ width:32px; height:32px; filter:drop-shadow(0 1px 1px rgba(0,0,0,.16)); }
+.sns-instagram{ background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF); }
+.sns-facebook{ background:#1877F2; }
+.sns-youtube{ background:#FF0000; }
+.sns-line{ background:#06C755; }
+.sns-tile-name{ font-family:var(--font-head); font-size:16.5px; color:var(--brown); font-weight:700; letter-spacing:.02em; }
+.sns-tile-desc{ font-size:14px; color:#5E7681; line-height:1.55; }
+.sns-tile-cta{ font-size:14px; color:var(--sun); font-weight:700; margin-top:8px; letter-spacing:.02em; transition:color .2s; }
+.sns-tile:hover .sns-tile-cta{ color:#DD8236; }
+@media(max-width:720px){ .sns-grid{ grid-template-columns:repeat(2,1fr); gap:16px; max-width:420px; } }
+@media(max-width:360px){ .sns-grid{ grid-template-columns:1fr; } }
 
 /* ===== モバイル安全策：横スクロール/はみ出し防止 ===== */
 html,body{ overflow-x:clip; max-width:100%; }
@@ -1062,90 +1091,7 @@ table{ max-width:100%; }
 @media (max-height:480px) and (orientation:landscape){
   .hero{ min-height:520px; }
 }
-
-/* ============ アスパスのトレーニング（大型リニューアル） ============ */
-.tr-sec{ background:#FBF7F0; padding-bottom:clamp(64px,9vw,110px); }
-.tr-hero{ position:relative; overflow:hidden; padding:76px 0 60px; }
-.tr-hero-bg{ position:absolute; inset:0; }
-.tr-hero-bg img{ width:100%; height:100%; object-fit:cover; opacity:.14; }
-.tr-hero-bg::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(251,247,240,.35), rgba(251,247,240,.92)); }
-.tr-vlabel{ position:absolute; left:clamp(10px,3vw,42px); top:70px; writing-mode:vertical-rl; font-family:var(--font-head); font-weight:700; color:var(--brown); font-size:clamp(15px,1.6vw,19px); letter-spacing:.3em; z-index:2; }
-.tr-vlabel-en{ display:block; writing-mode:vertical-rl; font-size:11px; color:var(--sun); letter-spacing:.28em; margin-left:6px; text-transform:uppercase; }
-.tr-hero-in{ position:relative; z-index:2; display:flex; gap:clamp(26px,5vw,70px); align-items:flex-start; justify-content:center; padding-left:clamp(46px,7vw,110px); }
-.tr-vcopy{ writing-mode:vertical-rl; font-family:var(--font-head); font-weight:700; font-size:clamp(24px,3.4vw,38px); color:var(--brown); line-height:1.9; letter-spacing:.14em; margin:0; flex:none; }
-.tr-lead{ max-width:640px; }
-.tr-lead p{ font-size:16px; line-height:2.1; color:var(--ink); margin-bottom:16px; word-break:auto-phrase; line-break:strict; }
-.tr-quote{ font-family:var(--font-head); color:var(--brown); background:#fff; border-left:4px solid var(--sun); border-radius:0 12px 12px 0; padding:14px 18px; line-height:2.05 !important; }
-.tr-pillars{ max-width:720px; margin:54px auto 0; text-align:center; }
-.tr-pillars-lead{ font-size:16px; color:var(--brown); font-weight:700; margin-bottom:18px; }
-.tr-pillars-sub{ margin-top:16px; font-size:14.5px; color:#52707A; }
-.tr-chapter{ max-width:760px; margin:78px auto 0; }
-.tr-num{ font-family:var(--font-head); font-weight:700; font-size:clamp(30px,4.4vw,40px); color:var(--sun); margin:0 0 2px; letter-spacing:.04em; }
-.tr-h{ font-family:var(--font-head); font-size:clamp(20px,3vw,25px); color:var(--brown); margin:0 0 18px; padding-bottom:10px; border-bottom:2px solid var(--gold-soft); line-height:1.6; }
-.tr-p{ font-size:16px; line-height:2.05; color:var(--ink); margin-bottom:15px; max-width:44em; word-break:auto-phrase; line-break:strict; }
-.tr-p b{ color:var(--brown); }
-.tr-core-card{ background:#fff; border-radius:18px; padding:26px 28px; margin-top:22px; box-shadow:0 8px 24px rgba(38,70,83,.07); }
-.tcc-tag{ display:inline-block; font-family:var(--font-head); font-weight:700; color:#fff; border-radius:999px; padding:7px 20px; font-size:15.5px; margin:0 0 14px; }
-.tcc-body{ background:var(--brown); } .tcc-mind{ background:var(--sun); } .tcc-cause{ background:var(--leaf); }
-.tr-closing{ max-width:620px; margin:70px auto 0; text-align:center; background:#fff; border-radius:20px; padding:46px clamp(24px,4vw,44px); box-shadow:0 10px 28px rgba(38,70,83,.08); }
-.tr-closing p{ font-size:clamp(16px,2.2vw,17.5px); line-height:2.2; color:var(--ink); margin-bottom:20px;
-  /* ※text-wrap:balance は auto-phrase を無効化するため使わない */
-  word-break:auto-phrase; line-break:strict; }
-.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
-.tr-closing-em{ font-family:var(--font-head); font-weight:700; color:var(--brown); font-size:clamp(19px,3.2vw,25px); line-height:1.95; margin-top:26px; margin-bottom:0 !important; }
-@media (max-width:900px){
-  .tr-hero-in{ flex-direction:column; padding-left:clamp(40px,10vw,60px); }
-  .tr-vcopy{ writing-mode:horizontal-tb; font-size:clamp(21px,5.6vw,27px); line-height:1.7; }
-}
-@media (max-width:760px){
-  .tr-vlabel{ position:static; writing-mode:horizontal-tb; display:block; padding:0 16px; margin-bottom:10px; letter-spacing:.12em; }
-  .tr-vlabel-en{ writing-mode:horizontal-tb; display:inline; margin-left:10px; }
-  .tr-hero{ padding:56px 0 40px; }
-  .tr-hero-in{ padding-left:16px; }
-    .tr-core-card{ padding:20px 16px; }
-}
-
-
-
-
-
-/* ===== 3つの芯：イラスト図解 ===== */
-.tr-cores-fig{ margin:36px auto 46px; max-width:900px; }
-.tcf-inner{ position:relative; }
-.tcf-img{ width:100%; height:auto; display:block; }
-.tcf-lbl{ position:absolute; text-align:center; line-height:1.25; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,.22); }
-.tcf-lbl b{ display:block; font-family:"Kiwi Maru","Zen Maru Gothic",var(--font-head); font-weight:500; font-size:clamp(17px,2.5vw,29px); letter-spacing:.08em; }
-.tcf-lbl i{ display:block; font-style:normal; font-family:var(--font-body); font-size:clamp(9px,1.15vw,13px); letter-spacing:.3em; margin-top:2px; opacity:.95; }
-.tcf-body{ left:24%; top:9.5%; transform:translate(-50%,-50%); }
-.tcf-mind{ left:75.5%; top:9.5%; transform:translate(-50%,-50%); }
-.tcf-cause{ left:50%; top:88.5%; transform:translate(-50%,-50%); text-shadow:0 2px 8px rgba(20,60,100,.45); }
-.tcf-hub{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; width:26%; }
-.tcf-hub b{ display:block; font-family:var(--font-head); font-weight:700; font-size:clamp(19px,3.1vw,38px); color:var(--brown); letter-spacing:.05em; line-height:1.1; text-shadow:none; }
-.tcf-hub i{ display:block; font-style:normal; font-family:"Kiwi Maru","Zen Maru Gothic",var(--font-head); font-size:clamp(9px,1.25vw,15px); color:var(--sun); margin-top:6px; letter-spacing:.03em; }
-.tcf-cap{ margin-top:20px; text-align:center; font-size:15.5px; color:#52707A; line-height:1.9; }
-@media (max-width:760px){
-  .tr-cores-fig{ margin:28px auto 34px; }
-  .tcf-lbl i{ display:none; }
-  .tcf-hub i{ display:none; }
-  .tcf-cap{ font-size:14.5px; }
-}
-
-/* ===== 各章の挿絵 ===== */
-.tr-chapfig{ margin:24px 0 28px; }
-.tr-chapfig img{ width:100%; height:auto; display:block; }
-@media (max-width:760px){ .tr-chapfig{ margin:18px 0 22px; } .tr-chapfig img{ border-radius:12px; } }
-
-/* ===== 締めの挿絵 ===== */
-.tr-closefig{ margin:64px auto 0; max-width:900px; }
-.tr-closefig img{ width:100%; height:auto; display:block; }
-.tr-closefig + .tr-closing{ margin-top:26px !important; }
-@media (max-width:760px){ .tr-closefig{ margin-top:44px; } .tr-closefig img{ border-radius:12px; } }
-
-/* 理念4本柱（1枚画像） */
-.tr-pillars-fig{ margin:24px auto 0; max-width:900px; }
-.tr-pillars-fig img{ width:100%; height:auto; display:block; }
 </style>
-</head>
 <body>
 <header class="site-header">
   <div class="header-in">
@@ -1190,7 +1136,7 @@ table{ max-width:100%; }
   <div class="drawer-sns" aria-label="公式SNS">
     <a href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
     <a href="https://youtube.com/channel/UC4euclQEdu9IIrTNyNELFyg?si=Mgtef9o84be7vemE" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.57V8.43L15.8 12l-6.2 3.57z"/></svg></a>
-    <a href="https://www.facebook.com/profile.php?id=61583682097185" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.87 11.85v-8.38H7.08V12h3.05V9.36c0-3 1.8-4.67 4.53-4.67 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87V12h3.33l-.53 3.47h-2.8v8.38A12 12 0 0 0 24 12z"></path></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61583682097185" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.87 11.85v-8.38H7.08V12h3.05V9.36c0-3 1.8-4.67 4.53-4.67 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87V12h3.33l-.53 3.47h-2.8v8.38A12 12 0 0 0 24 12z"></path></svg></a>
     <a href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" aria-label="公式LINE"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.63V7.008c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.63V7.008c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V7.008c0-.345.282-.63.63-.63.345 0 .63.285.63.63v5.871zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.63V7.008c0-.345.282-.63.63-.63.346 0 .628.285.628.63v5.871zm-2.466.629H4.917c-.345 0-.63-.285-.63-.63V7.008c0-.345.285-.63.63-.63.348 0 .63.285.63.63v5.242h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path></svg></a>
   </div>
   <a class="btn btn-line big drawer-cta" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;/&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"/></svg>公式LINEに登録する</a>
@@ -1198,173 +1144,93 @@ table{ max-width:100%; }
 
 <main>
   <div class="page-head">
-    <p class="crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / About ASPATH"><a href="index.html">TOP</a> ／ ASPATHについて</p>
-    <h1 data-en="About ASPATH">ASPATHについて</h1>
+    <p class="crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / News"><a href="index.html">TOP</a> ／ お知らせ</p>
+    <h1 data-en="News">お知らせ</h1>
 </div>
 
   <div class="page-wrap">
 <div class="page-main">
-      <h2 id="origin" data-en="Origin of ASPATH">ASPATHの由来</h2>
-      <div class="origin-hero">
-        <div class="origin-hero-logo">
-        <img class="origin-logo" src="images/logo-aspath.webp" alt="ASPATHロゴ">
-        </div>
-        <div class="origin-acr" role="list" aria-label="ASPATHの頭文字が表す6つの価値">
-          <div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">A</span><span class="acr-rest">pproach</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Approach">アプローチ</span></div>
-          <div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">S</span><span class="acr-rest">upport</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Support">支える</span></div>
-          <div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">P</span><span class="acr-rest">arkinson</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Parkinson">パーキンソン</span></div>
-          <div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">A</span><span class="acr-rest">ctive</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Active">活動的</span></div>
-          <div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">T</span><span class="acr-rest">raining</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Training">トレーニング</span></div>
-          <div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">H</span><span class="acr-rest">ealth・Hope</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Health & Hope">健康・希望</span></div>
-        </div>
-      </div>
-      <div class="origin-explain">
-        <p class="origin-tagline" data-en-html="&quot;As = toward tomorrow, Path = a road that connects.&quot;&lt;br&gt;It means a road toward a positive future that leads to tomorrow.">「アス＝明日へ、パス＝つなげる道」。<br>明日へつなげる、前向きな未来への道を意味します。</p>
-        <p data-en-html="The logo holds many meanings: &lt;strong&gt;a person stepping forward with hope, lit by the sun&lt;/strong&gt;; &lt;strong&gt;a figure full of life and energy&lt;/strong&gt;; and a place where &lt;strong&gt;a new step sprouts&lt;/strong&gt;. Its overall shape traces the initial &lt;strong&gt;&quot;A&quot;&lt;/strong&gt; of ASPATH and also draws on &lt;strong&gt;Sakurajima&lt;/strong&gt;, the symbol of Kagoshima.">ロゴには、いくつもの想いが込められています。<br class="br-pc"><strong>太陽に照らされ、希望を持って前へ進む人</strong>。<strong>イキイキと躍動する姿</strong>。<br class="br-pc">そして、新しい一歩が<strong>芽生える場所</strong>であること。<br class="br-pc">全体のかたちは「アスパス」の頭文字<strong>「A」</strong>をかたどり、鹿児島のシンボル<strong>「桜島」</strong>もモチーフにしています。</p>
-        <p data-en-html="The name &quot;ASPATH&quot; carries our wish that those facing Parkinson's disease or stroke can &lt;strong&gt;walk toward tomorrow with hope rather than resignation&lt;/strong&gt;. The six letters A・S・P・A・T・H express the values we cherish.">「ASPATH（アスパス）」という名前には、パーキンソン病と向き合う方々が、<br class="br-pc"><strong>希望を持って、明日へと歩んでいけるように</strong>——そんな願いを込めています。</p>
-      </div>
-
-      <h2 id="feature" style="margin-top:56px;" data-en="ASPATH's Features">アスパス サービスの特徴</h2>
-      <p data-en-html="One of the few specialized training studios in Kagoshima focused on Parkinson's disease and stroke. Built around three pillars—symptom-specific care, personalized plans, and online support—we stay close to each individual.">パーキンソン病に特化した、鹿児島初の専門トレーニングスタジオです。<br class="br-pc">多くの経験と専門知識を兼ねそなえた運動と、おひとりおひとりとの丁寧な対話をおこないます。</p>
-      <ul class="svc-list">
-        <li class="svc-item is-gold reveal">
-          <div class="img-slot svc-circle" role="img" aria-label="症状に合わせて丁寧にサポートするトレーニング">
-            <img src="images/about-personal-support.jpeg" alt="症状に合わせてマンツーマンでサポートするトレーニング" style="--pos:50% 24%;"></div>
-          <div class="svc-body"><h3 data-en="Symptom-specific training">症状に特化したトレーニング</h3><p data-en-html="We provide specialized training that takes the symptoms of Parkinson's disease and stroke into account. Even areas that are difficult at an ordinary gym are in safe hands with ASPATH's specialized experience, knowledge, and skills.">パーキンソン病の症状を考慮して、専門的なトレーニングを実施します。<br class="br-pc">一般のジムでは難しい部分も、専門の経験・知識・技術があるアスパスなら安心です。</p></div>
-        </li>
-        <li class="svc-item is-leaf reveal d1">
-          <div class="img-slot svc-circle" role="img" aria-label="カウンセリングで専用プランを提案">
-            <img src="images/about-hearing-plan.jpeg" alt="ヒアリングしながらあなた専用の運動プランを作成" style="--pos:50% 26%;"></div>
-          <div class="svc-body"><h3 data-en="A personalized exercise plan for you">あなた専用の運動プランを提案</h3><p data-en-html="We objectively assess your physical condition and propose the right exercises, including a long-term outlook. We also value &quot;loosening&quot; and &quot;releasing&quot; conditioning as preparation.">お身体の状況を専門的にチェックします。<br class="br-pc">丁寧にお話をお聞きし、悩み事や目標を踏まえて最適な運動を提案します。</p></div>
-        </li>
-        <li class="svc-item is-sun reveal d2">
-          <div class="img-slot svc-circle" role="img" aria-label="オンライントレーニングの様子">
-            <img src="images/about-online-training.jpeg" alt="ビデオ通話で自宅から受けられるオンライントレーニング" style="--pos:50% 26%;"></div>
-          <div class="svc-body"><h3 data-en="Online available—connect from home">オンラインも対応！自宅からも繋がれます</h3><p data-en-html="Even if you live far away or find travel difficult, no problem! We specialize in online training via video call, and you can combine it with in-person sessions.">家が遠くても、移動が大変でも大丈夫！　テレビ通話を使ったオンライントレーニングを<br class="br-pc">得意としています。対面との併用もできます。</p></div>
-        </li>
-      </ul>
-
-      </div>
-  </div>
-
-  <section class="tr-sec" id="method">
-
-    <div class="tr-hero">
-      <div class="tr-hero-bg" aria-hidden="true"><img src="images/hero-02.webp" alt=""></div>
-      <span class="tr-vlabel"><span class="tr-vlabel-en">Training</span>アスパスのトレーニング</span>
-      <div class="tr-hero-in wrap">
-        <p class="tr-vcopy">「自分らしい人生」を、<br>取り戻す場所。</p>
-        <div class="tr-lead">
-          <p>パーキンソン病と診断された日、あるいは症状が少しずつ進行していくのを感じた時、多くの方が言葉にできないほどの大きな不安を抱えられます。</p>
-          <p class="tr-quote">「これから自分の身体はどうなってしまうのだろう」<br>「今まで当たり前にできていたことが、少しずつ難しくなっていくのではないか」</p>
-          <p>そんな深い悩みを抱え、立ちすくんでいる方にこそ、私たちアスパスのドアを叩いていただきたいと強く願っています。</p>
-          <p>ここは、あなたが「自分らしい人生」を取り戻し、これからの未来を笑顔で歩んでいくための場所です。私たちはパーキンソン病に特化した専門的な知識と技術、そして何よりも「あなたという一人の人間」に寄り添う熱い想いを持って、日々のトレーニングに伴走します。</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="wrap">
-      <div class="tr-pillars">
-        <p class="tr-pillars-lead">アスパスが提供するトレーニングの根底には、決してブレることのない確固たる理念があります。</p>
-        <figure class="tr-pillars-fig">
-          <img src="images/pillars-4.webp" alt="アスパスが大切にする4つの理念：3つの芯を整えること／人生を豊かに彩ること／共同研究を通じた社会への貢献／地域社会が連携するサードプレイスであること" width="1400" height="717" loading="lazy">
-        </figure>
-        <p class="tr-pillars-sub">私たちが大切にしているこれらの想いと、具体的なトレーニングのあり方について、<br class="br-pc">丁寧にお伝えさせてください。</p>
-      </div>
-
-      <div class="tr-chapter">
-        <p class="tr-num">01</p>
-        <h3 class="tr-h">根本から生まれ変わるための「3つの芯」</h3>
-        <p class="tr-p">パーキンソン病の症状に向き合うとき、手足の震えや歩きにくさといった「目に見える症状」だけに囚われてしまうと、本当の意味での改善にはつながりません。アスパスでは、表面的な症状の奥深くにある「3つの芯」に焦点を当て、根本からお身体と心を整えていきます。</p>
-
-        <figure class="tr-cores-fig reveal">
-          <div class="tcf-inner">
-            <img class="tcf-img" src="images/three-cores-illust.webp" alt="身体の芯・心の芯・原因の芯が噛み合うイメージ" width="1400" height="787" loading="lazy">
-            <span class="tcf-lbl tcf-body"><b>身体の芯</b><i>BODY</i></span>
-            <span class="tcf-lbl tcf-mind"><b>心の芯</b><i>MIND</i></span>
-            <span class="tcf-hub"><b>ASPATH</b><i>3つの芯を整える</i></span>
-            <span class="tcf-lbl tcf-cause"><b>原因の芯</b><i>CAUSE</i></span>
+      <h2 id="news-list" style="border:none; padding:0; margin-bottom:20px;" data-en="Latest News">最新のお知らせ</h2>
+      <div class="news-list" id="newsList">
+        <a class="news-list-item" data-cat="お知らせ" href="news-taikenkai.html">
+          <div class="nli-body nli-body--full">
+            <div class="nli-meta">
+              <time datetime="2026-08-01">2026.08.01</time>
+              <span class="nli-tag" style="background:var(--sun);" data-en="News">お知らせ</span>
+            </div>
+            <h3 class="nli-title" data-en="Exercise trial session for people with Parkinson&#39;s disease">【体験会】パーキンソン病のための運動体験会を開催します</h3>
+            <p class="nli-excerpt" data-en="Try stretches that release stiffness and practise walking, together with others facing the same condition. Seated participation is also possible.">こわばりをほぐすストレッチや歩き方の練習を、同じ症状と向き合う方々と一緒に体験していただけます。座ったままのご参加も可能です。</p>
           </div>
-          <figcaption class="tcf-cap">「身体」「心」「原因」の芯が噛み合ってはじめて、<br class="br-pc">根本からの変化が生まれます。</figcaption>
-        </figure>
+        </a>
+        <a class="news-list-item" data-cat="お知らせ" href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener">
+          <div class="nli-body nli-body--full">
+            <div class="nli-meta">
+              <time datetime="2026-07-05">2026.07.05</time>
+              <span class="nli-tag" style="background:var(--sun);" data-en="News">お知らせ</span>
+            </div>
+            <h3 class="nli-title" data-en="Now sharing training on Instagram — please follow us!">Instagramでトレーニングの様子を配信中！フォローお願いします</h3>
+            <p class="nli-excerpt" data-en="We share daily training scenes and useful information on Instagram. Please follow us.">日々のトレーニング風景やお役立ち情報をInstagramで配信しています。ぜひフォローしてください。</p>
+          </div>
+        </a>
+        <a class="news-list-item" data-cat="お知らせ" href="news-campaign.html">
+          <div class="nli-body nli-body--full">
+            <div class="nli-meta">
+              <time datetime="2026-07-01">2026.07.01</time>
+              <span class="nli-tag" style="background:var(--sun);" data-en="News">お知らせ</span>
+            </div>
+            <h3 class="nli-title" data-en="Opening campaign: first session (90 min) half price ¥4,400 for a limited time">営業開始キャンペーン｜初回体験（90分）が期間限定 半額4,400円</h3>
+            <p class="nli-excerpt" data-en="Until September 30, 2026, the first training session (90 min) is half price at ¥4,400 instead of the usual ¥8,800.">2026年9月30日まで、初回トレーニング体験（90分）を通常8,800円のところ半額の4,400円でご利用いただけます。</p>
+          </div>
+        </a>
+      </div>
 
-        <div class="tr-core-card">
-          <p class="tcc-tag tcc-body">① 身体の芯（体幹）を呼び覚ます</p>
-          <p class="tr-p">パーキンソン病において、多くの方が一番初めに動かしにくさを感じるのが、実は手足ではなく、身体の中心である「体幹（身体の芯）」です。</p>
-          <p class="tr-p">背骨周りの筋肉が硬くなり、しなやかさが失われることで、姿勢が前かがみになったり、寝返りや起き上がりが辛くなったりします。身体の芯が固まってしまうと、そこから繋がっている手足にもブレーキがかかり、歩幅が狭くなったり、足がすくんだりといった症状が引き起こされるのです。</p>
-          <p class="tr-p">だからこそ、アスパスのトレーニングは「身体の芯」をターゲットに据えることから始めます。まずは長年の緊張で強張ってしまった背骨や骨盤周りの筋肉を丁寧に<b>「ほぐす」</b>。そして、正しい姿勢を維持できるように深層の筋肉を<b>「強くする」</b>。ここで大切なのは、私たちが一方的に施術をするのではなく、お客様ご自身の力で身体を動かし、脳と身体の感覚のズレを正しく<b>「感じ取っていただく」</b>ことです。そのプロセスを共に重ねることで、最終的に日常生活のあらゆる場面でご自身の体幹を<b>「上手に使う」</b>ことができるようになります。</p>
-          <p class="tr-p">身体の芯がしなやかに動くようになれば、驚くほど手足の動きも軽くなり、スムーズな第一歩が踏み出せるようになります。これが、私たちが体幹にこだわる最大の理由です。</p>
+
+    </div>
+  </div>
+</main>
+
+<section class="sns-section">
+    <div class="sns-overlay"></div>
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:36px;">
+<h2 style="color:#fff;" data-en="Follow us on social media">最新情報はSNSで配信中</h2>
+        <p style="color:rgba(255,255,255,.92); text-align:center;" data-en="We share daily training and updates. Please follow us!">日々のトレーニング風景やイベント情報、キャンペーンのお知らせは各SNSでいち早くお届けしています。<br class="br-pc">ぜひフォローしてください。</p>
+      </div>
+      <div class="sns-grid">
+        <a class="sns-tile reveal" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" aria-label="公式LINE">
+          <span class="sns-tile-ico sns-line"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.63V7.008c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.63V7.008c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V7.008c0-.345.282-.63.63-.63.345 0 .63.285.63.63v5.871zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.63V7.008c0-.345.282-.63.63-.63.346 0 .628.285.628.63v5.871zm-2.466.629H4.917c-.345 0-.63-.285-.63-.63V7.008c0-.345.285-.63.63-.63.348 0 .63.285.63.63v5.242h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path></svg>
+          </span>
+          <span class="sns-tile-name" data-en="Official LINE">公式LINE</span>
+          <span class="sns-tile-desc" data-en="Consultation & booking">ご相談・ご予約</span>
+          <span class="sns-tile-cta" data-en="Add friend →">友だち追加 →</span>
+        </a>
+        <a class="sns-tile reveal d1" href="https://www.instagram.com/aspath_parkinson_stroke/" target="_blank" rel="noopener" aria-label="Instagram">
+          <span class="sns-tile-ico sns-instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg>
+          </span>
+          <span class="sns-tile-name">Instagram</span>
+          <span class="sns-tile-desc" data-en="Training & daily life">トレーニング風景・日常</span>
+          <span class="sns-tile-cta" data-en="Follow →">フォローする →</span>
+        </a>
+        <a class="sns-tile reveal d2" href="https://youtube.com/channel/UC4euclQEdu9IIrTNyNELFyg?si=Mgtef9o84be7vemE" target="_blank" rel="noopener" aria-label="YouTube">
+          <span class="sns-tile-ico sns-youtube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.87 12 3.87 12 3.87s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5zM9.6 15.57V8.43L15.8 12l-6.2 3.57z"></path></svg>
+          </span>
+          <span class="sns-tile-name">YouTube</span>
+          <span class="sns-tile-desc" data-en="Exercise explainer videos">運動の解説動画</span>
+          <span class="sns-tile-cta" data-en="Subscribe →">登録する →</span>
+        </a>
+        <a class="sns-tile reveal d3" href="https://www.facebook.com/profile.php?id=61583682097185" target="_blank" rel="noopener" aria-label="Facebook">
+          <span class="sns-tile-ico sns-facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"></path></svg>
+          </span>
+          <span class="sns-tile-name">Facebook</span>
+          <span class="sns-tile-desc" data-en="News & events">お知らせ・イベント情報</span>
+          <span class="sns-tile-cta" data-en="Follow →">フォローする →</span>
+        </a>
         </div>
-
-        <div class="tr-core-card">
-          <p class="tcc-tag tcc-mind">② 心の芯（本当の想い）に耳を澄ませる</p>
-          <p class="tr-p">どんなに優れた運動プログラムであっても、ご本人の「心」が置き去りにされていては、決して良い結果は生まれません。私たちが向き合っているのは「パーキンソン病という病気」ではなく、「パーキンソン病と共に生きる、あなた」です。</p>
-          <p class="tr-p">トレーニングを始める前、そして日々のセッションの中で、私たちは対話を何よりも大切にしています。</p>
-          <p class="tr-quote">「何に一番困っていますか？」<br>「どんな時に不安を感じますか？」<br>そして、<br>「本当は、これからどんな生活を送っていきたいですか？」</p>
-          <p class="tr-p">ご家族と一緒に旅行に行きたい。お孫さんと公園で思い切り遊びたい。趣味のガーデニングをもう一度楽しみたい。一人ひとりの中にある、そうした「大切にしている価値観」や「人生の目標」こそが、身体を前へ進めるための最大の原動力になります。</p>
-          <p class="tr-p">私たちは、対話を通じてあなたの奥底にある「心の芯（本当の願い）」を丁寧に汲み取ります。その目標に向かっていくために必要なプロセスを共に考え、あなただけの完全オーダーメイドのメニューを作り上げます。自らの人生を輝かせるためのトレーニングとして、共に歩みを進めていきます。</p>
-        </div>
-
-        <div class="tr-core-card">
-          <p class="tcc-tag tcc-cause">③ 原因の芯（根本的な課題）を見抜く</p>
-          <p class="tr-p">「歩くときに足を引きずってしまう」というお悩みがあったとします。このとき、足首の筋肉だけを鍛えても、歩き方はなかなか改善しません。なぜなら、その症状を引き起こしている「本当の原因」は、足首ではなく、骨盤のねじれや、体幹の使い方のクセ、あるいは脳からの運動指令のタイミングのズレなど、全く別の場所に隠れていることが多いからです。</p>
-          <p class="tr-p">アスパスでは、理学療法士としての長年の臨床経験と高度な専門知識をフル活用し、その方が気になっている動作のクセや、お身体の不調の「原因の芯」を鋭く見抜きます。</p>
-          <p class="tr-p">表面的な症状に場当たり的に対処するのではなく、根本的な原因となっている機能低下を見つけ出し、そこにダイレクトにアプローチします。これにより、悪い動きのクセが定着してしまうのを防ぎ、より根本的で持続性のある課題解決へと導くことができるのです。</p>
-        </div>
-      </div>
-
-      <div class="tr-chapter">
-        <p class="tr-num">02</p>
-        <h3 class="tr-h">運動を通じて、あなたの人生をさらに豊かに彩るために</h3>
-        <figure class="tr-chapfig reveal">
-          <img src="images/ch02-enrich-life.webp" alt="運動によって旅行や庭仕事、孫との散歩など、やりたいことを取り戻していくイメージ" width="1400" height="787" loading="lazy">
-        </figure>
-        <p class="tr-p">アスパスでのトレーニングが目指すのは、運動を通じた「人生のウェルネス（心身の健康と豊かさ）の最大化」です。</p>
-        <p class="tr-p">パーキンソン病の診断を受けると、多くの方が「もうあれはできない」「これも諦めなければ」と、人生の選択肢をご自身で狭めていってしまう傾向にあります。しかし、適切なトレーニングによって身体が動かしやすくなり、できることが一つ、また一つと増えていくと、心の中に新たな活力が生まれてくる瞬間が必ず訪れます。</p>
-        <p class="tr-quote">「また旅行に行けるかもしれない」<br>「新しい趣味にチャレンジしてみようかな」</p>
-        <p class="tr-p">ご自身でも考えついていなかったような「やりたいこと」や「トライしてみたいこと」が自然と溢れ出してくる。それこそが、私たちが目指す真のゴールです。</p>
-        <p class="tr-p">病気の進行に対する不安を和らげ、再び前を向いて人生の主役として生きていく。私たちは、あなたがご自身の人生を存分に楽しみ、豊かに彩っていくための「伴走者」として、全力でサポートさせていただきます。</p>
-      </div>
-
-      <div class="tr-chapter">
-        <p class="tr-num">03</p>
-        <h3 class="tr-h">世界的なエビデンスの活用と、大学・有識者との共同研究による社会貢献</h3>
-        <figure class="tr-chapfig reveal">
-          <img src="images/ch03-evidence.webp" alt="歩行データの分析と、大学の研究者・専門家との共同研究により知見を世界へ広げるイメージ" width="1400" height="787" loading="lazy">
-        </figure>
-        <p class="tr-p">パーキンソン病の治療やリハビリテーションの世界は、今この瞬間も絶え間なく進歩しています。だからこそ、アスパスでは現場の経験則だけに頼るのではなく、海外の最新論文など、日々アップデートされる世界的な医学エビデンス（科学的根拠）を常にキャッチアップし、目の前のお客様にとっての「最善の選択」を提供し続けます。</p>
-        <p class="tr-p">さらに私たちは、得られた知見を自分たちのスタジオの中だけで終わらせることはありません。</p>
-        <p class="tr-p">現在アスパスでは、大学の研究機関やパーキンソン病治療の有識者の方々と連携し、共同研究を進めています。</p>
-        <p class="tr-p">現場のトレーニングを通じて得られた、パーキンソン病の方特有の身体の変化、適切な運動負荷のあり方、そしてサポートによる心理的な効果など、貴重なデータをしっかりと「見える化」し、専門的な視点から詳細な分析を行っています。</p>
-        <p class="tr-p">こうした学術的な研究活動を通じて、パーキンソン病に対するリハビリテーションの新たな知見を見出し、その成果を広く発信していくこと。それがひいては、パーキンソン病分野全体の発展に繋がり、同じ病気で苦しむ日本中・世界中の方々への社会貢献になると私たちは確信しています。</p>
-      </div>
-
-      <div class="tr-chapter">
-        <p class="tr-num">04</p>
-        <h3 class="tr-h">医療・地域と連携し、心から安心できる「第3の居場所（サードプレイス）」へ</h3>
-        <figure class="tr-chapfig reveal">
-          <img src="images/ch04-thirdplace.webp" alt="中央のスタジオを病院・かかりつけ医・介護事業所・自宅がやわらかくつながり地域で支えるイメージ" width="1400" height="787" loading="lazy">
-        </figure>
-        <p class="tr-p">社会の中で生きていく上で、ご自宅でもなく、職場でもない、心から安心できる「第3の居場所（サードプレイス）」を持つことは、心の健康を保つために非常に重要です。</p>
-        <p class="tr-p">急性期の治療や専門的な医学管理を担う「病院」、そして広く一般の方々の健康増進を担う「フィットネスジム」。それぞれが社会において非常に重要で欠かせない役割を持っています。</p>
-        <p class="tr-p">アスパスは、それらの素晴らしい機関と競合するのではなく、それぞれの役割を尊重し合いながら、その「中間地点」として専門的なサポートを提供する場所でありたいと考えています。</p>
-        <p class="tr-p">地域の主治医の先生方、医療機関、介護事業所、ケアマネージャーの方々。それぞれの専門機関が持つ強みを活かし合い、密に連携を取り合うネットワークの中で、アスパスは「パーキンソン病に特化した運動専門施設」としての役割をしっかりと果たしていきます。</p>
-        <p class="tr-p">スタジオの扉を開けた瞬間から感じていただける、明るさ、優しさ、そして何でも受け止める包容力。ここでは、上手に動けない自分を気にする必要はありません。つらい時は「つらい」とありのままの感情を出していただいて構いません。</p>
-        <p class="tr-p">私たちは、ただストイックに運動を行うだけでなく、ここへ来て、スタッフや同じ想いを持つ仲間と会話をし、思い切り笑うことで「心まで元気になって帰っていただける」空間づくりを大切にしています。地域の皆様にとっての、温かい拠り所となることを目指して。</p>
-      </div>
-
-      <figure class="tr-closefig reveal">
-        <img src="images/ch05-walk-together.webp" alt="朝日に向かう道を、高齢の方とスタッフが並んで歩いていく後ろ姿" width="1600" height="900" loading="lazy">
-      </figure>
-      <div class="tr-closing">
-        <p>パーキンソン病は、確かに<span class="nw">一筋縄では</span>いかない病気かもしれません。</p>
-        <p>しかし、適切な時期に、適切な運動を、<br class="br-pc">正しい知識と温かいサポートの中で継続していくことで、<br class="br-pc">進行のスピードを緩やかにし、<br class="br-pc">あなたらしい人生を長く楽しむことは十分に可能です。</p>
-        <p>どうか、一人で抱え込まずに、<br class="br-pc">まずはあなたのお話を私たちに聞かせてください。</p>
-        <p class="tr-closing-em">これからの人生を、笑顔で、あなたらしく歩んでいくために。<br>私たちが全力で伴走いたします。</p>
-      </div>
     </div>
   </section>
-</main>
+
 
 <footer class="site-footer">
   <div class="footer-in">
@@ -1519,6 +1385,24 @@ table{ max-width:100%; }
 })();
 </script>
 
+
+<script>
+(function(){
+  var links = document.querySelectorAll('.cat-link');
+  var items = document.querySelectorAll('.news-list-item');
+  links.forEach(function(l){
+    l.addEventListener('click', function(e){
+      e.preventDefault();
+      links.forEach(function(x){ x.classList.remove('on'); });
+      l.classList.add('on');
+      var cat = l.dataset.cat;
+      items.forEach(function(it){
+        it.style.display = (cat==='all' || it.dataset.cat===cat) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
 <script>
 /* ===== 言語切替（日英トグル・ページ間で保持） ===== */
 (function(){
