@@ -858,27 +858,29 @@ html.is-loading{ overflow:hidden; }
 .column-hero h1{ font-family:var(--font-head); color:var(--brown); font-size:clamp(28px,4.6vw,42px); line-height:1.5; letter-spacing:.03em; margin-bottom:10px; }
 .column-hero .lead{ font-size:clamp(14px,2.3vw,16.5px); color:var(--gold-deep); }
 .column-body{ padding:56px 0 88px; }
-.column-body .wrap{ max-width:820px; }
+.column-body .wrap{ max-width:880px; }
 .column-body h2{ margin:56px 0 24px; padding-left:16px; border-left:6px solid var(--sun); font-size:clamp(22px,3.1vw,29px); font-weight:700; line-height:1.45; letter-spacing:.02em; word-break:auto-phrase; line-break:strict; }
 .column-body h2:first-child{ margin-top:0; }
 .column-body h3{ margin:36px 0 14px; color:var(--gold-deep); font-size:clamp(17px,2.3vw,21px); font-weight:700; line-height:1.5; letter-spacing:.02em; word-break:auto-phrase; line-break:strict; }
 .column-body p{ margin-bottom:1.4em; font-size:16.5px; line-height:2.05;
-  word-break:auto-phrase; line-break:strict; overflow-wrap:anywhere;
-  max-width:44em; margin-left:auto; margin-right:auto; }
+  /* 日本語を「意味のまとまり（文節）」で折り返す。
+     ※overflow-wrap:anywhere は文節判定を壊すため使わない */
+  word-break:auto-phrase; line-break:strict; overflow-wrap:normal;
+  margin-left:auto; margin-right:auto; }
 .column-body p + p{ margin-top:-.3em; }
-.column-body h2, .column-body h3{ max-width:44em; margin-left:auto; margin-right:auto; }
+.column-body h2, .column-body h3{ margin-left:auto; margin-right:auto; }
 .column-body strong{ color:var(--sun); font-weight:600; }
-.column-body ul{ list-style:none; margin:0 auto 1.6em; padding:0; max-width:44em; }
+.column-body ul{ list-style:none; margin:0 auto 1.6em; padding:0; }
 .column-body ul li{ position:relative; padding:8px 0 8px 30px; line-height:1.85; word-break:auto-phrase; line-break:strict; }
 .column-body ul li::before{ content:""; position:absolute; left:6px; top:20px; width:10px; height:10px; border-radius:50%; background:var(--sun); box-shadow:0 0 0 4px rgba(244,162,97,.14); }
 .column-figure{ margin:32px 0 40px; background:var(--card); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
 .column-figure img,.column-figure svg{ display:block; width:100%; height:auto; }
 .column-figure figcaption{ padding:14px 22px; background:#FFFAEE; font-size:15px; color:var(--gold-deep); text-align:center; letter-spacing:.04em; }
-.column-callout{ margin:36px auto; max-width:44em; word-break:auto-phrase; line-break:strict; padding:26px 28px; background:linear-gradient(135deg,#FAF3E7 0%,#FAF3E7 100%); border-radius:16px; border-left:5px solid var(--sun); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; }
+.column-callout{ margin:36px auto; word-break:auto-phrase; line-break:strict; padding:26px 28px; background:linear-gradient(135deg,#FAF3E7 0%,#FAF3E7 100%); border-radius:16px; border-left:5px solid var(--sun); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; }
 .column-quote{ margin:32px 0; padding:20px 24px; background:var(--paper); border-radius:14px; border:1px solid rgba(176,138,69,.24); font-size:15.5px; color:var(--gold-deep); line-height:1.75; }
 .column-quote .src{ display:block; margin-top:6px; font-size:14px; color:var(--brown); opacity:.75; }
 .column-draft-notice{ margin:0 0 40px; padding:16px 20px; background:#FBF4E8; border:1px dashed var(--sun); border-radius:12px; font-size:15px; color:var(--brown); line-height:1.7; }
-.column-cta{ margin:52px auto 0; max-width:44em; padding:30px 26px 32px; background:linear-gradient(135deg,var(--brown) 0%,var(--gold-deep) 100%); color:#fff; border-radius:var(--radius); text-align:center; }
+.column-cta{ margin:52px auto 0; padding:30px 26px 32px; background:linear-gradient(135deg,var(--brown) 0%,var(--gold-deep) 100%); color:#fff; border-radius:var(--radius); text-align:center; }
 .column-cta h3{ color:#fff; font-family:var(--font-head); font-weight:700; font-size:clamp(19px,2.6vw,23px); line-height:1.5; letter-spacing:.02em; margin:0 auto 10px; max-width:none; }
 .column-cta p{ color:rgba(255,255,255,.88); font-family:var(--font-body); font-size:15.5px; line-height:1.85; margin:0 auto 20px; max-width:32em; word-break:auto-phrase; line-break:strict; }
 .column-cta .cta-row{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center; }
@@ -893,6 +895,7 @@ html.is-loading{ overflow:hidden; }
 .column-nav a:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(38,70,83,.16); }
 .column-nav .label{ display:block; font-size:14px; color:var(--gold-deep); letter-spacing:.1em; margin-bottom:6px; }
 .column-nav .title{ font-size:16px; }
+.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 @media (max-width:600px){
   .column-hero{ padding:80px 0 36px; }
   .column-body{ padding:40px 0 64px; }
@@ -1169,15 +1172,15 @@ table{ max-width:100%; }
     <div class="wrap">
 
       <figure class="column-figure column-thumb"><img src="images/column-pk-thumbnail.webp" alt="アスパスの歩み方｜パーキンソン病の特徴とトレーニング"></figure>
-      <p data-en-html="ASPATH is a training studio in Kagoshima specializing in Parkinson's disease.">鹿児島のパーキンソン病専門トレーニングスタジオ アスパスです。</p>
-      <p data-en-html="To those living with Parkinson's disease,">パーキンソン病の方へ、</p>
-      <div class="column-callout" data-en-html="&lt;strong&gt;Do you have any of these concerns?&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&quot;I've been diagnosed with Parkinson's—what should I do?&quot;&lt;br&gt;&quot;I drag my foot when I walk.&quot;&lt;br&gt;&quot;I understand exercise matters, but how?&quot;&lt;br&gt;&quot;I feel my posture is gradually worsening.&quot;&lt;br&gt;&lt;br&gt;Many people carry such worries. But please, don't struggle alone."><strong>このような悩みはありませんか？</strong><br><br>「パーキンソン病と診断されたけど、どうすればいいの？」<br>「歩くときに足を引きずってしまう」<br>「運動が大事とはわかったけど、どうするの？」<br>「少しずつ姿勢が悪くなっている気がする」<br><br>そのような不安を抱えている方も多いかもしれません。しかし、どうか一人で悩まないでください。</div>
-      <p data-en-html="ASPATH is a &lt;strong&gt;studio specializing in Parkinson's disease&lt;/strong&gt;, for those who don't want to give up on their health and who want to take on what they love. We support you with all our strength so your anxiety can turn into hope.">アスパスはご自身の健康を諦めたくない方や、やりたいことに挑戦したい方のための、<strong>パーキンソン病専門トレーニングスタジオ</strong>です。あなたの不安を希望に変えられるように、私たちは全力でサポートします。</p>
-      <h2 data-en="What is Parkinson's disease?">パーキンソン病とは？</h2>
+      <p data-en-html="ASPATH is a training studio in Kagoshima specializing in Parkinson's disease.">鹿児島の<span class="nw">パーキンソン病</span>専門トレーニングスタジオ アスパスです。</p>
+      <p data-en-html="To those living with Parkinson's disease,"><span class="nw">パーキンソン病</span>の方へ、</p>
+      <div class="column-callout" data-en-html="&lt;strong&gt;Do you have any of these concerns?&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&quot;I've been diagnosed with Parkinson's—what should I do?&quot;&lt;br&gt;&quot;I drag my foot when I walk.&quot;&lt;br&gt;&quot;I understand exercise matters, but how?&quot;&lt;br&gt;&quot;I feel my posture is gradually worsening.&quot;&lt;br&gt;&lt;br&gt;Many people carry such worries. But please, don't struggle alone."><strong>このような悩みはありませんか？</strong><br><br>「<span class="nw">パーキンソン病</span>と診断されたけど、どうすればいいの？」<br>「歩くときに足を引きずってしまう」<br>「運動が大事とはわかったけど、どうするの？」<br>「少しずつ姿勢が悪くなっている気がする」<br><br>そのような不安を抱えている方も多いかもしれません。しかし、どうか一人で悩まないでください。</div>
+      <p data-en-html="ASPATH is a &lt;strong&gt;studio specializing in Parkinson's disease&lt;/strong&gt;, for those who don't want to give up on their health and who want to take on what they love. We support you with all our strength so your anxiety can turn into hope.">アスパスはご自身の健康を諦めたくない方や、やりたいことに挑戦したい方のための、<strong><span class="nw">パーキンソン病</span>専門トレーニングスタジオ</strong>です。あなたの不安を希望に変えられるように、私たちは全力でサポートします。</p>
+      <h2 data-en="What is Parkinson's disease?"><span class="nw">パーキンソン病</span>とは？</h2>
       <figure class="column-figure"><img src="images/column-pk-what-is.webp" alt="パーキンソン病とは？ ①ふるえ・こわばり ②転びやすさ ③動きの変化"></figure>
-      <p data-en-html="Parkinson's disease is a progressive intractable disease caused by the loss of nerve cells in the substantia nigra, in a part of the brain called the &quot;midbrain.&quot;">パーキンソン病は、脳の「中脳」という部分にある黒質（こくしつ）の神経細胞が減少することで引き起こされる進行性の難病です。</p>
+      <p data-en-html="Parkinson's disease is a progressive intractable disease caused by the loss of nerve cells in the substantia nigra, in a part of the brain called the &quot;midbrain.&quot;"><span class="nw">パーキンソン病</span>は、脳の「中脳」という部分にある黒質（こくしつ）の神経細胞が減少することで引き起こされる進行性の難病です。</p>
       <p data-en-html="When we move, the brain uses a neurotransmitter called &quot;dopamine&quot; (like the brain's lubricating oil) to send commands to the muscles.">私たちの脳は、身体を動かす際に『ドパミン』という神経伝達物質（脳の潤滑油のようなもの）を使って筋肉に指令を出しています。</p>
-      <p data-en-html="In Parkinson's disease, dopamine decreases, so the brain's commands don't reach the muscles well and the body no longer moves as intended.">パーキンソン病になると、このドパミンが減ってしまうため、脳からの指令が筋肉にうまく伝わらなくなり、身体が思い通りに動かせなくなってしまいます。</p>
+      <p data-en-html="In Parkinson's disease, dopamine decreases, so the brain's commands don't reach the muscles well and the body no longer moves as intended."><span class="nw">パーキンソン病</span>になると、このドパミンが減ってしまうため、脳からの指令が筋肉にうまく伝わらなくなり、身体が思い通りに動かせなくなってしまいます。</p>
       <p data-en-html="The following four main symptoms are well known.">主な症状として、以下の4大症状が知られています。</p>
       <ul class="column-symptoms">
         <li data-en-html="&lt;strong&gt;Resting tremor&lt;/strong&gt;: hands and feet shake while at rest."><strong>静止時振戦（せいしじしんせん）</strong>：何もしないでじっとしている時に手足が震える。</li>
@@ -1186,31 +1189,31 @@ table{ max-width:100%; }
         <li data-en-html="&lt;strong&gt;Postural instability&lt;/strong&gt;: harder to recover balance, more prone to falls and a stooped posture."><strong>姿勢反射障害（しせいはんしゃしょうがい）</strong>：体のバランスが崩れた時に立て直しにくくなり、転びやすくなる。前傾姿勢になりやすい。</li>
       </ul>
       <p data-en-html="These are never due to &quot;age&quot; or &quot;laziness.&quot; They stem from the nature of the illness, in which brain dysfunction strengthens the brakes on movement.">これらは決して『年齢のせい』や『怠けているから』ではありません。脳の機能異常により、動きへのブレーキが強くなってしまう病気の特性によるものです。</p>
-      <h2 data-en="Common treatments for Parkinson's disease">パーキンソン病の一般的な治療</h2>
+      <h2 data-en="Common treatments for Parkinson's disease"><span class="nw">パーキンソン病</span>の一般的な治療</h2>
       <figure class="column-figure"><img src="images/column-pk-treatment.webp" alt="パーキンソン病の治療 ①お薬 ②手術 ③再生医療／大切なのは運動療法・リハビリ"></figure>
-      <p data-en-html="The cornerstone of Parkinson's treatment is &quot;medication.&quot;">パーキンソン病の治療で大事になるのが、『お薬』です。</p>
+      <p data-en-html="The cornerstone of Parkinson's treatment is &quot;medication.&quot;"><span class="nw">パーキンソン病</span>の治療で大事になるのが、『お薬』です。</p>
       <p data-en-html="Taking medications such as &quot;levodopa,&quot; which replenish lost dopamine, helps control symptoms and keep daily life smooth.">減ってしまったドパミンを補う”レボドパ”などのお薬を正しく内服することで、症状をコントロールし、日常生活をスムーズに送れるようにします。</p>
       <p data-en-html="When medication becomes harder to manage, surgical options such as deep brain stimulation (DBS)—implanting fine electrodes to deliver electrical stimulation—may be used.">また、お薬によるコントロールが難しくなってきた場合の選択肢として、脳に細い電極を植え込んで電気刺激を送る『手術療法（脳深部刺激療法：DBSなど）』が行われることもあります。</p>
       <p data-en-html="Recently, regenerative medicine originating in Japan—such as iPS-cell nerve-cell transplantation—has advanced rapidly, raising worldwide hopes for a future fundamental cure.">さらに近年では、iPS細胞を活用した神経細胞の移植など、日本発の『再生医療』の研究や治験も急速に進んでおり、将来的な根本治療への期待が世界中で大きく高まっています。</p>
-      <div class="column-callout" data-en-html="However, there is a very important point. Even medication or surgery does not automatically restore &quot;strength already lost,&quot; &quot;joints that have stiffened,&quot; or &quot;a broken walking pattern (such as freezing of gait).&quot;">しかし、ここで非常に重要な点があります。<br><br>お薬や手術であっても、『すでに落ちてしまった筋力』や『硬くなってしまった関節』、『崩れてしまった歩行のパターン（すくみ足など）』を自動的に元通りにしてくれるわけではありません。</div>
+      <div class="column-callout" data-en-html="However, there is a very important point. Even medication or surgery does not automatically restore &quot;strength already lost,&quot; &quot;joints that have stiffened,&quot; or &quot;a broken walking pattern (such as freezing of gait).&quot;">しかし、ここで非常に重要な点があります。<br><br>お薬や手術であっても、『すでに落ちてしまった筋力』や『硬くなってしまった関節』、『崩れてしまった歩行のパターン（<span class="nw">すくみ足</span>など）』を自動的に元通りにしてくれるわけではありません。</div>
       <p data-en-html="When medication or surgery has set the foundation for easier movement—and even to receive cutting-edge treatment—it is vital to keep your body in a state where it can move well.">薬や手術によって動きやすさの土台が整ったとき、あるいは最先端の治療を受けるためにも、ご自身の身体をしっかりと動かせる状態に保っておくことが大切です。</p>
       <p data-en-html="Modern medicine therefore regards combining these advanced treatments with &quot;exercise therapy and appropriate rehabilitation&quot; from an early stage as absolutely essential to maintaining quality of life and maximizing treatment effects.">そのため現代の医学では、これら先進の医療と『運動療法・適切なリハビリ』を早い段階から組み合わせて行うことが、生活の質を長く維持し、治療効果を最大限に引き出すために絶対に欠かせない方法とされています。</p>
-      <h2 data-en="The effects of exercise for people with Parkinson's">パーキンソン病の方が運動をする効果</h2>
+      <h2 data-en="The effects of exercise for people with Parkinson's"><span class="nw">パーキンソン病</span>の方が運動をする効果</h2>
       <figure class="column-figure"><img src="images/column-pk-exercise-effect.webp" alt="パーキンソン病の方 運動の効果"></figure>
-      <p data-en-html="Recent neuroscience and rehabilitation research has scientifically demonstrated the effects of exercise on Parkinson's disease, as follows.">近年の脳科学やリハビリテーション医学の研究において、パーキンソン病に対する運動の効果は以下のように科学的に実証されています。</p>
+      <p data-en-html="Recent neuroscience and rehabilitation research has scientifically demonstrated the effects of exercise on Parkinson's disease, as follows.">近年の脳科学やリハビリテーション医学の研究において、<span class="nw">パーキンソン病</span>に対する運動の効果は以下のように科学的に実証されています。</p>
       <h3 data-en="Appropriate training from an early stage is most effective">早期からの適切なトレーニングが最も効果的</h3>
-      <p data-en-html="Once diagnosed with Parkinson's, starting specialized exercise early can greatly change your future life.">パーキンソン病と診断されたら、早くから専門的な運動を始めることが未来の生活を大きく変えます。</p>
+      <p data-en-html="Once diagnosed with Parkinson's, starting specialized exercise early can greatly change your future life."><span class="nw">パーキンソン病</span>と診断されたら、早くから専門的な運動を始めることが未来の生活を大きく変えます。</p>
       <p data-en-html="In an 18-month overseas follow-up study, an &quot;early-start group&quot; that maintained rigorous exercise from the onset had better motor function than a group that began 6–12 months later.">海外の18ヶ月に及ぶ追跡研究では、発症初期から厳格な運動を継続した『早期開始グループ』は、半年から1年遅れて運動を始めたグループと比較して、運動機能が良好でした。</p>
       <p data-en-html="Quality of life, manual dexterity, and even cognitive functions such as attention and memory were also shown to be kept significantly higher.">また、生活の質や手先の器用さ、さらには注意・記憶といった認知機能まで有意に高く保たれることが証明されました。</p>
       <p class="column-source"><a href="https://pubmed.ncbi.nlm.nih.gov/34406535/" target="_blank" rel="noopener">（Yang et al: Neurological Sciences, 2021）</a></p>
-      <h3 data-en="Training activates the brain in people with Parkinson's">トレーニングがパーキンソン病の方の脳を活性化させる</h3>
+      <h3 data-en="Training activates the brain in people with Parkinson's">トレーニングが<span class="nw">パーキンソン病</span>の方の脳を活性化させる</h3>
       <p data-en-html="What makes exercise effective is &quot;the right load and duration to rewire the brain itself.&quot; A 2025 clinical study showed that 12 weeks of aerobic interval training increased secretion of BDNF, a nutrient that regenerates and protects nerves.">運動を効果的にするために大事なのが『脳そのものを書き換える正しい負荷と期間』です。2025年の最新の臨床研究では、12週間の有酸素インターバルトレーニングを行うことで、脳の神経を再生・保護する栄養素（BDNF）の分泌が増加することが証明されました。</p>
       <p data-en-html="Detailed brain analyses also revealed that motor-controlling regions became more active and that slowness of movement improved directly.">脳を詳しく調べる解析でも、運動を司る脳の領域が活性化し、動作の緩慢さが直接的に改善することが明らかになっています。</p>
       <p data-en-html="In short, rather than moving vaguely, training that creates change in the brain is what matters for improving your body.">つまり、なんとなく体を動かすのではなく、脳に変化を起こすトレーニングが、お身体を良くしていくうえで大事になります。</p>
       <p data-en-html="The benefit is building the joy of living by your own power, not relying on medication alone.">お薬に頼るだけでなく、自分の力で生活できる喜びを作っていけることがメリットです。</p>
       <p class="column-source"><a href="https://pubmed.ncbi.nlm.nih.gov/40792387/" target="_blank" rel="noopener">（Lorek et al: Neurorehabil Neural Repair, 2025）</a></p>
       <h3 data-en="Regular exercise habits help slow progression">定期的な運動習慣が進行を抑制する</h3>
-      <p data-en-html="What matters for health is &quot;making exercise a daily habit.&quot; In a 5-plus-year study by research groups including Kyoto University, those who &quot;maintained&quot; high physical activity showed less decline in gait, postural stability, and activities of daily living (ADL) than those who did not.">パーキンソン病の方の健康で重要なのは“運動習慣を日常に定着させること”です。京都大学などの研究グループによる5年以上の長期追跡調査において、高い身体活動や運動習慣を『維持』し続けた方は、そうでない方と比較して、歩行や姿勢の安定性、日常生活動作（ADL）の低下が抑制されることが証明されました。</p>
+      <p data-en-html="What matters for health is &quot;making exercise a daily habit.&quot; In a 5-plus-year study by research groups including Kyoto University, those who &quot;maintained&quot; high physical activity showed less decline in gait, postural stability, and activities of daily living (ADL) than those who did not."><span class="nw">パーキンソン病</span>の方の健康で重要なのは“運動習慣を日常に定着させること”です。京都大学などの研究グループによる5年以上の長期追跡調査において、高い身体活動や運動習慣を『維持』し続けた方は、そうでない方と比較して、歩行や姿勢の安定性、日常生活動作（ADL）の低下が抑制されることが証明されました。</p>
       <p data-en-html="Everyday activities such as work and housework were also found to slow cognitive decline.">さらに、仕事や家事などの日常的な活動が、脳の認知機能の低下を緩やかにすることも分かっています。</p>
       <p data-en-html="In other words, rather than settling for temporary exercise, making the right exercise a &quot;habit&quot; is key to slowing progression.">つまり、一時的な運動やリハビリで満足するのではなく、正しい運動を『習慣』にすることこそが、進行を緩和するために大事になります。</p>
       <p data-en-html="Continuing regular, appropriate exercise as part of life maximizes the effect of medication and builds a body and brain for enjoying your hobbies and family time independently, for as long as possible.">定期的かつ適切な運動を生活の一部として継続することは、お薬の効果を最大限に引き出し、大好きな趣味や家族との時間をいつまでも長く、自立して楽しむための体と脳を作ることにつながるのです。</p>
@@ -1218,7 +1221,7 @@ table{ max-width:100%; }
       <h2 data-en="ASPATH's training">アスパスのトレーニング</h2>
       <figure class="column-figure"><img src="images/column-pk-two-cores.webp" alt="アスパスが大事にする2つの芯 ①体の芯＝体幹 ②心の芯＝想い"></figure>
       <p data-en-html="In ASPATH's training, what we value most is aligning two &quot;cores&quot;: the body's &quot;core (trunk),&quot; the foundation of all movement, and the &quot;core (hopes and goals)&quot; within each client's heart.">アスパスのトレーニングにおいて、私たちが何よりも大切にしているのは、すべての動きの土台となる身体の『芯（体幹）』と、お客さんの心の中にある『芯（想いや目標）』という、2つの“芯”をしっかりと整えることです。</p>
-      <p data-en-html="Difficulty walking and postural collapse in Parkinson's largely stem from a decline in the body's &quot;core.&quot;">パーキンソン病による歩行のしづらさや姿勢の崩れは、身体の『芯』の機能が落ちてしまうことが大きな原因です。</p>
+      <p data-en-html="Difficulty walking and postural collapse in Parkinson's largely stem from a decline in the body's &quot;core.&quot;"><span class="nw">パーキンソン病</span>による歩行のしづらさや姿勢の崩れは、身体の『芯』の機能が落ちてしまうことが大きな原因です。</p>
       <p data-en-html="And as the body stops moving as hoped, deep anxiety about &quot;what will happen next&quot; often clouds the &quot;core&quot; of the heart as well.">また、思うように身体が動かなくなることで「この先どうなってしまうのだろう」という深い不安に襲われ、心の中の『芯』まで曇ってしまうことが少なくありません。</p>
       <p data-en-html="We believe that unless both a physical approach that aligns the body's &quot;axis&quot; and careful engagement that deeply understands the heart's &quot;core&quot; come together, it cannot become training or rehab that truly helps you move forward.">身体の『軸』を整える物理的なアプローチだけでなく、お客様の心の『芯』を深く汲み取る丁寧な関わり。この両方が揃わなければ、本当の意味で前を向いて進むためのトレーニングやリハビリにはならないと私たちは考えています。</p>
       <p data-en-html="That is why we prioritize a careful first interview and daily dialogue. We start by truly listening—discerning the heart's &quot;core&quot;: what life you really want and what troubles you most. Then we analyze each person's current state in detail and select the best movement training for that day's condition with a professional eye.">そのため当スタジオでは、最初の丁寧なヒアリングや日々の対話を何よりも重視しています。まずはじっくりとお話を伺い、ご本人が「本当はどんな生活を送りたいのか」「何に一番困っているのか」という心の中の『芯』を見抜くことから始めます。その上で、お一人おひとりの今現在の状態を細かく課題分析し、その日の体調にも合わせた最適な動作トレーニングをプロの目線で選択していきます。</p>
@@ -1230,7 +1233,7 @@ table{ max-width:100%; }
 
       <div class="column-cta">
         <h3 data-en="First, let us hear from you">まずは一度、お話を聞かせてください</h3>
-        <p data-en-html="The first trial session is half price, ¥4,400, for a limited time. A physical therapist specializing in Parkinson's disease will carefully ask about your condition and goals.">初回体験は期間限定 半額4,400円。パーキンソン病専門の理学療法士が、<br class="br-pc">あなたの状態と目標を丁寧に伺います。</p>
+        <p data-en-html="The first trial session is half price, ¥4,400, for a limited time. A physical therapist specializing in Parkinson's disease will carefully ask about your condition and goals.">初回体験は期間限定 半額<span class="nw">4,400円</span>。<span class="nw">パーキンソン病</span>専門の<span class="nw">理学療法士</span>が、<br class="br-pc">あなたの状態と目標を丁寧に伺います。</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="contact.html" data-en="Ask via form">フォームで問い合わせる<span class="arw">→</span></a>
           <a class="btn btn-line" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg>公式LINEに登録する</a>
@@ -1244,7 +1247,7 @@ table{ max-width:100%; }
         </a>
         <a href="onlineaspath.html">
           <span class="label">COLUMN</span>
-          <span class="title" data-en="ASPATH&#39;s online training is a great choice →">アスパスのオンライントレーニングがおすすめ！ →</span>
+          <span class="title" data-en="ASPATH&#39;s online training is a great choice →">アスパスの<span class="nw">オンライントレーニング</span>がおすすめ！ →</span>
         </a>
       </nav>
 

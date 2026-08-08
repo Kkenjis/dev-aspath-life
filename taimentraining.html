@@ -858,28 +858,29 @@ html.is-loading{ overflow:hidden; }
 .column-hero h1{ font-family:var(--font-head); color:var(--brown); font-size:clamp(28px,4.6vw,42px); line-height:1.5; letter-spacing:.03em; margin-bottom:10px; }
 .column-hero .lead{ font-size:clamp(14px,2.3vw,16.5px); color:var(--gold-deep); }
 .column-body{ padding:56px 0 88px; }
-.column-body .wrap{ max-width:820px; }
+.column-body .wrap{ max-width:880px; }
 .column-body h2{ margin:56px 0 24px; padding-left:16px; border-left:6px solid var(--sun); font-size:clamp(22px,3.1vw,29px); font-weight:700; line-height:1.45; letter-spacing:.02em; word-break:auto-phrase; line-break:strict; }
 .column-body h2:first-child{ margin-top:0; }
 .column-body h3{ margin:36px 0 14px; color:var(--gold-deep); font-size:clamp(17px,2.3vw,21px); font-weight:700; line-height:1.5; letter-spacing:.02em; word-break:auto-phrase; line-break:strict; }
 .column-body p{ margin-bottom:1.4em; font-size:16.5px; line-height:2.05;
-  /* 日本語を文節の切れ目で自然に折り返す（about「アスパスのトレーニング」と同じ設定） */
-  word-break:auto-phrase; line-break:strict; overflow-wrap:anywhere;
-  max-width:44em; margin-left:auto; margin-right:auto; }
+  /* 日本語を「意味のまとまり（文節）」で折り返す。
+     ※overflow-wrap:anywhere は文節判定を壊すため使わない */
+  word-break:auto-phrase; line-break:strict; overflow-wrap:normal;
+  margin-left:auto; margin-right:auto; }
 .column-body p + p{ margin-top:-.3em; }
-.column-body h2, .column-body h3{ max-width:44em; margin-left:auto; margin-right:auto; }
+.column-body h2, .column-body h3{ margin-left:auto; margin-right:auto; }
 .column-body strong{ color:var(--sun); font-weight:600; }
-.column-body ul{ list-style:none; margin:0 auto 1.6em; padding:0; max-width:44em; }
+.column-body ul{ list-style:none; margin:0 auto 1.6em; padding:0; }
 .column-body ul li{ position:relative; padding:8px 0 8px 30px; line-height:1.85; word-break:auto-phrase; line-break:strict; }
 .column-body ul li::before{ content:""; position:absolute; left:6px; top:20px; width:10px; height:10px; border-radius:50%; background:var(--sun); box-shadow:0 0 0 4px rgba(244,162,97,.14); }
 .column-figure{ margin:32px 0 40px; background:var(--card); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
 .column-figure img,.column-figure svg{ display:block; width:100%; height:auto; }
 .column-figure figcaption{ padding:14px 22px; background:#FFFAEE; font-size:15px; color:var(--gold-deep); text-align:center; letter-spacing:.04em; }
-.column-callout{ margin:36px auto; max-width:44em; word-break:auto-phrase; line-break:strict; padding:26px 28px; background:linear-gradient(135deg,#FAF3E7 0%,#FAF3E7 100%); border-radius:16px; border-left:5px solid var(--sun); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; }
+.column-callout{ margin:36px auto; word-break:auto-phrase; line-break:strict; padding:26px 28px; background:linear-gradient(135deg,#FAF3E7 0%,#FAF3E7 100%); border-radius:16px; border-left:5px solid var(--sun); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; }
 .column-quote{ margin:32px 0; padding:20px 24px; background:var(--paper); border-radius:14px; border:1px solid rgba(176,138,69,.24); font-size:15.5px; color:var(--gold-deep); line-height:1.75; }
 .column-quote .src{ display:block; margin-top:6px; font-size:14px; color:var(--brown); opacity:.75; }
 .column-draft-notice{ margin:0 0 40px; padding:16px 20px; background:#FBF4E8; border:1px dashed var(--sun); border-radius:12px; font-size:15px; color:var(--brown); line-height:1.7; }
-.column-cta{ margin:52px auto 0; max-width:44em; padding:30px 26px 32px; background:linear-gradient(135deg,var(--brown) 0%,var(--gold-deep) 100%); color:#fff; border-radius:var(--radius); text-align:center; }
+.column-cta{ margin:52px auto 0; padding:30px 26px 32px; background:linear-gradient(135deg,var(--brown) 0%,var(--gold-deep) 100%); color:#fff; border-radius:var(--radius); text-align:center; }
 .column-cta h3{ color:#fff; font-family:var(--font-head); font-weight:700; font-size:clamp(19px,2.6vw,23px); line-height:1.5; letter-spacing:.02em; margin:0 auto 10px; max-width:none; }
 .column-cta p{ color:rgba(255,255,255,.88); font-family:var(--font-body); font-size:15.5px; line-height:1.85; margin:0 auto 20px; max-width:32em; word-break:auto-phrase; line-break:strict; }
 .column-cta .cta-row{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center; }
@@ -894,6 +895,7 @@ html.is-loading{ overflow:hidden; }
 .column-nav a:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(38,70,83,.16); }
 .column-nav .label{ display:block; font-size:14px; color:var(--gold-deep); letter-spacing:.1em; margin-bottom:6px; }
 .column-nav .title{ font-size:16px; }
+.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 /* --- 見出しの通し番号バッジ --- */
 .column-body h3 .h3-num,
 .column-body h3 .h3-step{ display:inline-block; vertical-align:.12em; margin-right:12px; font-family:var(--font-head); font-weight:700; letter-spacing:.06em; }
@@ -914,20 +916,20 @@ html.is-loading{ overflow:hidden; }
 .column-body figure.wp-block-image img{ display:block; width:100%; height:auto; }
 .column-body figure.wp-block-image figcaption{ padding:14px 22px; background:#FFFAEE; font-size:15px; color:var(--gold-deep); text-align:center; letter-spacing:.04em; margin:0; }
 /* 引用ブロック → .column-callout と同じ見た目に */
-.column-body .wp-block-quote{ margin:36px auto; max-width:44em; padding:26px 28px; background:#FAF3E7; border-radius:16px; border-left:5px solid var(--sun); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; word-break:auto-phrase; line-break:strict; }
+.column-body .wp-block-quote{ margin:36px auto; padding:26px 28px; background:#FAF3E7; border-radius:16px; border-left:5px solid var(--sun); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; word-break:auto-phrase; line-break:strict; }
 .column-body .wp-block-quote p{ margin:0 0 .6em; font-size:inherit; line-height:inherit; max-width:none; }
 .column-body .wp-block-quote cite{ display:block; font-size:14px; color:var(--gold-deep); font-style:normal; }
 /* リストブロック */
-.column-body ul.wp-block-list, .column-body ol.wp-block-list{ max-width:44em; margin:0 auto 1.6em; }
+.column-body ul.wp-block-list, .column-body ol.wp-block-list{ margin:0 auto 1.6em; }
 .column-body ol.wp-block-list{ padding-left:1.4em; }
 .column-body ol.wp-block-list li{ padding:6px 0; line-height:1.85; word-break:auto-phrase; line-break:strict; }
 /* 区切り・埋め込み・表 */
-.column-body .wp-block-separator{ max-width:44em; margin:44px auto; border:0; border-top:2px dotted var(--gold-soft); }
-.column-body .wp-block-embed, .column-body .wp-block-table{ max-width:44em; margin:32px auto; }
+.column-body .wp-block-separator{ margin:44px auto; border:0; border-top:2px dotted var(--gold-soft); }
+.column-body .wp-block-embed, .column-body .wp-block-table{ margin:32px auto; }
 .column-body .wp-block-table table{ width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:var(--shadow); }
 .column-body .wp-block-table th, .column-body .wp-block-table td{ padding:12px 14px; border-bottom:1px solid var(--gold-soft); text-align:left; font-size:15.5px; }
 .column-body .wp-block-table th{ background:var(--gold-soft); color:var(--brown); }
-.column-body .wp-block-buttons{ max-width:44em; margin:32px auto; }
+.column-body .wp-block-buttons{ margin:32px auto; }
 
 @media (max-width:600px){
   .column-hero{ padding:80px 0 36px; }
@@ -1206,7 +1208,7 @@ table{ max-width:100%; }
 
       <figure class="column-figure column-thumb"><img src="images/column-taimen-thumbnail.webp" alt="アスパス鹿児島｜スタジオでの対面トレーニング" width="1200" height="630"></figure>
 
-      <p data-en-html="At ASPATH, a training studio in Kagoshima specializing in Parkinson's disease, specialists with over 14 years of experience support the body you need to do what you want to do.">鹿児島のパーキンソン病専門トレーニングスタジオ『アスパス』では、14年以上パーキンソン病の方と向き合ってきた専門家が、あなたの“やりたいこと”を叶える身体づくりをサポートします。</p>
+      <p data-en-html="At ASPATH, a training studio in Kagoshima specializing in Parkinson's disease, specialists with over 14 years of experience support the body you need to do what you want to do.">鹿児島の<span class="nw">パーキンソン病</span>専門トレーニングスタジオ『アスパス』では、14年以上<span class="nw">パーキンソン病</span>の方と向き合ってきた専門家が、あなたの“やりたいこと”を叶える身体づくりをサポートします。</p>
       <p data-en-html="This article explains in detail what in-person training at the studio actually involves.">この記事では、スタジオでの対面トレーニングの具体的な内容について詳しく解説します。</p>
       <p data-en-html="Please read to the end to find a safe place to exercise that suits you.">ご自身にぴったりな安心できる運動の場を見つけるために、ぜひ最後までご覧ください。</p>
 
@@ -1214,15 +1216,15 @@ table{ max-width:100%; }
       <figure class="column-figure"><img src="images/column-taimen-studio.webp" alt="アスパスのスタジオトレーニング（天文館・城西の室内）" width="1024" height="538" loading="lazy"></figure>
       <p data-en-html="The ASPATH studio is a space where we directly support you in regaining physical and mental energy and building a body that can take on what you want to do.">アスパスのスタジオは、お客さんが心身ともに元気になり、やりたいことに挑戦できる身体づくりを直接サポートする空間です。</p>
 
-      <h3 data-en="Specialized exercise for Parkinson's disease">パーキンソン病に特化した専門的な運動</h3>
-      <p data-en-html="At the ASPATH studio, you can safely receive specialized exercise tailored to the symptoms of Parkinson's disease.">アスパスのスタジオでは、パーキンソン病の症状に合わせた専門的な運動を安心して受けられます。</p>
+      <h3 data-en="Specialized exercise for Parkinson's disease"><span class="nw">パーキンソン病</span>に特化した専門的な運動</h3>
+      <p data-en-html="At the ASPATH studio, you can safely receive specialized exercise tailored to the symptoms of Parkinson's disease.">アスパスのスタジオでは、<span class="nw">パーキンソン病</span>の症状に合わせた専門的な運動を安心して受けられます。</p>
       <p data-en-html="This is because we build each menu on expert knowledge, carefully observing how each person's body changes.">専門知識をもとに、お一人おひとりの身体の変化をしっかりと見極めてメニューを組み立てているためです。</p>
       <p data-en-html="For example, for characteristic concerns such as &quot;my feet freeze and I can't take the first step&quot; or &quot;my muscles stiffen,&quot; we check your movement directly on site and proceed carefully.">たとえば「足がすくんで一歩が出にくい」「筋肉がこわばる」といった特有のお悩みに対し、現地で直接お身体の動きを確認しながら丁寧に進めていきます。</p>
       <p data-en-html="It is training to regain the physical and mental vitality to take on what you want to do.">やりたいことに挑戦できる心身の活力を取り戻すためのトレーニングです。</p>
 
       <h3 data-en="A relaxed, reassuring space">安心のゆったり空間</h3>
       <p data-en-html="Our environment is built around a space where you can relax without worrying about others' eyes.">周囲の目を気にせずリラックスできる空間を基本としている環境です。</p>
-      <p data-en-html="Because we specialize in Parkinson's disease, your training time may sometimes overlap with another client's.">パーキンソン病を専門としているため、時には他のお客さんとトレーニングの時間が重なることもあります。</p>
+      <p data-en-html="Because we specialize in Parkinson's disease, your training time may sometimes overlap with another client's."><span class="nw">パーキンソン病</span>を専門としているため、時には他のお客さんとトレーニングの時間が重なることもあります。</p>
       <p data-en-html="There is no need to feel rushed, as at an ordinary gym, thinking &quot;I move slowly, so I might be in the way.&quot;">一般的なジムのように「動きがゆっくりで迷惑をかけるかも」と焦る心配は一切不要です。</p>
       <p data-en-html="Even if you do overlap, it can be a good chance to share feelings with someone who understands. Of course, family members are very welcome to observe or accompany you.">一緒になったとしても、お互いの気持ちを分かち合える良い機会になりますね。もちろん、ご家族のご見学や付き添いも大歓迎。</p>
       <p data-en-html="In a calm room, keep your own pace—and sometimes encourage one another—as you move forward positively.">落ち着いたお部屋でご自身のペースを守りつつ、時には仲間と励まし合いながら前向きに進めていきましょう。</p>
@@ -1236,7 +1238,7 @@ table{ max-width:100%; }
 
       <h2 data-en="Only at ASPATH: strengths that make it easy to keep coming">アスパスならでは！安心して通える強み</h2>
       <figure class="column-figure"><img src="images/column-taimen-strengths.webp" alt="アスパスならでは！安心して通える4つの強み" width="768" height="432" loading="lazy"></figure>
-      <p data-en-html="There are reasons why ASPATH is chosen by so many people with Parkinson's disease.">アスパスが多くのパーキンソン病の方に選ばれているのには理由があります。</p>
+      <p data-en-html="There are reasons why ASPATH is chosen by so many people with Parkinson's disease.">アスパスが多くの<span class="nw">パーキンソン病</span>の方に選ばれているのには理由があります。</p>
       <p data-en-html="Let us introduce the strengths that are unique to our studio.">当スタジオならではの強みについて、詳しくご紹介していきますね。</p>
 
       <h3 data-en="A program designed backward from your goal"><span class="h3-num">01</span>目標から逆算するあなた専用の運動プログラム</h3>
@@ -1245,16 +1247,16 @@ table{ max-width:100%; }
       <p data-en-html="For example, we carefully listen to wishes such as &quot;I want to walk safely around my home&quot; or &quot;I want to travel with my husband,&quot; then work backward to build the exercise needed to develop the strength and balance to reach that goal.">たとえば、「ご自宅周辺を安全に散歩したい」「ご主人様と旅行へ行きたい」といった願いを丁寧にヒアリング。その目標達成に必要な筋力やバランス感覚を養うための運動を、逆算して組み立てていきますよ。</p>
       <p data-en-html="With training focused on your own dream or goal, let's take back the days that feel like you.">ご自身の夢や目標に向けた無駄のないトレーニングで、自分らしい毎日を取り戻していきましょう。</p>
 
-      <h3 data-en="Safe one-to-one sessions with a Parkinson's specialist"><span class="h3-num">02</span>パーキンソン病の専門家による安全なマンツーマン</h3>
-      <p data-en-html="A specialist who knows the symptoms of Parkinson's disease inside out stays with you throughout.">パーキンソン病の症状を熟知した専門家が、付きっきりでサポートを行います。</p>
+      <h3 data-en="Safe one-to-one sessions with a Parkinson's specialist"><span class="h3-num">02</span><span class="nw">パーキンソン病</span>の専門家による安全な<span class="nw">マンツーマン</span></h3>
+      <p data-en-html="A specialist who knows the symptoms of Parkinson's disease inside out stays with you throughout."><span class="nw">パーキンソン病</span>の症状を熟知した専門家が、付きっきりでサポートを行います。</p>
       <p data-en-html="Because the stage of progression and movement habits differ completely from person to person, close observation from a specialist's viewpoint is essential to safe exercise.">症状の進行度や動きのクセは人によって全く異なるため、専門的な視点による細やかな動きの確認が安全な運動には必要不可欠。</p>
-      <p data-en-html="Our representative, Yamaguchi, has worked closely with people with Parkinson's disease for over 14 years as a physical therapist.">代表の山口は理学療法士として14年以上にわたり、パーキンソン病の方々と深く関わってきました。</p>
-      <p data-en-html="Drawing on expert knowledge of characteristic symptoms such as freezing of gait and postural leaning, we prevent the risk of falls while directly showing you the way of moving that best suits your body.">すくみ足や姿勢の傾きなど特有の症状に対する専門知識を活かし、転倒のリスクをしっかり防ぎながら、あなたの身体に一番合った動かし方を直接お伝えします。</p>
-      <p data-en-html="With one-to-one guidance based on rich experience, we provide an environment where you can move your body safely at your own pace.">豊富な経験に基づいたマンツーマン指導で、ご自身のペースを守りながら安心して身体を動かせる環境をご提供いたします。</p>
+      <p data-en-html="Our representative, Yamaguchi, has worked closely with people with Parkinson's disease for over 14 years as a physical therapist.">代表の山口は<span class="nw">理学療法士</span>として14年以上にわたり、<span class="nw">パーキンソン病</span>の方々と深く関わってきました。</p>
+      <p data-en-html="Drawing on expert knowledge of characteristic symptoms such as freezing of gait and postural leaning, we prevent the risk of falls while directly showing you the way of moving that best suits your body."><span class="nw">すくみ足</span>や姿勢の傾きなど特有の症状に対する専門知識を活かし、転倒のリスクをしっかり防ぎながら、あなたの身体に一番合った動かし方を直接お伝えします。</p>
+      <p data-en-html="With one-to-one guidance based on rich experience, we provide an environment where you can move your body safely at your own pace.">豊富な経験に基づいた<span class="nw">マンツーマン</span>指導で、ご自身のペースを守りながら安心して身体を動かせる環境をご提供いたします。</p>
 
       <h3 data-en="A flexible menu matched to your condition that day"><span class="h3-num">03</span>その日の体調に合わせた柔軟なメニュー</h3>
       <p data-en-html="We proceed with content adapted flexibly to your condition on the day and how your medication is working.">トレーニング当日の体調や、お薬の効き具合に合わせた柔軟な内容で運動を進めます。</p>
-      <p data-en-html="Parkinson's disease involves waves of symptoms known as the &quot;on-off phenomenon,&quot; and how easily the body moves can change greatly by day or time of day.">パーキンソン病には『オンオフ現象』と呼ばれる症状の波があり、日や時間帯によってお身体の動きやすさが大きく変化する場合もあります。</p>
+      <p data-en-html="Parkinson's disease involves waves of symptoms known as the &quot;on-off phenomenon,&quot; and how easily the body moves can change greatly by day or time of day."><span class="nw">パーキンソン病</span>には『<span class="nw">オンオフ現象</span>』と呼ばれる症状の波があり、日や時間帯によってお身体の動きやすさが大きく変化する場合もあります。</p>
       <p data-en-html="On a day when &quot;my legs feel heavy and hard to move,&quot; we don't force movement—we go slowly, centering on stretches that release the muscles.">「今日はなんだか足が重くて動きにくいな」という日には、無理に身体を動かすのではなく、筋肉をほぐすストレッチを中心にゆっくりと。</p>
       <p data-en-html="Conversely, on a day when the medication is working well and you feel good, we may increase the volume a little—adjusting carefully according to the state of the moment.">逆にお薬がしっかり効いて調子が良い日には、少しだけ運動量を増やすなど、その時々の状態をしっかり見極めて調整します。</p>
       <p data-en-html="Because we build the best possible menu for that day while staying close to the waves in your condition, you can keep coming whatever the day.">体調の波に寄り添いながらその日にできる最善のメニューを組むので、どんな時でも通い続けられます。</p>
@@ -1271,7 +1273,7 @@ table{ max-width:100%; }
       <p data-en-html="Here is how we proceed once you arrive at the studio.">実際にスタジオへお越しいただいた際の運動の進め方をご説明します。</p>
       <p data-en-html="These are our carefully considered steps for training safely and effectively.">安全かつ効果的にトレーニングを進めていくためのこだわりのステップとなっています。</p>
 
-      <h3 data-en="Counseling: checking your condition and concerns"><span class="h3-step">STEP 1</span>カウンセリングで体調や気になることの確認</h3>
+      <h3 data-en="Counseling: checking your condition and concerns"><span class="h3-step">STEP 1</span><span class="nw">カウンセリング</span>で体調や気になることの確認</h3>
       <p data-en-html="First, we take time to hear about your condition that day and anything on your mind.">まずは、その日の体調や気になっていることをじっくりとお伺いします。</p>
       <p data-en-html="This is essential time for building a safe menu best suited to your current state.">安全かつ、今の状態に一番適したメニューを組むために欠かせない大切な時間となるためです。</p>
       <p data-en-html="Even small things are fine—&quot;my legs feel a bit heavy today,&quot; &quot;maybe I walked too much shopping yesterday.&quot;">「今日は少し足が重い気がする」「昨日はお買い物で歩きすぎたかも」といった些細なことでも構いません。</p>
@@ -1279,15 +1281,15 @@ table{ max-width:100%; }
       <p data-en-html="We take even the smallest changes seriously, so please prepare with peace of mind.">小さな変化もしっかりと受け止めるので、安心して準備を整えていきましょう。</p>
 
       <h3 data-en="Doing the training"><span class="h3-step">STEP 2</span>トレーニングの実施</h3>
-      <p data-en-html="Based on the counseling, we put your personalized exercise into practice.">カウンセリングの内容をもとに、いよいよあなた専用の運動を実践していきます。</p>
+      <p data-en-html="Based on the counseling, we put your personalized exercise into practice."><span class="nw">カウンセリング</span>の内容をもとに、いよいよあなた専用の運動を実践していきます。</p>
       <p data-en-html="We ease muscle stiffness so that everyday movements become smoother.">筋肉のこわばりを和らげ、日常の動作をスムーズに行えるようにします。</p>
       <p data-en-html="For example, stretches to lengthen the sides for someone concerned about postural leaning.">たとえば、姿勢の傾きが気になる方には脇腹を伸ばすストレッチを。</p>
-      <p data-en-html="For someone whose feet freeze easily, practice focused on a smooth stepping pattern—content matched to your body that day, taught carefully one-to-one.">足がすくみやすい方には、スムーズな足の運び方を意識する練習など、その日のお身体に合わせた内容をマンツーマンで丁寧にお伝えします。</p>
+      <p data-en-html="For someone whose feet freeze easily, practice focused on a smooth stepping pattern—content matched to your body that day, taught carefully one-to-one.">足がすくみやすい方には、スムーズな足の運び方を意識する練習など、その日のお身体に合わせた内容を<span class="nw">マンツーマン</span>で丁寧にお伝えします。</p>
       <p data-en-html="We take frequent breaks and keep an unforced pace, so please rest assured.">こまめに休憩を挟みながら、無理のないペースで進めるのでご安心ください。</p>
       <p data-en-html="Let's learn the right way to move your body, little by little, together with a specialist.">正しい身体の動かし方を、専門家と一緒に少しずつ身につけていきましょう。</p>
 
       <h3 data-en="Home exercise suggestions and follow-up"><span class="h3-step">STEP 3</span>自宅でできる運動提案とアフターフォロー</h3>
-      <p data-en-html="After exercising at the studio, we finish by sharing self-care you can easily continue at home.">スタジオでの運動後は、ご自宅で簡単に続けられるセルフケアをお伝えして終了となります。</p>
+      <p data-en-html="After exercising at the studio, we finish by sharing self-care you can easily continue at home.">スタジオでの運動後は、ご自宅で簡単に続けられる<span class="nw">セルフケア</span>をお伝えして終了となります。</p>
       <p data-en-html="This is because keeping your body in its improved state over the long term depends on exercise and small habits within daily life.">整えたお身体の良い状態を長く保つためには、日々の生活の中での運動やちょっとした習慣づけが欠かせないポイントになるためです。</p>
       <p data-en-html="We suggest exercise you can fit into daily life without strain. We talk about how things go not only in the studio but at home and outside, picture your movements from those checks, and share what fits.">無理なく日常に取り入れられる運動をご提案しますね。スタジオ内だけでなく、ご自宅や外での様子をお話し、動作のチェックからイメージして、適切にお伝えします。</p>
       <p data-en-html="Staying close to you outside the studio too, and supporting you as you head toward your goal, is our work.">スタジオの外でもしっかりと寄り添い、目標に向かうあなたを支え続けるのが私たちの仕事です。</p>
@@ -1296,20 +1298,20 @@ table{ max-width:100%; }
       <p data-en-html="ASPATH has studios in three areas of Kagoshima City that are easy to reach.">アスパスは、鹿児島市内の通いやすい3つのエリアにスタジオを構えています。</p>
       <p data-en-html="You can choose whichever location is easiest to reach from where you live.">お住まいの地域からのアクセスで、ご自身が一番通いやすい場所を選んでいただけますよ。</p>
 
-      <h3 data-en="Tenmonkan Studio">天文館スタジオ</h3>
-      <p data-en-html="The Tenmonkan Studio is appealing because it's easy to stop by for shopping or an outing alongside your ASPATH training.">天文館スタジオは、アスパスのトレーニングついでに、お買い物やお出かけへ立ち寄りやすいのが魅力です。</p>
+      <h3 data-en="Tenmonkan Studio"><span class="nw">天文館スタジオ</span></h3>
+      <p data-en-html="The Tenmonkan Studio is appealing because it's easy to stop by for shopping or an outing alongside your ASPATH training."><span class="nw">天文館スタジオ</span>は、アスパスのトレーニングついでに、お買い物やお出かけへ立ち寄りやすいのが魅力です。</p>
       <p data-en-html="It's conveniently located a five-minute walk from the &quot;Tenmonkan-dori&quot; tram stop.">市電『天文館通』駅から歩いて5分という、便利な立地にあるのが嬉しいポイント。</p>
       <p data-en-html="Even transferring by bus or tram from various areas, you can arrive smoothly.">各地からバスや市電を乗り継いでも、スムーズに到着できる場所ですよ。</p>
       <p data-en-html="Make the most of a downtown location that's easy to reach, and make exercise part of your life.">街の中心部で無理なく通える環境を活用して、運動を生活の一部にしていきましょう。</p>
 
-      <h3 data-en="Josei Studio">城西スタジオ</h3>
-      <p data-en-html="For those who are often dropped off by car, the Josei Studio is ideal.">お車で送迎してもらうことが多い方には、城西スタジオがぴったりですね。</p>
-      <p data-en-html="It is about a five-minute drive from Kagoshima-Chuo Station.">鹿児島中央駅から車で5分ほどの距離にあります。</p>
+      <h3 data-en="Josei Studio"><span class="nw">城西スタジオ</span></h3>
+      <p data-en-html="For those who are often dropped off by car, the Josei Studio is ideal.">お車で送迎してもらうことが多い方には、<span class="nw">城西スタジオ</span>がぴったりですね。</p>
+      <p data-en-html="It is about a five-minute drive from Kagoshima-Chuo Station."><span class="nw">鹿児島中央駅</span>から車で5分ほどの距離にあります。</p>
       <p data-en-html="The quiet, calm surroundings are another welcome feature, letting you face your own body in a relaxed state.">静かで落ち着いた環境が広がっており、リラックスしてご自身の身体と向き合えるのも嬉しい特徴。</p>
       <p data-en-html="Choose the place you can continue without strain, on a familiar route with less driving burden.">運転の負担が少ない通い慣れた道順で、ご自身の無理なく継続できる場所を選んでくださいね。</p>
 
       <h3 data-en="Chuo-cho">中央町</h3>
-      <p data-en-html="This location has excellent access from the station—a five-minute walk from JR Kagoshima-Chuo Station.">こちらはJR『鹿児島中央駅』から徒歩5分と、駅からのアクセスが優れている環境。</p>
+      <p data-en-html="This location has excellent access from the station—a five-minute walk from JR Kagoshima-Chuo Station.">こちらはJR『<span class="nw">鹿児島中央駅</span>』から徒歩5分と、駅からのアクセスが優れている環境。</p>
       <p data-en-html="With plenty of shinkansen, train and bus services, it also suits those who don't usually drive. You might even enjoy some shopping alongside training, in the lively atmosphere around the station.">新幹線や電車、バスが充実しているので、車の運転を普段されない方にもおすすめです。駅周辺の活気ある雰囲気を感じながら、トレーニングついでにお買い物も楽しめるかも。</p>
       <p data-en-html="Make good use of public transport and fit it to your own lifestyle.">交通機関を上手く使いこなしながら、ご自身のライフスタイルに合わせてご活用ください。</p>
 
@@ -1318,13 +1320,13 @@ table{ max-width:100%; }
       <p data-en-html="Even when coming to the studio is difficult, we value creating an environment where specialized exercise can continue.">スタジオまで通うのが難しい状況であっても、専門的な運動を継続できる環境づくりを大切にしています。</p>
       <p data-en-html="You may sometimes feel uneasy—&quot;I can't drive myself,&quot; or &quot;what if my feet freeze while I'm out?&quot;">「自分では運転ができない」「出先で足がすくんでしまったらどうしよう」と不安に感じることもあるかもしれません。</p>
       <p data-en-html="At such times, please don't push yourself—wait at the home you know well.">そんな時は決して無理をせず、住み慣れたご自宅でお待ちください。</p>
-      <p data-en-html="Our staff will come to you directly and provide safe, one-to-one exercise matched to your condition that day.">スタッフが直接お伺いして、その日の体調に合わせた安全な運動をマンツーマンで行います。</p>
+      <p data-en-html="Our staff will come to you directly and provide safe, one-to-one exercise matched to your condition that day.">スタッフが直接お伺いして、その日の体調に合わせた安全な運動を<span class="nw">マンツーマン</span>で行います。</p>
       <p data-en-html="If you'd like this, please feel free to get in touch.">ご希望の方はぜひお気軽にご相談ください。</p>
 
       <h2 data-en="Build the body that makes your hopes happen, at ASPATH">希望を叶える身体づくりをアスパスで</h2>
       <figure class="column-figure"><img src="images/column-taimen-hope.webp" alt="希望を叶える身体づくりをアスパスで" width="768" height="403" loading="lazy"></figure>
       <p data-en-html="Make use of ASPATH's specialized support, and build days that feel like your own—without giving up on what you want to do.">アスパスの専門的なサポートを活用して、やりたいことを諦めない自分らしい毎日をつくっていきましょう。</p>
-      <p data-en-html="To slow the progression of Parkinson's disease, building an &quot;early exercise habit&quot; into daily life—not medication alone—is very important.">パーキンソン病の進行を穏やかにするためには、お薬だけでなく「早期からの運動習慣」を生活に取り入れることがとても重要になります。</p>
+      <p data-en-html="To slow the progression of Parkinson's disease, building an &quot;early exercise habit&quot; into daily life—not medication alone—is very important."><span class="nw">パーキンソン病</span>の進行を穏やかにするためには、お薬だけでなく「早期からの運動習慣」を生活に取り入れることがとても重要になります。</p>
       <p data-en-html="Please use the studio, online sessions and home visits flexibly, according to your own situation.">ご自身の状況にあわせて、スタジオやオンライン、訪問サポートを柔軟に使い分けてみてください。</p>
       <div class="column-callout" data-en-html="&lt;strong&gt;&quot;The time you can move now&quot; supports the future you'll have ten years from now.&lt;/strong&gt;&lt;br&gt;&lt;br&gt;Please come and try a first session."><strong>「動ける今の時間」が、10年後の未来を支えます。</strong><br><br>まずは一度、初回体験へお越しくださいね。</div>
 
@@ -1333,7 +1335,7 @@ table{ max-width:100%; }
 
       <div class="column-cta">
         <h3 data-en="First, let us hear from you">まずは一度、お話を聞かせてください</h3>
-        <p data-en-html="The first trial session is half price, ¥4,400, for a limited time. A physical therapist specializing in Parkinson's disease will carefully ask about your condition and goals.">初回体験は期間限定 半額4,400円。パーキンソン病専門の理学療法士が、<br class="br-pc">あなたの状態と目標を丁寧に伺います。</p>
+        <p data-en-html="The first trial session is half price, ¥4,400, for a limited time. A physical therapist specializing in Parkinson's disease will carefully ask about your condition and goals.">初回体験は期間限定 半額<span class="nw">4,400円</span>。<span class="nw">パーキンソン病</span>専門の<span class="nw">理学療法士</span>が、<br class="br-pc">あなたの状態と目標を丁寧に伺います。</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="contact.html" data-en="Ask via form">フォームで問い合わせる<span class="arw">→</span></a>
           <a class="btn btn-line" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg>公式LINEに登録する</a>
@@ -1343,11 +1345,11 @@ table{ max-width:100%; }
       <nav class="column-nav" aria-label="関連ページ">
         <a href="onlineaspath.html">
           <span class="label">COLUMN</span>
-          <span class="title" data-en="ASPATH&#39;s online training is a great choice →">アスパスのオンライントレーニングがおすすめ！ →</span>
+          <span class="title" data-en="ASPATH&#39;s online training is a great choice →">アスパスの<span class="nw">オンライントレーニング</span>がおすすめ！ →</span>
         </a>
         <a href="column-parkinson.html">
           <span class="label">COLUMN</span>
-          <span class="title" data-en="Parkinson&#39;s disease and ASPATH&#39;s journey →">パーキンソン病とアスパスの歩み方 →</span>
+          <span class="title" data-en="Parkinson&#39;s disease and ASPATH&#39;s journey →"><span class="nw">パーキンソン病</span>とアスパスの歩み方 →</span>
         </a>
       </nav>
 
