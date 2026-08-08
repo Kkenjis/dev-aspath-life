@@ -304,6 +304,7 @@ get_header(); ?>
     <div class="wrap">
       <p class="column-crumb"><a href="<?php echo esc_url( home_url('/') ); ?>">TOP</a> ／ <a href="<?php echo esc_url( home_url('/blog/') ); ?>">コラム</a> ／ <?php the_title(); ?></p>
       <h1><?php the_title(); ?></h1>
+      <?php if ( is_sticky( get_the_ID() ) ) : ?><p class="column-byline"><span class="imp-label">重要</span></p><?php endif; ?>
       <p class="column-byline">By ASPATH ／ <?php echo get_the_date(); ?></p>
     </div>
   </section>
@@ -329,14 +330,16 @@ get_header(); ?>
     <div class="news-list" id="newsList">
       <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
         $cats = get_the_category(); $catname = $cats ? $cats[0]->name : ''; ?>
-        <a class="news-list-item" data-cat="<?php echo esc_attr($catname); ?>" href="<?php the_permalink(); ?>">
+        <?php $imp = is_sticky( get_the_ID() ); ?>
+        <a class="news-list-item<?php echo $imp ? ' is-important' : ''; ?>" data-cat="<?php echo esc_attr($catname); ?>" href="<?php the_permalink(); ?>">
           <div class="nli-thumb img-slot" role="img" aria-label="<?php the_title_attribute(); ?>">
             <?php if ( has_post_thumbnail() ) the_post_thumbnail('medium', array('style'=>'--fit:contain; --pos:50% 50%;')); ?>
           </div>
           <div class="nli-body">
             <div class="nli-meta">
               <time datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time>
-              <?php if ( $catname ) : ?><span class="nli-tag" style="background:var(--gold);"><?php echo esc_html($catname); ?></span><?php endif; ?>
+              <?php if ( $imp ) : ?><span class="nli-tag tag-important">重要</span>
+              <?php elseif ( $catname ) : ?><span class="nli-tag" style="background:var(--gold);"><?php echo esc_html($catname); ?></span><?php endif; ?>
             </div>
             <h3 class="nli-title"><?php the_title(); ?></h3>
             <p class="nli-excerpt"><?php echo esc_html( get_the_excerpt() ); ?></p>
@@ -363,6 +366,35 @@ get_header(); ?>
     open(os.path.join(OUT,"archive.php"),"w",encoding="utf-8").write(home)
     open(os.path.join(OUT,"index.php"),"w",encoding="utf-8").write(home)
     open(os.path.join(OUT,"page.php"),"w",encoding="utf-8").write(page_generic)
+
+
+    # TOPのお知らせ枠を動的化：「先頭に固定表示（＝重要）」の投稿を優先して1件表示
+    NOTICE_LOOP = """<?php
+  $aspath_sticky = get_option('sticky_posts');
+  $aspath_args   = array('posts_per_page'=>1,'ignore_sticky_posts'=>true,'category_name'=>'info');
+  if ( ! empty($aspath_sticky) ) { $aspath_args['post__in'] = $aspath_sticky; }
+  $aspath_q = new WP_Query($aspath_args);
+  if ( ! $aspath_q->have_posts() ) {
+    $aspath_q = new WP_Query(array('posts_per_page'=>1,'ignore_sticky_posts'=>true,'category_name'=>'info'));
+  }
+  if ( $aspath_q->have_posts() ) : while ( $aspath_q->have_posts() ) : $aspath_q->the_post();
+    $imp = is_sticky( get_the_ID() ); ?>
+          <li class="notice-row<?php echo $imp ? ' is-important' : ''; ?>">
+            <time datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time>
+            <span class="tag<?php echo $imp ? ' tag-important' : ''; ?>"><?php echo $imp ? '重要' : 'お知らせ'; ?></span>
+            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+          </li>
+  <?php endwhile; wp_reset_postdata(); else : ?>
+          <li class="notice-row"><span class="tag">お知らせ</span><a href="<?php echo esc_url( home_url('/info/') ); ?>">お知らせはまだありません</a></li>
+  <?php endif; ?>
+"""
+    fp = os.path.join(OUT,"front-page.php")
+    _s = open(fp,encoding="utf-8").read()
+    _m = re.search(r'(<ul class="notice-list[^"]*" id="noticeList"[^>]*>)([\s\S]*?)(</ul>)', _s)
+    if _m:
+        _s = _s[:_m.start(2)] + "\n" + NOTICE_LOOP + "        " + _s[_m.end(2):]
+        open(fp,"w",encoding="utf-8").write(_s)
+        print("  ↳ front-page.php: TOPのお知らせ枠を動的化（重要=先頭固定を優先）")
 
     # screenshot（前回生成の物があれば流用）
     old_ss = os.path.join(SRC,"_wp移行素材","theme-aspath","screenshot.png")
