@@ -860,7 +860,8 @@ main{ padding-top:76px; }
   border-bottom:1px solid var(--gold-soft); text-decoration:none; transition:background .2s; align-items:start; }
 .news-list-item:hover{ background:var(--paper); }
 .news-list-item:first-child{ padding-top:0; }
-.nli-thumb{ aspect-ratio:4/3; border-radius:12px; overflow:hidden; background:#fff; }
+.nli-thumb{ aspect-ratio:40/21; border-radius:12px; overflow:hidden; background:transparent; }  /* アイキャッチ比率に一致＝余白なし */
+.nli-thumb > img{ border-radius:12px; }
 .nli-meta{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
 .nli-meta time{ font-size:14.5px; color:#5E7681; font-weight:600; }
 .nli-tag{ font-size:13px; color:#fff; padding:3px 12px; border-radius:20px; font-weight:600; }
@@ -1150,7 +1151,7 @@ table{ max-width:100%; }
       <h2 id="news-list" style="border:none; padding:0; margin-bottom:20px;" data-en="Latest Columns">最新のコラム</h2>
       <div class="news-list" id="newsList">
         <a class="news-list-item" data-cat="パーキンソン病" href="taimentraining.html">
-          <div class="nli-thumb img-slot" role="img" aria-label="アスパススタジオでの対面トレーニング"><img src="images/column-taimen-thumbnail.webp" alt="アスパススタジオでの対面トレーニング" style="--fit:contain; --pos:50% 50%;"></div>
+          <div class="nli-thumb img-slot" role="img" aria-label="アスパススタジオでの対面トレーニング"><img src="images/column-taimen-thumbnail.webp" alt="アスパススタジオでの対面トレーニング" style="--fit:cover; --pos:50% 50%;"></div>
           <div class="nli-body">
             <div class="nli-meta">
               <time datetime="2026-08-03">2026.08.03</time>
@@ -1161,7 +1162,7 @@ table{ max-width:100%; }
           </div>
         </a>
         <a class="news-list-item" data-cat="パーキンソン病" href="onlineaspath.html">
-          <div class="nli-thumb img-slot" role="img" aria-label="アスパスのオンライントレーニングがおすすめ！"><img src="images/column-online-thumbnail.webp" alt="アスパスのオンライントレーニングがおすすめ！" style="--fit:contain; --pos:50% 50%;"></div>
+          <div class="nli-thumb img-slot" role="img" aria-label="アスパスのオンライントレーニングがおすすめ！"><img src="images/column-online-thumbnail.webp" alt="アスパスのオンライントレーニングがおすすめ！" style="--fit:cover; --pos:50% 50%;"></div>
           <div class="nli-body">
             <div class="nli-meta">
               <time datetime="2026-07-28">2026.07.28</time>
@@ -1172,7 +1173,7 @@ table{ max-width:100%; }
           </div>
         </a>
         <a class="news-list-item" data-cat="パーキンソン病" href="column-parkinson.html">
-          <div class="nli-thumb img-slot" role="img" aria-label="パーキンソン病とアスパスの歩み方"><img src="images/column-pk-thumbnail.webp" alt="パーキンソン病とアスパスの歩み方" style="--fit:contain; --pos:50% 50%;"></div>
+          <div class="nli-thumb img-slot" role="img" aria-label="パーキンソン病とアスパスの歩み方"><img src="images/column-pk-thumbnail.webp" alt="パーキンソン病とアスパスの歩み方" style="--fit:cover; --pos:50% 50%;"></div>
           <div class="nli-body">
             <div class="nli-meta">
               <time datetime="2026-07-19">2026.07.19</time>

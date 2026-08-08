@@ -980,7 +980,7 @@ html.is-loading{ overflow:hidden; }
 .column-list{ display:grid; gap:26px; }
 .col-card{ display:grid; grid-template-columns:260px 1fr; text-decoration:none; color:var(--ink); background:#fff; border:none; border-radius:20px; overflow:hidden; box-shadow:0 8px 26px rgba(38,70,83,.08); transition:transform .2s, box-shadow .2s; }
 .col-card:hover{ transform:translateY(-4px); box-shadow:0 14px 34px rgba(38,70,83,.14); }
-.col-thumb{ --ratio:16/11; border-radius:0; box-shadow:none; border:none; background:#fff; }
+.col-thumb{ --ratio:40/21; border-radius:0; box-shadow:none; border:none; background:transparent; }  /* アイキャッチ比率に一致＝余白なし */
 .col-body{ padding:26px 30px; }
 .col-meta{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
 .col-meta time{ font-size:14.5px; color:#5E7681; font-weight:700; }
@@ -990,6 +990,10 @@ html.is-loading{ overflow:hidden; }
 .col-excerpt{ font-size:15px; color:#52707A; line-height:1.8; margin:0; }
 .col-card.is-more{ display:none; }
 .column-list.is-open .col-card.is-more{ display:grid; animation:fadein .4s ease; }
+@media(min-width:641px){
+  .col-card{ align-items:stretch; }
+  .col-thumb{ aspect-ratio:auto; height:100%; min-height:150px; }  /* カード高さいっぱい＝上下の白余白なし */
+}
 @media(max-width:640px){ .col-card{ grid-template-columns:1fr; }
 .col-card--noimg{ grid-template-columns:1fr; } }
 
@@ -1463,7 +1467,7 @@ table{ max-width:100%; }
         <div class="sec-head"><h2 data-en="Column">コラム</h2><p class="lede" data-en="Specialists explain Parkinson's disease and stroke in plain language.">パーキンソン病を、専門家がやさしく解説します。</p></div>
         <div class="column-list" id="columnList">
           <a class="col-card" href="taimentraining.html">
-            <div class="img-slot col-thumb" role="img" aria-label="アスパススタジオでの対面トレーニング"><img src="images/column-taimen-thumbnail.webp" alt="アスパススタジオでの対面トレーニング" style="--fit:contain; --pos:50% 50%;"></div>
+            <div class="img-slot col-thumb" role="img" aria-label="アスパススタジオでの対面トレーニング"><img src="images/column-taimen-thumbnail.webp" alt="アスパススタジオでの対面トレーニング" style="--fit:cover; --pos:50% 50%;"></div>
             <div class="col-body">
               <div class="col-meta"><time datetime="2026-08-03">2026.08.03</time><span class="tag-col" data-en="Column">コラム</span></div>
               <b data-en="In-Person Training at the ASPATH Studio">アスパススタジオでの対面トレーニング</b>
@@ -1471,7 +1475,7 @@ table{ max-width:100%; }
             </div>
           </a>
           <a class="col-card" href="onlineaspath.html">
-            <div class="img-slot col-thumb" role="img" aria-label="アスパスのオンライントレーニングがおすすめ！"><img src="images/column-online-thumbnail.webp" alt="アスパスのオンライントレーニングがおすすめ！" style="--fit:contain; --pos:50% 50%;"></div>
+            <div class="img-slot col-thumb" role="img" aria-label="アスパスのオンライントレーニングがおすすめ！"><img src="images/column-online-thumbnail.webp" alt="アスパスのオンライントレーニングがおすすめ！" style="--fit:cover; --pos:50% 50%;"></div>
             <div class="col-body">
               <div class="col-meta"><time datetime="2026-07-28">2026.07.28</time><span class="tag-col" data-en="Column">コラム</span></div>
               <b data-en="ASPATH&#39;s Online Training Is a Great Choice">アスパスのオンライントレーニングがおすすめ！</b>
@@ -1479,7 +1483,7 @@ table{ max-width:100%; }
             </div>
           </a>
           <a class="col-card" href="column-parkinson.html">
-            <div class="img-slot col-thumb" role="img" aria-label="パーキンソン病とアスパスの歩み方"><img src="images/column-pk-thumbnail.webp" alt="パーキンソン病とアスパスの歩み方" style="--fit:contain; --pos:50% 50%;"></div>
+            <div class="img-slot col-thumb" role="img" aria-label="パーキンソン病とアスパスの歩み方"><img src="images/column-pk-thumbnail.webp" alt="パーキンソン病とアスパスの歩み方" style="--fit:cover; --pos:50% 50%;"></div>
             <div class="col-body">
               <div class="col-meta"><time datetime="2026-07-19">2026.07.19</time><span class="tag-col" data-en="Column">コラム</span></div>
               <b data-en="Parkinson's Disease and ASPATH's Journey">パーキンソン病とアスパスの歩み方</b>
