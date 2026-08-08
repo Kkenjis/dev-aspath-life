@@ -1109,7 +1109,7 @@ table{ max-width:100%; }
 /* ===== 3つの芯：パズル図解 ===== */
 .tr-puzzle{ margin:34px auto 40px; max-width:720px; text-align:center; }
 .tr-puzzle-svg{ width:100%; height:auto; display:block; overflow:visible; }
-.pz-piece path{ stroke:#fff; stroke-width:3; filter:drop-shadow(0 6px 14px rgba(38,70,83,.16)); }
+.pz-piece path{ stroke:#fff; stroke-width:4; stroke-linejoin:round; filter:drop-shadow(0 6px 14px rgba(38,70,83,.16)); }
 .pz-body path{ fill:var(--brown); }
 .pz-mind path{ fill:var(--sun); }
 .pz-cause path{ fill:var(--leaf); }
@@ -1262,37 +1262,37 @@ table{ max-width:100%; }
         <p class="tr-p">パーキンソン病の症状に向き合うとき、手足の震えや歩きにくさといった「目に見える症状」だけに囚われてしまうと、本当の意味での改善にはつながりません。アスパスでは、表面的な症状の奥深くにある「3つの芯」に焦点を当て、根本からお身体と心を整えていきます。</p>
 
         <div class="tr-puzzle reveal">
-          <svg viewBox="0 0 760 470" role="img" aria-labelledby="pzTitle pzDesc" class="tr-puzzle-svg">
+          <svg viewBox="0 0 780 470" role="img" aria-labelledby="pzTitle pzDesc" class="tr-puzzle-svg">
             <title id="pzTitle">3つの芯</title>
             <desc id="pzDesc">身体の芯・心の芯・原因の芯という3つのピースが噛み合い、あなたらしい人生へつながる図</desc>
 
             <g class="pz-piece pz-body">
-              <path d="M52 96 h150 a20 20 0 0 1 0 40 h-0 a20 20 0 0 0 0 40 h0 v150 a20 20 0 0 1-40 0 a20 20 0 0 0-40 0 h-70 a14 14 0 0 1-14-14 v-202 a14 14 0 0 1 14-14 z"/>
-              <text x="120" y="196" class="pz-t">身体の芯</text>
-              <text x="120" y="228" class="pz-s">体幹・姿勢</text>
-              <text x="120" y="262" class="pz-s2">ほぐす／強くする</text>
+              <path d="M60 100 H265 V194 a26 26 0 0 1 0 52 V340 H60 a0 0 0 0 1 0 0 V100 Z"/>
+              <text x="162" y="205" class="pz-t">身体の芯</text>
+              <text x="162" y="238" class="pz-s">体幹・姿勢</text>
+              <text x="162" y="270" class="pz-s2">ほぐす／強くする</text>
             </g>
 
             <g class="pz-piece pz-mind">
-              <path d="M262 96 h150 a14 14 0 0 1 14 14 v70 a20 20 0 0 0 0 40 a20 20 0 0 1 0 40 v70 a14 14 0 0 1-14 14 h-150 a20 20 0 0 0 0-40 a20 20 0 0 1 0-40 v-150 a20 20 0 0 0 0-40 z"/>
-              <text x="344" y="196" class="pz-t">心の芯</text>
-              <text x="344" y="228" class="pz-s">本当の願い</text>
-              <text x="344" y="262" class="pz-s2">対話で汲み取る</text>
+              <path d="M265 100 H470 V194 a26 26 0 0 1 0 52 V340 H265 V246 a26 26 0 0 0 0-52 Z"/>
+              <text x="368" y="205" class="pz-t">心の芯</text>
+              <text x="368" y="238" class="pz-s">本当の願い</text>
+              <text x="368" y="270" class="pz-s2">対話で汲み取る</text>
             </g>
 
             <g class="pz-piece pz-cause">
-              <path d="M486 96 h180 a14 14 0 0 1 14 14 v230 a14 14 0 0 1-14 14 h-180 a20 20 0 0 1 0-40 a20 20 0 0 0 0-40 v-70 a20 20 0 0 1 0-40 a20 20 0 0 0 0-40 z"/>
-              <text x="586" y="196" class="pz-t">原因の芯</text>
-              <text x="586" y="228" class="pz-s">根本の課題</text>
-              <text x="586" y="262" class="pz-s2">専門的に見抜く</text>
+              <path d="M470 100 H720 V340 H470 V246 a26 26 0 0 0 0-52 Z"/>
+              <text x="595" y="205" class="pz-t">原因の芯</text>
+              <text x="595" y="238" class="pz-s">根本の課題</text>
+              <text x="595" y="270" class="pz-s2">専門的に見抜く</text>
             </g>
 
+            <path class="pz-arrow" d="M390 352 L390 376" />
+            <path class="pz-arrow-head" d="M381 372 L390 386 L399 372 Z" />
             <g class="pz-goal">
-              <rect x="238" y="382" width="284" height="62" rx="31"/>
-              <text x="380" y="421" class="pz-goal-t">あなたらしい人生へ</text>
+              <rect x="248" y="396" width="284" height="60" rx="30"/>
+              <text x="390" y="434" class="pz-goal-t">あなたらしい人生へ</text>
             </g>
-            <path class="pz-arrow" d="M380 352 L380 374" />
-            <path class="pz-arrow-head" d="M372 370 L380 382 L388 370 Z" />
           </svg>
           <p class="tr-puzzle-note">3つの芯が噛み合ってはじめて、根本からの変化が生まれます。</p>
         </div>
