@@ -893,6 +893,15 @@ html.is-loading{ overflow:hidden; }
 .column-nav a:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(38,70,83,.16); }
 .column-nav .label{ display:block; font-size:14px; color:var(--gold-deep); letter-spacing:.1em; margin-bottom:6px; }
 .column-nav .title{ font-size:16px; }
+/* --- 見出しの通し番号バッジ --- */
+.column-body h3 .h3-num,
+.column-body h3 .h3-step{ display:inline-block; vertical-align:.12em; margin-right:12px; font-family:var(--font-head); font-weight:700; letter-spacing:.06em; }
+.column-body h3 .h3-num{ min-width:2.4em; padding:2px 10px; border-radius:999px; background:var(--sun); color:#fff; font-size:.78em; text-align:center; }
+.column-body h3 .h3-step{ padding:2px 12px; border-radius:999px; background:var(--gold-soft); color:var(--brown); font-size:.74em; }
+@media (max-width:760px){
+  .column-body h3 .h3-num, .column-body h3 .h3-step{ display:block; margin:0 0 6px; width:max-content; }
+}
+
 /* ============================================================
    コラム記事テンプレート：WordPressブロックエディタ用の対応
    （山口様がWPの「投稿」で書いた記事も、このデザインで表示されます）
@@ -1185,7 +1194,7 @@ table{ max-width:100%; }
   <section class="column-hero">
     <div class="wrap">
       <p class="column-crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / &lt;a href=&quot;news.html&quot;&gt;Column&lt;/a&gt; / In-person training"><a href="index.html">TOP</a> ／ <a href="news.html">コラム</a> ／ 対面トレーニング</p>
-      <h1 data-en="In-Person Training at the ASPATH Studio">アスパススタジオでの<br class="br-pc">対面トレーニング</h1>
+      <h1 data-en="In-Person Training at the ASPATH Studio">アスパススタジオでの対面トレーニング</h1>
       <p class="lead" data-en-html="Specialists with over 14 years of experience with Parkinson's disease support the body you need to do what you want to do.">14年以上パーキンソン病の方と向き合ってきた専門家が、あなたの“やりたいこと”を叶える身体づくりをサポートします。</p>
       <p class="column-byline" data-en="By ASPATH ／ August 3, 2026">By ASPATH ／ 2026年8月3日</p>
     </div>
@@ -1229,27 +1238,27 @@ table{ max-width:100%; }
       <p data-en-html="There are reasons why ASPATH is chosen by so many people with Parkinson's disease.">アスパスが多くのパーキンソン病の方に選ばれているのには理由があります。</p>
       <p data-en-html="Let us introduce the strengths that are unique to our studio.">当スタジオならではの強みについて、詳しくご紹介していきますね。</p>
 
-      <h3 data-en="A program designed backward from your goal">目標から逆算するあなた専用の運動プログラム</h3>
+      <h3 data-en="A program designed backward from your goal"><span class="h3-num">01</span>目標から逆算するあなた専用の運動プログラム</h3>
       <p data-en-html="We propose fully made-to-order exercise directly connected to the goal you want to achieve.">あなたの叶えたい目標に直結する、完全オーダーメイドの運動をご提案します。</p>
       <p data-en-html="Rather than working through a fixed menu, what matters most is building a plan around each person's physical condition and lifestyle.">決まったメニューをこなすのではなく、一人ひとりの身体の状態や生活スタイルに合わせて計画を立てることが何より大切です。</p>
       <p data-en-html="For example, we carefully listen to wishes such as &quot;I want to walk safely around my home&quot; or &quot;I want to travel with my husband,&quot; then work backward to build the exercise needed to develop the strength and balance to reach that goal.">たとえば、「ご自宅周辺を安全に散歩したい」「ご主人様と旅行へ行きたい」といった願いを丁寧にヒアリング。その目標達成に必要な筋力やバランス感覚を養うための運動を、逆算して組み立てていきますよ。</p>
       <p data-en-html="With training focused on your own dream or goal, let's take back the days that feel like you.">ご自身の夢や目標に向けた無駄のないトレーニングで、自分らしい毎日を取り戻していきましょう。</p>
 
-      <h3 data-en="Safe one-to-one sessions with a Parkinson's specialist">パーキンソン病の専門家による安全なマンツーマン</h3>
+      <h3 data-en="Safe one-to-one sessions with a Parkinson's specialist"><span class="h3-num">02</span>パーキンソン病の専門家による安全なマンツーマン</h3>
       <p data-en-html="A specialist who knows the symptoms of Parkinson's disease inside out stays with you throughout.">パーキンソン病の症状を熟知した専門家が、付きっきりでサポートを行います。</p>
       <p data-en-html="Because the stage of progression and movement habits differ completely from person to person, close observation from a specialist's viewpoint is essential to safe exercise.">症状の進行度や動きのクセは人によって全く異なるため、専門的な視点による細やかな動きの確認が安全な運動には必要不可欠。</p>
       <p data-en-html="Our representative, Yamaguchi, has worked closely with people with Parkinson's disease for over 14 years as a physical therapist.">代表の山口は理学療法士として14年以上にわたり、パーキンソン病の方々と深く関わってきました。</p>
       <p data-en-html="Drawing on expert knowledge of characteristic symptoms such as freezing of gait and postural leaning, we prevent the risk of falls while directly showing you the way of moving that best suits your body.">すくみ足や姿勢の傾きなど特有の症状に対する専門知識を活かし、転倒のリスクをしっかり防ぎながら、あなたの身体に一番合った動かし方を直接お伝えします。</p>
       <p data-en-html="With one-to-one guidance based on rich experience, we provide an environment where you can move your body safely at your own pace.">豊富な経験に基づいたマンツーマン指導で、ご自身のペースを守りながら安心して身体を動かせる環境をご提供いたします。</p>
 
-      <h3 data-en="A flexible menu matched to your condition that day">その日の体調に合わせた柔軟なメニュー</h3>
+      <h3 data-en="A flexible menu matched to your condition that day"><span class="h3-num">03</span>その日の体調に合わせた柔軟なメニュー</h3>
       <p data-en-html="We proceed with content adapted flexibly to your condition on the day and how your medication is working.">トレーニング当日の体調や、お薬の効き具合に合わせた柔軟な内容で運動を進めます。</p>
       <p data-en-html="Parkinson's disease involves waves of symptoms known as the &quot;on-off phenomenon,&quot; and how easily the body moves can change greatly by day or time of day.">パーキンソン病には『オンオフ現象』と呼ばれる症状の波があり、日や時間帯によってお身体の動きやすさが大きく変化する場合もあります。</p>
       <p data-en-html="On a day when &quot;my legs feel heavy and hard to move,&quot; we don't force movement—we go slowly, centering on stretches that release the muscles.">「今日はなんだか足が重くて動きにくいな」という日には、無理に身体を動かすのではなく、筋肉をほぐすストレッチを中心にゆっくりと。</p>
       <p data-en-html="Conversely, on a day when the medication is working well and you feel good, we may increase the volume a little—adjusting carefully according to the state of the moment.">逆にお薬がしっかり効いて調子が良い日には、少しだけ運動量を増やすなど、その時々の状態をしっかり見極めて調整します。</p>
       <p data-en-html="Because we build the best possible menu for that day while staying close to the waves in your condition, you can keep coming whatever the day.">体調の波に寄り添いながらその日にできる最善のメニューを組むので、どんな時でも通い続けられます。</p>
 
-      <h3 data-en="No limits on period or number of sessions">期間や回数の制限なく納得いくまで通える</h3>
+      <h3 data-en="No limits on period or number of sessions"><span class="h3-num">04</span>期間や回数の制限なく納得いくまで通える</h3>
       <p data-en-html="At ASPATH, you can continue exercising as long as you feel is right, without being bound by a set period or number of sessions.">アスパスでは、期間や回数に縛られることなく、あなたがご納得いくまで運動を継続していただけます。</p>
       <p data-en-html="Because our service is outside the insurance system, there is no &quot;up to X months&quot; limit like hospital rehabilitation.">当スタジオは保険外のサービスであるため、病院のリハビリのような「〇ヶ月まで」といった日数の制限が一切ない仕組み。</p>
       <p data-en-html="You need not worry that &quot;I want to keep exercising, but the term ran out and rehab ended.&quot;">「もう少し運動を続けたいのに、期限が来てリハビリが終わってしまった」と焦る心配はありません。</p>
@@ -1261,14 +1270,14 @@ table{ max-width:100%; }
       <p data-en-html="Here is how we proceed once you arrive at the studio.">実際にスタジオへお越しいただいた際の運動の進め方をご説明します。</p>
       <p data-en-html="These are our carefully considered steps for training safely and effectively.">安全かつ効果的にトレーニングを進めていくためのこだわりのステップとなっています。</p>
 
-      <h3 data-en="Counseling: checking your condition and concerns">カウンセリングで体調や気になることの確認</h3>
+      <h3 data-en="Counseling: checking your condition and concerns"><span class="h3-step">STEP 1</span>カウンセリングで体調や気になることの確認</h3>
       <p data-en-html="First, we take time to hear about your condition that day and anything on your mind.">まずは、その日の体調や気になっていることをじっくりとお伺いします。</p>
       <p data-en-html="This is essential time for building a safe menu best suited to your current state.">安全かつ、今の状態に一番適したメニューを組むために欠かせない大切な時間となるためです。</p>
       <p data-en-html="Even small things are fine—&quot;my legs feel a bit heavy today,&quot; &quot;maybe I walked too much shopping yesterday.&quot;">「今日は少し足が重い気がする」「昨日はお買い物で歩きすぎたかも」といった些細なことでも構いません。</p>
       <p data-en-html="We also check details such as how your medication is working and how you spent the previous day, clearing up any worries before moving on to exercise.">お薬の効き具合や前日の過ごし方なども細かく確認し、ご不安な点を取り除いてから実際の運動へ移ります。</p>
       <p data-en-html="We take even the smallest changes seriously, so please prepare with peace of mind.">小さな変化もしっかりと受け止めるので、安心して準備を整えていきましょう。</p>
 
-      <h3 data-en="Doing the training">トレーニングの実施</h3>
+      <h3 data-en="Doing the training"><span class="h3-step">STEP 2</span>トレーニングの実施</h3>
       <p data-en-html="Based on the counseling, we put your personalized exercise into practice.">カウンセリングの内容をもとに、いよいよあなた専用の運動を実践していきます。</p>
       <p data-en-html="We ease muscle stiffness so that everyday movements become smoother.">筋肉のこわばりを和らげ、日常の動作をスムーズに行えるようにします。</p>
       <p data-en-html="For example, stretches to lengthen the sides for someone concerned about postural leaning.">たとえば、姿勢の傾きが気になる方には脇腹を伸ばすストレッチを。</p>
@@ -1276,7 +1285,7 @@ table{ max-width:100%; }
       <p data-en-html="We take frequent breaks and keep an unforced pace, so please rest assured.">こまめに休憩を挟みながら、無理のないペースで進めるのでご安心ください。</p>
       <p data-en-html="Let's learn the right way to move your body, little by little, together with a specialist.">正しい身体の動かし方を、専門家と一緒に少しずつ身につけていきましょう。</p>
 
-      <h3 data-en="Home exercise suggestions and follow-up">自宅でできる運動提案とアフターフォロー</h3>
+      <h3 data-en="Home exercise suggestions and follow-up"><span class="h3-step">STEP 3</span>自宅でできる運動提案とアフターフォロー</h3>
       <p data-en-html="After exercising at the studio, we finish by sharing self-care you can easily continue at home.">スタジオでの運動後は、ご自宅で簡単に続けられるセルフケアをお伝えして終了となります。</p>
       <p data-en-html="This is because keeping your body in its improved state over the long term depends on exercise and small habits within daily life.">整えたお身体の良い状態を長く保つためには、日々の生活の中での運動やちょっとした習慣づけが欠かせないポイントになるためです。</p>
       <p data-en-html="We suggest exercise you can fit into daily life without strain. We talk about how things go not only in the studio but at home and outside, picture your movements from those checks, and share what fits.">無理なく日常に取り入れられる運動をご提案しますね。スタジオ内だけでなく、ご自宅や外での様子をお話し、動作のチェックからイメージして、適切にお伝えします。</p>
