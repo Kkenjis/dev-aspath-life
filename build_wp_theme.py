@@ -23,7 +23,7 @@ ZIP = os.path.join(SRC, "_wp移行素材", "aspath-theme.zip")
 VERSION = "1.1." + datetime.date.today().strftime("%Y%m%d")
 
 PAGES = ["index.html","about.html","price.html","access.html","contact.html","faq.html",
-         "news.html","news-detail.html","column-parkinson.html","taimentraining.html","onlineaspath.html","info.html","news-campaign.html","news-taikenkai.html","privacy.html",
+         "news.html","news-detail.html","column-parkinson.html","taimentraining.html","onlineaspath.html","info.html","news-campaign.html","privacy.html",
          "tokushoho.html","sitemap.html"]
 
 LINKS = {
@@ -34,7 +34,7 @@ LINKS = {
  'column-parkinson.html':'/パーキンソン病とアスパスの歩み方/',
  'taimentraining.html':'/taimentraining/',
  'onlineaspath.html':'/onlineaspath/',
- 'info.html':'/info/', 'news-campaign.html':'/campaign/', 'news-taikenkai.html':'/taikenkai/',
+ 'info.html':'/info/', 'news-campaign.html':'/campaign/',
 }
 TPL = '<?php echo get_template_directory_uri(); ?>'
 
