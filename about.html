@@ -1087,13 +1087,13 @@ table{ max-width:100%; }
 .tr-core-card{ background:#fff; border-radius:18px; padding:26px 28px; margin-top:22px; box-shadow:0 8px 24px rgba(38,70,83,.07); }
 .tcc-tag{ display:inline-block; font-family:var(--font-head); font-weight:700; color:#fff; border-radius:999px; padding:7px 20px; font-size:15.5px; margin:0 0 14px; }
 .tcc-body{ background:var(--brown); } .tcc-mind{ background:var(--sun); } .tcc-cause{ background:var(--leaf); }
-.tr-closing{ max-width:700px; margin:70px auto 0; text-align:left; background:#fff; border-radius:20px; padding:46px clamp(24px,4vw,48px); box-shadow:0 10px 28px rgba(38,70,83,.08); }
+.tr-closing{ max-width:820px; margin:70px auto 0; text-align:left; background:#fff; border-radius:20px; padding:46px clamp(24px,4vw,48px); box-shadow:0 10px 28px rgba(38,70,83,.08); }
 .tr-closing p{ font-size:clamp(17px,2.5vw,19.5px); line-height:2.15; color:var(--ink); margin-bottom:22px; text-align:left;
   /* ※text-wrap:balance は auto-phrase を無効化するため使わない */
   word-break:auto-phrase; line-break:strict; }
 .nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 .tr-closing-em{ font-family:var(--font-head); font-weight:700; color:var(--brown);
-  font-size:clamp(21px,3.6vw,29px); line-height:1.85; letter-spacing:.02em;
+  font-size:clamp(19px,2.9vw,24px); line-height:1.9; letter-spacing:.01em;
   margin:34px -8px 0 !important; text-align:left; position:relative;
   padding:26px 26px 26px 30px; border-radius:16px;
   background:linear-gradient(180deg,#FFFBF4 0%,#FFF3E4 100%);
@@ -1101,6 +1101,8 @@ table{ max-width:100%; }
   box-shadow:0 8px 22px rgba(244,162,97,.18);
   word-break:auto-phrase; line-break:strict; }
 .tr-closing-em .hl{ background:linear-gradient(transparent 62%, rgba(244,162,97,.42) 62%); }
+/* PCでは1文目を途中で折り返さない（「ために。」だけが次行に落ちるのを防ぐ） */
+@media (min-width:900px){ .tr-closing-em .l1{ white-space:nowrap; } }
 @media (max-width:900px){
   .tr-hero-in{ flex-direction:column; padding-left:clamp(40px,10vw,60px); }
   .tr-vcopy{ writing-mode:horizontal-tb; font-size:clamp(21px,5.6vw,27px); line-height:1.7; }
@@ -1369,7 +1371,7 @@ table{ max-width:100%; }
         <p>パーキンソン病は、確かに<span class="nw">一筋縄では</span>いかない病気かもしれません。</p>
         <p>しかし、適切な時期に、適切な運動を、<br class="br-pc">正しい知識と温かいサポートの中で継続していくことで、<br class="br-pc">進行のスピードを緩やかにし、<br class="br-pc">あなたらしい人生を長く楽しむことは十分に可能です。</p>
         <p>どうか、一人で抱え込まずに、<br class="br-pc">まずはあなたのお話を私たちに聞かせてください。</p>
-        <p class="tr-closing-em">これからの人生を、笑顔で、あなたらしく歩んでいくために。<br><span class="hl">私たちが全力で伴走いたします。</span></p>
+        <p class="tr-closing-em"><span class="l1">これからの人生を、笑顔で、あなたらしく歩んでいくために。</span><br><span class="hl">私たちが全力で伴走いたします。</span></p>
       </div>
     </div>
   </section>
