@@ -626,9 +626,13 @@ body.drawer-open{ overflow:hidden; }
 .cred-table{ width:100%; border-collapse:collapse; margin:16px 0; font-size:15.5px; }
 .cred-table th{ text-align:left; white-space:nowrap; color:#264653; padding:9px 18px 9px 0; vertical-align:top; border-bottom:none; }
 .cred-table td{ padding:12px 16px; background:#FAF3E7; border-radius:12px; color:#264653; line-height:1.7; }
-.profile blockquote{ margin-top:30px; padding:26px 30px; line-height:2.0; background:#FBF7F0; border-radius:18px; font-size:16px; color:#264653; border-left:6px solid var(--sun); }
+.profile blockquote{ margin-top:30px; padding:26px 30px; line-height:2.0; background:#FBF7F0;
+  border-radius:18px; font-size:16px; color:#264653;
+  border:3px solid var(--sun);                       /* 左だけでなく全周をオレンジ線に */
+  box-shadow:0 10px 26px rgba(244,162,97,.22);       /* 影で強調 */
+  word-break:auto-phrase; line-break:strict; }
 html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
-.profile blockquote::before{ content:"代表の想い"; display:block; font-family:var(--font-head); color:var(--sun); font-size:15px; margin-bottom:6px; }
+.profile blockquote::before{ content:"代表の想い"; display:block; font-family:var(--font-head); font-weight:700; color:var(--sun); font-size:18px; letter-spacing:.06em; margin-bottom:10px; }
 .profile strong, .greeting-lead strong{ color:#264653; font-weight:700; }
 @media (max-width:760px){ .profile{ grid-template-columns:1fr; } .profile .img-slot{ width:min(300px,80vw); max-width:300px; margin:0 auto; min-height:360px; } }
 
