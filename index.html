@@ -689,14 +689,15 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 @media (max-width:760px){ .story-body p{ text-align:left; } }
 
 /* FAQ */
+.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 .faq{ max-width:780px; margin:0 auto; display:grid; gap:16px; position:relative; z-index:1; }
 .faq details{ background:#fff; border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
-.faq summary{ list-style:none; cursor:pointer; padding:19px 54px 19px 60px; font-weight:700; font-size:16.5px; color:var(--brown); position:relative; user-select:none; }
+.faq summary{ list-style:none; cursor:pointer; padding:19px 54px 19px 60px; font-weight:700; font-size:16.5px; line-height:1.7; color:var(--brown); position:relative; user-select:none; word-break:auto-phrase; line-break:strict; }
 .faq summary::-webkit-details-marker{ display:none; }
 .faq summary::before{ content:"Q"; position:absolute; left:18px; top:16px; width:30px; height:30px; border-radius:50%; background:var(--gold); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-size:16px; }
 .faq summary::after{ content:"＋"; position:absolute; right:20px; top:50%; transform:translateY(-50%); color:var(--sun); font-size:22px; }
 .faq details[open] summary::after{ content:"－"; }
-.faq .a{ padding:0 24px 20px 60px; font-size:16px; }
+.faq .a{ padding:0 24px 20px 60px; font-size:16px; line-height:1.95; word-break:auto-phrase; line-break:strict; }
 
 /* お問い合わせフォーム（サイト内オリジナル・CF7置換前提） */
 .contact-wrap{ display:grid; grid-template-columns:1.3fr .7fr; gap:30px; align-items:start; position:relative; z-index:1; }
@@ -955,12 +956,12 @@ html.is-loading{ overflow:hidden; }
 /* ===== FAQアコーディオン（faqページから移植：トップ集約用） ===== */
 .faq{ max-width:780px; margin:0 auto; display:grid; gap:16px; position:relative; z-index:1; }
 .faq details{ background:#fff; border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
-.faq summary{ list-style:none; cursor:pointer; padding:19px 54px 19px 60px; font-weight:700; font-size:16.5px; color:var(--brown); position:relative; user-select:none; }
+.faq summary{ list-style:none; cursor:pointer; padding:19px 54px 19px 60px; font-weight:700; font-size:16.5px; line-height:1.7; color:var(--brown); position:relative; user-select:none; word-break:auto-phrase; line-break:strict; }
 .faq summary::-webkit-details-marker{ display:none; }
 .faq summary::before{ content:"Q"; position:absolute; left:18px; top:16px; width:30px; height:30px; border-radius:50%; background:var(--gold); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-size:16px; }
 .faq summary::after{ content:"＋"; position:absolute; right:20px; top:50%; transform:translateY(-50%); color:var(--sun); font-size:22px; }
 .faq details[open] summary::after{ content:"－"; }
-.faq .a{ padding:0 24px 20px 60px; font-size:16px; }
+.faq .a{ padding:0 24px 20px 60px; font-size:16px; line-height:1.95; word-break:auto-phrase; line-break:strict; }
 @media(max-width:640px){ .faq summary{ font-size:15px; padding:17px 46px 17px 56px; } .faq .a{ font-size:15px; } }
 
 /* ===== お知らせ（簡易リスト）＋コラム（横型アイキャッチ）｜議事録3-6 ===== */
@@ -1622,28 +1623,28 @@ table{ max-width:100%; }
       <div class="faq reveal">
 
         <details>
-          <summary data-en="Can I come even if I've only just been diagnosed with Parkinson's disease?">パーキンソン病と診断されたばかりでも通えますか？</summary>
-          <p class="a" data-en-html="Training from an early, mild stage matters a great deal. Research shows that appropriate exercise can slow progression, and our extensive experience at ASPATH confirms that starting early is best.">早期・軽度の時期からのトレーニングはとても大事です。適切な運動で進行を抑制できることが研究で示されており、ASPATHの多くの経験でも早期からのトレーニングが最適と確信しています。</p>
+          <summary data-en="Can I come even if I've only just been diagnosed with Parkinson's disease?"><span class="nw">パーキンソン病</span>と診断されたばかりでも通えますか？</summary>
+          <p class="a" data-en-html="Training from an early, mild stage matters a great deal. Research shows that appropriate exercise can slow progression, and our extensive experience at ASPATH confirms that starting early is best.">早期・軽度の時期からの<span class="nw">トレーニング</span>はとても大事です。適切な運動で進行を抑制できることが研究で示されており、<span class="nw">ASPATH</span>の多くの経験でも早期からの<span class="nw">トレーニング</span>が最適と確信しています。</p>
         </details>
         <details>
           <summary data-en="It has been many years since onset. Is it still effective to start now?">発症してから何年も経っていますが、今からでも効果はありますか？</summary>
-          <p class="a" data-en-html="Yes—it is never too late to begin. With the right load and continued specialist training, your body will respond. We will do everything we can to draw out easier movement from where you are now and to improve the life ahead of you.">はい、いつから始めても決して遅すぎることはありません。適切な負荷と専門的なトレーニングを継続することで、身体はしっかりと応えてくれます。今の状態から動きやすさを引き出し、未来の生活をより良くするためのサポートを全力で行います。</p>
+          <p class="a" data-en-html="Yes—it is never too late to begin. With the right load and continued specialist training, your body will respond. We will do everything we can to draw out easier movement from where you are now and to improve the life ahead of you.">はい、いつから始めても決して遅すぎることはありません。適切な負荷と専門的な<span class="nw">トレーニング</span>を継続することで、身体はしっかりと応えてくれます。今の状態から動きやすさを引き出し、未来の生活をより良くするためのサポートを全力で行います。</p>
         </details>
         <details>
-          <summary data-en="Can I combine this with rehabilitation under medical or long-term care insurance?">医療保険や介護保険のリハビリと併用することはできますか？</summary>
-          <p class="a" data-en-html="Yes, you can. ASPATH is a self-funded service outside the insurance system, so you can combine it with outpatient rehabilitation at your hospital, or day services and home rehabilitation under long-term care insurance. Please use us as a place to secure effective exercise, in both quality and quantity, alongside the strengths of each.">併用していただけます。アスパスは自費（保険外）のサービスですので、現在ご利用中の病院での外来リハビリや、介護保険でのデイサービス・訪問リハビリと組み合わせて通うことが可能です。それぞれの良さを活かしながら、効果的な質と量の運動機会を確保する場所としてご活用ください。</p>
+          <summary data-en="Can I combine this with rehabilitation under medical or long-term care insurance?"><span class="nw">医療保険</span>や<span class="nw">介護保険</span>のリハビリと併用することはできますか？</summary>
+          <p class="a" data-en-html="Yes, you can. ASPATH is a self-funded service outside the insurance system, so you can combine it with outpatient rehabilitation at your hospital, or day services and home rehabilitation under long-term care insurance. Please use us as a place to secure effective exercise, in both quality and quantity, alongside the strengths of each.">併用していただけます。<span class="nw">アスパス</span>は自費（保険外）のサービスですので、現在ご利用中の病院での<span class="nw">外来リハビリ</span>や、<span class="nw">介護保険</span>での<span class="nw">デイサービス</span>・<span class="nw">訪問リハビリ</span>と組み合わせて通うことが可能です。それぞれの良さを活かしながら、効果的な質と量の運動機会を確保する場所としてご活用ください。</p>
         </details>
         <details>
           <summary data-en="I live far away and can't come regularly. Is there another way?">遠方に住んでいて定期的に通えないのですが、方法はありますか？</summary>
-          <p class="a" data-en-html="Yes—we also offer online training you can receive at home. We analyse your movement carefully through the screen, so even those far away can continue to receive specialist support. Combining in-person and online sessions is also possible.">はい、ご自宅から受けていただける『オンライントレーニング』もできます。画面越しにお身体の動きをしっかりと分析し、遠方の方でも専門的なサポートを継続して受けていただくことが可能です。対面とオンラインの併用もできます。</p>
+          <p class="a" data-en-html="Yes—we also offer online training you can receive at home. We analyse your movement carefully through the screen, so even those far away can continue to receive specialist support. Combining in-person and online sessions is also possible.">はい、ご自宅から受けていただける『<span class="nw">オンライン<span class="nw">トレーニング</span></span>』もできます。画面越しにお身体の動きをしっかりと分析し、遠方の方でも専門的なサポートを継続して受けていただくことが可能です。対面とオンラインの併用もできます。</p>
         </details>
         <details>
-          <summary data-en="Where do the sessions take place?">トレーニングの場所はどこにありますか？</summary>
-          <p class="a" data-en-html="At present we train at rented studios in three areas of Kagoshima City: Tenmonkan, Josei and Chuo-cho. Please talk to us about whichever area is easiest to reach from your home.">現在は、鹿児島市内の『天文館』『城西』『中央町』の3エリアにあるレンタルスタジオでトレーニングを行っております。ご自宅から通いやすいエリアをご相談ください。</p>
+          <summary data-en="Where do the sessions take place?"><span class="nw">トレーニング</span>の場所はどこにありますか？</summary>
+          <p class="a" data-en-html="At present we train at rented studios in three areas of Kagoshima City: Tenmonkan, Josei and Chuo-cho. Please talk to us about whichever area is easiest to reach from your home.">現在は、<span class="nw">鹿児島市内</span>の『<span class="nw">天文館</span>』『<span class="nw">城西</span>』『<span class="nw">中央町</span>』の3エリアにある<span class="nw">レンタルスタジオ</span>で<span class="nw">トレーニング</span>を行っております。ご自宅から通いやすいエリアをご相談ください。</p>
         </details>
         <details>
           <summary data-en="How often should I come for it to be effective?">どのくらいの頻度で通うのが効果的ですか？</summary>
-          <p class="a" data-en-html="It varies with your condition and goals, but to establish an exercise habit and feel real change, we recommend starting at a pace of once or twice a week. We will also share exercises you can do on your own at home, and propose the pace that suits you best.">お身体の状態や目標によっても異なりますが、運動習慣を定着させ、しっかりと変化を感じていただくためには、最初は「週1〜2回」のペースで通われることをおすすめしております。ご自宅でできる自主トレーニングもお伝えしながら、最適なペースをご提案いたします。</p>
+          <p class="a" data-en-html="It varies with your condition and goals, but to establish an exercise habit and feel real change, we recommend starting at a pace of once or twice a week. We will also share exercises you can do on your own at home, and propose the pace that suits you best.">お身体の状態や目標によっても異なりますが、運動習慣を定着させ、しっかりと変化を感じていただくためには、最初は「<span class="nw">週1〜2回</span>」のペースで通われることをおすすめしております。ご自宅でできる<span class="nw">自主<span class="nw">トレーニング</span></span>もお伝えしながら、最適なペースをご提案いたします。</p>
         </details>
       </div>
       <div style="margin-top:32px; display:flex; gap:16px; justify-content:center; align-items:flex-start; flex-wrap:wrap;">
