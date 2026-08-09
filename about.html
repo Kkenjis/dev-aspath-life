@@ -1092,7 +1092,15 @@ table{ max-width:100%; }
   /* ※text-wrap:balance は auto-phrase を無効化するため使わない */
   word-break:auto-phrase; line-break:strict; }
 .nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
-.tr-closing-em{ font-family:var(--font-head); font-weight:700; color:var(--brown); font-size:clamp(20px,3.4vw,27px); line-height:1.9; margin-top:30px; margin-bottom:0 !important; text-align:left; }
+.tr-closing-em{ font-family:var(--font-head); font-weight:700; color:var(--brown);
+  font-size:clamp(21px,3.6vw,29px); line-height:1.85; letter-spacing:.02em;
+  margin:34px -8px 0 !important; text-align:left; position:relative;
+  padding:26px 26px 26px 30px; border-radius:16px;
+  background:linear-gradient(180deg,#FFFBF4 0%,#FFF3E4 100%);
+  border-left:6px solid var(--sun);
+  box-shadow:0 8px 22px rgba(244,162,97,.18);
+  word-break:auto-phrase; line-break:strict; }
+.tr-closing-em .hl{ background:linear-gradient(transparent 62%, rgba(244,162,97,.42) 62%); }
 @media (max-width:900px){
   .tr-hero-in{ flex-direction:column; padding-left:clamp(40px,10vw,60px); }
   .tr-vcopy{ writing-mode:horizontal-tb; font-size:clamp(21px,5.6vw,27px); line-height:1.7; }
@@ -1361,7 +1369,7 @@ table{ max-width:100%; }
         <p>パーキンソン病は、確かに<span class="nw">一筋縄では</span>いかない病気かもしれません。</p>
         <p>しかし、適切な時期に、適切な運動を、<br class="br-pc">正しい知識と温かいサポートの中で継続していくことで、<br class="br-pc">進行のスピードを緩やかにし、<br class="br-pc">あなたらしい人生を長く楽しむことは十分に可能です。</p>
         <p>どうか、一人で抱え込まずに、<br class="br-pc">まずはあなたのお話を私たちに聞かせてください。</p>
-        <p class="tr-closing-em">これからの人生を、笑顔で、あなたらしく歩んでいくために。<br>私たちが全力で伴走いたします。</p>
+        <p class="tr-closing-em">これからの人生を、笑顔で、あなたらしく歩んでいくために。<br><span class="hl">私たちが全力で伴走いたします。</span></p>
       </div>
     </div>
   </section>
