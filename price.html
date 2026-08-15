@@ -962,10 +962,19 @@ main{ padding-top:76px; }
 /* 1項目＝1ブロック。枠＋背景で他の項目と切り分ける */
 .tf-list li{
   counter-increment:tf; position:relative;
-  background:#fff; border:1px solid var(--gold-soft); border-left:6px solid var(--gold);
+  background:#fff; border:3px solid var(--gold);      /* 全周を枠で括る */
   border-radius:16px; box-shadow:0 6px 18px rgba(38,70,83,.07);
   padding:22px 26px 22px 78px;
   transition:box-shadow .2s, transform .2s;
+  display:grid; grid-template-columns:1fr 260px; gap:22px; align-items:center;
+}
+.tf-txt{ min-width:0; }
+.tf-figure{ margin:0; }
+.tf-figure img{ display:block; width:100%; aspect-ratio:16/9; object-fit:cover;
+  border-radius:12px; box-shadow:0 6px 16px rgba(38,70,83,.14); }
+@media (max-width:760px){
+  .tf-list li{ grid-template-columns:1fr; gap:14px; }
+  .tf-figure img{ aspect-ratio:16/10; }
 }
 .tf-list li:hover{ box-shadow:0 12px 28px rgba(38,70,83,.13); transform:translateY(-2px); }
 .tf-list li::before{
@@ -979,22 +988,15 @@ main{ padding-top:76px; }
 .tf-list p{ margin:0; font-size:15.5px; line-height:1.9; color:var(--ink); word-break:auto-phrase; line-break:strict; }
 /* 「当日のながれ」は色を変えて別ブロックだと分かるように */
 .tf-day{ margin-top:56px; }
-/* 当日のながれ：左だけでなく全周をオレンジ線で囲む＋写真を並べる */
+/* 当日のながれ：色をオレンジ系に（枠・写真レイアウトは共通指定を継承） */
 .tf-day .tf-list li{
-  border:3px solid var(--sun); background:linear-gradient(180deg,#FFFDFA 0%,#FFF7EE 100%);
+  border-color:var(--sun); background:linear-gradient(180deg,#FFFDFA 0%,#FFF7EE 100%);
   box-shadow:0 8px 22px rgba(244,162,97,.16);
-  display:grid; grid-template-columns:1fr 260px; gap:22px; align-items:center;
 }
 .tf-day .tf-list li:hover{ box-shadow:0 12px 30px rgba(244,162,97,.24); }
 .tf-day .tf-list li::before{ background:var(--sun); }
-.tf-day .tf-txt{ min-width:0; }
-.tf-day .tf-figure{ margin:0; }
-.tf-day .tf-figure img{ display:block; width:100%; aspect-ratio:3/2; object-fit:cover;
-  border-radius:12px; box-shadow:0 6px 16px rgba(38,70,83,.14); }
-@media (max-width:760px){
-  .tf-day .tf-list li{ grid-template-columns:1fr; gap:14px; }
-  .tf-day .tf-figure img{ aspect-ratio:16/10; }
-}
+.tf-day .tf-figure img{ aspect-ratio:3/2; }
+@media (max-width:760px){ .tf-day .tf-figure img{ aspect-ratio:16/10; } }
 
 /* ============================================================
    レスポンシブ基盤：全デバイス対応（PCの見た目は維持）
@@ -1181,16 +1183,31 @@ table{ max-width:100%; }
         <h2 data-en="Flow up to starting training">トレーニング開始までのフロー</h2>
         <p class="tf-lead" data-en="Here is the flow from application through to the day of your first session.">お申し込みから初回体験当日までのながれをご紹介します。</p>
         <ol class="tf-list">
-          <li><b data-en="Apply via Official LINE">公式LINEからお申し込み</b>
-            <p data-en="Register as a friend on our Official LINE and apply for the first trial from the dedicated form.">公式LINEに友だち登録し、専用フォームから初回体験をお申し込みください。</p></li>
-          <li><b data-en="Scheduling and location">日程調整・場所のご案内</b>
-            <p data-en="Our staff will contact you within 24 hours to arrange the date and studio location.">スタッフより24時間以内にご連絡し、日程とスタジオの場所をご案内します。</p></li>
-          <li><b data-en="Counseling and body check (on the day)">カウンセリング・お体チェック（当日）</b>
-            <p data-en="We listen carefully to your concerns and goals, then assess posture and movement with analysis tools.">お悩みや目標を丁寧にお聞きし、分析ツールも使って姿勢や動きをチェックします。</p></li>
-          <li><b data-en="First training session">体験トレーニング</b>
-            <p data-en="Based on the check, you experience training tailored to your symptoms and condition.">チェック結果をもとに、症状とお身体に合わせたトレーニングを体験いただきます。</p></li>
-          <li><b data-en="Feedback and next steps">結果のご説明・今後のご提案</b>
-            <p data-en="We explain the results and propose the best plan going forward. Take your time to consider—no pressure to continue.">結果をわかりやすくご説明し、今後の最適なプランをご提案します。継続はじっくりご検討ください。</p></li>
+          <li>
+            <div class="tf-txt"><b data-en="Apply via Official LINE">公式LINEからお申し込み</b>
+            <p data-en="Register as a friend on our Official LINE and apply for the first trial from the dedicated form.">公式LINEに友だち登録し、専用フォームから初回体験をお申し込みください。</p></div>
+            <figure class="tf-figure"><img src="images/flow-start-01-line.webp" alt="スマートフォンで公式LINEから初回体験を申し込む様子" width="900" height="507" loading="lazy"></figure>
+          </li>
+          <li>
+            <div class="tf-txt"><b data-en="Scheduling and location">日程調整・場所のご案内</b>
+            <p data-en="Our staff will contact you within 24 hours to arrange the date and studio location.">スタッフより24時間以内にご連絡し、日程とスタジオの場所をご案内します。</p></div>
+            <figure class="tf-figure"><img src="images/flow-start-02-schedule.webp" alt="スタッフがパソコンで日程とスタジオの場所を調整する様子" width="900" height="507" loading="lazy"></figure>
+          </li>
+          <li>
+            <div class="tf-txt"><b data-en="Counseling and body check (on the day)">カウンセリング・お体チェック（当日）</b>
+            <p data-en="We listen carefully to your concerns and goals, then assess posture and movement with analysis tools.">お悩みや目標を丁寧にお聞きし、分析ツールも使って姿勢や動きをチェックします。</p></div>
+            <figure class="tf-figure"><img src="images/flow-start-03-check.webp" alt="タブレットとカメラで姿勢や動きをチェックする様子" width="900" height="507" loading="lazy"></figure>
+          </li>
+          <li>
+            <div class="tf-txt"><b data-en="First training session">体験トレーニング</b>
+            <p data-en="Based on the check, you experience training tailored to your symptoms and condition.">チェック結果をもとに、症状とお身体に合わせたトレーニングを体験いただきます。</p></div>
+            <figure class="tf-figure"><img src="images/flow-start-04-trial.webp" alt="マットの上で体験トレーニングを受ける様子" width="900" height="507" loading="lazy"></figure>
+          </li>
+          <li>
+            <div class="tf-txt"><b data-en="Feedback and next steps">結果のご説明・今後のご提案</b>
+            <p data-en="We explain the results and propose the best plan going forward. Take your time to consider—no pressure to continue.">結果をわかりやすくご説明し、今後の最適なプランをご提案します。継続はじっくりご検討ください。</p></div>
+            <figure class="tf-figure"><img src="images/flow-start-05-proposal.webp" alt="タブレットで結果を説明し今後のプランを提案する様子" width="900" height="507" loading="lazy"></figure>
+          </li>
         </ol>
       </div>
 
