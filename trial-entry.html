@@ -121,6 +121,13 @@ body{
   color:var(--ink); background:var(--paper); -webkit-text-size-adjust:100%;
   overflow-x:hidden;
 }
+
+/* ===== 日本語の折り返し（サイト全体の既定） =====
+   word-break:auto-phrase … 文節の切れ目で改行する（「お役／立ち情報」のような分断を防ぐ）
+   line-break:strict      … 小さい「っ」「ゃ」や句読点が行頭に来ないようにする
+   ※text-wrap:balance は auto-phrase を無効化するため使わない            */
+body{ word-break:auto-phrase; line-break:strict; }
+.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 img{ max-width:100%; height:auto; display:block; }
 a{ color:var(--gold-deep); }
 a:focus-visible, button:focus-visible, summary:focus-visible{ outline:3px solid var(--sun); outline-offset:3px; border-radius:6px; }
@@ -760,7 +767,7 @@ body.drawer-open{ overflow:hidden; }
 
 /* ---- 文字バランス微調整（v6.2） ---- */
 .br-pc{ display:inline; }
-h1,h2,h3{ text-wrap:balance; }           /* 見出しの行を均等に（対応ブラウザ） */
+
 .lede, .worry-close, .sinpla-note{ text-wrap:pretty; }
 .br-sp{ display:none; }                  /* スマホ専用改行（PCでは非表示） */
 @media (max-width:760px){

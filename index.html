@@ -122,6 +122,13 @@ body{
   color:var(--ink); background:var(--paper); -webkit-text-size-adjust:100%;
   overflow-x:hidden;
 }
+
+/* ===== 日本語の折り返し（サイト全体の既定） =====
+   word-break:auto-phrase … 文節の切れ目で改行する（「お役／立ち情報」のような分断を防ぐ）
+   line-break:strict      … 小さい「っ」「ゃ」や句読点が行頭に来ないようにする
+   ※text-wrap:balance は auto-phrase を無効化するため使わない            */
+body{ word-break:auto-phrase; line-break:strict; }
+.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 img{ max-width:100%; height:auto; display:block; }
 a{ color:var(--gold-deep); }
 a:focus-visible, button:focus-visible, summary:focus-visible{ outline:3px solid var(--sun); outline-offset:3px; border-radius:6px; }
@@ -698,7 +705,6 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 @media (max-width:760px){ .story-body p{ text-align:left; } }
 
 /* FAQ */
-.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 .faq{ max-width:780px; margin:0 auto; display:grid; gap:16px; position:relative; z-index:1; }
 .faq details{ background:#fff; border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
 .faq summary{ list-style:none; cursor:pointer; padding:19px 54px 19px 60px; font-weight:700; font-size:16.5px; line-height:1.7; color:var(--brown); position:relative; user-select:none; word-break:auto-phrase; line-break:strict; }
@@ -810,7 +816,7 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .pillar-num span{ font-family:"Kiwi Maru",serif; font-size:40px; color:#F4A261; opacity:.85; font-weight:700; }
 .pillar-img{ aspect-ratio:4/3; border-radius:18px; overflow:hidden; box-shadow:var(--shadow); border:1px solid #264653; }
 .pillar-img img{ width:100%; height:100%; object-fit:cover; object-position:var(--pos,center); }
-.pillar-txt h3{ font-family:var(--font-head); font-size:clamp(19px,2.6vw,23px); color:var(--brown); margin-bottom:12px; text-wrap:balance; }
+.pillar-txt h3{ font-family:var(--font-head); font-size:clamp(19px,2.6vw,23px); color:var(--brown); margin-bottom:12px; }
 .pillar-txt p{ font-size:15px; line-height:1.95; color:#264653; }
 
 /* 選ばれる理由：項目間の装飾（縦ガイドライン＋オレンジの線・丸） */
@@ -833,7 +839,7 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .message-band .wrap{ position:relative; z-index:2; width:100%; padding-left:clamp(16px,3.5vw,52px); box-sizing:border-box; }
 .message-band-inner{ max-width:700px; }
 .mb-en{ font-size:14px; letter-spacing:.18em; color:var(--sun); font-weight:700; margin-bottom:12px; }
-.message-band-inner h2{ font-family:var(--font-head); font-size:clamp(22px,2.9vw,30px); color:var(--brown); line-height:1.6; margin-bottom:20px; word-break:keep-all; text-wrap:balance; }
+.message-band-inner h2{ font-family:var(--font-head); font-size:clamp(22px,2.9vw,30px); color:var(--brown); line-height:1.6; margin-bottom:20px; word-break:keep-all; }
 .message-band-inner p{ font-size:15px; line-height:1.95; color:#264653; margin-bottom:14px; }
 .message-band-inner p:last-of-type{ color:#55717B; }
 .hl-hope{ color:#F4A261; }
@@ -1027,7 +1033,7 @@ html.is-loading{ overflow:hidden; }
 .col-card--noimg{ grid-template-columns:1fr; } }
 
 .greeting-lead{ margin-bottom:6px; line-height:2.0; }
-.drawer-line-note{ font-size:13.5px; color:var(--gold-deep); text-align:center; margin:9px 4px 0; line-height:1.7; }
+.drawer-line-note{ font-size:13.5px; color:var(--gold-deep); text-align:center; margin:9px 2px 0; line-height:1.75; }
 .faq-line-col{ display:flex; flex-direction:column; align-items:center; gap:7px; }
 .faq-line-note{ font-size:13.5px; color:var(--gold-deep); line-height:1.65; max-width:250px; text-align:center; margin:0; }
 .more-wrap{ text-align:center; margin-top:26px; }
@@ -1301,7 +1307,7 @@ table{ max-width:100%; }
       <a href="https://www.facebook.com/profile.php?id=61583682097185" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.87 11.85v-8.38H7.08V12h3.05V9.36c0-3 1.8-4.67 4.53-4.67 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87V12h3.33l-.53 3.47h-2.8v8.38A12 12 0 0 0 24 12z"></path></svg></a>
     </div>
   <a class="btn btn-line big drawer-cta" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg>公式LINEに登録する</a>
-  <p class="drawer-line-note">友だち登録で、無料相談も、お役立ち情報の配信も。いつでも解除できます。</p>
+  <p class="drawer-line-note"><span class="nw">友だち登録</span>で、<span class="nw">無料相談</span>も、<span class="nw">お役立ち情報</span>の配信も。<span class="nw">いつでも解除</span>できます。</p>
 </nav>
 
 <!-- 追従する公式LINE登録（丸・スクロール追従） -->

@@ -121,6 +121,13 @@ body{
   color:var(--ink); background:var(--paper); -webkit-text-size-adjust:100%;
   overflow-x:hidden;
 }
+
+/* ===== 日本語の折り返し（サイト全体の既定） =====
+   word-break:auto-phrase … 文節の切れ目で改行する（「お役／立ち情報」のような分断を防ぐ）
+   line-break:strict      … 小さい「っ」「ゃ」や句読点が行頭に来ないようにする
+   ※text-wrap:balance は auto-phrase を無効化するため使わない            */
+body{ word-break:auto-phrase; line-break:strict; }
+.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 img{ max-width:100%; height:auto; display:block; }
 a{ color:var(--gold-deep); }
 a:focus-visible, button:focus-visible, summary:focus-visible{ outline:3px solid var(--sun); outline-offset:3px; border-radius:6px; }
@@ -909,7 +916,6 @@ html.is-loading{ overflow:hidden; }
 .column-nav a:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(38,70,83,.16); }
 .column-nav .label{ display:block; font-size:14.5px; font-weight:700; color:var(--gold-deep); letter-spacing:.06em; margin-bottom:6px; }
 .column-nav .title{ font-size:16px; }
-.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 /* --- 見出しの通し番号バッジ --- */
 .column-body h3 .h3-num,
 .column-body h3 .h3-step{ display:inline-block; vertical-align:.12em; margin-right:12px; font-family:var(--font-head); font-weight:700; letter-spacing:.06em; }

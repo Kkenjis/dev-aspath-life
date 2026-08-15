@@ -120,6 +120,13 @@ body{
   color:var(--ink); background:var(--paper); -webkit-text-size-adjust:100%;
   overflow-x:hidden;
 }
+
+/* ===== 日本語の折り返し（サイト全体の既定） =====
+   word-break:auto-phrase … 文節の切れ目で改行する（「お役／立ち情報」のような分断を防ぐ）
+   line-break:strict      … 小さい「っ」「ゃ」や句読点が行頭に来ないようにする
+   ※text-wrap:balance は auto-phrase を無効化するため使わない            */
+body{ word-break:auto-phrase; line-break:strict; }
+.nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
 img{ max-width:100%; height:auto; display:block; }
 a{ color:var(--gold-deep); }
 a:focus-visible, button:focus-visible, summary:focus-visible{ outline:3px solid var(--sun); outline-offset:3px; border-radius:6px; }
@@ -495,7 +502,7 @@ body.drawer-open{ overflow:hidden; }
 .pc-yenunit{ font-size:17px; font-weight:800; color:var(--sun); }
 .pc-tax{ font-size:13px; color:#5E7681; margin-top:2px; text-align:center; letter-spacing:.02em; }
 .pc-per{ font-size:14px; color:var(--sun); font-weight:700; letter-spacing:.02em; }
-.pc-desc{ margin-top:16px; font-size:14px; color:#5E7681; line-height:1.85; text-align:center; flex:1; text-wrap:balance; }
+.pc-desc{ margin-top:16px; font-size:14px; color:#5E7681; line-height:1.85; text-align:center; flex:1; }
 .pc-desc-br{ white-space:nowrap; }
 @media (max-width:760px){ .price-card.recommend{ margin-top:8px; } .pc-desc{ text-align:center; } }
 @media (max-width:760px){ .price-grid{ grid-template-columns:1fr; } }
@@ -763,7 +770,7 @@ body.drawer-open{ overflow:hidden; }
 
 /* ---- 文字バランス微調整（v6.2） ---- */
 .br-pc{ display:inline; }
-h1,h2,h3{ text-wrap:balance; }           /* 見出しの行を均等に（対応ブラウザ） */
+
 .lede, .worry-close, .sinpla-note{ text-wrap:pretty; }
 .br-sp{ display:none; }                  /* スマホ専用改行（PCでは非表示） */
 @media (max-width:760px){
