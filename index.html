@@ -623,10 +623,11 @@ body.drawer-open{ overflow:hidden; }
 .profile .img-slot > img{ transform:scale(1.28); transform-origin:center 22%; }  /* 枠は変えず人物だけ寄りに */
 .profile .img-slot{ --ratio:3/4; display:grid; place-items:center; color:#46666F; font-size:15px; font-weight:700; text-align:center; border:1px solid #264653; border-radius:18px; overflow:hidden; }
 .yomi{ font-size:15px; color:#55717B; margin-bottom:14px; letter-spacing:.12em; }
+.profile p, .profile blockquote{ word-break:auto-phrase; line-break:strict; }  /* 日本語を文節で自然に折り返す */
 .profile p:not(.yomi){ color:#264653; }
 .cred-table{ width:100%; border-collapse:collapse; margin:16px 0; font-size:15.5px; }
 .cred-table th{ text-align:left; white-space:nowrap; color:#264653; padding:9px 18px 9px 0; vertical-align:top; border-bottom:none; }
-.cred-table td{ padding:12px 16px; background:#FAF3E7; border-radius:12px; color:#264653; line-height:1.7; }
+.cred-table td{ padding:12px 16px; background:#FAF3E7; border-radius:12px; color:#264653; line-height:1.8; word-break:auto-phrase; line-break:strict; }
 .profile blockquote{ margin-top:30px; padding:26px 30px; line-height:2.0; background:#FBF7F0;
   border-radius:18px; font-size:16px; color:#264653;
   border:3px solid var(--sun);                       /* 左だけでなく全周をオレンジ線に */
@@ -1543,12 +1544,12 @@ table{ max-width:100%; }
           <span class="fallback" data-en="Representative photo">代表写真</span><span class="slot-label" data-en="📷 Replace">📷 差し替え</span></div>
         <div>
           <h3 style="margin-bottom:2px;" data-en="Yuya Yamaguchi">山口 祐弥</h3>
-          <p class="yomi" data-en="Yuya Yamaguchi｜ASPATH Representative">やまぐち ゆうや｜ASPATH代表</p>
-          <p data-en="Born in 1992 and raised in Kagoshima. After eight years of physical therapy centered on neurological disorders at a general hospital in Kagoshima, he spent four years at a Parkinson's-specialized exercise facility in Tokyo, supporting rehabilitation and training for many people with Parkinson's disease and stroke. In January 2026, he returned to his hometown of Kagoshima and founded ASPATH.">1992年生まれ、鹿児島生まれ鹿児島育ち。鹿児島の総合病院で8年間、神経疾患を中心とした理学療法に携わったのち、東京のパーキンソン病専門運動施設で4年間勤務。これまでに、多くのパーキンソン病・脳卒中の方のリハビリ・トレーニングを担当。2026年始めに、地元の鹿児島へUターンし、ASPATHを開業。</p>
+          <p class="yomi" data-en="Yuya Yamaguchi｜ASPATH Representative">やまぐち ゆうや｜<span class="nw">ASPATH</span>代表</p>
+          <p data-en="Born in 1992 and raised in Kagoshima. After eight years of physical therapy centered on neurological disorders at a general hospital in Kagoshima, he spent four years at a Parkinson's-specialized exercise facility in Tokyo, supporting rehabilitation and training for many people with Parkinson's disease and stroke. In January 2026, he returned to his hometown of Kagoshima and founded ASPATH."><span class="nw">1992年生まれ</span>、<span class="nw">鹿児島生まれ鹿児島育ち</span>。鹿児島の<span class="nw">総合病院</span>で<span class="nw">8年間</span>、<span class="nw">神経疾患</span>を中心とした<span class="nw">理学療法</span>に携わったのち、東京の<span class="nw">パーキンソン病専門運動施設</span>で<span class="nw">4年間勤務</span>。これまでに、多くの<span class="nw">パーキンソン病・脳卒中</span>の方の<span class="nw">リハビリ・トレーニング</span>を担当。<span class="nw">2026年始めに</span>、地元の鹿児島へ<span class="nw">Uターン</span>し、<span class="nw">ASPATH</span>を開業。</p>
           <table class="cred-table">
-            <tr><th data-en="Qualifications">資格</th><td data-en="Physical Therapist / Master of Health Sciences / LSVT-BIG® Certified Therapist (Parkinson's specialization) / Stroke Care Instructor">理学療法士／保健学修士／LSVT-BIG®認定療法士（パーキンソン病特化）／脳卒中療養指導士</td></tr>
+            <tr><th data-en="Qualifications">資格</th><td data-en="Physical Therapist / Master of Health Sciences / LSVT-BIG® Certified Therapist (Parkinson's specialization) / Stroke Care Instructor"><span class="nw">理学療法士</span>／<span class="nw">保健学修士</span>／<span class="nw">LSVT-BIG®認定療法士</span><span class="nw">（パーキンソン病特化）</span>／<span class="nw">脳卒中療養指導士</span></td></tr>
           </table>
-          <blockquote data-en-html="At the right time, &lt;strong&gt;the necessary support is often unavailable&lt;/strong&gt;—something I have long felt to be a problem. Through ASPATH, delivering effective exercise to those who need it and walking alongside them in life is my mission.">適切な時期に、<strong>必要なサポートができない</strong>ことに課題を感じていました。ASPATHを通じて、必要とする方に効果的な運動を届け、人生の伴走をしていくことが私の使命です。</blockquote>
+          <blockquote data-en-html="At the right time, &lt;strong&gt;the necessary support is often unavailable&lt;/strong&gt;—something I have long felt to be a problem. Through ASPATH, delivering effective exercise to those who need it and walking alongside them in life is my mission.">適切な時期に、<strong>必要なサポートができない</strong>ことに課題を感じていました。<span class="nw">ASPATH</span>を通じて、必要とする方に効果的な運動を届け、人生の伴走をしていくことが私の使命です。</blockquote>
         </div>
       </div>
       
