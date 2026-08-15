@@ -939,14 +939,15 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 @media(max-width:760px){ .header-topbar{ display:none; } }
 
 /* ===== ローディング（ブランドスプラッシュ） ===== */
-#aspath-loader{ position:fixed; inset:0; z-index:99999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;
+#aspath-loader{ position:fixed; inset:0; z-index:99999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; overflow:hidden; padding:0 14px; box-sizing:border-box;
   background:radial-gradient(135% 105% at 50% 26%, #FBF4E8 0%, #F4E9D8 46%, #E7D9C1 100%);
   opacity:1; will-change:opacity,transform,filter;
   transition:opacity 2.6s ease, visibility 2.6s ease, transform 2.6s cubic-bezier(.33,0,.2,1), filter 2.6s ease;
   animation:ldrAutohide 1.4s ease 12s forwards; /* JS無効時の保険 */ }
 #aspath-loader.is-hidden{ opacity:0; visibility:hidden; transform:translateY(-26px) scale(1.045); filter:blur(9px); pointer-events:none; }
 html.ldr-seen #aspath-loader{ display:none !important; }
-.ldr-inner{ position:relative; display:flex; flex-direction:column; align-items:center; gap:18px; padding:0 24px; }
+.ldr-inner{ position:relative; display:flex; flex-direction:column; align-items:center; gap:18px; padding:0 24px; width:100%; max-width:100%; box-sizing:border-box; }
+.ldr-id{ max-width:100%; }
 .ldr-logo{ width:clamp(78px,18vw,100px); height:auto; opacity:0; transform:translateY(10px) scale(.9);
   animation:ldrLogo 1.5s cubic-bezier(.2,.7,.2,1) .3s forwards; filter:drop-shadow(0 12px 28px rgba(38,70,83,.18)); }
 /* ブランド識別ブロック：ASPATH／専門性／地域を最優先で刷り込む（ヒーローと二段構えで強調） */
@@ -968,6 +969,22 @@ html.ldr-seen #aspath-loader{ display:none !important; }
   transition:opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1); white-space:nowrap; }
 .ldr-phrase.is-active{ opacity:1; transform:translate(-50%,0); }
 .ldr-phrase.is-leaving{ opacity:0; transform:translate(-50%,-12px); }
+/* ===== ローディング画面：スマホで文字が左右にはみ出さないよう縮小 ===== */
+@media (max-width:600px){
+  #aspath-loader{ padding:0 12px; }
+  .ldr-inner{ padding:0 4px; gap:14px; }
+  .ldr-logo{ width:clamp(62px,16vw,84px); }
+  .ldr-id-brand{ font-size:clamp(14px,3.4vw,18px); letter-spacing:.1em; }
+  .ldr-id-spec{ font-size:clamp(16px,4.6vw,23px); letter-spacing:.01em; line-height:1.5; }
+  .ldr-id-loc{ display:block; margin-top:2px; }
+  .ldr-id-loc::before{ content:none; }
+  .ldr-main{ font-size:clamp(14px,3.8vw,19px); height:calc(clamp(14px,3.8vw,19px)*1.7); }
+  .ldr-phrase{ max-width:94vw; }
+}
+@media (max-width:360px){
+  .ldr-id-spec{ font-size:15px; }
+  .ldr-main{ font-size:13px; height:calc(13px*1.7); }
+}
 .ldr-path{ position:relative; width:min(230px,60vw); height:3px; border-radius:3px; margin-top:8px; overflow:visible; background:var(--gold-soft); opacity:0; animation:ldrFade .7s ease 2.15s forwards; }
 .ldr-path i{ display:block; height:100%; width:42%; border-radius:3px; background:linear-gradient(90deg,var(--gold),var(--sun)); transform:translateX(-120%); animation:ldrRun 2s ease-in-out 2.4s infinite; }
 /* 道を一歩ずつ歩む光の点 */
