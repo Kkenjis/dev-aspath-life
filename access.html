@@ -757,7 +757,7 @@ body.drawer-open{ overflow:hidden; }
 /* ---- 文字バランス微調整（v6.2） ---- */
 .br-pc{ display:inline; }
 
-.lede, .worry-close, .sinpla-note{ text-wrap:pretty; }
+
 .br-sp{ display:none; }                  /* スマホ専用改行（PCでは非表示） */
 @media (max-width:760px){
   .br-pc{ display:none; }                /* モバイルは自然折返し */
@@ -901,7 +901,9 @@ main{ padding-top:76px; }
 /* ===== モバイル安全策：横スクロール/はみ出し防止 ===== */
 html,body{ overflow-x:clip; max-width:100%; }
 img,video,iframe{ max-width:100%; height:auto; }
-body{ overflow-wrap:break-word; word-break:normal; }
+/* ※ここで word-break:normal に戻すと文節折り返しが無効になるため、auto-phrase を維持する。
+   overflow-wrap:break-word は「希望」のような語の途中でも切ってしまうため使わない。 */
+body{ overflow-wrap:normal; word-break:auto-phrase; line-break:strict; }
 .br-pc{ display:inline; }
 @media(max-width:600px){
   .cred-table{ font-size:14.5px; }

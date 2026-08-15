@@ -570,7 +570,7 @@ body.drawer-open{ overflow:hidden; }
 .worry-list{ list-style:none; display:grid; gap:14px; max-width:820px; margin:0 auto; position:relative; z-index:1; }
 .worry-list li{
   background:#FFFFFF; border:1.5px solid #FAD1B2; border-radius:16px;
-  padding:17px 20px 17px 58px; position:relative; font-weight:700; text-wrap:pretty;
+  padding:17px 20px 17px 58px; position:relative; font-weight:700;
   font-size:clamp(15.5px,2vw,18px); color:#264653; box-shadow:0 6px 18px rgba(38,70,83,.14);
 }
 .worry-list li::before{
@@ -872,7 +872,7 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .message-band .wrap{ position:relative; z-index:2; width:100%; padding-left:clamp(16px,3.5vw,52px); box-sizing:border-box; }
 .message-band-inner{ max-width:700px; }
 .mb-en{ font-size:14px; letter-spacing:.18em; color:var(--sun); font-weight:700; margin-bottom:12px; }
-.message-band-inner h2{ font-family:var(--font-head); font-size:clamp(22px,2.9vw,30px); color:var(--brown); line-height:1.6; margin-bottom:20px; word-break:keep-all; }
+.message-band-inner h2{ font-family:var(--font-head); font-size:clamp(22px,2.9vw,30px); color:var(--brown); line-height:1.6; margin-bottom:20px; }
 .message-band-inner p{ font-size:15px; line-height:1.95; color:#264653; margin-bottom:14px; }
 .message-band-inner p:last-of-type{ color:#55717B; }
 .hl-hope{ color:#F4A261; }
@@ -1078,7 +1078,9 @@ html.is-loading{ overflow:hidden; }
 /* ===== モバイル安全策：横スクロール/はみ出し防止 ===== */
 html,body{ overflow-x:clip; max-width:100%; }
 img,video,iframe{ max-width:100%; height:auto; }
-body{ overflow-wrap:break-word; word-break:normal; }
+/* ※ここで word-break:normal に戻すと文節折り返しが無効になるため、auto-phrase を維持する。
+   overflow-wrap:break-word は「希望」のような語の途中でも切ってしまうため使わない。 */
+body{ overflow-wrap:normal; word-break:auto-phrase; line-break:strict; }
 .br-pc{ display:inline; }
 @media(max-width:600px){
   .cred-table{ font-size:14.5px; }
@@ -1565,8 +1567,8 @@ table{ max-width:100%; }
     <div class="message-band-overlay"></div>
     <div class="wrap">
       <div class="message-band-inner reveal">
-<h2 data-en-html="Turning anxiety into &lt;span class=&quot;hl-hope&quot;&gt;hope&lt;/span&gt;,&lt;br class=&quot;br-pc&quot;&gt;and helping more people thrive by walking alongside them.">不安を<span class="hl-hope">希望</span>に変え、<br class="br-pc">人生の伴走で元気な人を増やす。</h2>
-        <p data-en-html="ASPATH is a personal training studio in Kagoshima &lt;strong&gt;specializing in Parkinson's disease and stroke&lt;/strong&gt;. Even with symptoms from illness, you are still you. True to its name&mdash;&quot;As = toward tomorrow,&quot; &quot;Path = a road that connects&quot;&mdash;our specialist physical therapist delivers exercise that leads to a better tomorrow.">ASPATH（<span class="nw">アスパス</span>）は、鹿児島の<strong><span class="nw">パーキンソン病</span>専門</strong>の<br class="br-pc"><span class="nw">パーソナルトレーニング</span>スタジオです。<br class="br-pc">病気による症状があっても、自分は自分。「アス＝明日へ」「パス＝つなげる道」の名前のとおり、<br class="br-pc">明日につながる運動を、専門の<span class="nw">理学療法士</span>がお届けします。</p>
+<h2 data-en-html="Turning anxiety into &lt;span class=&quot;hl-hope&quot;&gt;hope&lt;/span&gt;,&lt;br class=&quot;br-pc&quot;&gt;and helping more people thrive by walking alongside them.">不安を<span class="hl-hope"><span class="nw">希望</span></span>に変え、<br class="br-pc">人生の<span class="nw">伴走</span>で元気な人を増やす。</h2>
+        <p data-en-html="ASPATH is a personal training studio in Kagoshima &lt;strong&gt;specializing in Parkinson's disease and stroke&lt;/strong&gt;. Even with symptoms from illness, you are still you. True to its name&mdash;&quot;As = toward tomorrow,&quot; &quot;Path = a road that connects&quot;&mdash;our specialist physical therapist delivers exercise that leads to a better tomorrow.">ASPATH（<span class="nw">アスパス</span>）は、鹿児島の<strong><span class="nw">パーキンソン病</span>専門</strong>の<br class="br-pc"><span class="nw">パーソナルトレーニング</span>スタジオです。<br class="br-pc">病気による症状があっても、自分は自分。「アス＝<span class="nw">明日へ</span>」「パス＝<span class="nw">つなげる道</span>」の名前のとおり、<br class="br-pc">明日につながる運動を、専門の<span class="nw">理学療法士</span>がお届けします。</p>
         <p data-en-html="More than just exercise, we value trust, empathy, and partnership&mdash;remaining a &lt;strong&gt;&quot;third place&quot; (a place to belong)&lt;/strong&gt; in your life.">ただ運動するのではなく、信頼・共感・パートナーシップを大切に、<br class="br-pc">あなたの人生の<strong><span class="nw">サードプレイス</span>（拠り所）</strong>であり続けます。</p>
       </div>
     </div>

@@ -962,7 +962,9 @@ html.is-loading{ overflow:hidden; }
 /* ===== モバイル安全策：横スクロール/はみ出し防止 ===== */
 html,body{ overflow-x:clip; max-width:100%; }
 img,video,iframe{ max-width:100%; height:auto; }
-body{ overflow-wrap:break-word; word-break:normal; }
+/* ※ここで word-break:normal に戻すと文節折り返しが無効になるため、auto-phrase を維持する。
+   overflow-wrap:break-word は「希望」のような語の途中でも切ってしまうため使わない。 */
+body{ overflow-wrap:normal; word-break:auto-phrase; line-break:strict; }
 .br-pc{ display:inline; }
 @media(max-width:600px){
   .cred-table{ font-size:14.5px; }
