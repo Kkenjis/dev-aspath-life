@@ -619,7 +619,7 @@ body.drawer-open{ overflow:hidden; }
 #awards-toggle[aria-expanded="true"] .arw{ transform:rotate(180deg); }
 
 /* 代表 */
-.profile{ display:grid; grid-template-columns:380px 1fr; gap:52px; align-items:start; max-width:1040px; margin:36px auto 0; position:relative; z-index:1; background:#FFFFFF; border-radius:24px; padding:38px 42px; box-shadow:0 10px 30px rgba(38,70,83,.08); }
+.profile{ display:grid; grid-template-columns:440px 1fr; gap:46px; align-items:start; max-width:1040px; margin:36px auto 0; position:relative; z-index:1; background:#FFFFFF; border-radius:24px; padding:38px 42px; box-shadow:0 10px 30px rgba(38,70,83,.08); }
 .profile .img-slot{ --ratio:3/4; display:grid; place-items:center; color:#46666F; font-size:15px; font-weight:700; text-align:center; border:1px solid #264653; border-radius:18px; overflow:hidden; }
 .yomi{ font-size:15px; color:#55717B; margin-bottom:14px; letter-spacing:.12em; }
 .profile p:not(.yomi){ color:#264653; }
@@ -634,7 +634,7 @@ body.drawer-open{ overflow:hidden; }
 html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .profile blockquote::before{ content:"代表の想い"; display:block; font-family:var(--font-head); font-weight:700; color:var(--sun); font-size:26px; letter-spacing:.06em; margin-bottom:14px; }
 .profile strong, .greeting-lead strong{ color:#264653; font-weight:700; }
-@media (max-width:760px){ .profile{ grid-template-columns:1fr; } .profile .img-slot{ width:min(300px,80vw); max-width:300px; margin:0 auto; min-height:360px; } }
+@media (max-width:760px){ .profile{ grid-template-columns:1fr; } .profile .img-slot{ width:min(430px,94vw); max-width:430px; margin:0 auto; min-height:0; } }
 
 /* 流れ */
 .flow{ list-style:none; display:grid; max-width:680px; margin:0 auto; position:relative; z-index:1; }
@@ -1112,7 +1112,7 @@ table{ max-width:100%; }
 @media (max-width:1024px){
   /* 2カラム構成を1カラムへ（プロフィール・ジグザグ・由来） */
   .profile{ grid-template-columns:1fr !important; gap:28px !important; padding:30px 26px !important; }
-  .profile .img-slot{ max-width:330px; margin:0 auto; }
+  .profile .img-slot{ width:min(430px,94vw); max-width:430px; margin:0 auto; }
   .zigzag{ grid-template-columns:1fr !important; gap:22px !important; }
   .zigzag.is-reverse .z-img{ order:0 !important; }
   .origin-hero{ grid-template-columns:1fr !important; gap:24px !important; margin:26px auto 8px !important; padding-right:0 !important; }
