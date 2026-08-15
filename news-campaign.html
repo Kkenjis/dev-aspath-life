@@ -894,10 +894,13 @@ html.is-loading{ overflow:hidden; }
 .column-cta .btn-primary:hover{ background:#E08A3C; }
 .column-cta .btn-line{ background:var(--line-green); color:#fff; }
 .column-cta .btn-line:hover{ background:var(--line-dark); }
-.column-nav{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:44px; }
+/* 記事下の移動リンク。前後どちらかが無い場合は1つだけを幅いっぱいに表示 */
+.column-nav{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:44px; }
+.column-nav .cn-next{ text-align:right; }
+@media (max-width:560px){ .column-nav .cn-next{ text-align:left; } }
 .column-nav a{ display:block; padding:20px 22px; background:var(--card); border-radius:14px; box-shadow:var(--shadow); text-decoration:none; color:var(--brown); font-family:var(--font-head); transition:transform .25s, box-shadow .25s; }
 .column-nav a:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(38,70,83,.16); }
-.column-nav .label{ display:block; font-size:14px; color:var(--gold-deep); letter-spacing:.1em; margin-bottom:6px; }
+.column-nav .label{ display:block; font-size:14.5px; font-weight:700; color:var(--gold-deep); letter-spacing:.06em; margin-bottom:6px; }
 .column-nav .title{ font-size:16px; }
 .imp-label{ display:inline-block; background:var(--sun); color:#fff; font-family:var(--font-head); font-weight:700; font-size:13.5px; letter-spacing:.08em; padding:3px 14px; border-radius:999px; }
 .nw{ white-space:nowrap; }   /* 途中で切りたくない語句 */
@@ -1247,13 +1250,13 @@ table{ max-width:100%; }
         </div>
       </div>
 
-      <nav class="column-nav" aria-label="関連ページ">
-        <a href="price.html">
-          <span class="label">PRICE</span>
+      <nav class="column-nav" aria-label="記事の移動">
+        <a class="cn-prev" href="price.html">
+          <span class="label" data-en="Related">関連ページ</span>
           <span class="title" data-en="See plans &amp; pricing →">プランと料金を見る →</span>
         </a>
-        <a href="info.html">
-          <span class="label">NEWS</span>
+        <a class="cn-next" href="info.html">
+          <span class="label" data-en="Back to list">一覧へ戻る</span>
           <span class="title" data-en="Back to news list →">お知らせ一覧へ戻る →</span>
         </a>
       </nav>

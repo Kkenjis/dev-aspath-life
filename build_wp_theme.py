@@ -312,6 +312,23 @@ get_header(); ?>
     <div class="wrap">
       <?php if ( has_post_thumbnail() ) : ?><div class="column-eyecatch img-slot" style="--ratio:16/9;"><?php the_post_thumbnail('large'); ?></div><?php endif; ?>
       <?php the_content(); ?>
+      <nav class="column-nav" aria-label="記事の移動">
+      <?php
+        $aspath_prev = get_previous_post();   // 1つ古い記事
+        $aspath_next = get_next_post();       // 1つ新しい記事
+        if ( $aspath_prev ) : ?>
+        <a class="cn-prev" href="<?php echo esc_url( get_permalink($aspath_prev) ); ?>">
+          <span class="label">← 前の記事</span>
+          <span class="title"><?php echo esc_html( get_the_title($aspath_prev) ); ?></span>
+        </a>
+      <?php endif;
+        if ( $aspath_next ) : ?>
+        <a class="cn-next" href="<?php echo esc_url( get_permalink($aspath_next) ); ?>">
+          <span class="label">次の記事 →</span>
+          <span class="title"><?php echo esc_html( get_the_title($aspath_next) ); ?></span>
+        </a>
+      <?php endif; ?>
+      </nav>
     </div>
   </article>
 <?php endwhile; ?>
