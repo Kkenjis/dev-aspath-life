@@ -979,8 +979,22 @@ main{ padding-top:76px; }
 .tf-list p{ margin:0; font-size:15.5px; line-height:1.9; color:var(--ink); word-break:auto-phrase; line-break:strict; }
 /* 「当日のながれ」は色を変えて別ブロックだと分かるように */
 .tf-day{ margin-top:56px; }
-.tf-day .tf-list li{ border-left-color:var(--sun); background:linear-gradient(180deg,#FFFDFA 0%,#FFF7EE 100%); }
+/* 当日のながれ：左だけでなく全周をオレンジ線で囲む＋写真を並べる */
+.tf-day .tf-list li{
+  border:3px solid var(--sun); background:linear-gradient(180deg,#FFFDFA 0%,#FFF7EE 100%);
+  box-shadow:0 8px 22px rgba(244,162,97,.16);
+  display:grid; grid-template-columns:1fr 260px; gap:22px; align-items:center;
+}
+.tf-day .tf-list li:hover{ box-shadow:0 12px 30px rgba(244,162,97,.24); }
 .tf-day .tf-list li::before{ background:var(--sun); }
+.tf-day .tf-txt{ min-width:0; }
+.tf-day .tf-figure{ margin:0; }
+.tf-day .tf-figure img{ display:block; width:100%; aspect-ratio:3/2; object-fit:cover;
+  border-radius:12px; box-shadow:0 6px 16px rgba(38,70,83,.14); }
+@media (max-width:760px){
+  .tf-day .tf-list li{ grid-template-columns:1fr; gap:14px; }
+  .tf-day .tf-figure img{ aspect-ratio:16/10; }
+}
 
 /* ============================================================
    レスポンシブ基盤：全デバイス対応（PCの見た目は維持）
@@ -1184,16 +1198,31 @@ table{ max-width:100%; }
         <h2 data-en="What happens on the day">トレーニング当日のながれ</h2>
         <p class="tf-lead" data-en="Here is how a session actually proceeds on the day.">当日、実際にどのように進めていくのかをご紹介します。</p>
         <ol class="tf-list">
-          <li><b data-en="Counselling">カウンセリング</b>
-            <p data-en="We carefully ask about your condition up to today, anything on your mind, and what you hope for. What we hear is put straight to use in the session.">当日までの体調や気になっていること、ご希望を丁寧にお聞きします。<br class="br-pc">お聞きした内容をトレーニングに活かします。</p></li>
-          <li><b data-en="Checking your movement and posture">お体の動きや姿勢をチェック</b>
-            <p data-en="We check your walking and posture in person, filming video as we go. We analyse both what is going well and what needs work.">実際に歩きや姿勢を、動画も撮影しながら確認していきます。<br class="br-pc">良い点と課題となる部分を分析します。</p></li>
-          <li><b data-en="Individual training">個別トレーニング</b>
-            <p data-en="We carry out training and conditioning suited to each individual.">お一人お一人にあったトレーニングやコンディショニングを実施します。</p></li>
-          <li><b data-en="Re-checking your body">お体の再チェック</b>
-            <p data-en="We check your walking and posture again, confirming the changes since training and the points to work on going forward.">再度、歩きや姿勢をチェックしていきます。<br class="br-pc">トレーニング後のお体の変化や、今後の課題点について確認します。</p></li>
-          <li><b data-en="Home tips and what comes next">ご自宅での工夫と今後の案内</b>
-            <p data-en="Through the session we share exercises you can do at home. We also confirm your upcoming schedule so it connects to the next session.">トレーニングを通して、ご自宅でできる運動をお伝えします。<br class="br-pc">また、今後の予定についても確認し、次回につなげます。</p></li>
+          <li>
+            <div class="tf-txt"><b data-en="Counselling">カウンセリング</b>
+            <p data-en="We carefully ask about your condition up to today, anything on your mind, and what you hope for. What we hear is put straight to use in the session.">当日までの体調や気になっていること、ご希望を丁寧にお聞きします。<br class="br-pc">お聞きした内容をトレーニングに活かします。</p></div>
+            <figure class="tf-figure"><img src="images/flow-day-01-counseling.webp" alt="カウンセリングで体調やご希望を伺う様子" width="900" height="600" loading="lazy"></figure>
+          </li>
+          <li>
+            <div class="tf-txt"><b data-en="Checking your movement and posture">お体の動きや姿勢をチェック</b>
+            <p data-en="We check your walking and posture in person, filming video as we go. We analyse both what is going well and what needs work.">実際に歩きや姿勢を、動画も撮影しながら確認していきます。<br class="br-pc">良い点と課題となる部分を分析します。</p></div>
+            <figure class="tf-figure"><img src="images/flow-day-02-check.webp" alt="歩きや姿勢をスマートフォンで撮影して確認する様子" width="900" height="600" loading="lazy"></figure>
+          </li>
+          <li>
+            <div class="tf-txt"><b data-en="Individual training">個別トレーニング</b>
+            <p data-en="We carry out training and conditioning suited to each individual.">お一人お一人にあったトレーニングやコンディショニングを実施します。</p></div>
+            <figure class="tf-figure"><img src="images/flow-day-03-training.webp" alt="マットの上でお一人に合わせたトレーニングを行う様子" width="900" height="600" loading="lazy"></figure>
+          </li>
+          <li>
+            <div class="tf-txt"><b data-en="Re-checking your body">お体の再チェック</b>
+            <p data-en="We check your walking and posture again, confirming the changes since training and the points to work on going forward.">再度、歩きや姿勢をチェックしていきます。<br class="br-pc">トレーニング後のお体の変化や、今後の課題点について確認します。</p></div>
+            <figure class="tf-figure"><img src="images/flow-day-04-recheck.webp" alt="タブレットで撮影した動きを見ながら再チェックする様子" width="900" height="600" loading="lazy"></figure>
+          </li>
+          <li>
+            <div class="tf-txt"><b data-en="Home tips and what comes next">ご自宅での工夫と今後の案内</b>
+            <p data-en="Through the session we share exercises you can do at home. We also confirm your upcoming schedule so it connects to the next session.">トレーニングを通して、ご自宅でできる運動をお伝えします。<br class="br-pc">また、今後の予定についても確認し、次回につなげます。</p></div>
+            <figure class="tf-figure"><img src="images/flow-day-05-homecare.webp" alt="ご自宅でタブレットを見ながらセルフケアを続ける様子" width="900" height="600" loading="lazy"></figure>
+          </li>
         </ol>
       </div>
 
