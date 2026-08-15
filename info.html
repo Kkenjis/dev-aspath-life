@@ -266,6 +266,9 @@ h3{ font-size:clamp(19px,2.5vw,23px); }
 .drawer-sns a[aria-label="公式LINE"]{ background:#06C755; }
 .drawer-sns svg{ width:22px; height:22px; }
 .drawer-cta{ width:100%; }
+/* ドロワー内のLINEボタンは幅が狭いので、1行に収まるよう文字と余白を調整 */
+.drawer-cta.btn.big{ padding:17px 12px; font-size:clamp(15.5px,4vw,17px); gap:8px; white-space:nowrap; }
+.drawer-cta .line-ico{ width:20px; height:20px; flex:none; }
 body.drawer-open{ overflow:hidden; }
 @media (max-width:760px){ .gnav{ gap:4px 18px; } .gnav a{ font-size:18px; } .header-right{ gap:12px; } }
 @media (max-width:760px){ .gnav{ order:3; width:100%; justify-content:center; padding-top:8px; border-top:1px solid var(--gold-soft); } }
