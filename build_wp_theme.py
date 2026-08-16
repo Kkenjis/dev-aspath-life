@@ -489,6 +489,34 @@ get_header(); ?>
         open(fp,"w",encoding="utf-8").write(_s)
         print("  ↳ front-page.php: TOPのお知らせ枠を動的化（重要=先頭固定を優先）")
 
+    # TOPのコラム欄も動的化：最新のコラム1件（お知らせカテゴリーは除外）
+    COLUMN_LOOP = """<?php
+  $aspath_ci = get_term_by('slug','info','category');
+  $aspath_ca = array('posts_per_page'=>1,'ignore_sticky_posts'=>true);
+  if ( $aspath_ci && ! is_wp_error($aspath_ci) ) $aspath_ca['category__not_in'] = array($aspath_ci->term_id);
+  $aspath_cq = new WP_Query($aspath_ca);
+  if ( $aspath_cq->have_posts() ) : while ( $aspath_cq->have_posts() ) : $aspath_cq->the_post(); ?>
+          <a class="col-card" href="<?php the_permalink(); ?>">
+            <div class="img-slot col-thumb" role="img" aria-label="<?php the_title_attribute(); ?>">
+              <?php if ( has_post_thumbnail() ) the_post_thumbnail('medium', array('style'=>'--fit:cover; --pos:50% 50%;')); ?>
+            </div>
+            <div class="col-body">
+              <div class="col-meta"><time datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time><span class="tag-col">コラム</span></div>
+              <b><?php the_title(); ?></b>
+              <p class="col-excerpt"><?php echo esc_html( get_the_excerpt() ); ?></p>
+            </div>
+          </a>
+  <?php endwhile; wp_reset_postdata(); endif; ?>
+"""
+    _s = open(fp,encoding="utf-8").read()
+    _m2 = re.search(r'(<div class="column-list" id="columnList"[^>]*>)([\s\S]*?)(</div>\s*<div class="more-wrap">)', _s)
+    if _m2:
+        _s = _s[:_m2.start(2)] + "\n" + COLUMN_LOOP + "        " + _s[_m2.end(2):]
+        open(fp,"w",encoding="utf-8").write(_s)
+        print("  ↳ front-page.php: TOPのコラム欄を動的化（最新1件・お知らせは除外）")
+    else:
+        print("  ! front-page.php: コラム欄の差し替え位置が見つからず（要確認）")
+
     # screenshot（前回生成の物があれば流用）
     old_ss = os.path.join(SRC,"_wp移行素材","theme-aspath","screenshot.png")
     for cand in [old_ss]:
