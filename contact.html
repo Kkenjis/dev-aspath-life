@@ -596,7 +596,13 @@ body.drawer-open{ overflow:hidden; }
 .contact-flow ol{ padding-left:0; list-style:none; counter-reset:cf; display:grid; gap:12px; }
 .contact-flow li{ counter-increment:cf; position:relative; padding-left:38px; font-size:15.5px; }
 .contact-flow li::before{ content:counter(cf); position:absolute; left:0; top:0; width:26px; height:26px; border-radius:50%; background:var(--leaf); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-size:15px; }
-.contact-flow li b{ color:var(--brown); }
+.contact-flow li b{ display:block; color:var(--brown); }
+.contact-flow .cf-note{ display:block; margin-top:4px; font-size:13.5px; line-height:1.7; color:#5E7681; }
+.contact-flow .cf-tel{ margin-top:18px; padding-top:14px; border-top:1px dashed var(--gold-soft);
+  font-size:14.5px; line-height:1.8; color:#5E7681; }
+.contact-flow .cf-tel a{ font-family:var(--font-head); font-weight:700; font-size:17px; color:var(--sun); text-decoration:none; white-space:nowrap; }
+.contact-flow .cf-tel a:hover{ text-decoration:underline; }
+@media (max-width:760px){ .contact-flow .cf-tel{ font-size:14px; } .contact-flow .cf-tel a{ font-size:18px; } }
 
 /* 最上部の緑ボックスLINE案内（旧デザイン・見栄え重視） */
 .line-hero{ background:linear-gradient(135deg,var(--brown) 0%,var(--gold-deep) 100%); border-radius:20px; padding:30px 28px; text-align:center;
@@ -1257,10 +1263,14 @@ table{ max-width:100%; }
           <div class="contact-flow">
             <p class="cs-lead" data-en-html="How to apply">お申し込みの流れ</p>
             <ol>
-              <li><b data-en="Submit via the form or LINE">フォーム or LINEで送信</b></li>
-              <li><b data-en="Our staff will contact you"><span class="nw">アスパス</span>のスタッフからご連絡</b></li>
-              <li><b data-en="First training session">初回トレーニング体験</b></li>
+              <li><b data-en="Add ASPATH&#39;s official LINE as a friend"><span class="nw">アスパス</span>の<span class="nw">公式LINE</span>をお友達登録</b></li>
+              <li><b data-en="Send us your name in the LINE chat"><span class="nw">公式LINE</span>のチャットでお名前を入力・送信</b>
+                <span class="cf-note" data-en="This lets us identify you on our side.">送信いただくことで<span class="nw">アスパス</span>側がお客さまを確認できるようになります</span></li>
+              <li><b data-en="Fill in the trial application form yourself">お客さまご自身で、<span class="nw">初回体験</span>申し込みフォームに必要事項を入力</b></li>
+              <li><b data-en="ASPATH staff contact you to arrange a date"><span class="nw">アスパス</span>のスタッフからご日程調整などのご連絡</b></li>
+              <li><b data-en="Your first training session">初回トレーニング体験を実施</b></li>
             </ol>
+            <p class="cf-tel" data-en-html="You can also apply by phone: &lt;a href=&quot;tel:09082980433&quot;&gt;090-8298-0433&lt;/a&gt;">※お電話でもお申し込みいただけます。<br class="br-pc"><a href="tel:09082980433">090-8298-0433</a> までご連絡ください。</p>
           </div>
         </div>
 
