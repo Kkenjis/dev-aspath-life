@@ -490,13 +490,24 @@ get_header(); ?>
 
     # TOPのお知らせ枠を動的化：「先頭に固定表示（＝重要）」の投稿を優先して1件表示
     NOTICE_LOOP = """<?php
-  $aspath_sticky = get_option('sticky_posts');
-  $aspath_args   = array('posts_per_page'=>1,'ignore_sticky_posts'=>true,'category_name'=>'info');
-  if ( ! empty($aspath_sticky) ) { $aspath_args['post__in'] = $aspath_sticky; }
-  $aspath_q = new WP_Query($aspath_args);
-  if ( ! $aspath_q->have_posts() ) {
-    $aspath_q = new WP_Query(array('posts_per_page'=>1,'ignore_sticky_posts'=>true,'category_name'=>'info'));
+  /* TOPのお知らせ枠：最新2件。「先頭に固定表示（＝重要）」の投稿を優先して先に出す */
+  $aspath_n   = 2;
+  $aspath_ids = array();
+  $aspath_st  = get_option('sticky_posts');
+  if ( ! empty($aspath_st) ) {
+    $aspath_s = get_posts(array('post__in'=>$aspath_st,'category_name'=>'info',
+      'numberposts'=>$aspath_n,'ignore_sticky_posts'=>true,'post_status'=>'publish'));
+    foreach ( $aspath_s as $aspath_p ) { $aspath_ids[] = $aspath_p->ID; }
   }
+  if ( count($aspath_ids) < $aspath_n ) {
+    $aspath_r = get_posts(array('category_name'=>'info','numberposts'=>$aspath_n - count($aspath_ids),
+      'post__not_in'=>$aspath_ids,'ignore_sticky_posts'=>true,'post_status'=>'publish'));
+    foreach ( $aspath_r as $aspath_p ) { $aspath_ids[] = $aspath_p->ID; }
+  }
+  $aspath_q = $aspath_ids
+    ? new WP_Query(array('post__in'=>$aspath_ids,'orderby'=>'post__in',
+        'posts_per_page'=>$aspath_n,'ignore_sticky_posts'=>true))
+    : new WP_Query(array('post__in'=>array(0)));
   if ( $aspath_q->have_posts() ) : while ( $aspath_q->have_posts() ) : $aspath_q->the_post();
     $imp = is_sticky( get_the_ID() ); ?>
           <li class="notice-row<?php echo $imp ? ' is-important' : ''; ?>">
@@ -516,10 +527,10 @@ get_header(); ?>
         open(fp,"w",encoding="utf-8").write(_s)
         print("  ↳ front-page.php: TOPのお知らせ枠を動的化（重要=先頭固定を優先）")
 
-    # TOPのコラム欄も動的化：最新のコラム1件（お知らせカテゴリーは除外）
+    # TOPのコラム欄も動的化：最新のコラム2件（お知らせカテゴリーは除外）
     COLUMN_LOOP = """<?php
   $aspath_ci = get_term_by('slug','info','category');
-  $aspath_ca = array('posts_per_page'=>1,'ignore_sticky_posts'=>true);
+  $aspath_ca = array('posts_per_page'=>2,'ignore_sticky_posts'=>true);
   if ( $aspath_ci && ! is_wp_error($aspath_ci) ) $aspath_ca['category__not_in'] = array($aspath_ci->term_id);
   $aspath_cq = new WP_Query($aspath_ca);
   if ( $aspath_cq->have_posts() ) : while ( $aspath_cq->have_posts() ) : $aspath_cq->the_post(); ?>

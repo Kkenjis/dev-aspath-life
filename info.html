@@ -869,29 +869,34 @@ main{ padding-top:76px; }
   border-bottom:1px solid var(--gold-soft); text-decoration:none; transition:background .2s; align-items:start; }
 .news-list-item:hover{ background:var(--paper); }
 .news-list-item:first-child{ padding-top:0; }
-/* ============ お知らせ一覧：サムネなし・区切り線のみ（コラム一覧と同じ考え方） ============ */
+/* ============ お知らせ一覧：1件＝1つの枠。記事が増えるたびに自動で枠が付く ============ */
+.news-list--plain{ gap:18px; }
 .news-list--plain .news-list-item{
   grid-template-columns:1fr; gap:0;
-  padding:22px 4px; margin:0;
-  background:transparent; border:none;
-  border-bottom:1px solid var(--gold-soft);
-  border-radius:0; align-items:stretch;
-  transition:background .2s;
+  padding:22px 26px; margin:0;
+  background:#fff;
+  border:1.5px solid var(--gold-soft);
+  border-bottom:1.5px solid var(--gold-soft);
+  border-radius:16px; align-items:stretch;
+  box-shadow:0 6px 18px rgba(38,70,83,.07);
+  transition:background .2s, box-shadow .2s, transform .2s, border-color .2s;
 }
-.news-list--plain .news-list-item:first-child{ padding-top:4px; }
-.news-list--plain .news-list-item:last-child{ border-bottom:1px solid var(--gold-soft); }
-.news-list--plain .news-list-item:hover{ background:var(--paper); }
+.news-list--plain .news-list-item:first-child{ padding-top:22px; }
+.news-list--plain .news-list-item:hover{
+  background:#fff; border-color:#E7CFA6; transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(38,70,83,.13);
+}
 .news-list--plain .nli-meta{ gap:12px; margin-bottom:10px; }
 .news-list--plain .nli-title{ margin-bottom:8px; }
 .news-list--plain .nli-excerpt{ -webkit-line-clamp:2; }
 
 /* --- 重要なお知らせ（WPで「先頭に固定表示」にチェックした投稿） --- */
-/* 左だけの太線はやめ、全周を薄い枠＋影で囲い、枠の中だけ背景色を変える */
+/* 通常の枠に対し、背景の色みと枠線・影を強めて差をつける */
 .news-list--plain .news-list-item.is-important{
   background:linear-gradient(180deg,#FFFCF7 0%,#FFF3E4 100%);
-  border:1.5px solid #EFD6B4;
-  border-radius:16px; padding:22px 26px; margin:0 0 18px;
-  box-shadow:0 10px 26px rgba(196,141,74,.16), 0 2px 6px rgba(196,141,74,.10);
+  border:2px solid #E9BE84;
+  border-radius:16px; padding:22px 26px; margin:0;
+  box-shadow:0 10px 26px rgba(196,141,74,.20), 0 2px 6px rgba(196,141,74,.12);
   transition:box-shadow .2s, transform .2s, border-color .2s;
 }
 .news-list--plain .news-list-item.is-important:hover{
@@ -907,7 +912,9 @@ main{ padding-top:76px; }
   font-size:12.5px; letter-spacing:.14em; padding:3px 13px 3px 15px;
 }
 @media(max-width:600px){
-  .news-list--plain .news-list-item{ padding:18px 2px; }
+  .news-list--plain{ gap:14px; }
+  .news-list--plain .news-list-item,
+  .news-list--plain .news-list-item:first-child{ padding:18px 16px; }
   .news-list--plain .news-list-item.is-important{ padding:18px 16px; }
 }
 .nli-thumb{ aspect-ratio:40/21; border-radius:12px; overflow:hidden; background:transparent; }  /* アイキャッチ比率に一致＝余白なし */
