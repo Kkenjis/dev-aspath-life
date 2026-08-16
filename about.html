@@ -404,9 +404,10 @@ body.drawer-open{ overflow:hidden; }
 .svc-body h3::before{ content:""; display:inline-block; width:26px; height:4px; border-radius:4px; background:var(--brown); margin-right:12px; vertical-align:middle; }
 .svc-body p{ font-size:15px; text-align:left; margin:0; line-height:1.85; }
 @media (max-width:560px){
-  .svc-item{ grid-template-columns:1fr; gap:12px; padding:20px 18px; text-align:center; }
-  .svc-item .svc-circle{ margin:0 auto; }
-  .svc-circle{ width:140px; }
+  .svc-item{ grid-template-columns:1fr !important; gap:12px; padding:20px 18px; text-align:center; }
+  .svc-item .svc-circle{ margin:0 auto !important; }
+  .svc-circle{ width:140px; max-width:100%; }
+  .svc-body{ min-width:0; }
   .svc-body h3{ font-size:19px; }
   .svc-body h3::before{ width:20px; margin-right:9px; }
 }
@@ -1037,8 +1038,13 @@ table{ max-width:100%; }
   .price-grid{ grid-template-columns:1fr !important; max-width:420px; margin-left:auto; margin-right:auto; }
   .price-card.recommend{ transform:none !important; }
   .sb-grid{ grid-template-columns:1fr !important; }
-  .svc-item{ grid-template-columns:84px 1fr !important; gap:18px !important; padding:20px 18px !important; }
+  .svc-item{ gap:18px !important; padding:20px 18px !important; }
   .train-flow{ margin-top:48px; }
+}
+/* 561〜900px のみ横並び。560px以下は1カラム（下の指定を尊重） */
+@media (max-width:900px) and (min-width:561px){
+  .svc-item{ grid-template-columns:84px 1fr !important; }
+  .svc-circle{ width:84px !important; }
 }
 
 /* ── スマホ（〜760px）：可読性重視 ── */
