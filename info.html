@@ -886,16 +886,18 @@ main{ padding-top:76px; }
 .news-list--plain .nli-excerpt{ -webkit-line-clamp:2; }
 
 /* --- 重要なお知らせ（WPで「先頭に固定表示」にチェックした投稿） --- */
+/* 左だけの太線はやめ、全周を薄い枠＋影で囲い、枠の中だけ背景色を変える */
 .news-list--plain .news-list-item.is-important{
-  background:linear-gradient(180deg,#FFFBF5 0%,#FFF4E7 100%);
-  border:1px solid #F0D3AE; border-left:5px solid var(--sun);
-  border-radius:14px; padding:20px 24px; margin:0 0 18px;
-  box-shadow:0 8px 24px rgba(244,162,97,.16);
+  background:linear-gradient(180deg,#FFFCF7 0%,#FFF3E4 100%);
+  border:1.5px solid #EFD6B4;
+  border-radius:16px; padding:22px 26px; margin:0 0 18px;
+  box-shadow:0 10px 26px rgba(196,141,74,.16), 0 2px 6px rgba(196,141,74,.10);
+  transition:box-shadow .2s, transform .2s, border-color .2s;
 }
 .news-list--plain .news-list-item.is-important:hover{
-  background:linear-gradient(180deg,#FFFBF5 0%,#FFF0DE 100%);
-  border-color:var(--sun); border-left-color:var(--sun);
-  box-shadow:0 12px 30px rgba(244,162,97,.24);
+  background:linear-gradient(180deg,#FFFCF7 0%,#FFEFDC 100%);
+  border-color:#E4B378; transform:translateY(-2px);
+  box-shadow:0 14px 32px rgba(196,141,74,.22), 0 3px 8px rgba(196,141,74,.12);
 }
 .news-list-item.is-important .nli-title{ font-weight:700; font-size:17.5px; color:var(--brown); }
 .news-list-item.is-important .nli-excerpt{ color:#6B5A45; }
@@ -906,8 +908,7 @@ main{ padding-top:76px; }
 }
 @media(max-width:600px){
   .news-list--plain .news-list-item{ padding:18px 2px; }
-  .news-list--plain .news-list-item.is-important{ padding:16px 16px; }
-  .news-list-item.is-important{ border-left-width:4px; }
+  .news-list--plain .news-list-item.is-important{ padding:18px 16px; }
 }
 .nli-thumb{ aspect-ratio:40/21; border-radius:12px; overflow:hidden; background:transparent; }  /* アイキャッチ比率に一致＝余白なし */
 .nli-thumb > img{ border-radius:12px; }

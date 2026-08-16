@@ -1050,15 +1050,16 @@ html.is-loading{ overflow:hidden; }
 .notice-row a{ color:var(--brown); font-weight:600; text-decoration:none; font-size:15.5px; line-height:1.6; }
 .notice-row a:hover{ color:var(--sun); }
 /* --- 重要なお知らせ（WPで「先頭に固定表示」にチェックした投稿） --- */
+/* 左だけの太線はやめ、全周を薄い枠＋影で囲い、枠の中だけ背景色を変える */
 .notice-row.is-important{
-  background:linear-gradient(180deg,#FFFBF5 0%,#FFF4E7 100%);
-  border:1px solid #F0D3AE; border-left:5px solid var(--sun);
-  border-radius:14px; padding:18px 22px; margin-bottom:6px;
-  box-shadow:0 8px 24px rgba(244,162,97,.16);
-  transition:box-shadow .2s, transform .2s;
+  background:linear-gradient(180deg,#FFFCF7 0%,#FFF3E4 100%);
+  border:1.5px solid #EFD6B4;
+  border-radius:16px; padding:20px 24px; margin-bottom:6px;
+  box-shadow:0 10px 26px rgba(196,141,74,.16), 0 2px 6px rgba(196,141,74,.10);
+  transition:box-shadow .2s, transform .2s, border-color .2s;
 }
-.notice-row.is-important:first-child{ border-top:1px solid #F0D3AE; }
-.notice-row.is-important:hover{ box-shadow:0 12px 30px rgba(244,162,97,.24); transform:translateY(-2px); }
+.notice-row.is-important:first-child{ border-top:1.5px solid #EFD6B4; }
+.notice-row.is-important:hover{ border-color:#E4B378; box-shadow:0 14px 32px rgba(196,141,74,.22), 0 3px 8px rgba(196,141,74,.12); transform:translateY(-2px); }
 .notice-row .tag-important{
   background:var(--sun); font-family:var(--font-head); font-weight:700;
   font-size:12.5px; letter-spacing:.14em; padding:3px 13px 3px 15px;
@@ -1066,7 +1067,7 @@ html.is-loading{ overflow:hidden; }
 .notice-row.is-important a{ color:var(--brown); font-weight:700; }
 .notice-row.is-important:hover a{ color:var(--sun); }
 @media (max-width:600px){
-  .notice-row.is-important{ padding:16px 16px; gap:10px; flex-wrap:wrap; border-left-width:4px; }
+  .notice-row.is-important{ padding:16px 16px; gap:10px; flex-wrap:wrap; }
 }
 .notice-row.is-more{ display:none; }
 .notice-list.is-open .notice-row.is-more{ display:flex; animation:fadein .4s ease; }
