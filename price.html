@@ -966,34 +966,35 @@ main{ padding-top:76px; }
 }
 
 /* ===== トレーニングのフロー（開始まで／当日） ===== */
-.train-flow{ max-width:960px; margin:64px auto 0; position:relative; z-index:1; }
-.train-flow h2{ text-align:center; font-family:var(--font-head); font-size:clamp(21px,3vw,26px); color:var(--brown); margin-bottom:8px; }
-.train-flow .tf-lead{ text-align:center; font-size:15.5px; color:#52707A; margin-bottom:28px; word-break:auto-phrase; line-break:strict; }
+.train-flow{ max-width:1080px; margin:64px auto 0; position:relative; z-index:1; }
+.train-flow h2{ text-align:center; font-family:var(--font-head); font-size:clamp(22px,3.2vw,29px); color:var(--brown); margin-bottom:8px; }
+.train-flow .tf-lead{ text-align:center; font-size:17px; color:#52707A; margin-bottom:28px; word-break:auto-phrase; line-break:strict; }
 .tf-list{ list-style:none; padding:0; display:grid; gap:44px; counter-reset:tf; }
 /* 1項目＝1ブロック。枠＋背景で他の項目と切り分ける */
 .tf-list li{
   counter-increment:tf; position:relative;
   background:#fff; border:3px solid var(--gold);      /* 全周を枠で括る */
   border-radius:16px; box-shadow:0 6px 18px rgba(38,70,83,.07);
-  padding:22px 26px 22px 78px;
+  padding:26px 34px 28px 86px;
   transition:box-shadow .2s, transform .2s;
-  display:grid; grid-template-columns:1fr 260px; gap:22px; align-items:center;
+  /* 文章は枠いっぱいの幅で大きく、写真はその下に配置 */
+  display:grid; grid-template-columns:1fr; gap:18px; align-items:start;
 }
 .tf-txt{ min-width:0; }
-.tf-figure{ margin:0; }
+.tf-figure{ margin:0; width:100%; max-width:440px; }
 .tf-figure img{ display:block; width:100%; aspect-ratio:16/9; object-fit:cover;
   border-radius:12px; box-shadow:0 6px 16px rgba(38,70,83,.14); }
 @media (max-width:760px){
-  .tf-list li{ grid-template-columns:1fr; gap:14px; }
+  .tf-figure{ max-width:none; }
   .tf-figure img{ aspect-ratio:16/10; }
 }
 .tf-list li:hover{ box-shadow:0 12px 28px rgba(38,70,83,.13); transform:translateY(-2px); }
 .tf-list li::before{
   content:counter(tf,decimal-leading-zero);
-  position:absolute; left:18px; top:20px;
-  width:44px; height:44px; border-radius:50%;
+  position:absolute; left:20px; top:24px;
+  width:50px; height:50px; border-radius:50%;
   background:var(--brown); color:#fff; display:grid; place-items:center;
-  font-family:var(--font-head); font-weight:700; font-size:17px;
+  font-family:var(--font-head); font-weight:700; font-size:19px;
 }
 /* 各ブロックの下に「次へ続く」下向き矢印。最後の項目には出さない */
 .tf-list li:not(:last-child)::after{
@@ -1012,8 +1013,13 @@ main{ padding-top:76px; }
 @media (prefers-reduced-motion:no-preference){
   .tf-list li:not(:last-child)::after{ transition:opacity .2s; }
 }
-.tf-list b{ display:block; font-family:var(--font-head); font-weight:700; font-size:18.5px; color:var(--brown); margin-bottom:6px; word-break:auto-phrase; line-break:strict; }
-.tf-list p{ margin:0; font-size:15.5px; line-height:1.9; color:var(--ink); word-break:auto-phrase; line-break:strict; }
+/* ご高齢の方にも読みやすいよう、フローの文字は大きめに */
+.tf-list b{ display:block; font-family:var(--font-head); font-weight:700; font-size:clamp(20px,2.1vw,23px); color:var(--brown); margin-bottom:10px; word-break:auto-phrase; line-break:strict; }
+.tf-list p{ margin:0; font-size:clamp(17px,1.75vw,19px); line-height:1.95; color:var(--ink); word-break:auto-phrase; line-break:strict; }
+@media (max-width:760px){
+  .tf-list b{ font-size:19px; }
+  .tf-list p{ font-size:16.5px; line-height:1.9; }
+}
 /* 「当日のながれ」は色を変えて別ブロックだと分かるように */
 .tf-day{ margin-top:56px; }
 /* 当日のながれ：色をオレンジ系に（枠・写真レイアウトは共通指定を継承） */
