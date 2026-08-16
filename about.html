@@ -1088,7 +1088,8 @@ table{ max-width:100%; }
 .tr-lead p{ font-size:16px; line-height:2.1; color:var(--ink); margin-bottom:16px; word-break:auto-phrase; line-break:strict; }
 .tr-quote{ font-family:var(--font-head); color:var(--brown); background:#fff; border-left:4px solid var(--sun); border-radius:0 12px 12px 0; padding:14px 18px; line-height:2.05 !important; }
 .tr-pillars{ max-width:1040px; margin:54px auto 0; text-align:center; }   /* 図の幅に合わせて親も拡張 */
-.tr-pillars-lead{ font-size:17.5px; color:var(--brown); font-weight:700; margin:0 auto 20px; max-width:44em; line-height:1.9; }
+.tr-pillars-lead{ font-size:17.5px; color:var(--brown); font-weight:700; margin:0 auto 20px; max-width:none; line-height:1.9; white-space:nowrap; }
+@media (max-width:1060px){ .tr-pillars-lead{ white-space:normal; font-size:clamp(15px,1.7vw,17.5px); } }
 .tr-pillars-sub{ margin:20px auto 0; max-width:44em; font-size:16px; line-height:1.9; color:#52707A; }
 .tr-chapter{ max-width:900px; margin:78px auto 0; }
 .tr-num{ font-family:var(--font-head); font-weight:700; font-size:clamp(30px,4.4vw,40px); color:var(--sun); margin:0 0 2px; letter-spacing:.04em; }
