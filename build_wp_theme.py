@@ -252,7 +252,8 @@ function aspath_assets() {{
 
   // ページごとに専用CSSを1本だけ読み込む（結合するとページ間で上書き事故が起きるため）
   $css = 'generic';
-  if      ( is_front_page() )                 {{ $css = 'index'; }}
+  if      ( is_404() )                        {{ $css = 'generic'; }}
+  elseif  ( is_front_page() )                 {{ $css = 'index'; }}
   elseif  ( is_page_template('template-trial-entry.php') ) {{ $css = 'trial-entry'; }}
   elseif  ( is_page('about') )                {{ $css = 'about'; }}
   elseif  ( is_page('services') )             {{ $css = 'services'; }}
@@ -459,6 +460,32 @@ get_header(); ?>
     open(os.path.join(OUT,"archive.php"),"w",encoding="utf-8").write(home)
     open(os.path.join(OUT,"index.php"),"w",encoding="utf-8").write(home)
     open(os.path.join(OUT,"page.php"),"w",encoding="utf-8").write(page_generic)
+
+    # 404.php — これが無いと WordPress は index.php を使い、
+    # 「固定ページを作り忘れただけ」なのにコラム一覧が表示されて原因が分からなくなる
+    notfound = """<?php
+/** 404.php — ページが見つからないとき（自動生成） */
+get_header(); ?>
+<main>
+  <div class="page-head"><div class="wrap">
+    <p class="crumb"><a href="<?php echo esc_url( home_url('/') ); ?>">TOP</a> ／ ページが見つかりません</p>
+    <h1 class="page-title">ページが見つかりません</h1>
+  </div></div>
+  <div class="wrap page-generic" style="padding:48px 0 72px; text-align:center;">
+    <p style="font-size:17px; line-height:2; margin-bottom:28px;">
+      お探しのページは移動または削除された可能性があります。<br class="br-pc">
+      お手数ですが、下記からお進みください。
+    </p>
+    <p style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn btn-ghost mid" href="<?php echo esc_url( home_url('/') ); ?>">TOPへ戻る<span class="arw">\u2192</span></a>
+      <a class="btn btn-ghost mid" href="<?php echo esc_url( home_url('/blog/') ); ?>">コラム一覧<span class="arw">\u2192</span></a>
+      <a class="btn btn-ghost mid" href="<?php echo esc_url( home_url('/contact/') ); ?>">お問い合わせ<span class="arw">\u2192</span></a>
+    </p>
+  </div>
+</main>
+<?php get_footer(); ?>
+"""
+    open(os.path.join(OUT,"404.php"),"w",encoding="utf-8").write(notfound)
 
 
     # TOPのお知らせ枠を動的化：「先頭に固定表示（＝重要）」の投稿を優先して1件表示
