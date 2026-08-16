@@ -288,6 +288,20 @@ function aspath_assets() {{
 }}
 add_action('wp_enqueue_scripts','aspath_assets');
 
+/**
+ * コラム一覧(/blog/)から「お知らせ」カテゴリーを除外する。
+ * devの news.html はコラムのみを並べているため、それに合わせる。
+ * お知らせは /category/info/ で一覧表示される。
+ */
+function aspath_exclude_info_from_blog($q) {{
+  if ( is_admin() || ! $q->is_main_query() ) return;
+  if ( $q->is_home() ) {{
+    $t = get_term_by('slug','info','category');
+    if ( $t && ! is_wp_error($t) ) $q->set('category__not_in', array($t->term_id));
+  }}
+}}
+add_action('pre_get_posts','aspath_exclude_info_from_blog');
+
 function aspath_excerpt_length($l){{ return 60; }}
 add_filter('excerpt_length','aspath_excerpt_length');
 
@@ -385,23 +399,36 @@ get_header(); ?>
 <?php get_footer(); ?>
 """
     home = """<?php
-/** home.php — お知らせ・コラム一覧（/blog/・自動生成） */
+/** home.php — 投稿一覧（/blog/＝コラム、/category/info/＝お知らせ・自動生成） */
 get_header(); ?>
+<?php
+/* 見出しは文脈で切り替える。
+   /blog/        → コラム（お知らせカテゴリーは functions.php で除外）
+   /category/info/ → お知らせ（devのinfo.htmlと同じ「枠なし」デザイン）
+   その他のアーカイブ → そのアーカイブ名 */
+$aspath_is_info = is_category('info');
+if     ( $aspath_is_info ) { $aspath_ttl = 'お知らせ'; }
+elseif ( is_category() )   { $aspath_ttl = single_cat_title('', false); }
+elseif ( is_archive() )    { $aspath_ttl = wp_strip_all_tags( get_the_archive_title() ); }
+else                       { $aspath_ttl = 'コラム'; }
+?>
 <main>
   <div class="page-head"><div class="wrap">
-    <p class="crumb"><a href="<?php echo esc_url( home_url('/') ); ?>">TOP</a> ／ コラム</p>
-    <h1 class="page-title">お知らせ・コラム</h1>
+    <p class="crumb"><a href="<?php echo esc_url( home_url('/') ); ?>">TOP</a> ／ <?php echo esc_html($aspath_ttl); ?></p>
+    <h1 class="page-title"><?php echo esc_html($aspath_ttl); ?></h1>
   </div></div>
   <div class="page-wrap wrap"><div class="page-main">
-    <div class="news-list" id="newsList">
+    <div class="news-list<?php echo $aspath_is_info ? ' news-list--plain' : ''; ?>" id="newsList">
       <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
         $cats = get_the_category(); $catname = $cats ? $cats[0]->name : ''; ?>
         <?php $imp = is_sticky( get_the_ID() ); ?>
         <a class="news-list-item<?php echo $imp ? ' is-important' : ''; ?>" data-cat="<?php echo esc_attr($catname); ?>" href="<?php the_permalink(); ?>">
+          <?php if ( ! $aspath_is_info ) : ?>
           <div class="nli-thumb img-slot" role="img" aria-label="<?php the_title_attribute(); ?>">
             <?php if ( has_post_thumbnail() ) the_post_thumbnail('medium', array('style'=>'--fit:contain; --pos:50% 50%;')); ?>
           </div>
-          <div class="nli-body">
+          <?php endif; ?>
+          <div class="nli-body<?php echo $aspath_is_info ? ' nli-body--full' : ''; ?>">
             <div class="nli-meta">
               <time datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time>
               <?php if ( $imp ) : ?><span class="nli-tag tag-important">重要</span>
