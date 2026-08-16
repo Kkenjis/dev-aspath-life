@@ -109,7 +109,7 @@
   --line-dark: #05a648;
   --shadow: 0 6px 20px rgba(38,70,83,.10);
   --radius: 20px;
-  --maxw: 1080px;
+  --maxw: 1200px;
   --font-head:"Kiwi Maru","Zen Maru Gothic",sans-serif;
   --font-body:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
 }
@@ -944,7 +944,7 @@ main{ padding-top:76px; }
 
 /* ===== 目次/カテゴリ撤去・本文を中央寄せ（TOP以外／50-70代の視認性重視） ===== */
 .side-toc{ display:none !important; }
-.page-wrap{ grid-template-columns:minmax(0,1fr) !important; gap:0 !important; max-width:900px !important; }
+.page-wrap{ grid-template-columns:minmax(0,1fr) !important; gap:0 !important; max-width:1040px !important; }
 .page-main{ margin:0 auto !important; }
 @media (max-width:760px){ .page-wrap{ max-width:100% !important; } }
 
@@ -966,7 +966,7 @@ main{ padding-top:76px; }
 }
 
 /* ===== トレーニングのフロー（開始まで／当日） ===== */
-.train-flow{ max-width:820px; margin:64px auto 0; position:relative; z-index:1; }
+.train-flow{ max-width:960px; margin:64px auto 0; position:relative; z-index:1; }
 .train-flow h2{ text-align:center; font-family:var(--font-head); font-size:clamp(21px,3vw,26px); color:var(--brown); margin-bottom:8px; }
 .train-flow .tf-lead{ text-align:center; font-size:15.5px; color:#52707A; margin-bottom:28px; word-break:auto-phrase; line-break:strict; }
 .tf-list{ list-style:none; padding:0; display:grid; gap:16px; counter-reset:tf; }
