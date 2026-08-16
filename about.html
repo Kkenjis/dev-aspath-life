@@ -1087,7 +1087,7 @@ table{ max-width:100%; }
 .tr-lead{ max-width:720px; }
 .tr-lead p{ font-size:16px; line-height:2.1; color:var(--ink); margin-bottom:16px; word-break:auto-phrase; line-break:strict; }
 .tr-quote{ font-family:var(--font-head); color:var(--brown); background:#fff; border-left:4px solid var(--sun); border-radius:0 12px 12px 0; padding:14px 18px; line-height:2.05 !important; }
-.tr-pillars{ max-width:1040px; margin:54px auto 0; text-align:center; }   /* 図の幅に合わせて親も拡張 */
+.tr-pillars{ max-width:900px; margin:54px auto 0; text-align:center; }   /* 章（tr-chapter）と同じ基準幅 */
 .tr-pillars-lead{ font-size:17.5px; color:var(--brown); font-weight:700; margin:0 auto 20px; max-width:none; line-height:1.9; white-space:nowrap; }
 @media (max-width:1060px){ .tr-pillars-lead{ white-space:normal; font-size:clamp(15px,1.7vw,17.5px); } }
 .tr-pillars-sub{ margin:20px auto 0; max-width:44em; font-size:16px; line-height:1.9; color:#52707A; }
@@ -1152,11 +1152,12 @@ table{ max-width:100%; }
 @media (max-width:760px){ .tr-closefig{ margin-top:44px; } .tr-closefig img{ border-radius:12px; } }
 
 /* 理念4本柱（1枚画像） */
-.tr-pillars-fig{ margin:24px auto 0; max-width:1040px; }
+.tr-pillars-fig{ margin:24px auto 0; max-width:none; }
 /* 図版は本文の幅より少し外側まで広げる（章の枠で頭打ちにならないように） */
 @media (min-width:1060px){
   .tr-chapter .tr-cores-fig,
-  .tr-chapter .tr-chapfig{ width:calc(100% + 140px); max-width:none; margin-left:-70px; margin-right:-70px; }
+  .tr-chapter .tr-chapfig,
+  .tr-pillars .tr-pillars-fig{ width:calc(100% + 140px); max-width:none; margin-left:-70px; margin-right:-70px; }
 }
 
 .tr-pillars-fig img{ width:100%; height:auto; display:block; }
