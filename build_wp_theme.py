@@ -42,6 +42,10 @@ def read(p): return open(os.path.join(SRC,p),encoding="utf-8").read()
 
 def php_url(path):
     # サブディレクトリ(ステージング)でも本番でも正しく解決するよう home_url() で生成
+    # お知らせ一覧だけは固定ページではなくカテゴリーアーカイブなので、
+    # 実際のURL（/category/info/ など）をWordPressに解決させる。ハードコードすると404になる。
+    if path == '/info/':
+        return "<?php echo esc_url( aspath_info_url() ); ?>"
     return "<?php echo esc_url( home_url('" + path + "') ); ?>"
 
 def rewrite_links(s):
@@ -98,23 +102,38 @@ def page_css(p):
     t = read(p)
     return '\n'.join(re.findall(r'<style[^>]*>([\s\S]*?)</style>', t))
 
-def build_front_css():
-    # TOP専用：index.htmlのCSSを丸ごと（上書き事故ゼロ＝devと完全一致）
-    return "/* front.css — index.html のCSSをそのまま抽出（TOP専用） */\n" + page_css("index.html")
+# ページごとに1本のCSSを出力する（結合は絶対にしない）。
+#   結合すると、同じセレクタを別内容で持つページ同士が上書きし合い、
+#   dev では正しいのに WordPress だけレイアウトが崩れる。実際に28セレクタが衝突していた。
+#   1リクエストで読むのは1本だけなので、合計サイズが増えても表示速度には影響しない。
+CSS_SOURCES = {
+    "index":          "index.html",
+    "about":          "about.html",
+    "services":       "price.html",
+    "access":         "access.html",
+    "contact":        "contact.html",
+    "faq":            "faq.html",
+    "privacy":        "privacy.html",
+    "tokushoho":      "tokushoho.html",
+    "sitemap":        "sitemap.html",
+    "blog":           "news.html",
+    "info":           "info.html",
+    "column":         "taimentraining.html",      # コラム記事の既定（新規投稿もこれ）
+    "column-parkinson":"column-parkinson.html",
+    "news-single":    "news-campaign.html",       # お知らせ記事
+    "trial-entry":    "trial-entry.html",
+    "generic":        "privacy.html",             # 汎用ページ（page.php）の土台
+}
 
-def build_sub_css():
-    # サブページ用：サブページ群のCSSを重複排除で結合（indexとは分離し衝突を防止）
-    seen, out = set(), []
-    for p in PAGES:
-        if p == "index.html": continue
-        rules = []
-        for r in split_rules(page_css(p)):
-            key = re.sub(r'\s+','',r)
-            if key not in seen:
-                seen.add(key); rules.append(r)
-        if rules:
-            out.append(f"\n/* ==== {p} 由来 ==== */\n" + '\n'.join(rules))
-    return "/* sub.css — サブページ群のCSS（TOPとは分離読込） */\n" + '\n'.join(out)
+def build_css_files():
+    written = {}
+    css_dir = os.path.join(OUT, "css")
+    os.makedirs(css_dir, exist_ok=True)
+    for key, src in CSS_SOURCES.items():
+        body = f"/* {key}.css — {src} の<style>をそのまま抽出（ページ単位で分離） */\n" + page_css(src)
+        open(os.path.join(css_dir, f"{key}.css"), "w", encoding="utf-8").write(body)
+        written[key] = len(body)
+    return written
 
 def theme_header_css():
     return f"""/*
@@ -127,7 +146,7 @@ Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: aspath
 */
-/* 実スタイルは front.css（TOP）/ sub.css（サブページ）を条件読込 */
+/* 実スタイルは css/<ページ名>.css を1本だけ条件読込（結合による上書き事故を防止） */
 """
 
 # ---------- JS: index/サブ代表ページのインラインscriptを抽出 ----------
@@ -152,10 +171,9 @@ def main():
     for f in os.listdir(imgdir):
         shutil.copy(os.path.join(imgdir,f), os.path.join(OUT,"images",f))
 
-    # style.css（テーマ情報のみ）＋ front.css / sub.css
+    # style.css（テーマ情報のみ）＋ css/<ページ名>.css をページ単位で出力
     open(os.path.join(OUT,"style.css"),"w",encoding="utf-8").write(theme_header_css())
-    open(os.path.join(OUT,"front.css"),"w",encoding="utf-8").write(build_front_css())
-    open(os.path.join(OUT,"sub.css"),"w",encoding="utf-8").write(build_sub_css())
+    css_written = build_css_files()
 
     # js
     front_js   = build_js("index.html","front")
@@ -231,11 +249,27 @@ function aspath_assets() {{
   $ver = wp_get_theme()->get('Version');
   $uri = get_template_directory_uri();
   wp_enqueue_style('aspath-gfonts','{fonts_url_php}',array(),null);
-  if ( is_front_page() ) {{
-    wp_enqueue_style('aspath-front', $uri.'/front.css', array('aspath-gfonts'), $ver);
-  }} else {{
-    wp_enqueue_style('aspath-sub', $uri.'/sub.css', array('aspath-gfonts'), $ver);
+
+  // ページごとに専用CSSを1本だけ読み込む（結合するとページ間で上書き事故が起きるため）
+  $css = 'generic';
+  if      ( is_front_page() )                 {{ $css = 'index'; }}
+  elseif  ( is_page_template('template-trial-entry.php') ) {{ $css = 'trial-entry'; }}
+  elseif  ( is_page('about') )                {{ $css = 'about'; }}
+  elseif  ( is_page('services') )             {{ $css = 'services'; }}
+  elseif  ( is_page('access') )               {{ $css = 'access'; }}
+  elseif  ( is_page('contact') )              {{ $css = 'contact'; }}
+  elseif  ( is_page('faq') )                  {{ $css = 'faq'; }}
+  elseif  ( is_page('privacy') )              {{ $css = 'privacy'; }}
+  elseif  ( is_page('tokushoho') )            {{ $css = 'tokushoho'; }}
+  elseif  ( is_page('sitemap') )              {{ $css = 'sitemap'; }}
+  elseif  ( is_category('info') )             {{ $css = 'info'; }}
+  elseif  ( is_home() || is_archive() )       {{ $css = 'blog'; }}
+  elseif  ( is_singular('post') ) {{
+    if ( in_category('info') )                        {{ $css = 'news-single'; }}
+    elseif ( get_post_field('post_name') === 'パーキンソン病とアスパスの歩み方' ) {{ $css = 'column-parkinson'; }}
+    else                                              {{ $css = 'column'; }}
   }}
+  wp_enqueue_style('aspath-page', $uri.'/css/'.$css.'.css', array('aspath-gfonts'), $ver);
   if ( is_front_page() ) {{
 {enq(front_names,'    ')}
   }} else {{
@@ -256,6 +290,21 @@ add_action('wp_enqueue_scripts','aspath_assets');
 
 function aspath_excerpt_length($l){{ return 60; }}
 add_filter('excerpt_length','aspath_excerpt_length');
+
+/**
+ * お知らせ一覧のURL。
+ * 「お知らせ」はカテゴリー(slug: info)のアーカイブなので、実URLは環境により
+ * /category/info/ だったり /info/ だったりする。WordPressに解決させて404を防ぐ。
+ * カテゴリー未作成のときだけ /info/ にフォールバックする。
+ */
+function aspath_info_url() {{
+  $t = get_term_by('slug','info','category');
+  if ( $t && ! is_wp_error($t) ) {{
+    $u = get_category_link($t);
+    if ( $u ) return $u;
+  }}
+  return home_url('/info/');
+}}
 """
     open(os.path.join(OUT,"functions.php"),"w",encoding="utf-8").write(functions_php)
 
@@ -402,7 +451,7 @@ get_header(); ?>
             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
           </li>
   <?php endwhile; wp_reset_postdata(); else : ?>
-          <li class="notice-row"><span class="tag">お知らせ</span><a href="<?php echo esc_url( home_url('/info/') ); ?>">お知らせはまだありません</a></li>
+          <li class="notice-row"><span class="tag">お知らせ</span><a href="<?php echo esc_url( aspath_info_url() ); ?>">お知らせはまだありません</a></li>
   <?php endif; ?>
 """
     fp = os.path.join(OUT,"front-page.php")
