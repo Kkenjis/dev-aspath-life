@@ -1241,12 +1241,13 @@ table{ max-width:100%; }
 }
 
 /* ── 「あなたとともに歩む、ASPATH」：スマホは指定の改行位置を厳守 ──
-   最長行（26文字：「豊富な経験を保有する専門トレーナーがサポートします。」）が
+   最長行（24文字：「それらをかなえるべく、国家資格である理学療法士と」）が
    必ず1行に収まるよう、画面幅に応じて文字サイズを自動調整する。
-   これがないと端末幅によっては勝手に折り返され、指定の並びが崩れる。 */
+   これがないと端末幅によっては勝手に折り返され、指定の並びが崩れる。
+   幅405px以上（iPhone Pro Max・多くのAndroid）は上限の16pxのまま。 */
 @media (max-width:600px){
   .about-hsr-text p{
-    font-size:clamp(12.5px, calc((100vw - 36px) / 26.4), 16px) !important;
+    font-size:clamp(13px, calc((100vw - 36px) / 24.2), 16px) !important;
     letter-spacing:0 !important;
     line-height:2.15 !important;
     margin-bottom:24px !important;
@@ -1500,7 +1501,7 @@ table{ max-width:100%; }
           <p data-en-html="The name ASPATH holds a wish—that everyone involved can walk toward their tomorrow: &lt;strong&gt;&quot;As = toward tomorrow, Path = a road that connects.&quot;&lt;/strong&gt;"><span class="nw">ASPATH</span>の名前は、関わった皆様が<br class="br-sp"><strong>「<span class="nw">アス＝明日へ</span>、<span class="nw">パス＝つなげる道</span>」</strong>へ<br>伴走できるように、<br class="br-sp">といった意味が込められています。</p>
           <p data-en-html="Delivering the right exercise at the right time becomes hope, and together we walk toward a better future."><span class="nw">ASPATH</span>が適切な時期に適した運動を届けることが<br class="br-sp">希望となり、<br class="br-pc">より良い未来を共に歩みます。</p>
           <p class="ahs-lead" data-en-html="Easing the symptoms of Parkinson&#39;s disease and helping prevent their progression. Not giving up a life that is truly your own, even long after onset."><span class="nw">パーキンソン病</span>の症状を緩和し、<br class="br-sp"><span class="nw">進行を予防していく——</span><br>発症から時間が経過しても<br class="br-sp"><span class="nw">自分らしい生活</span>を<span class="nw">諦めない——</span></p>
-          <p data-en-html="To make these possible, nationally licensed physical therapists and highly experienced specialist trainers provide support.">それらをかなえるべく、<span class="nw">国家資格</span>である<span class="nw">理学療法士</span>と<br>豊富な経験を保有する<span class="nw">専門トレーナー</span>がサポートします。</p>
+          <p data-en-html="To make these possible, nationally licensed physical therapists and highly experienced specialist trainers provide support.">それらをかなえるべく、<span class="nw">国家資格</span>である<span class="nw">理学療法士</span>と<br>豊富な経験を保有する<br class="br-sp"><span class="nw">専門トレーナー</span>がサポートします。</p>
           <p data-en-html="Our mission is to spread—from here in Kagoshima—a warm society where each person believes in their own physical and mental potential and can face forward and walk on.">一人ひとりが自分自身の<span class="nw">心身の可能性</span>を信じ、<br>前を向いて歩んでいける温かい社会を、<br>この<span class="nw">鹿児島の地</span>から広げることが使命です。</p>
           <p class="about-hsr-more">
             <a class="btn btn-ghost mid" href="about.html" data-en-html="More about ASPATH&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;"><span class="nw">ASPATH</span>について詳しく<span class="arw">→</span></a>
