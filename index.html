@@ -445,8 +445,13 @@ body.drawer-open{ overflow:hidden; }
 .hero-copy2{ font-family:var(--font-head); font-weight:600; color:#FFFFFF;
   font-size:clamp(13px,1.7vw,18px); line-height:1.85; text-shadow:0 2px 12px rgba(0,0,0,.5); }
 .hero-copy2 .accent{ color:#F6D9AC; }
-@media(max-width:600px){ .hero-spec{ white-space:normal; font-size:clamp(17px,5.2vw,24px); line-height:1.55; letter-spacing:.01em; font-weight:800; color:#FFFFFF; } }
-@media(max-width:600px){ .hero-copy2{ font-size:clamp(13.5px,3.5vw,16px); line-height:1.8; letter-spacing:.02em; opacity:.95; } }
+@media(max-width:600px){
+  .hero-spec{ white-space:normal; font-size:clamp(20px,6.6vw,30px); line-height:1.5; letter-spacing:0;
+    font-weight:900; color:#FFFFFF; margin-top:14px; text-shadow:0 2px 14px rgba(0,0,0,.55); }
+  .hero-spec .loc, .hero-spec .hl{ font-weight:900; color:#FFFFFF; }
+  .hero-spec .sep{ margin:0 .2em; }
+}
+@media(max-width:600px){ .hero-copy2{ font-size:clamp(13px,3.3vw,15px); line-height:1.8; letter-spacing:.02em; font-weight:500; opacity:.92; margin-top:12px; } }
 /* SCROLLインジケーター */
 .hero-scroll{ position:absolute; z-index:4; left:50%; bottom:30px; transform:translateX(-50%);
   display:flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; }
