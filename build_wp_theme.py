@@ -29,7 +29,7 @@ PAGES = ["index.html","about.html","price.html","access.html","contact.html","fa
 LINKS = {
  'index.html':'/', 'about.html':'/about/', 'price.html':'/services/',
  'access.html':'/access/', 'contact.html':'/contact/', 'faq.html':'/faq/',
- 'news.html':'/blog/', 'news-detail.html':'/blog/',
+ 'news.html':'/column/', 'news-detail.html':'/column/',   # 2026-08-16 山口様判断：表示・URLとも「コラム」に統一（旧 /blog/ は301）
  'privacy.html':'/privacy/', 'tokushoho.html':'/tokushoho/', 'sitemap.html':'/sitemap/',
  'column-parkinson.html':'/パーキンソン病とアスパスの歩み方/',
  'taimentraining.html':'/taimentraining/',
@@ -290,7 +290,7 @@ function aspath_assets() {{
 add_action('wp_enqueue_scripts','aspath_assets');
 
 /**
- * コラム一覧(/blog/)から「お知らせ」カテゴリーを除外する。
+ * コラム一覧(/column/)から「お知らせ」カテゴリーを除外する。
  * devの news.html はコラムのみを並べているため、それに合わせる。
  * お知らせは /category/info/ で一覧表示される。
  */
@@ -366,7 +366,7 @@ get_header(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
   <section class="column-hero">
     <div class="wrap">
-      <p class="column-crumb"><a href="<?php echo esc_url( home_url('/') ); ?>">TOP</a> ／ <a href="<?php echo esc_url( home_url('/blog/') ); ?>">コラム</a> ／ <?php the_title(); ?></p>
+      <p class="column-crumb"><a href="<?php echo esc_url( home_url('/') ); ?>">TOP</a> ／ <a href="<?php echo esc_url( home_url('/column/') ); ?>">コラム</a> ／ <?php the_title(); ?></p>
       <h1><?php the_title(); ?></h1>
       <?php if ( is_sticky( get_the_ID() ) ) : ?><p class="column-byline"><span class="imp-label">重要</span></p><?php endif; ?>
       <p class="column-byline">By ASPATH ／ <?php echo get_the_date(); ?></p>
@@ -400,11 +400,11 @@ get_header(); ?>
 <?php get_footer(); ?>
 """
     home = """<?php
-/** home.php — 投稿一覧（/blog/＝コラム、/category/info/＝お知らせ・自動生成） */
+/** home.php — 投稿一覧（/column/＝コラム、/category/info/＝お知らせ・自動生成） */
 get_header(); ?>
 <?php
 /* 見出しは文脈で切り替える。
-   /blog/        → コラム（お知らせカテゴリーは functions.php で除外）
+   /column/        → コラム（お知らせカテゴリーは functions.php で除外）
    /category/info/ → お知らせ（devのinfo.htmlと同じ「枠なし」デザイン）
    その他のアーカイブ → そのアーカイブ名 */
 $aspath_is_info = is_category('info');
@@ -478,7 +478,7 @@ get_header(); ?>
     </p>
     <p style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
       <a class="btn btn-ghost mid" href="<?php echo esc_url( home_url('/') ); ?>">TOPへ戻る<span class="arw">\u2192</span></a>
-      <a class="btn btn-ghost mid" href="<?php echo esc_url( home_url('/blog/') ); ?>">コラム一覧<span class="arw">\u2192</span></a>
+      <a class="btn btn-ghost mid" href="<?php echo esc_url( home_url('/column/') ); ?>">コラム一覧<span class="arw">\u2192</span></a>
       <a class="btn btn-ghost mid" href="<?php echo esc_url( home_url('/contact/') ); ?>">お問い合わせ<span class="arw">\u2192</span></a>
     </p>
   </div>
