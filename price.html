@@ -981,9 +981,13 @@ main{ padding-top:76px; }
   display:grid; grid-template-columns:1fr; gap:18px; align-items:start;
 }
 .tf-txt{ min-width:0; }
-.tf-figure{ margin:0; width:100%; max-width:440px; }
+.tf-figure{ margin:0 auto; width:100%; max-width:440px; }
 .tf-figure img{ display:block; width:100%; aspect-ratio:16/9; object-fit:cover;
   border-radius:12px; box-shadow:0 6px 16px rgba(38,70,83,.14); }
+/* 左は番号バッジ分(86px)、右は34px。枠の「見た目の中央」に来るよう差の半分だけ戻す */
+@media (min-width:761px){
+  .tf-figure{ position:relative; left:-26px; }
+}
 @media (max-width:760px){
   .tf-figure{ max-width:none; }
   .tf-figure img{ aspect-ratio:16/10; }
