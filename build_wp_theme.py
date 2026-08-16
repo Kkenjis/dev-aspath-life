@@ -20,7 +20,9 @@ import re, os, shutil, zipfile, datetime, unicodedata
 SRC = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(SRC, "_wp移行素材", "aspath-theme")
 ZIP = os.path.join(SRC, "_wp移行素材", "aspath-theme.zip")
-VERSION = "1.1." + datetime.date.today().strftime("%Y%m%d")
+# バージョンには時刻まで入れる。日付だけだと同じ日に作り直しても ?ver= が変わらず、
+# ブラウザやキャッシュ系プラグインが古いCSS/JSを配り続けてしまう（実際に発生した）。
+VERSION = "1.1." + datetime.datetime.now().strftime("%Y%m%d.%H%M")
 
 PAGES = ["index.html","about.html","price.html","access.html","contact.html","faq.html",
          "news.html","news-detail.html","column-parkinson.html","taimentraining.html","onlineaspath.html","info.html","news-campaign.html","privacy.html",
