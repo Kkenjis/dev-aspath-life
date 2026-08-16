@@ -445,8 +445,8 @@ body.drawer-open{ overflow:hidden; }
 .hero-copy2{ font-family:var(--font-head); font-weight:600; color:#FFFFFF;
   font-size:clamp(13px,1.7vw,18px); line-height:1.85; text-shadow:0 2px 12px rgba(0,0,0,.5); }
 .hero-copy2 .accent{ color:#F6D9AC; }
-@media(max-width:600px){ .hero-spec{ white-space:normal; font-size:clamp(14px,4.2vw,20px); line-height:1.6; letter-spacing:.02em; color:#FFFFFF; } }
-@media(max-width:600px){ .hero-copy2{ font-size:clamp(14.5px,4.2vw,19px); line-height:1.75; letter-spacing:.02em; } }
+@media(max-width:600px){ .hero-spec{ white-space:normal; font-size:clamp(17px,5.2vw,24px); line-height:1.55; letter-spacing:.01em; font-weight:800; color:#FFFFFF; } }
+@media(max-width:600px){ .hero-copy2{ font-size:clamp(13.5px,3.5vw,16px); line-height:1.8; letter-spacing:.02em; opacity:.95; } }
 /* SCROLLインジケーター */
 .hero-scroll{ position:absolute; z-index:4; left:50%; bottom:30px; transform:translateX(-50%);
   display:flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; }
@@ -786,7 +786,9 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .about-hsr-text p{ font-size:17px; line-height:2.0; color:var(--ink); margin-bottom:16px; }
 .about-hsr-more{ margin-top:22px; }
 @media(max-width:760px){
-  .about-hsr{ grid-template-columns:1fr; gap:28px; text-align:center; margin-bottom:56px; }
+  .about-hsr{ grid-template-columns:1fr; gap:24px; text-align:left; margin-bottom:56px; }
+  .about-hsr-text h2{ text-align:center; }
+  .about-hsr-text p{ font-size:16px; line-height:1.95; }
   .about-hsr-logo img{ max-width:180px; }
   .about-hsr-text .eyebrow{ text-align:center; }
   .about-hsr-more{ text-align:center; }
@@ -1464,12 +1466,12 @@ table{ max-width:100%; }
           <img src="images/logo-aspath.webp" alt="ASPATHロゴ" width="220" height="220">
         </div>
         <div class="about-hsr-text">
-          <h2 data-en="Walking with you, ASPATH">あなたとともに歩む、ASPATH</h2>
-          <p data-en-html="ASPATH is a training studio specializing in Parkinson&#39;s disease and stroke that turns anxiety into &lt;strong&gt;&quot;hope.&quot;&lt;/strong&gt;">ASPATHは不安を「<strong>希望</strong>」に変える、<br class="br-pc"><span class="nw">パーキンソン病</span>専門の<span class="nw">トレーニングスタジオ</span>です。</p>
-          <p data-en-html="The name ASPATH holds a wish—that everyone involved can walk toward their tomorrow: &lt;strong&gt;&quot;As = toward tomorrow, Path = a road that connects.&quot;&lt;/strong&gt; Delivering the right exercise at the right time becomes hope, and together we walk toward a better future.">ASPATHの名前は、関わった皆様が<strong>「アス＝明日へ、パス＝つなげる道」</strong>へ<br class="br-pc">伴走できるように、といった意味が込められています。<br>ASPATHが適切な時期に適した運動を届けることが希望となり、<br class="br-pc">より良い未来を共に歩みます。</p>
-          <p data-en-html="Easing the symptoms of Parkinson&#39;s disease and helping prevent their progression. Not giving up a life that is truly your own, even long after onset. To make these possible, nationally licensed physical therapists and highly experienced specialist trainers provide support. Our mission is to spread—from here in Kagoshima—a warm society where each person believes in their own physical and mental potential and can face forward and walk on."><span class="nw">パーキンソン病</span>の症状を緩和し、進行を予防していく——<br>発症から時間が経過しても自分らしい生活を諦めない——<br>それらをかなえるべく、国家資格である<span class="nw">理学療法士</span>と豊富な経験を保有する専門トレーナーがサポートします。<br>一人ひとりが自分自身の心身の可能性を信じ、<br class="br-pc">前を向いて歩んでいける温かい社会を、この鹿児島の地から広げることが使命です。</p>
+          <h2 data-en="Walking with you, ASPATH">あなたとともに歩む、<span class="nw">ASPATH</span></h2>
+          <p data-en-html="ASPATH is a training studio specializing in Parkinson&#39;s disease and stroke that turns anxiety into &lt;strong&gt;&quot;hope.&quot;&lt;/strong&gt;"><span class="nw">ASPATH</span>は不安を「<strong>希望</strong>」に変える、<br class="br-pc"><span class="nw">パーキンソン病</span>専門の<span class="nw">トレーニングスタジオ</span>です。</p>
+          <p data-en-html="The name ASPATH holds a wish—that everyone involved can walk toward their tomorrow: &lt;strong&gt;&quot;As = toward tomorrow, Path = a road that connects.&quot;&lt;/strong&gt; Delivering the right exercise at the right time becomes hope, and together we walk toward a better future."><span class="nw">ASPATH</span>の名前は、関わった皆様が<strong>「<span class="nw">アス＝明日へ</span>、<span class="nw">パス＝つなげる道</span>」</strong>へ<br class="br-pc">伴走できるように、といった意味が込められています。<br><span class="nw">ASPATH</span>が適切な時期に適した運動を届けることが希望となり、<br class="br-pc">より良い未来を共に歩みます。</p>
+          <p data-en-html="Easing the symptoms of Parkinson&#39;s disease and helping prevent their progression. Not giving up a life that is truly your own, even long after onset. To make these possible, nationally licensed physical therapists and highly experienced specialist trainers provide support. Our mission is to spread—from here in Kagoshima—a warm society where each person believes in their own physical and mental potential and can face forward and walk on."><span class="nw">パーキンソン病</span>の症状を緩和し、進行を予防していく——<br>発症から時間が経過しても<span class="nw">自分らしい生活</span>を諦めない——<br>それらをかなえるべく、<span class="nw">国家資格</span>である<span class="nw">理学療法士</span>と豊富な経験を保有する<span class="nw">専門トレーナー</span>がサポートします。<br>一人ひとりが自分自身の<span class="nw">心身の可能性</span>を信じ、<br class="br-pc">前を向いて歩んでいける温かい社会を、この<span class="nw">鹿児島の地</span>から広げることが使命です。</p>
           <p class="about-hsr-more">
-            <a class="btn btn-ghost mid" href="about.html" data-en-html="More about ASPATH&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;">ASPATHについて詳しく<span class="arw">→</span></a>
+            <a class="btn btn-ghost mid" href="about.html" data-en-html="More about ASPATH&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;"><span class="nw">ASPATH</span>について詳しく<span class="arw">→</span></a>
           </p>
         </div>
       </div>
