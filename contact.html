@@ -1186,7 +1186,7 @@ table{ max-width:100%; }
         <p data-en-html="&lt;strong&gt;&quot;For people with Parkinson's disease—maintain your current physical function longer through specialized training and reduce anxiety about the future.&quot;&lt;br&gt;&quot;Ease post-stroke difficulty of movement and live life as yourself.&quot;&lt;/strong&gt;"><strong>『<span class="nw">パーキンソン病</span>の方が専門のトレーニングで今の身体機能を長く保ち、未来への不安を減らす』</strong></p>
         <p data-en-html="That is the support we provide.">そんなサポートをしています。</p>
         <p data-en-html="At ASPATH, beyond applying for the &lt;strong&gt;&quot;First Training Trial,&quot;&lt;/strong&gt; we welcome &lt;strong&gt;questions about our services or pricing, and media or work requests&lt;/strong&gt;—any inquiry at all."><span class="nw">アスパス</span>では<strong>『初回トレーニング体験』</strong>のお申し込みのほか、<br><strong>サービス内容・料金のご質問、取材やお仕事のご依頼</strong>など、どんなお問い合わせも受け付けております。</p>
-        <p data-en-html="Please select the &quot;type of inquiry&quot; in the form below and fill it in.">下のフォームで『ご相談の種類』を選んでご入力ください。</p>
+        <p data-en="Please contact us via our official LINE below.">下の<strong><span class="nw">公式LINE</span></strong>からお気軽にご連絡ください。</p>
         <p data-en-html="After reviewing your inquiry, our staff will contact you directly &lt;strong&gt;within 24 hours&lt;/strong&gt;.">内容を確認後、<strong>24時間以内</strong>にスタッフより直接ご連絡させていただきます。</p>
       </div>
 
@@ -1212,52 +1212,11 @@ table{ max-width:100%; }
         </div>
       </div>
 
-      <form class="cform" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="contact.html">
-        <input type="hidden" name="form-name" value="contact">
-        <input type="hidden" name="subject" id="form-subject" value="【その他】ASPATH お問い合わせ">
-        <p hidden=""><label data-en-html="Do not fill in:">入力しないでください：<input name="bot-field"></label></p>
-
-        <div class="field">
-          <label data-en-html="Type of inquiry &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">ご相談の種類 <span class="req">必須</span></label>
-          <select name="inquiry_type" id="inquiry-type" required="">
-            <option value="初回体験を申し込みたい" selected="" data-en="I'd like to apply for the first trial"><span class="nw">初回体験</span>を申し込みたい</option>
-            <option value="その他のお問い合わせ" data-en="Other inquiry">その他のお問い合わせ</option>
-          </select>
-        </div>
-
-        <div id="trial-line">
-          <p class="trial-line-msg" data-en-html="Applications for the first trial are handled via our &lt;strong&gt;Official LINE&lt;/strong&gt;. After adding us as a friend, we will send you the URL for the dedicated application form."><span class="nw">初回体験</span>のお申し込みは、<strong><span class="nw">公式LINE</span></strong>から承っています。<br class="br-pc">友だち登録後、専用のお申し込みフォームのURLをお送りします。</p>
-          <a class="btn btn-line big trial-line-btn" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span class="nw">公式LINE</span>に登録する</a>
-          <p class="trial-line-note" data-en="After you add us as a friend, we will guide you through the dedicated form and scheduling smoothly on LINE.">友だち登録後、専用フォームのご案内と日程調整を、LINEでスムーズにご案内します。</p>
-        </div>
-
-        <div id="contact-form-fields">
-        <div class="field">
-          <label data-en-html="Name &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">お名前 <span class="req">必須</span></label>
-          <input type="text" name="name" required="">
-        </div>
-        <div class="field">
-          <label data-en-html="Name (kana) &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">お名前（フリガナ） <span class="req">必須</span></label>
-          <input type="text" name="kana" required="">
-        </div>
-        <div class="field">
-          <label data-en-html="Email address">メールアドレス</label>
-          <input type="email" name="email_q">
-        </div>
-        <div class="field">
-          <label data-en-html="Phone number">お電話番号</label>
-          <input type="tel" name="tel_q">
-        </div>
-        <div class="field">
-          <label data-en-html="Feel free to write any message or questions">メッセージやご質問があればご自由にどうぞ</label>
-          <textarea name="message"></textarea>
-        </div>
-        <div class="submit-area">
-          <button type="submit" class="btn btn-form big" style="max-width:320px;" data-en-html="Submit this form">この内容で送信する<span class="arw">→</span></button>
-        </div>
-        <p class="privacy-note" data-en-html="* Personal information you provide will not be used for any purpose other than this consultation and training operations.">※お預かりした個人情報は、本相談・トレーニング運営以外の目的には使用いたしません。<br data-en="For details, see the ">詳しくは<a href="privacy.html" data-en="Privacy Policy">プライバシーポリシー</a>をご覧ください。</p>
-        </div>
-      </form>
+      <div id="trial-line" class="reveal">
+        <p class="trial-line-msg" data-en-html="All enquiries and applications are handled through our official LINE.&lt;br&gt;Add us as a friend and send a message.">ご相談・お申し込みは、すべて<strong><span class="nw">公式LINE</span></strong>から承っています。<br class="br-pc">お友だち登録のうえ、メッセージをお送りください。</p>
+        <a class="btn btn-line big trial-line-btn" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span class="nw">公式LINE</span>に登録する</a>
+        <p class="trial-line-note" data-en="After adding us, we will send the application form and arrange a date via LINE.">友だち登録後、<span class="nw">初回体験</span>のお申し込みフォーム（専用URL）のご案内と日程調整を、LINEでスムーズにご案内します。</p>
+      </div>
 
       <div class="contact-side">
           <div class="contact-flow">
@@ -1441,39 +1400,6 @@ table{ max-width:100%; }
 })();
 </script>
 
-<script>
-(function(){
-  var sel = document.getElementById('inquiry-type');
-  var lineBox = document.getElementById('trial-line');
-  var formBox = document.getElementById('contact-form-fields');
-  if(!sel) return;
-  var subjectField = document.getElementById('form-subject');
-  var nameField = document.querySelector('.cform [name="name"]');
-  function updateSubject(){
-    if(!subjectField) return;
-    var nm = nameField && nameField.value.trim();
-    subjectField.value = nm ? ('【その他】ASPATH お問い合わせ／'+nm+'様') : '【その他】ASPATH お問い合わせ';
-  }
-  var heroLine = document.getElementById('line-hero');
-  var telBox   = document.getElementById('contact-tel');
-  function toggle(){
-    var isTrial = sel.value.indexOf('初回体験') === 0;
-    // 初回体験：公式LINE登録のみ表示（フォームは非表示）
-    // その他　：フォームのみ表示（LINE登録ブロックは非表示）
-    if(lineBox)  lineBox.style.display  = isTrial ? '' : 'none';
-    if(formBox)  formBox.style.display  = isTrial ? 'none' : '';
-    if(heroLine) heroLine.style.display = isTrial ? '' : 'none';
-    if(telBox)   telBox.style.display   = isTrial ? '' : 'none';
-    updateSubject();
-  }
-  var map = { trial:'初回体験を申し込みたい', other:'その他のお問い合わせ' };
-  var qt = new URLSearchParams(location.search).get('type');
-  if(qt && map[qt]){ sel.value = map[qt]; }
-  sel.addEventListener('change', toggle);
-  if(nameField){ nameField.addEventListener('input', updateSubject); }
-  toggle();
-})();
-</script>
 <script>
 /* ===== 言語切替（日英トグル・ページ間で保持） ===== */
 (function(){
