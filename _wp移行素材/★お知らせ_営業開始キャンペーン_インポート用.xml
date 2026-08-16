@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- ASPATH：お知らせ「営業開始キャンペーン」1本だけのインポート用ファイル -->
+<rss version="2.0"
+  xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:wp="http://wordpress.org/export/1.2/">
+<channel>
+  <title>ASPATH</title>
+  <link>https://aspath-life.com</link>
+  <description>お知らせ投稿のインポート用</description>
+  <pubDate>Sun, 16 Aug 2026 23:25:19 +0900</pubDate>
+  <language>ja</language>
+  <wp:wxr_version>1.2</wp:wxr_version>
+  <wp:base_site_url>https://aspath-life.com</wp:base_site_url>
+  <wp:base_blog_url>https://aspath-life.com</wp:base_blog_url>
+
+  <wp:category>
+    <wp:term_id>901</wp:term_id>
+    <wp:category_nicename>info</wp:category_nicename>
+    <wp:cat_name><![CDATA[お知らせ]]></wp:cat_name>
+  </wp:category>
+
+  <item>
+    <title><![CDATA[営業開始キャンペーン｜初回体験（90分）が期間限定 半額4,400円]]></title>
+    <link>https://aspath-life.com/campaign/</link>
+    <pubDate>Wed, 01 Jul 2026 09:00:00 +0900</pubDate>
+    <dc:creator><![CDATA[ASPATH]]></dc:creator>
+    <guid isPermaLink="false">https://aspath-life.com/?p=90001</guid>
+    <description></description>
+    <content:encoded><![CDATA[<!-- wp:paragraph -->
+<p>アスパスの営業開始を記念して、初回トレーニング体験を半額でご利用いただけるキャンペーンを実施しています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">キャンペーンの内容</h2>
+<!-- /wp:heading -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p><strong>初回トレーニング体験（90分）</strong><br>通常 8,800円 → <strong>期間限定 半額 4,400円</strong>（税込）</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>期間：2026年9月30日まで</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>スタジオでの対面・オンライン・ご自宅への訪問、いずれの形でも受けていただけます。ご都合の良い方法をお選びください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">初回体験でおこなうこと</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>ヒアリング</strong>：お身体の状態、お困りごと、これからやりたいことをじっくり伺います。</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>お身体チェック</strong>：理学療法士が姿勢・歩行・動作を評価します。</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>体験トレーニング</strong>：今の状態に合わせた運動を実際に体験していただきます。</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>ご提案</strong>：今後のプランと、ご自宅で続けられる運動をご提案します。</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>ご家族の見学・付き添いも歓迎しています。ご一緒にお越しください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">お申し込み方法</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>公式LINEよりお申し込みください。お友だち登録のうえメッセージをお送りいただければ、初回体験のお申し込みフォーム（専用URL）をご案内し、日程調整をLINEでスムーズに行います。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>迷っている段階でしたら、公式LINEにスタンプを一つ送っていただくだけでも構いません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">まずは一度、お話を聞かせてください</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>初回体験は期間限定 半額4,400円。パーキンソン病専門の理学療法士が、あなたの状態と目標を丁寧に伺います。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="https://lin.ee/5kiH4i3" target="_blank" rel="noreferrer noopener">公式LINEに登録する</a></p>
+<!-- /wp:paragraph -->]]></content:encoded>
+    <excerpt:encoded><![CDATA[2026年9月30日まで、初回トレーニング体験（90分）を通常8,800円のところ半額の4,400円でご利用いただけます。]]></excerpt:encoded>
+    <wp:post_id>90001</wp:post_id>
+    <wp:post_date><![CDATA[2026-07-01 09:00:00]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2026-07-01 00:00:00]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[closed]]></wp:comment_status>
+    <wp:ping_status><![CDATA[closed]]></wp:ping_status>
+    <wp:post_name><![CDATA[campaign]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password></wp:post_password>
+    <wp:is_sticky>1</wp:is_sticky>
+    <category domain="category" nicename="info"><![CDATA[お知らせ]]></category>
+  </item>
+</channel>
+</rss>
