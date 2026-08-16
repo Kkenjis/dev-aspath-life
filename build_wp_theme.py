@@ -295,15 +295,36 @@ add_action('wp_enqueue_scripts','aspath_assets');
  * コラム一覧(/column/)から「お知らせ」カテゴリーを除外する。
  * devの news.html はコラムのみを並べているため、それに合わせる。
  * お知らせは /category/info/ で一覧表示される。
+ *
+ * ⚠ ignore_sticky_posts を必ず true にすること。
+ *   WordPress は「先頭に固定表示」の投稿を、category__not_in を無視して
+ *   ブログ先頭に差し込む仕様のため、これが無いと重要なお知らせが
+ *   コラム一覧に混ざってしまう（実際に発生した）。
  */
 function aspath_exclude_info_from_blog($q) {{
   if ( is_admin() || ! $q->is_main_query() ) return;
   if ( $q->is_home() ) {{
     $t = get_term_by('slug','info','category');
     if ( $t && ! is_wp_error($t) ) $q->set('category__not_in', array($t->term_id));
+    $q->set('ignore_sticky_posts', true);
   }}
 }}
 add_action('pre_get_posts','aspath_exclude_info_from_blog');
+
+/**
+ * お知らせ一覧(/category/info/)では「重要（先頭に固定表示）」を先頭に並べ替える。
+ * カテゴリーアーカイブには WordPress の固定表示が効かないため、表示直前に入れ替える。
+ */
+function aspath_sticky_first($posts, $q) {{
+  if ( is_admin() || ! $q->is_main_query() ) return $posts;
+  if ( ! $q->is_category('info') ) return $posts;
+  $st = get_option('sticky_posts');
+  if ( empty($st) || ! is_array($st) ) return $posts;
+  $top = array(); $rest = array();
+  foreach ( $posts as $p ) {{ if ( in_array($p->ID, $st) ) {{ $top[] = $p; }} else {{ $rest[] = $p; }} }}
+  return array_merge($top, $rest);
+}}
+add_filter('the_posts','aspath_sticky_first',10,2);
 
 function aspath_excerpt_length($l){{ return 60; }}
 add_filter('excerpt_length','aspath_excerpt_length');
