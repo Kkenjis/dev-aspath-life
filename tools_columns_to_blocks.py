@@ -1,8 +1,29 @@
 # -*- coding: utf-8 -*-
-"""dev のコラムHTML → WordPress（Gutenberg）ブロック形式へ変換"""
-import re, os, html
+"""dev のコラムHTML → WordPress（Gutenberg）ブロック形式へ変換
 
-BASE = "https://aspath-life.com/development/wp-content/uploads/2026/08/"
+使い方
+    python tools_columns_to_blocks.py                     ← ステージング用（既定）
+    python tools_columns_to_blocks.py --honban            ← 本番用（2026/09にアップする想定）
+    python tools_columns_to_blocks.py --honban --tsuki 10 ← 本番用（2026/10にアップした場合）
+
+⚠ 画像URLには「アップロードした年月」が入ります。
+   本番で画像を登録したあと、メディアライブラリで1点URLを確認し、
+   年月が違っていたら --tsuki で指定して作り直してください。
+"""
+import re, os, html, sys
+
+# ---- 出力先とURLの切り替え -------------------------------------------------
+HONBAN = '--honban' in sys.argv
+TSUKI  = '09'
+if '--tsuki' in sys.argv:
+    TSUKI = ('0' + sys.argv[sys.argv.index('--tsuki') + 1])[-2:]
+
+if HONBAN:
+    BASE   = "https://aspath-life.com/wp-content/uploads/2026/%s/" % TSUKI
+    OUTDIR = '_wp移行素材/★コラム本文_貼り付け用_本番'
+else:
+    BASE   = "https://aspath-life.com/development/wp-content/uploads/2026/08/"
+    OUTDIR = '_wp移行素材/★コラム本文_貼り付け用'
 
 def strip_inline(t):
     """本文中の装飾spanなどを外し、strong/em/aだけ残す"""
@@ -72,10 +93,12 @@ TARGETS = {
     'onlineaspath.html':    ('アスパスのオンライントレーニングがおすすめ！', 'onlineaspath'),
     'column-parkinson.html':('パーキンソン病とアスパスの歩み方', 'column-parkinson'),
 }
-os.makedirs('_wp移行素材/★コラム本文_貼り付け用', exist_ok=True)
+os.makedirs(OUTDIR, exist_ok=True)
+print('画像URLの基準 : ' + BASE)
+print('出力先        : ' + OUTDIR + '\n')
 for f,(title,key) in TARGETS.items():
     body, imgs = blocks_from(f)
-    dst = '_wp移行素材/★コラム本文_貼り付け用/%s.html' % key
+    dst = '%s/%s.html' % (OUTDIR, key)
     open(dst,'w',encoding='utf-8').write(body)
     n_h2 = body.count('wp:heading -->'); n_h3 = body.count('"level":3'); 
     print(f'{key:18} 見出し2={body.count("<h2")} 見出し3={body.count("<h3")} 段落={body.count("wp:paragraph")//2} リスト={body.count("wp:list -->")} 引用={body.count("wp:quote")//2} 画像={len(imgs)}  → {dst}')
