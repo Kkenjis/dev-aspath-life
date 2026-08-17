@@ -152,8 +152,16 @@ if ($git) {
 
     # git fetch はしない（認証待ちで固まることがあるため）。
     # GitHub Desktop が取得済みの情報で「未Push」を判定する。
+    # 上流(@{u})が設定されていない環境もあるので、origin/<branch> も試す
     $ahead = (& git rev-list --count "@{u}..HEAD" 2>$null)
-    if ($LASTEXITCODE -eq 0 -and $ahead -and [int]$ahead -gt 0) {
+    if ($LASTEXITCODE -ne 0 -or $null -eq $ahead -or $ahead -eq '') {
+      $ahead = (& git rev-list --count "origin/$branch..HEAD" 2>$null)
+    }
+
+    if ($LASTEXITCODE -ne 0 -or $null -eq $ahead -or $ahead -eq '') {
+      Write-Info 'Push漏れの判定はできませんでした（上流ブランチが未設定）。'
+      Write-Info 'GitHub Desktop の画面で「Push origin」の表示をご確認ください。'
+    } elseif ([int]$ahead -gt 0) {
       Write-Host "  [要対応] 未Pushのコミットが $ahead 件あります。" -ForegroundColor Yellow
       Write-Info '         GitHub Desktop で「Push origin」を押してください。'
     } else {
