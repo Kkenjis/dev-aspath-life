@@ -104,6 +104,342 @@ def page_css(p):
     t = read(p)
     return '\n'.join(re.findall(r'<style[^>]*>([\s\S]*?)</style>', t))
 
+# ============================================================================
+#  初回体験フォームの送信処理（functions.php の末尾に追記される）
+#  ここは f-string ではないので、PHPの波かっこをそのまま書ける。
+# ============================================================================
+TRIAL_PHP = r'''
+
+/* ==================================================================
+   初回体験 お申し込みフォーム（限定公開ページ）
+
+   テンプレート「初回体験フォーム（限定公開）」を適用した固定ページで動く。
+   送信されると、次の順番で3つのことを行う。
+
+     1. WordPress内に申込を保存  ← 最初にやる。メールが不達でも失わないため
+     2. 山口様へ通知メール（全項目・申込者へ直接返信できる）
+     3. 申込者へ控えメール（48時間以内にご連絡する旨を記載）
+
+   ⚠ 通知先メールアドレスを変えるときは、下の ASPATH_TRIAL_TO を書き換えて
+      テーマを作り直してください（管理画面からは変更できません）。
+   ================================================================== */
+
+if ( ! defined('ASPATH_TRIAL_TO') )  define('ASPATH_TRIAL_TO',  'aspathlife@gmail.com');
+if ( ! defined('ASPATH_TRIAL_TPL') ) define('ASPATH_TRIAL_TPL', 'template-trial-entry.php');
+
+/** 入力項目の定義。array( 表示ラベル, 必須かどうか ) */
+function aspath_trial_fields() {
+  return array(
+    'name'            => array('お名前',                        true),
+    'kana'            => array('お名前（フリガナ）',              true),
+    'birthday'        => array('生年月日',                       true),
+    'email'           => array('メールアドレス',                 true),
+    'tel'             => array('お電話番号',                     false),
+    'address'         => array('ご住所',                         true),
+    'who'             => array('どなたについてのご相談か',        true),
+    'diagnosis'       => array('医師からの診断名',               true),
+    'diagnosis_other' => array('診断名（その他）',               false),
+    'trouble'         => array('困っていること・改善したいこと',  false),
+    'source'          => array('ASPATHを知ったきっかけ',          false),
+    'message'         => array('メッセージ・ご質問',              false),
+  );
+}
+
+/** 送信結果を1リクエストの中で持ち回すための入れ物 */
+function aspath_trial_state( $set = null ) {
+  static $state = array( 'status' => '', 'errors' => array(), 'old' => array() );
+  if ( is_array($set) ) $state = $set;
+  return $state;
+}
+
+/** 入力し直しのときに値を復元する（長い入力を失わせないため） */
+function aspath_trial_old( $key ) {
+  $s = aspath_trial_state();
+  return isset($s['old'][$key]) ? $s['old'][$key] : '';
+}
+
+/** 送信が完了したか（完了後はフォームを隠す） */
+function aspath_trial_done() {
+  $s = aspath_trial_state();
+  return ( $s['status'] === 'done' );
+}
+
+/** フォームの上に出す結果メッセージ */
+function aspath_trial_notice() {
+  $s = aspath_trial_state();
+
+  if ( $s['status'] === 'done' ) {
+    return '<div class="trial-result trial-result--ok">'
+      . '<p class="trial-result-head">お申し込みを受け付けました。</p>'
+      . '<p>ご入力いただいたメールアドレスへ、内容の控えをお送りしました。'
+      . '担当より<strong>48時間以内</strong>にご連絡いたします。</p>'
+      . '<p class="trial-result-sub">※控えのメールが見つからない場合は、迷惑メールフォルダをご確認ください。'
+      . 'お急ぎの場合は公式LINEからもご連絡いただけます。</p>'
+      . '</div>';
+  }
+
+  if ( $s['status'] === 'error' ) {
+    $out = '<div class="trial-result trial-result--ng">'
+      . '<p class="trial-result-head">送信できませんでした。</p><ul>';
+    foreach ( (array) $s['errors'] as $e ) { $out .= '<li>' . esc_html($e) . '</li>'; }
+    $out .= '</ul><p class="trial-result-sub">ご入力いただいた内容はそのまま残しています。'
+      . '上の項目をご確認のうえ、もう一度送信してください。</p></div>';
+    return $out;
+  }
+
+  return '';
+}
+
+/**
+ * 申込の保存先。
+ * 公開されない投稿タイプなので、URLを推測されても中身は見られない。
+ * 管理画面の「初回体験の申込」から閲覧できる（新規作成はできない）。
+ */
+function aspath_trial_register_cpt() {
+  register_post_type('aspath_trial', array(
+    'labels' => array(
+      'name'          => '初回体験の申込',
+      'singular_name' => '初回体験の申込',
+      'menu_name'     => '初回体験の申込',
+      'all_items'     => '申込一覧',
+    ),
+    'public'          => false,
+    'show_ui'         => true,
+    'show_in_menu'    => true,
+    'menu_position'   => 26,
+    'menu_icon'       => 'dashicons-clipboard',
+    'supports'        => array('title','editor'),
+    'capability_type' => 'post',
+    'map_meta_cap'    => true,
+    'capabilities'    => array( 'create_posts' => 'do_not_allow' ),
+  ));
+}
+add_action('init','aspath_trial_register_cpt');
+
+/**
+ * 限定公開ページはキャッシュさせない。
+ * キャッシュされると、古いnonceが配られ続けて「送信が無効」になる。
+ */
+function aspath_trial_nocache() {
+  if ( is_page() && is_page_template(ASPATH_TRIAL_TPL) ) {
+    if ( ! defined('DONOTCACHEPAGE') ) define('DONOTCACHEPAGE', true);
+    nocache_headers();
+  }
+}
+add_action('template_redirect','aspath_trial_nocache',5);
+
+/** 送信処理の本体。画面が描かれる前に走らせる */
+function aspath_trial_handle() {
+  if ( is_admin() ) return;
+  if ( ! is_page() || ! is_page_template(ASPATH_TRIAL_TPL) ) return;
+  if ( empty($_POST['aspath_trial_nonce']) ) return;
+
+  if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['aspath_trial_nonce']) ), 'aspath_trial' ) ) {
+    aspath_trial_state(array(
+      'status' => 'error',
+      'errors' => array('ページを開いたまま時間が経ちすぎたため、送信が無効になりました。お手数ですが、ページを再読み込みしてからもう一度お試しください。'),
+      'old'    => array(),
+    ));
+    return;
+  }
+
+  // ハニーポット。人には見えない欄が埋まっていたら自動投稿なので、黙って受け流す
+  if ( ! empty($_POST['bot-field']) ) {
+    aspath_trial_state(array('status'=>'done','errors'=>array(),'old'=>array()));
+    return;
+  }
+
+  $fields = aspath_trial_fields();
+  $data   = array();
+  $errors = array();
+
+  foreach ( $fields as $key => $f ) {
+    $raw = isset($_POST[$key]) ? wp_unslash($_POST[$key]) : '';
+    if ( is_array($raw) ) $raw = implode(' / ', $raw);
+    $val = ( $key === 'email' ) ? sanitize_email($raw) : sanitize_textarea_field($raw);
+    $val = trim($val);
+    if ( $f[1] && $val === '' ) $errors[] = $f[0] . 'をご入力ください。';
+    $data[$key] = $val;
+  }
+  if ( $data['email'] !== '' && ! is_email($data['email']) ) {
+    $errors[] = 'メールアドレスの形式をご確認ください。';
+  }
+
+  if ( ! empty($errors) ) {
+    aspath_trial_state(array('status'=>'error','errors'=>$errors,'old'=>$data));
+    return;
+  }
+
+  // ---- 本文を組み立てる ----
+  $lines = array();
+  foreach ( $fields as $key => $f ) {
+    $v = ( $data[$key] === '' ) ? '（未記入）' : $data[$key];
+    $lines[] = $f[0] . '：' . $v;
+  }
+  $body = implode("\n", $lines);
+  $when = function_exists('wp_date') ? wp_date('Y年n月j日 H:i') : date_i18n('Y年n月j日 H:i');
+  $bar  = "----------------------------------------";
+
+  // ---- 1. 先に保存する（メールが不達でも申込を失わない） ----
+  $post_id = wp_insert_post(array(
+    'post_type'    => 'aspath_trial',
+    'post_status'  => 'private',
+    'post_title'   => $data['name'] . ' 様（' . $when . '）',
+    'post_content' => $body,
+  ));
+  if ( $post_id && ! is_wp_error($post_id) ) {
+    foreach ( $data as $k => $v ) { update_post_meta($post_id, '_aspath_' . $k, $v); }
+  }
+
+  // ---- 2. 山口様への通知メール ----
+  wp_mail(
+    ASPATH_TRIAL_TO,
+    '【初回体験】ASPATH お申し込み／' . $data['name'] . '様',
+      "初回体験のお申し込みがありました。\n"
+    . "受付日時：" . $when . "\n\n"
+    . $bar . "\n" . $body . "\n" . $bar . "\n\n"
+    . "このメールにそのまま返信すると、申込者へ直接返信できます。\n"
+    . "管理画面の「初回体験の申込」からも同じ内容を確認できます。\n",
+    array(
+      'Content-Type: text/plain; charset=UTF-8',
+      'Reply-To: ' . $data['email'],
+    )
+  );
+
+  // ---- 3. 申込者への控えメール ----
+  wp_mail(
+    $data['email'],
+    '【ASPATH】初回体験のお申し込みを受け付けました',
+      $data['name'] . " 様\n\n"
+    . "このたびはASPATH（アスパス）の初回体験にお申し込みいただき、ありがとうございます。\n"
+    . "下記の内容で承りました。\n\n"
+    . $bar . "\n" . $body . "\n" . $bar . "\n\n"
+    . "担当より48時間以内にご連絡いたします。\n"
+    . "内容に誤りがある場合や、お急ぎの場合は、このメールにご返信ください。\n\n"
+    . "-------------------------------------------------\n"
+    . "ASPATH（アスパス）\n"
+    . "パーキンソン病専門トレーニングスタジオ\n"
+    . home_url('/') . "\n"
+    . "-------------------------------------------------\n",
+    array(
+      'Content-Type: text/plain; charset=UTF-8',
+      'Reply-To: ' . ASPATH_TRIAL_TO,
+    )
+  );
+
+  aspath_trial_state(array('status'=>'done','errors'=>array(),'old'=>array()));
+}
+add_action('template_redirect','aspath_trial_handle');
+
+/** 限定公開ページを検索エンジンに拾わせない（プラグイン設定に依存しない保険） */
+function aspath_trial_noindex() {
+  if ( is_page() && is_page_template(ASPATH_TRIAL_TPL) ) {
+    echo '<meta name="robots" content="noindex,nofollow,noarchive" />' . "\n";
+  }
+}
+add_action('wp_head','aspath_trial_noindex',1);
+
+/** WordPress標準のサイトマップから限定公開ページを外す */
+function aspath_trial_hide_from_sitemap( $args, $post_type ) {
+  if ( $post_type !== 'page' ) return $args;
+  $ids = get_posts(array(
+    'post_type'   => 'page',
+    'post_status' => 'any',
+    'fields'      => 'ids',
+    'numberposts' => -1,
+    'meta_key'    => '_wp_page_template',
+    'meta_value'  => ASPATH_TRIAL_TPL,
+  ));
+  if ( ! empty($ids) ) {
+    $ex = isset($args['post__not_in']) ? (array) $args['post__not_in'] : array();
+    $args['post__not_in'] = array_merge($ex, $ids);
+  }
+  return $args;
+}
+add_filter('wp_sitemaps_posts_query_args','aspath_trial_hide_from_sitemap',10,2);
+
+/** 申込一覧に「メール」「電話」列を出して、開かずに見分けられるようにする */
+function aspath_trial_columns( $cols ) {
+  return array(
+    'cb'            => isset($cols['cb']) ? $cols['cb'] : '',
+    'title'         => 'お申し込み',
+    'aspath_email'  => 'メールアドレス',
+    'aspath_tel'    => 'お電話番号',
+    'aspath_who'    => 'ご相談の対象',
+    'date'          => '受付日',
+  );
+}
+add_filter('manage_aspath_trial_posts_columns','aspath_trial_columns');
+
+function aspath_trial_column_value( $col, $post_id ) {
+  $map = array('aspath_email'=>'_aspath_email','aspath_tel'=>'_aspath_tel','aspath_who'=>'_aspath_who');
+  if ( isset($map[$col]) ) {
+    $v = get_post_meta($post_id, $map[$col], true);
+    echo $v !== '' ? esc_html($v) : '—';
+  }
+}
+add_action('manage_aspath_trial_posts_custom_column','aspath_trial_column_value',10,2);
+'''
+
+
+def wp_trial_form(main_html):
+    """dev の trial-entry.html のフォームを、WordPress で送信できる形に書き換える。
+
+    devのフォームは Netlify 用（data-netlify / action="trial-entry.html"）なので、
+    そのままWordPressに置くと「見た目は動くのに送信されない」状態になる。
+    見た目・項目・文言は一切変えず、次の3つだけを足す。
+      1. 自分自身へPOST＋nonce（改ざん・自動投稿対策）
+      2. 入力値の復元（エラーで戻ったときに入力を失わない。高齢の方の長文入力を守る）
+      3. 送信結果の表示と、完了後はフォームを隠す
+    受け取り側の処理は functions.php の aspath_trial_handle()。
+    """
+    # 1) form タグ：Netlify 属性を外し、自分自身へPOST。nonce を直後に置く
+    main_html = re.sub(
+        r'<form\b[^>]*class="cform"[^>]*>',
+        '<form class="cform" name="trial" method="post" '
+        'action="<?php echo esc_url( get_permalink() ); ?>#aspath-form">\n'
+        "        <?php wp_nonce_field( 'aspath_trial', 'aspath_trial_nonce' ); ?>",
+        main_html, count=1)
+    main_html = main_html.replace(
+        '<input type="hidden" name="form-name" value="trial">', '')
+
+    # 2) 入力値の復元
+    def _input(m):
+        tag = m.group(0)
+        nm = re.search(r'name="([A-Za-z_\-]+)"', tag)
+        ty = re.search(r'type="([a-z]+)"', tag)
+        if not nm:
+            return tag
+        name = nm.group(1)
+        typ  = ty.group(1) if ty else 'text'
+        if name == 'bot-field' or typ == 'hidden':
+            return tag          # ハニーポットと隠しフィールドは触らない
+        if typ == 'radio':
+            val = re.search(r'value="([^"]*)"', tag)
+            if not val:
+                return tag
+            add = " <?php checked( aspath_trial_old('%s'), '%s' ); ?>" % (name, val.group(1))
+        else:
+            add = ' value="<?php echo esc_attr( aspath_trial_old(\'%s\') ); ?>"' % name
+        return tag[:-1].rstrip() + add + '>'
+    main_html = re.sub(r'<input\b[^>]*>', _input, main_html)
+
+    def _textarea(m):
+        name = m.group(1)
+        return ('<textarea name="%s"><?php echo esc_textarea( aspath_trial_old(\'%s\') ); ?>'
+                '</textarea>' % (name, name))
+    main_html = re.sub(r'<textarea\s+name="([A-Za-z_]+)"\s*>\s*</textarea>',
+                       _textarea, main_html)
+
+    # 3) 送信結果の表示 ＋ 完了後はフォームを隠す
+    main_html = main_html.replace(
+        '<form class="cform"',
+        '<div id="aspath-form"><?php echo aspath_trial_notice(); ?></div>\n'
+        '    <?php if ( ! aspath_trial_done() ) : ?>\n'
+        '      <form class="cform"', 1)
+    main_html = main_html.replace('</form>', '</form>\n    <?php endif; ?>', 1)
+    return main_html
+
 # ページごとに1本のCSSを出力する（結合は絶対にしない）。
 #   結合すると、同じセレクタを別内容で持つページ同士が上書きし合い、
 #   dev では正しいのに WordPress だけレイアウトが崩れる。実際に28セレクタが衝突していた。
@@ -344,7 +680,7 @@ function aspath_info_url() {{
   return home_url('/info/');
 }}
 """
-    open(os.path.join(OUT,"functions.php"),"w",encoding="utf-8").write(functions_php)
+    open(os.path.join(OUT,"functions.php"),"w",encoding="utf-8").write(functions_php + TRIAL_PHP)
 
     # 固定ページ/TOPテンプレート
     def page_tpl(src, comment, kj=False, template_name=None):
@@ -371,13 +707,16 @@ function aspath_info_url() {{
     # 初回体験フォーム（限定公開用テンプレート：任意のページで選択可能）
     te = read("trial-entry.html")
     te_main = clean(extract(te, r'<main[ >]', '</main>'))
+    te_main = wp_trial_form(te_main)
     open(os.path.join(OUT,"template-trial-entry.php"),"w",encoding="utf-8").write(
 """<?php
 /*
 Template Name: 初回体験フォーム（限定公開）
 */
 /** 限定公開の初回体験申込フォーム。スラッグは自由（推測されにくい文字列を推奨）。
-    フォーム本体は SureForms のショートコードに差し替えて使用。noindexはSureRank側で設定。 */
+    dev の trial-entry.html のフォームを、WordPress上で実際に送信できる形に
+    書き換えたもの。送信処理は functions.php の aspath_trial_handle()。
+    noindex とサイトマップ除外も functions.php 側で自動的に行う。 */
 get_header(); ?>
 """ + te_main + "\n<?php get_footer(); ?>\n")
 

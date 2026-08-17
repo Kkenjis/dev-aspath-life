@@ -1005,6 +1005,19 @@ body{ background:var(--paper); }
 .trial-logo img{ width:100%; height:auto; display:block; }
 .trial-title{ text-align:center; font-family:var(--font-head); font-size:clamp(22px,4vw,28px); color:var(--brown); margin:0 0 8px; }
 .trial-sub{ text-align:center; color:var(--gold); font-size:15px; margin:0 0 30px; }
+
+/* ── 送信結果の表示（WordPress上でのみ出ます。devの静的HTMLでは空） ── */
+.trial-result{ border-radius:16px; padding:22px 24px; margin:0 0 24px; font-size:16.5px; line-height:1.9; }
+.trial-result-head{ font-family:var(--font-head); font-size:clamp(19px,2.6vw,23px); margin:0 0 8px; }
+.trial-result p{ margin:0 0 6px; }
+.trial-result-sub{ font-size:14.5px; color:#5E7681; margin-top:10px; }
+.trial-result--ok{ background:linear-gradient(180deg,#FFFCF7 0%,#F1F8F2 100%); border:2px solid #6FBF7F; box-shadow:0 10px 26px rgba(63,106,118,.14); }
+.trial-result--ok .trial-result-head{ color:#2E7D46; }
+.trial-result--ng{ background:#FFF6F4; border:2px solid #E08977; box-shadow:0 10px 26px rgba(196,90,74,.14); }
+.trial-result--ng .trial-result-head{ color:#B4442B; }
+.trial-result--ng ul{ margin:6px 0 0; padding-left:1.3em; }
+.trial-result--ng li{ margin:4px 0; }
+
 .reveal{ opacity:1 !important; transform:none !important; }
 
 /* ============================================================
