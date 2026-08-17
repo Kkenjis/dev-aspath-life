@@ -108,22 +108,7 @@ def page_css(p):
 #  初回体験フォームの送信処理（functions.php の末尾に追記される）
 #  ここは f-string ではないので、PHPの波かっこをそのまま書ける。
 # ============================================================================
-TRIAL_PHP = r'''
-
-/* ==================================================================
-   初回体験 お申し込みフォーム（限定公開ページ）
-
-   テンプレート「初回体験フォーム（限定公開）」を適用した固定ページで動く。
-   送信されると、次の順番で3つのことを行う。
-
-     1. WordPress内に申込を保存  ← 最初にやる。メールが不達でも失わないため
-     2. 山口様へ通知メール（全項目・申込者へ直接返信できる）
-     3. 申込者へ控えメール（48時間以内にご連絡する旨を記載）
-
-   ⚠ 通知先メールアドレスを変えるときは、下の ASPATH_TRIAL_TO を書き換えて
-      テーマを作り直してください（管理画面からは変更できません）。
-   ================================================================== */
-
+TRIAL_CORE_PHP = r'''
 if ( ! defined('ASPATH_TRIAL_TO') )  define('ASPATH_TRIAL_TO',  'aspathlife@gmail.com');
 if ( ! defined('ASPATH_TRIAL_TPL') ) define('ASPATH_TRIAL_TPL', 'template-trial-entry.php');
 
@@ -217,21 +202,11 @@ function aspath_trial_register_cpt() {
 add_action('init','aspath_trial_register_cpt');
 
 /**
- * 限定公開ページはキャッシュさせない。
- * キャッシュされると、古いnonceが配られ続けて「送信が無効」になる。
+ * 送信処理の本体。
+ * ページの判定は呼び出し側で行う（テーマはテンプレート判定、プラグインはURL判定）。
+ * どちらから呼ばれても同じ動きになるよう、ここには画面の条件を書かない。
  */
-function aspath_trial_nocache() {
-  if ( is_page() && is_page_template(ASPATH_TRIAL_TPL) ) {
-    if ( ! defined('DONOTCACHEPAGE') ) define('DONOTCACHEPAGE', true);
-    nocache_headers();
-  }
-}
-add_action('template_redirect','aspath_trial_nocache',5);
-
-/** 送信処理の本体。画面が描かれる前に走らせる */
-function aspath_trial_handle() {
-  if ( is_admin() ) return;
-  if ( ! is_page() || ! is_page_template(ASPATH_TRIAL_TPL) ) return;
+function aspath_trial_process() {
   if ( empty($_POST['aspath_trial_nonce']) ) return;
 
   if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash($_POST['aspath_trial_nonce']) ), 'aspath_trial' ) ) {
@@ -329,34 +304,6 @@ function aspath_trial_handle() {
 
   aspath_trial_state(array('status'=>'done','errors'=>array(),'old'=>array()));
 }
-add_action('template_redirect','aspath_trial_handle');
-
-/** 限定公開ページを検索エンジンに拾わせない（プラグイン設定に依存しない保険） */
-function aspath_trial_noindex() {
-  if ( is_page() && is_page_template(ASPATH_TRIAL_TPL) ) {
-    echo '<meta name="robots" content="noindex,nofollow,noarchive" />' . "\n";
-  }
-}
-add_action('wp_head','aspath_trial_noindex',1);
-
-/** WordPress標準のサイトマップから限定公開ページを外す */
-function aspath_trial_hide_from_sitemap( $args, $post_type ) {
-  if ( $post_type !== 'page' ) return $args;
-  $ids = get_posts(array(
-    'post_type'   => 'page',
-    'post_status' => 'any',
-    'fields'      => 'ids',
-    'numberposts' => -1,
-    'meta_key'    => '_wp_page_template',
-    'meta_value'  => ASPATH_TRIAL_TPL,
-  ));
-  if ( ! empty($ids) ) {
-    $ex = isset($args['post__not_in']) ? (array) $args['post__not_in'] : array();
-    $args['post__not_in'] = array_merge($ex, $ids);
-  }
-  return $args;
-}
-add_filter('wp_sitemaps_posts_query_args','aspath_trial_hide_from_sitemap',10,2);
 
 /** 申込一覧に「メール」「電話」列を出して、開かずに見分けられるようにする */
 function aspath_trial_columns( $cols ) {
@@ -380,6 +327,85 @@ function aspath_trial_column_value( $col, $post_id ) {
 }
 add_action('manage_aspath_trial_posts_custom_column','aspath_trial_column_value',10,2);
 '''
+
+# ---------------------------------------------------------------------------
+#  テーマ専用の部分（プラグイン側では使わない）
+#  固定ページ＋テンプレート指定で動かすための判定まわり。
+# ---------------------------------------------------------------------------
+TRIAL_THEME_PHP = r'''
+
+/** このリクエストが「初回体験フォーム」の固定ページかどうか */
+function aspath_trial_is_page() {
+  return ( is_page() && is_page_template(ASPATH_TRIAL_TPL) );
+}
+
+/**
+ * 限定公開ページはキャッシュさせない。
+ * キャッシュされると、古いnonceが配られ続けて「送信が無効」になる。
+ */
+function aspath_trial_nocache() {
+  if ( aspath_trial_is_page() ) {
+    if ( ! defined('DONOTCACHEPAGE') ) define('DONOTCACHEPAGE', true);
+    nocache_headers();
+  }
+}
+add_action('template_redirect','aspath_trial_nocache',5);
+
+/** 固定ページ版の入口。判定だけ行い、処理は共通の aspath_trial_process() に渡す */
+function aspath_trial_handle() {
+  if ( is_admin() ) return;
+  if ( ! aspath_trial_is_page() ) return;
+  aspath_trial_process();
+}
+add_action('template_redirect','aspath_trial_handle');
+
+/** 限定公開ページを検索エンジンに拾わせない（プラグイン設定に依存しない保険） */
+function aspath_trial_noindex() {
+  if ( aspath_trial_is_page() ) {
+    echo '<meta name="robots" content="noindex,nofollow,noarchive" />' . "\n";
+  }
+}
+add_action('wp_head','aspath_trial_noindex',1);
+
+/** WordPress標準のサイトマップから限定公開ページを外す */
+function aspath_trial_hide_from_sitemap( $args, $post_type ) {
+  if ( $post_type !== 'page' ) return $args;
+  $ids = get_posts(array(
+    'post_type'   => 'page',
+    'post_status' => 'any',
+    'fields'      => 'ids',
+    'numberposts' => -1,
+    'meta_key'    => '_wp_page_template',
+    'meta_value'  => ASPATH_TRIAL_TPL,
+  ));
+  if ( ! empty($ids) ) {
+    $ex = isset($args['post__not_in']) ? (array) $args['post__not_in'] : array();
+    $args['post__not_in'] = array_merge($ex, $ids);
+  }
+  return $args;
+}
+add_filter('wp_sitemaps_posts_query_args','aspath_trial_hide_from_sitemap',10,2);
+'''
+
+
+def guard_trial_core(core_php, owner):
+    """共通処理を二重定義ガードで包む。
+
+    先行設置プラグインとテーマの両方が有効になっても、PHPの
+    「関数を二重に定義できない」エラー（画面が真っ白になる）を防ぐ。
+    プラグインはテーマより先に読み込まれるため、プラグインが有効なら
+    プラグイン側の定義が使われ、テーマ側のブロックは丸ごと飛ばされる。
+    """
+    return (
+        "\n/* ===== ASPATH_TRIAL_CORE ここから =====\n"
+        "   共通処理。%s 側で読み込む。先に読み込まれた方が使われる。\n"
+        "   この目印は build_trial_plugin.py が切り出しに使うので消さないこと。 */\n"
+        "if ( ! defined('ASPATH_TRIAL_CORE') ) {\n"
+        "  define('ASPATH_TRIAL_CORE', '%s');\n"
+        % (owner, owner)
+        + core_php.rstrip()
+        + "\n} /* ===== ASPATH_TRIAL_CORE ここまで ===== */\n"
+    )
 
 
 def wp_trial_form(main_html):
@@ -680,7 +706,26 @@ function aspath_info_url() {{
   return home_url('/info/');
 }}
 """
-    open(os.path.join(OUT,"functions.php"),"w",encoding="utf-8").write(functions_php + TRIAL_PHP)
+    trial_block = ("""
+/* ==================================================================
+   初回体験 お申し込みフォーム
+
+   テンプレート「初回体験フォーム（限定公開）」を適用した固定ページで動く。
+   送信されると、次の順番で3つのことを行う。
+
+     1. WordPress内に申込を保存  ← 最初にやる。メールが不達でも失わないため
+     2. 山口様へ通知メール（全項目・申込者へ直接返信できる）
+     3. 申込者へ控えメール（48時間以内にご連絡する旨を記載）
+
+   ⚠ 通知先を変えるときは ASPATH_TRIAL_TO を書き換えてテーマを作り直します。
+
+   ⚠ 本番先行設置プラグイン「ASPATH 初回体験フォーム」が有効な場合は、
+      共通処理はプラグイン側が担当し、下のブロックは飛ばされます。
+   ================================================================== */
+"""
+        + guard_trial_core(TRIAL_CORE_PHP, 'テーマ')
+        + TRIAL_THEME_PHP)
+    open(os.path.join(OUT,"functions.php"),"w",encoding="utf-8").write(functions_php + trial_block)
 
     # 固定ページ/TOPテンプレート
     def page_tpl(src, comment, kj=False, template_name=None):
