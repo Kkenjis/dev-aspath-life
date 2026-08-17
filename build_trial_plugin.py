@@ -55,8 +55,74 @@ try:
     css = z.read('aspath/css/trial-entry.css').decode('utf-8')
     logo = z.read('aspath/images/logo-aspath.webp')
     fnc = z.read('aspath/functions.php').decode('utf-8')
+    hdr = z.read('aspath/header.php').decode('utf-8')
+    ftr = z.read('aspath/footer.php').decode('utf-8')
+    drawer_js = z.read('aspath/js/sub-01.js').decode('utf-8')
 except KeyError as e:
     die('テーマzipの中に %s がありません。' % e)
+
+
+# --------------------------------------------------- ヘッダー・フッターの取り出し
+def theme_chrome():
+    """新テーマの共通ヘッダー・フッターを、テーマ無しでも動く形で取り出す。
+
+    ステージングのフォームページと同じ見た目（ロゴ・グローバルメニュー・
+    ハンバーガー・ドロワー・フッターナビ）にするため。
+    header.php の <head> 部分と、TOP限定の演出は取り除く。
+    """
+    # <body ...> より後ろがヘッダーの中身
+    m = re.search(r'<body[^>]*>', hdr)
+    if not m:
+        die('header.php から <body> を見つけられませんでした。')
+    head = hdr[m.end():]
+
+    # TOP専用の演出（ローディング・追従LINEボタン）は落とす
+    head, n = re.subn(r'<\?php if \( is_front_page\(\) \) : \?>[\s\S]*?<\?php endif; \?>',
+                      '', head)
+    if n == 0:
+        die('header.php のTOP限定ブロックが見つかりませんでした（構造が変わった可能性）。')
+
+    # フッターは <footer>〜</footer> だけ
+    mf = re.search(r'<footer[\s\S]*</footer>', ftr)
+    if not mf:
+        die('footer.php から <footer> を取り出せませんでした。')
+    foot = mf.group(0)
+
+    out = []
+    for part in (head, foot):
+        # テーマの画像URLはプラグインのassetsに置き換える。
+        # ファイル名まで含めて1つの式にするので、末尾スラッシュの有無に左右されない。
+        part = re.sub(
+            r'<\?php echo get_template_directory_uri\(\); \?>/images/([A-Za-z0-9_\-\.]+)',
+            lambda mo: "<?php echo esc_url( plugins_url('assets/%s', __FILE__) ); ?>" % mo.group(1),
+            part)
+        out.append(part.strip())
+    return out[0], out[1], n
+
+
+site_header, site_footer, n_front = theme_chrome()
+
+# 同梱するファイル（これ以外を参照していたらビルドを止める）
+BUNDLED = {'logo-aspath.webp', 'trial.css', 'menu.js'}
+
+# ヘッダー・フッターに残った参照を確認（プラグイン単体で動く条件）
+for label, part in (('ヘッダー', site_header), ('フッター', site_footer)):
+    for bad in ('get_template_directory_uri', 'get_header', 'get_footer',
+                'wp_head', 'wp_footer', 'body_class'):
+        if bad in part:
+            die('%s にテーマ依存の記述（%s）が残っています。' % (label, bad))
+    used = set(re.findall(r"plugins_url\('assets/([A-Za-z0-9_\-\.]+)'", part))
+    if not used and label == 'ヘッダー':
+        die('ヘッダーの画像URLを置き換えられませんでした（header.phpの書式が変わった可能性）。')
+    missing = used - BUNDLED
+    if missing:
+        die('%s が同梱していないファイルを参照しています: %s' % (label, ', '.join(sorted(missing))))
+
+print('  ヘッダー・フッターを取り出しました : TOP限定ブロック%d個を除外 / '
+      'リンク%d件 / 参照ファイル %s'
+      % (n_front, site_header.count('<a '),
+         ', '.join(sorted(set(re.findall(r"plugins_url\('assets/([\w\-\.]+)'",
+                                        site_header + site_footer))))))
 
 # 共通処理（ガードで包まれたブロック）をテーマのfunctions.phpから丸ごと取り出す。
 # これでプラグインとテーマのロジックが絶対にずれません。
@@ -171,6 +237,25 @@ function aspath_trial_plugin_activate() {
 register_activation_hook(__FILE__, 'aspath_trial_plugin_activate');
 register_deactivation_hook(__FILE__, 'flush_rewrite_rules');
 
+/* ---------- ヘッダー・フッターが使う関数 ------------------------------ */
+
+/**
+ * お知らせ一覧のURL。
+ * テーマの functions.php と同じ内容。テーマが有効でないときにも
+ * ヘッダー・フッターのリンクが正しく出るよう、こちらでも定義する。
+ * （テーマが先に定義していればそちらを使う）
+ */
+if ( ! function_exists('aspath_info_url') ) {
+  function aspath_info_url() {
+    $t = get_term_by('slug','info','category');
+    if ( $t && ! is_wp_error($t) ) {
+      $u = get_category_link($t);
+      if ( $u ) return $u;
+    }
+    return home_url('/info/');
+  }
+}
+
 /* ---------- プライバシーポリシーのリンク ------------------------------ */
 
 /**
@@ -227,7 +312,10 @@ function aspath_trial_plugin_render() {
 <link href="<?php echo esc_url($css); ?>" rel="stylesheet">
 </head>
 <body class="aspath-trial-standalone">
+%(header)s
 %(form)s
+%(footer)s
+<script src="<?php echo esc_url( plugins_url('assets/menu.js', __FILE__) ); ?>"></script>
 </body>
 </html>
 <?php
@@ -235,12 +323,14 @@ function aspath_trial_plugin_render() {
 }
 add_action('template_redirect','aspath_trial_plugin_render', 1);
 ''' % {
-    'slug':  SLUG,
-    'ver':   VERSION,
-    'to':    m2.group(0),
-    'core':  core,
-    'form':  form,
-    'fonts': FONTS,
+    'slug':   SLUG,
+    'ver':    VERSION,
+    'to':     m2.group(0),
+    'core':   core,
+    'form':   form,
+    'fonts':  FONTS,
+    'header': site_header,
+    'footer': site_footer,
 }
 
 # ---------------------------------------------------------------- 書き出し
@@ -252,6 +342,8 @@ os.makedirs(os.path.join(root, 'assets'))
 open(os.path.join(root, 'aspath-trial-form.php'), 'w', encoding='utf-8').write(plugin)
 open(os.path.join(root, 'assets', 'trial.css'), 'w', encoding='utf-8').write(css)
 open(os.path.join(root, 'assets', 'logo-aspath.webp'), 'wb').write(logo)
+# ハンバーガー／ドロワーの開閉用（テーマのsub-01.jsと同じもの）
+open(os.path.join(root, 'assets', 'menu.js'), 'w', encoding='utf-8').write(drawer_js)
 
 with zipfile.ZipFile(OUTZIP, 'w', zipfile.ZIP_DEFLATED) as out:
     for base, _dirs, files in os.walk(BUILD):
