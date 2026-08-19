@@ -489,12 +489,123 @@ CSS_SOURCES = {
     "generic":        "privacy.html",             # 汎用ページ（page.php）の土台
 }
 
+# 記事にコメント欄を出すページ（この3つだけにコメント用CSSを足す）
+CSS_WITH_COMMENTS = ("column", "column-parkinson", "news-single")
+
+# コメント欄のCSS。devのHTMLには無い要素なので、ここで持つ。
+# 4ファイルに同じものを書くと必ずズレるため、生成時に必要なCSSだけ足す方式にした。
+COMMENTS_CSS = r'''
+
+/* ==========================================================
+   コメント欄（WordPress標準のコメント機能をサイトの意匠に合わせる）
+   ・シニアの方が読み書きしやすいよう、文字は16px以上・入力欄は大きめ
+   ・投稿ボタンは記事内CTAと同じオレンジ系で迷わないように
+========================================================== */
+.aspath-comments{
+  max-width:820px; margin:56px auto 0; padding:0 20px;
+}
+.aspath-comments h2{
+  font-family:var(--font-head); font-size:clamp(21px,2.8vw,26px);
+  color:var(--brown); text-align:center; margin-bottom:8px;
+}
+.aspath-comments .ac-lead{
+  text-align:center; font-size:15.5px; color:#52707A; margin-bottom:30px;
+}
+.ac-list{ list-style:none; margin:0 0 40px; padding:0; }
+.ac-list ol.children{ list-style:none; margin:16px 0 0 clamp(16px,4vw,44px); padding:0; }
+.ac-list li.comment{ margin-bottom:18px; }
+.ac-list article.comment-body{
+  background:#fff; border:1.5px solid var(--gold-soft); border-radius:16px;
+  box-shadow:0 6px 18px rgba(38,70,83,.07); padding:22px 26px;
+}
+.ac-head{ display:flex; align-items:center; gap:12px; margin-bottom:10px; flex-wrap:wrap; }
+.ac-head img.avatar{ width:44px; height:44px; border-radius:50%; flex:none; }
+.ac-name{ font-family:var(--font-head); font-size:17px; color:var(--brown); }
+.ac-date{ font-size:14px; color:#5E7681; }
+.ac-badge{
+  background:var(--gold); color:#fff; font-size:12.5px; font-weight:700;
+  border-radius:999px; padding:2px 10px;
+}
+.ac-text{ font-size:16.5px; line-height:1.95; }
+.ac-text p{ margin:0 0 10px; }
+.ac-text p:last-child{ margin-bottom:0; }
+.ac-actions{ margin-top:12px; font-size:15px; }
+.ac-actions a{ color:var(--gold-deep); text-decoration:none; font-weight:700; }
+.ac-actions a:hover{ color:var(--sun); }
+.ac-pending{ color:#B4442B; font-size:14.5px; margin-top:8px; }
+
+/* 投稿フォーム */
+.aspath-comments #respond{
+  background:#FFFCF7; border:1.5px solid var(--gold-soft); border-radius:18px;
+  box-shadow:0 8px 22px rgba(38,70,83,.07); padding:30px clamp(20px,4vw,34px);
+}
+.aspath-comments .comment-reply-title{
+  font-family:var(--font-head); font-size:clamp(19px,2.4vw,23px);
+  color:var(--brown); margin:0 0 6px;
+}
+.aspath-comments .comment-reply-title small{ display:block; font-size:15px; margin-top:6px; }
+.aspath-comments .comment-reply-title small a{ color:var(--sun); }
+.aspath-comments .comment-notes,
+.aspath-comments .logged-in-as{ font-size:15px; color:#52707A; margin:0 0 20px; }
+.aspath-comments .comment-form-comment,
+.aspath-comments .comment-form-author,
+.aspath-comments .comment-form-email,
+.aspath-comments .comment-form-url{ margin-bottom:18px; }
+.aspath-comments label{
+  display:block; font-family:var(--font-head); font-size:15.5px;
+  color:var(--brown); margin-bottom:6px;
+}
+.aspath-comments .required{ color:var(--sun); font-weight:700; }
+.aspath-comments input[type=text],
+.aspath-comments input[type=email],
+.aspath-comments input[type=url],
+.aspath-comments textarea{
+  width:100%; font-family:var(--font-body); font-size:16px; color:var(--ink);
+  background:#fff; border:1.5px solid var(--gold-soft); border-radius:12px;
+  padding:13px 15px;
+}
+.aspath-comments textarea{ min-height:150px; resize:vertical; }
+.aspath-comments input:focus, .aspath-comments textarea:focus{
+  outline:none; border-color:var(--sun); box-shadow:0 0 0 3px rgba(244,162,97,.15);
+}
+.aspath-comments .comment-form-cookies-consent{
+  display:flex; align-items:flex-start; gap:10px; font-size:15px; margin-bottom:20px;
+}
+.aspath-comments .comment-form-cookies-consent input{ width:20px; height:20px; accent-color:var(--sun); flex:none; margin-top:3px; }
+.aspath-comments .comment-form-cookies-consent label{ margin:0; font-family:var(--font-body); font-size:15px; }
+.aspath-comments .form-submit{ margin:0; text-align:center; }
+.aspath-comments .submit{
+  font-family:var(--font-head); font-weight:700; font-size:17px; color:#fff;
+  background:linear-gradient(135deg,var(--sun),#DD8236);
+  border:2.5px solid #264653; border-radius:999px;
+  padding:16px 44px; cursor:pointer;
+  box-shadow:0 10px 22px rgba(244,162,97,.35);
+  transition:transform .25s, box-shadow .25s;
+}
+.aspath-comments .submit:hover{ transform:translateY(-3px); }
+.ac-closed{
+  text-align:center; font-size:15.5px; color:#5E7681;
+  background:#FAF3E7; border-radius:14px; padding:18px 22px;
+}
+
+@media (max-width:600px){
+  .aspath-comments{ margin-top:44px; padding:0 16px; }
+  .ac-list article.comment-body{ padding:18px 16px; }
+  .ac-list ol.children{ margin-left:14px; }
+  .aspath-comments #respond{ padding:24px 18px; }
+  .aspath-comments .submit{ width:100%; }
+}
+'''
+
+
 def build_css_files():
     written = {}
     css_dir = os.path.join(OUT, "css")
     os.makedirs(css_dir, exist_ok=True)
     for key, src in CSS_SOURCES.items():
         body = f"/* {key}.css — {src} の<style>をそのまま抽出（ページ単位で分離） */\n" + page_css(src)
+        if key in CSS_WITH_COMMENTS:
+            body += COMMENTS_CSS
         open(os.path.join(css_dir, f"{key}.css"), "w", encoding="utf-8").write(body)
         written[key] = len(body)
     return written
@@ -692,6 +803,58 @@ function aspath_excerpt_length($l){{ return 60; }}
 add_filter('excerpt_length','aspath_excerpt_length');
 
 /**
+ * コメント1件の表示。
+ * WordPress既定のマークアップは意匠に合わないため、自前で組み立てる。
+ * comments.php の wp_list_comments() から呼ばれる。
+ */
+function aspath_comment_item($comment, $args, $depth) {{
+  $tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
+  ?>
+  <<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class('comment'); ?>>
+    <article class="comment-body" id="div-comment-<?php comment_ID(); ?>">
+      <div class="ac-head">
+        <?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+        <span class="ac-name"><?php echo get_comment_author_link( $comment ); ?></span>
+        <?php if ( user_can( $comment->user_id, 'edit_posts' ) ) : ?>
+          <span class="ac-badge">スタッフ</span>
+        <?php endif; ?>
+        <span class="ac-date"><?php echo get_comment_date( 'Y年n月j日', $comment ); ?></span>
+      </div>
+
+      <?php if ( '0' == $comment->comment_approved ) : ?>
+        <p class="ac-pending">このコメントは承認待ちです。公開までしばらくお待ちください。</p>
+      <?php endif; ?>
+
+      <div class="ac-text"><?php comment_text(); ?></div>
+
+      <div class="ac-actions">
+        <?php
+          comment_reply_link( array_merge( $args, array(
+            'add_below' => 'div-comment',
+            'depth'     => $depth,
+            'max_depth' => $args['max_depth'],
+            'reply_text'=> '返信する',
+          ) ), $comment );
+          edit_comment_link( '編集', ' <span class="ac-edit">', '</span>' );
+        ?>
+      </div>
+    </article>
+  <?php
+  // 閉じタグは wp_list_comments が出力する
+}}
+
+/**
+ * コメントの返信（スレッド）を動かすスクリプトを読み込む。
+ * これが無いと「返信する」を押しても何も起きない。
+ */
+function aspath_comment_reply_script() {{
+  if ( is_singular('post') && comments_open() && get_option('thread_comments') ) {{
+    wp_enqueue_script('comment-reply');
+  }}
+}}
+add_action('wp_enqueue_scripts','aspath_comment_reply_script');
+
+/**
  * お知らせ一覧のURL。
  * 「お知らせ」はカテゴリー(slug: info)のアーカイブなので、実URLは環境により
  * /category/info/ だったり /info/ だったりする。WordPressに解決させて404を防ぐ。
@@ -765,6 +928,75 @@ Template Name: 初回体験フォーム（限定公開）
 get_header(); ?>
 """ + te_main + "\n<?php get_footer(); ?>\n")
 
+    # comments.php — 記事のコメント欄（WordPress標準機能をサイトの意匠で表示）
+    comments_php = r'''<?php
+/** comments.php — 記事のコメント欄（自動生成）
+ *
+ *  現行サイトのブログでコメントに反響があったため、新サイトのコラムでも
+ *  同じようにコメントを受け付ける。WordPress標準のコメント機能を使い、
+ *  見た目だけをサイトの意匠に合わせている。
+ *
+ *  ・入力項目は現行サイトと同じ（お名前・メール【公開されません】・本文）
+ *  ・返信（スレッド）も現行サイトと同じように使える
+ *  ・迷惑コメント対策は Akismet が担当
+ *  ・「承認待ち」の状態も本人には見えるようにしている
+ */
+if ( post_password_required() ) return;
+?>
+<section class="aspath-comments" id="comments">
+
+<?php if ( have_comments() ) : ?>
+  <h2><?php
+    $n = get_comments_number();
+    echo ( $n == 1 ) ? 'コメント' : 'コメント（' . number_format_i18n($n) . '件）';
+  ?></h2>
+  <p class="ac-lead">記事へのご感想をいただきました。ありがとうございます。</p>
+
+  <ol class="ac-list">
+    <?php
+      wp_list_comments(array(
+        'style'       => 'ol',
+        'short_ping'  => true,
+        'avatar_size' => 44,
+        'callback'    => 'aspath_comment_item',
+      ));
+    ?>
+  </ol>
+
+  <?php
+    // ページ送り（コメントが多くなったとき）
+    the_comments_pagination(array(
+      'prev_text' => '← 前のコメント',
+      'next_text' => '次のコメント →',
+    ));
+  ?>
+<?php endif; ?>
+
+<?php
+  if ( ! comments_open() && get_comments_number() ) :
+?>
+  <p class="ac-closed">この記事へのコメントの受付は終了しました。</p>
+<?php endif; ?>
+
+<?php
+  comment_form(array(
+    'title_reply'          => have_comments() ? 'コメントを書く' : 'この記事にコメントする',
+    'title_reply_to'       => '%s さんへ返信する',
+    'cancel_reply_link'    => '返信をやめる',
+    'label_submit'         => 'コメントを送信する',
+    'class_submit'         => 'submit',
+    'comment_notes_before' => '<p class="comment-notes">お気軽にご感想をお寄せください。'
+        . 'メールアドレスが公開されることはありません。'
+        . '<span class="required">*</span> の項目は入力が必要です。</p>',
+    'comment_field'        => '<p class="comment-form-comment">'
+        . '<label for="comment">コメント <span class="required">*</span></label>'
+        . '<textarea id="comment" name="comment" rows="7" required></textarea></p>',
+  ));
+?>
+</section>
+'''
+    open(os.path.join(OUT,"comments.php"),"w",encoding="utf-8").write(comments_php)
+
     # 動的テンプレート（コラム・一覧）
     single = """<?php
 /** single.php — コラム/投稿記事（自動生成） */
@@ -802,6 +1034,10 @@ get_header(); ?>
       </nav>
     </div>
   </article>
+  <?php
+    // コメント欄。開いているか、既に投稿がある場合だけ出す
+    if ( comments_open() || get_comments_number() ) comments_template();
+  ?>
 <?php endwhile; ?>
 </main>
 <?php get_footer(); ?>
