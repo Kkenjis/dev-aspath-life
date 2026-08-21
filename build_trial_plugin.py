@@ -126,8 +126,10 @@ print('  ヘッダー・フッターを取り出しました : TOP限定ブロ�
 
 # 共通処理（ガードで包まれたブロック）をテーマのfunctions.phpから丸ごと取り出す。
 # これでプラグインとテーマのロジックが絶対にずれません。
+# ⚠ 改行コードに注意。Windows側で生成されるとCRLF、Linux側だとLFになる。
+#   \n 決め打ちにすると環境によって切り出しに失敗するので \r?\n で受ける。
 m = re.search(r"/\* ===== ASPATH_TRIAL_CORE ここから =====[\s\S]*?"
-              r"ASPATH_TRIAL_CORE ここまで ===== \*/\n", fnc)
+              r"ASPATH_TRIAL_CORE ここまで ===== \*/\r?\n?", fnc)
 if not m:
     die('functions.php から共通処理ブロックを取り出せませんでした。')
 core = m.group(0).replace("define('ASPATH_TRIAL_CORE', 'テーマ');",
