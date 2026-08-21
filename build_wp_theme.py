@@ -502,7 +502,9 @@ COMMENTS_CSS = r'''
    ・投稿ボタンは記事内CTAと同じオレンジ系で迷わないように
 ========================================================== */
 .aspath-comments{
-  max-width:820px; margin:56px auto 0; padding:0 20px;
+  max-width:820px;
+  /* 下の余白を必ず取る。0だとフッターに貼り付いて窮屈に見える */
+  margin:56px auto 90px; padding:0 20px;
 }
 .aspath-comments h2{
   font-family:var(--font-head); font-size:clamp(21px,2.8vw,26px);
@@ -589,7 +591,7 @@ COMMENTS_CSS = r'''
 }
 
 @media (max-width:600px){
-  .aspath-comments{ margin-top:44px; padding:0 16px; }
+  .aspath-comments{ margin:44px auto 64px; padding:0 16px; }
   .ac-list article.comment-body{ padding:18px 16px; }
   .ac-list ol.children{ margin-left:14px; }
   .aspath-comments #respond{ padding:24px 18px; }
