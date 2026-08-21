@@ -1000,6 +1000,22 @@ body{ overflow-wrap:normal; word-break:auto-phrase; line-break:strict; }
 /* 限定フォームページ（ヘッダー等なしの最小構成） */
 body{ background:var(--paper); }
 .trial-page{ min-height:100vh; padding:44px 16px 64px; }
+/* ── 初回体験フォーム：ヘッダーとの重なりを防ぐ ──────────────
+   サイトのヘッダーは position:absolute で本文の上に重なる設計。
+   トップページは背景写真の上に載せるためこれで良いが、このフォームページは
+   白いカードが最上部に来るため、端末によってはロゴが隠れてしまう。
+   （スマホではロゴが64pxに拡大しヘッダーが約90px以上になるため）
+
+   端末ごとの高さを見積もって余白を足す方法は取りこぼしが出るので、
+   このページに限りヘッダーを「重ねない配置」に変えて、構造的に重なりを無くす。
+   ※このCSSは初回体験フォームのページでしか読み込まれないため、
+     他のページのヘッダーには影響しない。 */
+.trial-page-header-fix .site-header,
+body .site-header{ position:relative; }
+.trial-page{ padding-top:28px; }
+@media (max-width:760px){
+  .trial-page{ padding-top:20px; }
+}
 .trial-wrap{ max-width:720px; margin:0 auto; background:#fff; border-radius:18px; box-shadow:0 12px 34px rgba(38,70,83,.10); padding:clamp(24px,5vw,48px); }
 .trial-logo{ display:block; width:118px; margin:0 auto 16px; }
 .trial-logo img{ width:100%; height:auto; display:block; }
