@@ -229,7 +229,10 @@ function aspath_trial_process() {
   $errors = array();
 
   foreach ( $fields as $key => $f ) {
-    $raw = isset($_POST[$key]) ? wp_unslash($_POST[$key]) : '';
+    /* 入力欄の name には接頭辞が付いている（WordPressの予約語 name との衝突回避）。
+       内部のキーは接頭辞なしのままなので、読み取るときだけ付け直す。 */
+    $field = 'at_' . $key;
+    $raw = isset($_POST[$field]) ? wp_unslash($_POST[$field]) : '';
     if ( is_array($raw) ) $raw = implode(' / ', $raw);
     $val = ( $key === 'email' ) ? sanitize_email($raw) : sanitize_textarea_field($raw);
     $val = trim($val);
@@ -429,6 +432,17 @@ def guard_trial_core(core_php, owner):
     )
 
 
+# 入力欄につける接頭辞。
+#   WordPress は POST された `name` を「投稿スラッグの指定」として解釈するため、
+#   name="name" のまま送ると該当する投稿を探しに行き、見つからず404になる。
+#   （実際にこれで送信が全て404になった）
+#   他にも s / p / page / author / order / year などが予約語なので、
+#   衝突を根本から避けるため全項目に接頭辞を付ける。
+TRIAL_PREFIX = 'at_'
+TRIAL_FIELD_KEYS = ('name','kana','birthday','email','tel','address',
+                    'who','diagnosis','diagnosis_other','trouble','source','message')
+
+
 def wp_trial_form(main_html):
     """dev の trial-entry.html のフォームを、WordPress で送信できる形に書き換える。
 
@@ -440,6 +454,12 @@ def wp_trial_form(main_html):
       3. 送信結果の表示と、完了後はフォームを隠す
     受け取り側の処理は functions.php の aspath_trial_handle()。
     """
+    # 0) 入力欄の name に接頭辞を付ける（WordPressの予約語との衝突を避ける）
+    for key in TRIAL_FIELD_KEYS:
+        main_html = re.sub(r'(<(?:input|textarea)\b[^>]*\bname=")%s(")' % re.escape(key),
+                           lambda mo: mo.group(1) + TRIAL_PREFIX + key + mo.group(2),
+                           main_html)
+
     # 1) form タグ：Netlify 属性を外し、自分自身へPOST。nonce を直後に置く
     main_html = re.sub(
         r'<form\b[^>]*class="cform"[^>]*>',
@@ -461,20 +481,23 @@ def wp_trial_form(main_html):
         typ  = ty.group(1) if ty else 'text'
         if name == 'bot-field' or typ == 'hidden':
             return tag          # ハニーポットと隠しフィールドは触らない
+        # 復元に使うキーは接頭辞を外した元の名前
+        key = name[len(TRIAL_PREFIX):] if name.startswith(TRIAL_PREFIX) else name
         if typ == 'radio':
             val = re.search(r'value="([^"]*)"', tag)
             if not val:
                 return tag
-            add = " <?php checked( aspath_trial_old('%s'), '%s' ); ?>" % (name, val.group(1))
+            add = " <?php checked( aspath_trial_old('%s'), '%s' ); ?>" % (key, val.group(1))
         else:
-            add = ' value="<?php echo esc_attr( aspath_trial_old(\'%s\') ); ?>"' % name
+            add = ' value="<?php echo esc_attr( aspath_trial_old(\'%s\') ); ?>"' % key
         return tag[:-1].rstrip() + add + '>'
     main_html = re.sub(r'<input\b[^>]*>', _input, main_html)
 
     def _textarea(m):
         name = m.group(1)
+        key  = name[len(TRIAL_PREFIX):] if name.startswith(TRIAL_PREFIX) else name
         return ('<textarea name="%s"><?php echo esc_textarea( aspath_trial_old(\'%s\') ); ?>'
-                '</textarea>' % (name, name))
+                '</textarea>' % (name, key))
     main_html = re.sub(r'<textarea\s+name="([A-Za-z_]+)"\s*>\s*</textarea>',
                        _textarea, main_html)
 
