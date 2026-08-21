@@ -21,7 +21,7 @@
 ============================================================ -->
 
 <title data-en="Opening Campaign: First Session Half Price ¥4,400｜ASPATH">営業開始キャンペーン｜初回体験が期間限定 半額4,400円｜ASPATH</title>
-<meta name="description" content="アスパスの営業開始キャンペーン。初回トレーニング体験（90分）が2026年9月30日まで通常8,800円のところ半額4,400円。対面・オンライン・訪問すべて対象です。">
+<meta name="description" content="アスパスの営業開始キャンペーン。初回トレーニング体験（40分）が2026年12月31日まで通常8,800円のところ半額4,400円。対面・オンライン・訪問すべて対象です。">
 <meta name="robots" content="noindex,nofollow"><!-- 開発中：本番公開時に index,follow へ戻す -->
 <link rel="canonical" href="#" onclick="return false;" aria-disabled="true">
 
@@ -58,7 +58,7 @@
   },
   "priceRange": "¥13,200〜¥79,600",
   "makesOffer": [
-    { "@type": "Offer", "name": "初回トレーニング体験（90分）", "price": "8800", "priceCurrency": "JPY", "description": "営業開始キャンペーンにより2026年9月30日まで半額の4,400円" },
+    { "@type": "Offer", "name": "初回トレーニング体験（40分）", "price": "8800", "priceCurrency": "JPY", "description": "営業開始キャンペーンにより2026年12月31日まで半額の4,400円" },
     { "@type": "Offer", "name": "パーソナルトレーニング 月8回コース（週2回／60分）", "price": "79600", "priceCurrency": "JPY" },
     { "@type": "Offer", "name": "パーソナルトレーニング 月4回コース（週1回／60分）", "price": "39800", "priceCurrency": "JPY" },
     { "@type": "Offer", "name": "パーソナルトレーニング 月2回コース（隔週1回／60分）", "price": "22000", "priceCurrency": "JPY" },
@@ -78,7 +78,7 @@
     { "@type": "Question", "name": "遠方に住んでいますが、オンラインでも受けられますか？",
       "acceptedAnswer": { "@type": "Answer", "text": "はい。パーソナルトレーニングはオンラインでも実施可能です。ご自宅からビデオ通話で、来店時と同じ担当者が指導します。" } },
     { "@type": "Question", "name": "料金はいくらですか？保険は使えますか？",
-      "acceptedAnswer": { "@type": "Answer", "text": "初回トレーニング体験（90分）は8,800円ですが、営業開始キャンペーンにより2026年9月30日まで半額の4,400円でご利用いただけます。継続プランは1回60分で、月8回79,600円・月4回39,800円・月2回22,000円（税込）、単発は60分13,200円です。保険外（自費）サービスのため保険は適用されませんが、期限や回数の制限なく専門的なトレーニングを継続できます。" } },
+      "acceptedAnswer": { "@type": "Answer", "text": "初回トレーニング体験（40分）は8,800円ですが、営業開始キャンペーンにより2026年12月31日まで半額の4,400円でご利用いただけます。継続プランは1回60分で、月8回79,600円・月4回39,800円・月2回22,000円（税込）、単発は60分13,200円です。保険外（自費）サービスのため保険は適用されませんが、期限や回数の制限なく専門的なトレーニングを継続できます。" } },
     { "@type": "Question", "name": "スタジオはどこにありますか？",
       "acceptedAnswer": { "@type": "Answer", "text": "天文館（鹿児島市電・天文館通駅より徒歩5分）と鹿児島中央駅（JR鹿児島中央駅より徒歩5分）のレンタルスタジオでトレーニングを実施しています。いずれも駅からのアクセスが良く、建物内スタジオまでエレベーターがあります。ご予約確定後に場所の詳細をご案内します。ご希望の方にはご自宅への訪問トレーニングやオンラインも可能です。" } },
     { "@type": "Question", "name": "申し込みはどうすればいいですか？",
@@ -889,7 +889,40 @@ html.is-loading{ overflow:hidden; }
 .column-figure{ margin:32px 0 40px; background:var(--card); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
 .column-figure img,.column-figure svg{ display:block; width:100%; height:auto; }
 .column-figure figcaption{ padding:14px 22px; background:#FFFAEE; font-size:15px; color:var(--gold-deep); text-align:center; letter-spacing:.04em; }
-.column-callout{ margin:36px auto; word-break:auto-phrase; line-break:strict; padding:26px 28px; background:linear-gradient(135deg,#FAF3E7 0%,#FAF3E7 100%); border-radius:16px; border-left:5px solid var(--sun); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; }
+.column-callout{ margin:36px auto; word-break:auto-phrase; line-break:strict; padding:26px 28px; background:linear-gradient(135deg,#FAF3E7 0%,#FAF3E7 100%); border-radius:16px; border:2px solid #E9BE84; box-shadow:0 8px 22px rgba(196,141,74,.14); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; }
+/* ── 初回体験の流れ：各ステップの下に下向き矢印を出す ──
+   番号だけだと順序が伝わりにくいため、矢印で「次へ進む」ことを示す。
+   PC・スマホとも同じ見え方になる。 */
+.column-body ul.flow-steps{ list-style:none; margin:30px 0 34px; padding:0; }
+.column-body ul.flow-steps > li{
+  position:relative; margin:0 0 42px; padding:22px 26px 22px 68px;
+  background:#fff; border:1.5px solid var(--gold-soft); border-radius:16px;
+  box-shadow:0 6px 18px rgba(38,70,83,.07);
+  font-size:16.5px; line-height:1.9;
+}
+.column-body ul.flow-steps > li:last-child{ margin-bottom:0; }
+.column-body ul.flow-steps{ counter-reset:flowstep; }
+.column-body ul.flow-steps > li::before{
+  counter-increment:flowstep; content:counter(flowstep);
+  position:absolute; left:20px; top:20px;
+  width:34px; height:34px; border-radius:50%;
+  background:var(--leaf); color:#fff;
+  display:grid; place-items:center;
+  font-family:var(--font-head); font-size:17px;
+}
+/* 下向き矢印（最後の項目には出さない） */
+.column-body ul.flow-steps > li:not(:last-child)::after{
+  content:""; position:absolute; left:50%; bottom:-32px;
+  transform:translateX(-50%);
+  width:28px; height:26px; background:var(--sun); opacity:.85;
+  clip-path:polygon(38% 0, 62% 0, 62% 50%, 100% 50%, 50% 100%, 0 50%, 38% 50%);
+}
+.column-body ul.flow-steps > li strong{ color:var(--brown); }
+@media (max-width:600px){
+  .column-body ul.flow-steps > li{ padding:18px 16px 18px 58px; font-size:15.5px; margin-bottom:36px; }
+  .column-body ul.flow-steps > li::before{ left:14px; top:16px; width:30px; height:30px; font-size:15px; }
+  .column-body ul.flow-steps > li:not(:last-child)::after{ bottom:-28px; }
+}
 .column-quote{ margin:32px 0; padding:20px 24px; background:var(--paper); border-radius:14px; border:1px solid rgba(176,138,69,.24); font-size:15.5px; color:var(--gold-deep); line-height:1.75; }
 .column-quote .src{ display:block; margin-top:6px; font-size:14px; color:var(--brown); opacity:.75; }
 .column-draft-notice{ margin:0 0 40px; padding:16px 20px; background:#FBF4E8; border:1px dashed var(--sun); border-radius:12px; font-size:15px; color:var(--brown); line-height:1.7; }
@@ -936,7 +969,7 @@ html.is-loading{ overflow:hidden; }
 .column-body figure.wp-block-image img{ display:block; width:100%; height:auto; }
 .column-body figure.wp-block-image figcaption{ padding:14px 22px; background:#FFFAEE; font-size:15px; color:var(--gold-deep); text-align:center; letter-spacing:.04em; margin:0; }
 /* 引用ブロック → .column-callout と同じ見た目に */
-.column-body .wp-block-quote{ margin:36px auto; padding:26px 28px; background:#FAF3E7; border-radius:16px; border-left:5px solid var(--sun); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; word-break:auto-phrase; line-break:strict; }
+.column-body .wp-block-quote{ margin:36px auto; padding:26px 28px; background:#FAF3E7; border-radius:16px; border:2px solid #E9BE84; box-shadow:0 8px 22px rgba(196,141,74,.14); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; word-break:auto-phrase; line-break:strict; }
 .column-body .wp-block-quote p{ margin:0 0 .6em; font-size:inherit; line-height:inherit; max-width:none; }
 .column-body .wp-block-quote cite{ display:block; font-size:14px; color:var(--gold-deep); font-style:normal; }
 /* リストブロック */
@@ -1220,8 +1253,8 @@ table{ max-width:100%; }
   <section class="column-hero">
     <div class="wrap">
       <p class="column-crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / &lt;a href=&quot;info.html&quot;&gt;News&lt;/a&gt; / Campaign"><a href="index.html">TOP</a> ／ <a href="info.html">お知らせ</a> ／ キャンペーン</p>
-      <h1 data-en="Opening Campaign: First Session Half Price ¥4,400">営業開始キャンペーン｜<br><span class="nw">初回体験</span>（90分）が期間限定 <span class="nw">半額4,400円</span></h1>
-      <p class="lead" data-en-html="Until September 30, 2026, the first training session (90 min) is half price at ¥4,400 instead of the usual ¥8,800.">2026年9月30日まで、初回トレーニング体験（90分）を通常<span class="nw">8,800円</span>のところ半額の<span class="nw">4,400円</span>でご利用いただけます。</p>
+      <h1 data-en="Opening Campaign: First Session Half Price ¥4,400">営業開始キャンペーン｜<br><span class="nw">初回体験</span>（40分）が期間限定 <span class="nw">半額4,400円</span></h1>
+      <p class="lead" data-en-html="Until December 31, 2026, the first training session (40 min) is half price at ¥4,400 instead of the usual ¥8,800.">2026年12月31日まで、初回トレーニング体験（40分）を通常<span class="nw">8,800円</span>のところ半額の<span class="nw">4,400円</span>でご利用いただけます。</p>
       <p class="column-byline"><span class="imp-label" data-en="Important">重要</span> </p>
       <p class="column-byline" data-en="By ASPATH ／ July 1, 2026">By ASPATH ／ 2026年7月1日</p>
     </div>
@@ -1233,11 +1266,11 @@ table{ max-width:100%; }
       <p data-en-html="To mark the opening of ASPATH, we are running a campaign that halves the price of your first training session."><span class="nw">アスパス</span>の営業開始を記念して、<span class="nw">初回トレーニング体験</span>を半額でご利用いただけるキャンペーンを実施しています。</p>
 
       <h2 data-en="Campaign details">キャンペーンの内容</h2>
-      <div class="column-callout" data-en-html="&lt;strong&gt;First training session (90 min)&lt;/strong&gt;&lt;br&gt;Regular ¥8,800 → &lt;strong&gt;Half price ¥4,400&lt;/strong&gt; (tax incl.)&lt;br&gt;&lt;br&gt;Period: until September 30, 2026"><strong>初回トレーニング体験（90分）</strong><br>通常 <span class="nw">8,800円</span> → <strong>期間限定 半額 <span class="nw">4,400円</span></strong>（税込）<br><br>期間：2026年9月30日まで</div>
+      <div class="column-callout" data-en-html="&lt;strong&gt;First training session (40 min)&lt;/strong&gt;&lt;br&gt;Regular ¥8,800 → &lt;strong&gt;Half price ¥4,400&lt;/strong&gt; (tax incl.)&lt;br&gt;&lt;br&gt;Period: until December 31, 2026"><strong>初回トレーニング体験（40分）</strong><br>通常 <span class="nw">8,800円</span> → <strong>期間限定 半額 <span class="nw">4,400円</span></strong>（税込）<br><br>期間：2026年12月31日まで</div>
       <p data-en-html="The session can be held in person at the studio, online, or as a home visit. Please choose whichever suits you.">スタジオでの対面・オンライン・ご自宅への訪問、いずれの形でも受けていただけます。ご都合の良い方法をお選びください。</p>
 
       <h2 data-en="What happens in the first session"><span class="nw">初回体験</span>でおこなうこと</h2>
-      <ul>
+      <ul class="flow-steps">
         <li data-en-html="&lt;strong&gt;Interview&lt;/strong&gt;: we take time to hear about your condition, worries and what you want to be able to do."><strong>ヒアリング</strong>：お身体の状態、お困りごと、これからやりたいことをじっくり伺います。</li>
         <li data-en-html="&lt;strong&gt;Physical check&lt;/strong&gt;: a physical therapist assesses your posture, walking and movement."><strong>お身体チェック</strong>：<span class="nw">理学療法士</span>が姿勢・歩行・動作を評価します。</li>
         <li data-en-html="&lt;strong&gt;Trial exercise&lt;/strong&gt;: you actually try exercise matched to your condition."><strong>体験トレーニング</strong>：今の状態に合わせた運動を実際に体験していただきます。</li>
