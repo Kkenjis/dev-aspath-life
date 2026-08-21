@@ -1028,6 +1028,20 @@ get_header(); ?>
     <div class="wrap">
       <?php if ( has_post_thumbnail() ) : ?><div class="column-eyecatch img-slot" style="--ratio:16/9;"><?php the_post_thumbnail('large'); ?></div><?php endif; ?>
       <?php the_content(); ?>
+      <?php
+        /* 記事末尾の共通CTA。
+           dev の各コラムに入っていたものをテーマ側にまとめた。
+           本文に書くと記事ごとに文言や見た目がずれるため、ここで1か所にする。 */
+      ?>
+      <div class="column-cta">
+        <h3>まずは一度、お話を聞かせてください</h3>
+        <p><span class="nw">初回体験</span>は期間限定 半額<span class="nw">4,400円</span>。<span class="nw">パーキンソン病</span>専門の<span class="nw">理学療法士</span>が、<br class="br-pc">あなたの状態と目標を丁寧に伺います。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="<?php echo esc_url( home_url('/contact/') ); ?>">フォームで問い合わせる<span class="arw">→</span></a>
+          <a class="btn btn-line" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span class="nw">公式LINE</span>に登録する</a>
+        </div>
+      </div>
+
       <nav class="column-nav" aria-label="記事の移動">
       <?php
         $aspath_prev = get_previous_post();   // 1つ古い記事
