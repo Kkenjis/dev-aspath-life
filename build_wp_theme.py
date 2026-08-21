@@ -896,13 +896,15 @@ add_action('wp_enqueue_scripts','aspath_comment_reply_script');
  * /category/info/ だったり /info/ だったりする。WordPressに解決させて404を防ぐ。
  * カテゴリー未作成のときだけ /info/ にフォールバックする。
  */
-function aspath_info_url() {{
-  $t = get_term_by('slug','info','category');
-  if ( $t && ! is_wp_error($t) ) {{
-    $u = get_category_link($t);
-    if ( $u ) return $u;
+if ( ! function_exists('aspath_info_url') ) {{
+  function aspath_info_url() {{
+    $t = get_term_by('slug','info','category');
+    if ( $t && ! is_wp_error($t) ) {{
+      $u = get_category_link($t);
+      if ( $u ) return $u;
+    }}
+    return home_url('/info/');
   }}
-  return home_url('/info/');
 }}
 """
     trial_block = ("""

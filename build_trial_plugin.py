@@ -358,3 +358,39 @@ print('✓ プラグイン生成完了  v' + VERSION)
 print('  公開URL : https://aspath-life.com/%s/' % SLUG)
 print('  ファイル: PHP 1 / CSS 1 / 画像 1   zip:%dKB' % kb)
 print('  → ' + OUTZIP)
+
+
+# ---------------------------------------------------------------- 安全確認
+# テーマとプラグインを同時に有効にしても落ちないことを、生成のたびに機械的に確かめる。
+# 一度この確認を怠って「Cannot redeclare aspath_info_url()」でサイトが止まったため、
+# 以後はビルド時に必ず検査し、保護されていない同名関数があれば生成を失敗させる。
+def _verify_no_redeclare():
+    theme_fn = zipfile.ZipFile(THEMEZIP).read('aspath/functions.php').decode('utf-8')
+    plug_fn  = plugin
+
+    def core_span(src):
+        a = src.find('ASPATH_TRIAL_CORE ここから')
+        b = src.find('ASPATH_TRIAL_CORE ここまで')
+        return (a, b) if a >= 0 and b > a else (None, None)
+
+    def collect(src):
+        ca, cb = core_span(src)
+        out = {}
+        for m in re.finditer(r'^\s*function\s+(aspath_\w+)\s*\(', src, re.M):
+            name, pos = m.group(1), m.start()
+            in_core = ca is not None and ca < pos < cb
+            head = src[max(0, pos - 260):pos]
+            out[name] = in_core or ("! function_exists('" + name + "')") in head
+        return out
+
+    t, p = collect(theme_fn), collect(plug_fn)
+    dup = sorted(set(t) & set(p))
+    ng = [d for d in dup if not (t[d] and p[d])]
+    if ng:
+        die('テーマと同名で、二重定義から保護されていない関数があります: %s\n'
+            '       このまま両方を有効にすると「Cannot redeclare」でサイトが停止します。'
+            % ', '.join(ng))
+    print('  同名関数 %d個すべて二重定義から保護されています ✅' % len(dup))
+
+
+_verify_no_redeclare()
