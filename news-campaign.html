@@ -929,6 +929,19 @@ html.is-loading{ overflow:hidden; }
 @media (max-width:600px){
   .column-hero h1{ line-height:1.45; }
 }
+/* 記事末尾CTA：公式LINEボタン1本に統一したときの見え方 */
+.column-cta .cta-row--single{ justify-content:center; }
+.column-cta .btn-line--wide{
+  min-width:min(340px, 100%); padding:16px 34px; font-size:17px;
+}
+.column-cta .cta-note{
+  margin:16px auto 0; max-width:34em;
+  color:rgba(255,255,255,.82); font-size:14.5px; line-height:1.8;
+}
+@media (max-width:600px){
+  .column-cta .btn-line--wide{ width:100%; min-width:0; font-size:16px; padding:15px 20px; }
+  .column-cta .cta-note{ font-size:13.5px; }
+}
 .column-quote{ margin:32px 0; padding:20px 24px; background:var(--paper); border-radius:14px; border:1px solid rgba(176,138,69,.24); font-size:15.5px; color:var(--gold-deep); line-height:1.75; }
 .column-quote .src{ display:block; margin-top:6px; font-size:14px; color:var(--brown); opacity:.75; }
 .column-draft-notice{ margin:0 0 40px; padding:16px 20px; background:#FBF4E8; border:1px dashed var(--sun); border-radius:12px; font-size:15px; color:var(--brown); line-height:1.7; }
@@ -1297,7 +1310,6 @@ table{ max-width:100%; }
         <h3 data-en="First, let us hear from you">まずは一度、お話を聞かせてください</h3>
         <p data-en-html="The first trial session is half price, ¥4,400, for a limited time. A physical therapist specializing in Parkinson's disease will carefully ask about your condition and goals."><span class="nw">初回体験</span>は期間限定 半額<span class="nw">4,400円</span>。<span class="nw">パーキンソン病</span>専門の<span class="nw">理学療法士</span>が、<br class="br-pc">あなたの状態と目標を丁寧に伺います。</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="contact.html" data-en="Ask via form">フォームで問い合わせる<span class="arw">→</span></a>
           <a class="btn btn-line" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span class="nw">公式LINE</span>に登録する</a>
         </div>
       </div>
