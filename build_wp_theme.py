@@ -245,6 +245,16 @@ function aspath_trial_process() {
     return;
   }
 
+  /* ⚠ ここから先は「保存」と「メール送信」を行う。
+     この2つは save_post / wp_mail のフックを通じて他プラグインの処理を呼び出す。
+     そのとき別のクエリが実行されると、WordPressが今表示しているページの情報
+     （グローバルの $wp_query）が上書きされ、「ページが見つかりません(404)」に
+     化けてしまう。実際にこの症状が出たため、前後で退避・復元する。 */
+  global $wp_query, $wp_the_query, $post;
+  $aspath_saved_query     = $wp_query;
+  $aspath_saved_the_query = $wp_the_query;
+  $aspath_saved_post      = $post;
+
   // ---- 本文を組み立てる ----
   $lines = array();
   foreach ( $fields as $key => $f ) {
@@ -301,6 +311,17 @@ function aspath_trial_process() {
       'Reply-To: ' . ASPATH_TRIAL_TO,
     )
   );
+
+  /* 保存・メール送信で壊された可能性があるページ情報を元に戻す。
+     これをしないと、送信に成功したときだけ404画面になる。 */
+  $wp_query     = $aspath_saved_query;
+  $wp_the_query = $aspath_saved_the_query;
+  $post         = $aspath_saved_post;
+  if ( isset($wp_query) ) {
+    $wp_query->is_404 = false;
+  }
+  wp_reset_postdata();
+  status_header(200);
 
   aspath_trial_state(array('status'=>'done','errors'=>array(),'old'=>array()));
 }
