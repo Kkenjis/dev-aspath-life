@@ -803,6 +803,19 @@ function aspath_excerpt_length($l){{ return 60; }}
 add_filter('excerpt_length','aspath_excerpt_length');
 
 /**
+ * 記事見出しの「｜」の後ろで改行する。
+ *
+ * 「営業開始キャンペーン｜初回体験（40分）が…」のような見出しは、
+ * 「｜」が意味の区切りなので、そこで折り返した方が読みやすい。
+ * 使うのは記事ページの大見出しだけ。一覧やブラウザのタブ名は
+ * 改行が入ると困るので、元のまま変えない。
+ */
+function aspath_title_break( $title ) {{
+  $safe = esc_html( $title );
+  return str_replace( '｜', '｜<br class="title-br">', $safe );
+}}
+
+/**
  * コメント1件の表示。
  * WordPress既定のマークアップは意匠に合わないため、自前で組み立てる。
  * comments.php の wp_list_comments() から呼ばれる。
@@ -1006,7 +1019,7 @@ get_header(); ?>
   <section class="column-hero">
     <div class="wrap">
       <p class="column-crumb"><a href="<?php echo esc_url( home_url('/') ); ?>">TOP</a> ／ <a href="<?php echo esc_url( home_url('/column/') ); ?>">コラム</a> ／ <?php the_title(); ?></p>
-      <h1><?php the_title(); ?></h1>
+      <h1><?php echo aspath_title_break( get_the_title() ); ?></h1>
       <?php if ( is_sticky( get_the_ID() ) ) : ?><p class="column-byline"><span class="imp-label">重要</span></p><?php endif; ?>
       <p class="column-byline">By ASPATH ／ <?php echo get_the_date(); ?></p>
     </div>

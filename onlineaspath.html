@@ -890,6 +890,12 @@ html.is-loading{ overflow:hidden; }
 .column-figure img,.column-figure svg{ display:block; width:100%; height:auto; }
 .column-figure figcaption{ padding:14px 22px; background:#FFFAEE; font-size:15px; color:var(--gold-deep); text-align:center; letter-spacing:.04em; }
 .column-callout{ margin:36px auto; word-break:auto-phrase; line-break:strict; padding:26px 28px; background:linear-gradient(135deg,#FAF3E7 0%,#FAF3E7 100%); border-radius:16px; border:2px solid #E9BE84; box-shadow:0 8px 22px rgba(196,141,74,.14); font-family:var(--font-head); color:var(--brown); font-size:17px; line-height:1.8; }
+/* 記事の大見出し：「｜」の後で改行したときの行間を整える */
+.column-hero h1 .title-br{ display:inline; }
+.column-hero h1{ line-height:1.5; }
+@media (max-width:600px){
+  .column-hero h1{ line-height:1.45; }
+}
 .column-quote{ margin:32px 0; padding:20px 24px; background:var(--paper); border-radius:14px; border:1px solid rgba(176,138,69,.24); font-size:15.5px; color:var(--gold-deep); line-height:1.75; }
 .column-quote .src{ display:block; margin-top:6px; font-size:14px; color:var(--brown); opacity:.75; }
 .column-draft-notice{ margin:0 0 40px; padding:16px 20px; background:#FBF4E8; border:1px dashed var(--sun); border-radius:12px; font-size:15px; color:var(--brown); line-height:1.7; }

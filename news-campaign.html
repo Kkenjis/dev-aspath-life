@@ -923,6 +923,12 @@ html.is-loading{ overflow:hidden; }
   .column-body ul.flow-steps > li::before{ left:14px; top:16px; width:30px; height:30px; font-size:15px; }
   .column-body ul.flow-steps > li:not(:last-child)::after{ bottom:-28px; }
 }
+/* 記事の大見出し：「｜」の後で改行したときの行間を整える */
+.column-hero h1 .title-br{ display:inline; }
+.column-hero h1{ line-height:1.5; }
+@media (max-width:600px){
+  .column-hero h1{ line-height:1.45; }
+}
 .column-quote{ margin:32px 0; padding:20px 24px; background:var(--paper); border-radius:14px; border:1px solid rgba(176,138,69,.24); font-size:15.5px; color:var(--gold-deep); line-height:1.75; }
 .column-quote .src{ display:block; margin-top:6px; font-size:14px; color:var(--brown); opacity:.75; }
 .column-draft-notice{ margin:0 0 40px; padding:16px 20px; background:#FBF4E8; border:1px dashed var(--sun); border-radius:12px; font-size:15px; color:var(--brown); line-height:1.7; }
