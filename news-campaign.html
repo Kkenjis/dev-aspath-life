@@ -298,12 +298,18 @@ body.drawer-open{ overflow:hidden; }
 
 /* ボタン（c-btn01移植：丸ピル＋矢印スライド） */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  /* inline-flex にすると、ボタン内の span 要素がひとつずつ独立した塊として扱われ、
+     幅の狭い端末で「初回体験／を申し込む／（半額／4,400円）」のように
+     文字がバラバラに散る。inline-block なら普通の文章として自然に折り返す。
+     ※ここを inline-flex に戻さないこと。 */
+  display:inline-block; text-align:center; vertical-align:middle;
   font-family:var(--font-head); font-weight:500; text-decoration:none;
   border-radius:999px; transition:transform .25s, box-shadow .25s, background .25s;
   position:relative;
 }
-.btn .arw{ transition:transform .25s; }
+/* inline-block では gap が効かないため、アイコンと矢印の余白は margin で取る */
+.btn .line-ico{ vertical-align:-0.32em; margin-right:8px; }
+.btn .arw{ display:inline-block; margin-left:10px; transition:transform .25s; }
 .btn:hover{ transform:translateY(-3px); }
 .btn:hover .arw{ transform:translateX(5px); }
 .btn-form{ background:linear-gradient(135deg,var(--sun),#DD8236); color:#fff; box-shadow:0 10px 22px rgba(244,162,97,.35); }
@@ -1272,10 +1278,10 @@ table{ max-width:100%; }
   <section class="column-hero">
     <div class="wrap">
       <p class="column-crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / &lt;a href=&quot;info.html&quot;&gt;News&lt;/a&gt; / Campaign"><a href="index.html">TOP</a> ／ <a href="info.html">お知らせ</a> ／ キャンペーン</p>
-      <h1 data-en="Opening Campaign: First Session Half Price ¥4,400">営業開始キャンペーン｜<br><span class="nw">初回体験</span>（40分）が期間限定 <span class="nw">半額4,400円</span></h1>
-      <p class="lead" data-en-html="Until December 31, 2026, the first training session (40 min) is half price at ¥4,400 instead of the usual ¥8,800.">2026年12月31日まで、初回トレーニング体験（40分）を通常<span class="nw">8,800円</span>のところ半額の<span class="nw">4,400円</span>でご利用いただけます。</p>
+      <h1 data-en="Opening Campaign: First Session Half Price ¥4,400">営業開始キャンペーン｜<br><span class="nw">初回体験</span>（<span class="nw">40分</span>）が期間限定 <span class="nw">半額4,400円</span></h1>
+      <p class="lead" data-en-html="Until December 31, 2026, the first training session (40 min) is half price at ¥4,400 instead of the usual ¥8,800."><span class="nw">2026年12月31日まで</span>、初回トレーニング体験（<span class="nw">40分</span>）を通常<span class="nw">8,800円</span>のところ半額の<span class="nw">4,400円</span>でご利用いただけます。</p>
       <p class="column-byline"><span class="imp-label" data-en="Important">重要</span> </p>
-      <p class="column-byline" data-en="By ASPATH ／ July 1, 2026">By ASPATH ／ 2026年7月1日</p>
+      <p class="column-byline" data-en="By ASPATH ／ July 1, 2026">By ASPATH ／ <span class="nw">2026年7月1日</span></p>
     </div>
   </section>
 
@@ -1285,7 +1291,7 @@ table{ max-width:100%; }
       <p data-en-html="To mark the opening of ASPATH, we are running a campaign that halves the price of your first training session."><span class="nw">アスパス</span>の営業開始を記念して、<span class="nw">初回トレーニング体験</span>を半額でご利用いただけるキャンペーンを実施しています。</p>
 
       <h2 data-en="Campaign details">キャンペーンの内容</h2>
-      <div class="column-callout" data-en-html="&lt;strong&gt;First training session (40 min)&lt;/strong&gt;&lt;br&gt;Regular ¥8,800 → &lt;strong&gt;Half price ¥4,400&lt;/strong&gt; (tax incl.)&lt;br&gt;&lt;br&gt;Period: until December 31, 2026"><strong>初回トレーニング体験（40分）</strong><br>通常 <span class="nw">8,800円</span> → <strong>期間限定 半額 <span class="nw">4,400円</span></strong>（税込）<br><br>期間：2026年12月31日まで</div>
+      <div class="column-callout" data-en-html="&lt;strong&gt;First training session (40 min)&lt;/strong&gt;&lt;br&gt;Regular ¥8,800 → &lt;strong&gt;Half price ¥4,400&lt;/strong&gt; (tax incl.)&lt;br&gt;&lt;br&gt;Period: until December 31, 2026"><strong>初回トレーニング体験（<span class="nw">40分</span>）</strong><br>通常 <span class="nw">8,800円</span> → <strong>期間限定 半額 <span class="nw">4,400円</span></strong>（税込）<br><br>期間：<span class="nw">2026年12月31日まで</span></div>
       <p data-en-html="The session can be held in person at the studio, online, or as a home visit. Please choose whichever suits you.">スタジオでの対面・オンライン・ご自宅への訪問、いずれの形でも受けていただけます。ご都合の良い方法をお選びください。</p>
 
       <h2 data-en="What happens in the first session"><span class="nw">初回体験</span>でおこなうこと</h2>

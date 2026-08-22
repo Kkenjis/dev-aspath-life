@@ -379,12 +379,18 @@ body.drawer-open{ overflow:hidden; }
 
 /* ボタン（c-btn01移植：丸ピル＋矢印スライド） */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  /* inline-flex にすると、ボタン内の span 要素がひとつずつ独立した塊として扱われ、
+     幅の狭い端末で「初回体験／を申し込む／（半額／4,400円）」のように
+     文字がバラバラに散る。inline-block なら普通の文章として自然に折り返す。
+     ※ここを inline-flex に戻さないこと。 */
+  display:inline-block; text-align:center; vertical-align:middle;
   font-family:var(--font-head); font-weight:500; text-decoration:none;
   border-radius:999px; transition:transform .25s, box-shadow .25s, background .25s;
   position:relative;
 }
-.btn .arw{ transition:transform .25s; }
+/* inline-block では gap が効かないため、アイコンと矢印の余白は margin で取る */
+.btn .line-ico{ vertical-align:-0.32em; margin-right:8px; }
+.btn .arw{ display:inline-block; margin-left:10px; transition:transform .25s; }
 .btn:hover{ transform:translateY(-3px); }
 .btn:hover .arw{ transform:translateX(5px); }
 .btn-form{ background:linear-gradient(135deg,var(--sun),#DD8236); color:#fff; box-shadow:0 10px 22px rgba(244,162,97,.35); }
@@ -1560,7 +1566,7 @@ table{ max-width:100%; }
         </div>
         <div class="imp-body">
           <time datetime="2026-07-01">2026.07.01</time>
-          <p class="imp-title" data-en-html="🎁 First trial session (40 min) ¥8,800 → &lt;strong&gt;half price ¥4,400&lt;/strong&gt; for a limited time｜until 12/31">🎁 <span class="nw">初回体験</span>（40分）通常<span class="nw">8,800円</span> → 期間限定 <strong>半額<span class="nw">4,400円</span></strong>｜12/31まで</p>
+          <p class="imp-title" data-en-html="🎁 First trial session (40 min) ¥8,800 → &lt;strong&gt;half price ¥4,400&lt;/strong&gt; for a limited time｜until 12/31">🎁 <span class="nw">初回体験</span>（<span class="nw">40分</span>）通常<span class="nw">8,800円</span> → 期間限定 <strong>半額<span class="nw">4,400円</span></strong>｜12/31まで</p>
         </div>
         <div class="imp-actions">
           <a class="imp-btn imp-btn-detail" href="news-campaign.html" data-en="Learn more">詳しくはこちら<span class="arw">→</span></a>
@@ -1579,7 +1585,7 @@ table{ max-width:100%; }
       <div class="notice-block reveal">
         <div class="sec-head"><h2 data-en="News">お知らせ</h2></div>
         <ul class="notice-list more-list" id="noticeList" data-visible="2">
-          <li class="notice-row is-important"><time datetime="2026-07-01">2026.07.01</time><span class="tag tag-important" data-en="Important">重要</span><a href="news-campaign.html" data-en="Opening campaign｜First trial session (40 min) half price ¥4,400 for a limited time">営業開始キャンペーン｜<span class="nw">初回体験</span>（40分）が期間限定 半額<span class="nw">4,400円</span></a></li>
+          <li class="notice-row is-important"><time datetime="2026-07-01">2026.07.01</time><span class="tag tag-important" data-en="Important">重要</span><a href="news-campaign.html" data-en="Opening campaign｜First trial session (40 min) half price ¥4,400 for a limited time">営業開始キャンペーン｜<span class="nw">初回体験</span>（<span class="nw">40分</span>）が期間限定 半額<span class="nw">4,400円</span></a></li>
         </ul>
         <div class="more-wrap"><a class="btn btn-ghost mid" href="info.html" data-en="See all news">お知らせ一覧へ<span class="arw">→</span></a></div>
       </div>

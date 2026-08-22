@@ -282,12 +282,18 @@ body.drawer-open{ overflow:hidden; }
 
 /* ボタン（c-btn01移植：丸ピル＋矢印スライド） */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  /* inline-flex にすると、ボタン内の span 要素がひとつずつ独立した塊として扱われ、
+     幅の狭い端末で「初回体験／を申し込む／（半額／4,400円）」のように
+     文字がバラバラに散る。inline-block なら普通の文章として自然に折り返す。
+     ※ここを inline-flex に戻さないこと。 */
+  display:inline-block; text-align:center; vertical-align:middle;
   font-family:var(--font-head); font-weight:500; text-decoration:none;
   border-radius:999px; transition:transform .25s, box-shadow .25s, background .25s;
   position:relative;
 }
-.btn .arw{ transition:transform .25s; }
+/* inline-block では gap が効かないため、アイコンと矢印の余白は margin で取る */
+.btn .line-ico{ vertical-align:-0.32em; margin-right:8px; }
+.btn .arw{ display:inline-block; margin-left:10px; transition:transform .25s; }
 .btn:hover{ transform:translateY(-3px); }
 .btn:hover .arw{ transform:translateX(5px); }
 .btn-form{ background:linear-gradient(135deg,var(--sun),#DD8236); color:#fff; box-shadow:0 10px 22px rgba(244,162,97,.35); border:2.5px solid #264653; }
@@ -1133,7 +1139,7 @@ table{ max-width:100%; }
         </div>
         
         <div class="field">
-          <label data-en-html="Date of birth &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;&lt;span class=&quot;note&quot;&gt;e.g., May 30, 1975 → 19750530&lt;/span&gt;">生年月日 <span class="req">必須</span><span class="note">記載例：1975年5月30日 → 19750530</span></label>
+          <label data-en-html="Date of birth &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;&lt;span class=&quot;note&quot;&gt;e.g., May 30, 1975 → 19750530&lt;/span&gt;">生年月日 <span class="req">必須</span><span class="note">記載例：<span class="nw">1975年5月30日</span> → 19750530</span></label>
           <input type="text" name="birthday" inputmode="numeric" placeholder="19750530" required="">
         </div>
         <div class="field">

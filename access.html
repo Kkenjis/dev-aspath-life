@@ -282,12 +282,18 @@ body.drawer-open{ overflow:hidden; }
 
 /* ボタン（c-btn01移植：丸ピル＋矢印スライド） */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  /* inline-flex にすると、ボタン内の span 要素がひとつずつ独立した塊として扱われ、
+     幅の狭い端末で「初回体験／を申し込む／（半額／4,400円）」のように
+     文字がバラバラに散る。inline-block なら普通の文章として自然に折り返す。
+     ※ここを inline-flex に戻さないこと。 */
+  display:inline-block; text-align:center; vertical-align:middle;
   font-family:var(--font-head); font-weight:500; text-decoration:none;
   border-radius:999px; transition:transform .25s, box-shadow .25s, background .25s;
   position:relative;
 }
-.btn .arw{ transition:transform .25s; }
+/* inline-block では gap が効かないため、アイコンと矢印の余白は margin で取る */
+.btn .line-ico{ vertical-align:-0.32em; margin-right:8px; }
+.btn .arw{ display:inline-block; margin-left:10px; transition:transform .25s; }
 .btn:hover{ transform:translateY(-3px); }
 .btn:hover .arw{ transform:translateX(5px); }
 .btn-form{ background:linear-gradient(135deg,var(--sun),#DD8236); color:#fff; box-shadow:0 10px 22px rgba(244,162,97,.35); }
@@ -1135,7 +1141,7 @@ table{ max-width:100%; }
 <div class="access-grid">
         <div class="access-card reveal">
           <h3 data-en="Tenmonkan Studio"><span class="nw">天文館</span>スタジオ</h3>
-          <p data-en-html="A 5-minute walk from the &quot;Tenmonkan-dori&quot; streetcar stop">市電「<span class="nw">天文館</span>通」駅より<strong>徒歩5分</strong></p>
+          <p data-en-html="A 5-minute walk from the &quot;Tenmonkan-dori&quot; streetcar stop">市電「<span class="nw">天文館</span>通」駅より<strong>徒歩<span class="nw">5分</span></strong></p>
           <div class="img-slot access-photo" role="img" aria-label="天文館スタジオの内観">
             <img src="images/access-tenmonkan-interior.webp" alt="天文館スタジオの内観（鏡張り・木目のフロア）" width="1400" height="788">
             <span class="slot-label" data-en="📷 Tenmonkan photo">📷 <span class="nw">天文館</span>の写真</span>
@@ -1143,7 +1149,7 @@ table{ max-width:100%; }
         </div>
         <div class="access-card reveal d1">
           <h3 data-en="Kagoshima-Chuo-cho Studio"><span class="nw">鹿児島中央</span>町スタジオ</h3>
-          <p data-en-html="A 5-minute walk from &quot;Kagoshima-Chuo&quot; Station">「<span class="nw">鹿児島中央</span>」駅より<strong>徒歩5分</strong></p>
+          <p data-en-html="A 5-minute walk from &quot;Kagoshima-Chuo&quot; Station">「<span class="nw">鹿児島中央</span>」駅より<strong>徒歩<span class="nw">5分</span></strong></p>
           <div class="img-slot access-photo" role="img" aria-label="鹿児島中央町スタジオ周辺の写真">
             <img src="images/access-chuo-station.webp" alt="鹿児島中央駅（アミュラン観覧車）">
             <span class="slot-label" data-en="📷 Kagoshima-Chuo-cho photo">📷 <span class="nw">鹿児島中央</span>町の写真</span>
@@ -1151,7 +1157,7 @@ table{ max-width:100%; }
         </div>
         <div class="access-card reveal d2">
           <h3 data-en="Josei Studio"><span class="nw">城西</span>スタジオ</h3>
-          <p data-en-html="About a 5-minute drive from Kagoshima-Chuo Station">「<span class="nw">鹿児島中央</span>」駅より<strong>お車で約5分</strong></p>
+          <p data-en-html="About a 5-minute drive from Kagoshima-Chuo Station">「<span class="nw">鹿児島中央</span>」駅より<strong>お車で約<span class="nw">5分</span></strong></p>
           <div class="img-slot access-photo" role="img" aria-label="城西スタジオ周辺の写真">
             <img src="images/access-josei-interior.webp" alt="城西スタジオの内観">
             <span class="slot-label" data-en="📷 Josei photo">📷 <span class="nw">城西</span>の写真</span>

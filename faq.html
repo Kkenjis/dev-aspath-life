@@ -282,12 +282,18 @@ body.drawer-open{ overflow:hidden; }
 
 /* ボタン（c-btn01移植：丸ピル＋矢印スライド） */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  /* inline-flex にすると、ボタン内の span 要素がひとつずつ独立した塊として扱われ、
+     幅の狭い端末で「初回体験／を申し込む／（半額／4,400円）」のように
+     文字がバラバラに散る。inline-block なら普通の文章として自然に折り返す。
+     ※ここを inline-flex に戻さないこと。 */
+  display:inline-block; text-align:center; vertical-align:middle;
   font-family:var(--font-head); font-weight:500; text-decoration:none;
   border-radius:999px; transition:transform .25s, box-shadow .25s, background .25s;
   position:relative;
 }
-.btn .arw{ transition:transform .25s; }
+/* inline-block では gap が効かないため、アイコンと矢印の余白は margin で取る */
+.btn .line-ico{ vertical-align:-0.32em; margin-right:8px; }
+.btn .arw{ display:inline-block; margin-left:10px; transition:transform .25s; }
 .btn:hover{ transform:translateY(-3px); }
 .btn:hover .arw{ transform:translateX(5px); }
 .btn-form{ background:linear-gradient(135deg,var(--sun),#DD8236); color:#fff; box-shadow:0 10px 22px rgba(244,162,97,.35); }
@@ -1174,11 +1180,11 @@ table{ max-width:100%; }
         </details>
         <details>
           <summary data-en="How much does it cost? Can I use insurance?">料金はいくらですか？保険は使えますか？</summary>
-          <p class="a" data-en-html="The first training trial (40 min) is 8,800 yen, but thanks to our opening campaign it is &lt;strong&gt;free until December 31, 2026&lt;/strong&gt;. Ongoing plans (per 60-minute session): 8/month 79,600 yen, 4/month 39,800 yen, 2/month 22,000 yen (tax incl.); a single session is 13,200 yen for 60 minutes. As a private-pay (out-of-insurance) service, insurance does not apply, but you can continue specialized training with no limit on term or number of sessions.">初回トレーニング体験（40分）は<span class="nw">8,800円</span>ですが、営業開始キャンペーンにより<strong>2026年12月31日まで半額の<span class="nw">4,400円</span></strong>です。継続プランは1回60分で、月8回<span class="nw">79,600円</span>・月4回<span class="nw">39,800円</span>・月2回<span class="nw">22,000円</span>（税込）、単発は60分<span class="nw">13,200円</span>。保険外（自費）のため保険は適用されませんが、期限や回数の制限なく専門的なトレーニングを継続できます。</p>
+          <p class="a" data-en-html="The first training trial (40 min) is 8,800 yen, but thanks to our opening campaign it is &lt;strong&gt;free until December 31, 2026&lt;/strong&gt;. Ongoing plans (per 60-minute session): 8/month 79,600 yen, 4/month 39,800 yen, 2/month 22,000 yen (tax incl.); a single session is 13,200 yen for 60 minutes. As a private-pay (out-of-insurance) service, insurance does not apply, but you can continue specialized training with no limit on term or number of sessions.">初回トレーニング体験（<span class="nw">40分</span>）は<span class="nw">8,800円</span>ですが、営業開始キャンペーンにより<strong><span class="nw">2026年12月31日まで</span>半額の<span class="nw">4,400円</span></strong>です。継続プランは1回<span class="nw">60分</span>で、月8回<span class="nw">79,600円</span>・月4回<span class="nw">39,800円</span>・月2回<span class="nw">22,000円</span>（税込）、単発は<span class="nw">60分</span><span class="nw">13,200円</span>。保険外（自費）のため保険は適用されませんが、期限や回数の制限なく専門的なトレーニングを継続できます。</p>
         </details>
         <details>
           <summary data-en="Where are your studios located?">スタジオはどこにありますか？</summary>
-          <p class="a" data-en="We operate at three rental studios in Kagoshima City (Tenmonkan, Kagoshima-Chuo-cho, and Josei). Tenmonkan is a 5-minute walk from the Tenmonkan-dori tram stop, Kagoshima-Chuo-cho is a 5-minute walk from JR Kagoshima-Chuo Station, and Josei is about a 5-minute drive from Kagoshima-Chuo Station. We can adjust the studio to suit your needs, and will share the exact location after your booking is confirmed. Home-visit training and online sessions are also available.">鹿児島市内の3カ所（<span class="nw">天文館</span>・<span class="nw">鹿児島中央</span>町・<span class="nw">城西</span>）のレンタルスタジオで実施しています。<span class="nw">天文館</span>は市電「<span class="nw">天文館</span>通」駅、<span class="nw">鹿児島中央</span>町はJR「<span class="nw">鹿児島中央</span>」駅よりいずれも徒歩5分、<span class="nw">城西</span>は<span class="nw">鹿児島中央</span>駅よりお車で約5分。ご利用者のニーズに応じて実施スタジオを調整できます。ご予約確定後に場所の詳細をご案内します。ご自宅への<span class="nw">訪問トレーニング</span>やオンラインも可能です。</p>
+          <p class="a" data-en="We operate at three rental studios in Kagoshima City (Tenmonkan, Kagoshima-Chuo-cho, and Josei). Tenmonkan is a 5-minute walk from the Tenmonkan-dori tram stop, Kagoshima-Chuo-cho is a 5-minute walk from JR Kagoshima-Chuo Station, and Josei is about a 5-minute drive from Kagoshima-Chuo Station. We can adjust the studio to suit your needs, and will share the exact location after your booking is confirmed. Home-visit training and online sessions are also available.">鹿児島市内の3カ所（<span class="nw">天文館</span>・<span class="nw">鹿児島中央</span>町・<span class="nw">城西</span>）のレンタルスタジオで実施しています。<span class="nw">天文館</span>は市電「<span class="nw">天文館</span>通」駅、<span class="nw">鹿児島中央</span>町はJR「<span class="nw">鹿児島中央</span>」駅よりいずれも徒歩<span class="nw">5分</span>、<span class="nw">城西</span>は<span class="nw">鹿児島中央</span>駅よりお車で約<span class="nw">5分</span>。ご利用者のニーズに応じて実施スタジオを調整できます。ご予約確定後に場所の詳細をご案内します。ご自宅への<span class="nw">訪問トレーニング</span>やオンラインも可能です。</p>
         </details>
         <details>
           <summary data-en="How do I apply?">申し込みはどうすればいいですか？</summary>

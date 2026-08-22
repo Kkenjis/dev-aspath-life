@@ -298,12 +298,18 @@ body.drawer-open{ overflow:hidden; }
 
 /* ボタン（c-btn01移植：丸ピル＋矢印スライド） */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  /* inline-flex にすると、ボタン内の span 要素がひとつずつ独立した塊として扱われ、
+     幅の狭い端末で「初回体験／を申し込む／（半額／4,400円）」のように
+     文字がバラバラに散る。inline-block なら普通の文章として自然に折り返す。
+     ※ここを inline-flex に戻さないこと。 */
+  display:inline-block; text-align:center; vertical-align:middle;
   font-family:var(--font-head); font-weight:500; text-decoration:none;
   border-radius:999px; transition:transform .25s, box-shadow .25s, background .25s;
   position:relative;
 }
-.btn .arw{ transition:transform .25s; }
+/* inline-block では gap が効かないため、アイコンと矢印の余白は margin で取る */
+.btn .line-ico{ vertical-align:-0.32em; margin-right:8px; }
+.btn .arw{ display:inline-block; margin-left:10px; transition:transform .25s; }
 .btn:hover{ transform:translateY(-3px); }
 .btn:hover .arw{ transform:translateX(5px); }
 .btn-form{ background:linear-gradient(135deg,var(--sun),#DD8236); color:#fff; box-shadow:0 10px 22px rgba(244,162,97,.35); }
@@ -1205,7 +1211,7 @@ table{ max-width:100%; }
       <p class="column-crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / Column / Parkinson's"><a href="index.html">TOP</a> ／ コラム ／ <span class="nw">パーキンソン病</span></p>
       <h1 data-en="Parkinson's Disease and ASPATH's Journey"><span class="nw">パーキンソン病</span>と<span class="nw">アスパス</span>の歩み方</h1>
       <p class="lead" data-en-html="By understanding the illness and facing it properly, you can continue daily life more like yourself.">病気を知り、正しく向き合えば、日常はもっと自分らしく続けられます。</p>
-      <p class="column-byline" data-en="By ASPATH ／ July 19, 2026">By ASPATH ／ 2026年7月19日</p>
+      <p class="column-byline" data-en="By ASPATH ／ July 19, 2026">By ASPATH ／ <span class="nw">2026年7月19日</span></p>
     </div>
   </section>
 

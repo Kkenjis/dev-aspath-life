@@ -281,12 +281,18 @@ body.drawer-open{ overflow:hidden; }
 
 /* ボタン（c-btn01移植：丸ピル＋矢印スライド） */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  /* inline-flex にすると、ボタン内の span 要素がひとつずつ独立した塊として扱われ、
+     幅の狭い端末で「初回体験／を申し込む／（半額／4,400円）」のように
+     文字がバラバラに散る。inline-block なら普通の文章として自然に折り返す。
+     ※ここを inline-flex に戻さないこと。 */
+  display:inline-block; text-align:center; vertical-align:middle;
   font-family:var(--font-head); font-weight:500; text-decoration:none;
   border-radius:999px; transition:transform .25s, box-shadow .25s, background .25s;
   position:relative;
 }
-.btn .arw{ transition:transform .25s; }
+/* inline-block では gap が効かないため、アイコンと矢印の余白は margin で取る */
+.btn .line-ico{ vertical-align:-0.32em; margin-right:8px; }
+.btn .arw{ display:inline-block; margin-left:10px; transition:transform .25s; }
 .btn:hover{ transform:translateY(-3px); }
 .btn:hover .arw{ transform:translateX(5px); }
 .btn-form{ background:linear-gradient(135deg,var(--sun),#DD8236); color:#fff; box-shadow:0 10px 22px rgba(244,162,97,.35); }
@@ -741,7 +747,8 @@ body.drawer-open{ overflow:hidden; }
   .shin-hero{ padding:28px 20px; gap:18px; }
   .shin-kanji{ font-size:82px; }
   .trial-card{ padding:28px 18px 24px; }
-  .trial-card .btn.big{ width:100%; padding:16px 16px; font-size:16.5px; }
+  /* 2行に折り返す長いラベルなので、行間は本文用(1.95)ではなくボタン用に詰める */
+  .trial-card .btn.big{ width:100%; padding:16px 16px; font-size:16.5px; line-height:1.55; }
   .news-box{ padding:26px 18px 22px; }
   .news-list a{ gap:8px 12px; padding:13px 2px; }
   .news-list .nt{ width:100%; }           /* タイトルは2行目に回す */
@@ -1172,14 +1179,14 @@ table{ max-width:100%; }
       <h2 id="trial" data-en="First Trial"><span class="nw">初回体験</span></h2>
       
       <div class="trial-card reveal">
-        <p class="price-plan" data-en="First training trial (40 min)">初回トレーニング体験（40分）</p>
+        <p class="price-plan" data-en="First training trial (40 min)">初回トレーニング体験（<span class="nw">40分</span>）</p>
         <p style="font-size:15.5px; margin-top:6px;" data-en="A counseling session, a physical check, and a training experience."><span class="nw">カウンセリング</span>とお体のチェック・トレーニングの体験を行います。</p>
         <div class="trial-price">
           <span class="strike" data-en="8,800 yen (tax incl.)"><span class="nw">8,800円</span>（税込）</span>
           <span class="z" data-en-html="4,400&lt;small&gt;yen&lt;/small&gt;">4,400<small>円</small></span>
         </div>
-        <p style="font-weight:700; color:#C77B3A;" data-en="Opening campaign｜until December 31, 2026"> 営業開始キャンペーン｜2026年12月31日まで 半額<span class="nw">4,400円</span></p>
-        <a class="btn btn-form big" style="margin-top:14px;" href="contact.html" data-en-html="Book the trial (half price ¥4,400)&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;"><span class="nw">初回体験</span>を申し込む（半額<span class="nw">4,400円</span>）<span class="arw">→</span></a>
+        <p style="font-weight:700; color:#C77B3A;" data-en="Opening campaign｜until December 31, 2026"> 営業開始キャンペーン｜<span class="nw">2026年12月31日まで</span> 半額<span class="nw">4,400円</span></p>
+        <a class="btn btn-form big" style="margin-top:14px;" href="contact.html" data-en-html="Book the trial (half price ¥4,400)&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;"><span class="nw">初回体験を申し込む</span><span class="nw">（半額4,400円）<span class="arw">→</span></span></a>
       </div>
 
       <h2 id="plans" style="margin-top:52px;" data-en="Ongoing Plans">継続プラン</h2>
@@ -1188,26 +1195,26 @@ table{ max-width:100%; }
       <div class="price-grid">
         <div class="price-card reveal">
           <p class="pc-badge" data-en-html="Intensive—steadily&lt;br&gt;improve your body">集中的に！<br>お身体をしっかりと向上へ</p>
-          <p class="pc-name" data-en="8 sessions / month">月8回コース</p>
+          <p class="pc-name" data-en="8 sessions / month"><span class="nw">月8回コース</span></p>
           <p class="pc-price"><span class="pc-yen">77,440</span><span class="pc-yenunit" data-en="yen">円</span></p>
           <p class="pc-tax" data-en="(tax incl.)">（税込）</p>
-          <span class="pc-freq" data-en="Twice a week / 60 min">週2回 ／ 60分</span>
+          <span class="pc-freq" data-en="Twice a week / 60 min"><span class="nw">週2回</span> ／ <span class="nw">60分</span></span>
           <p class="pc-desc pc-desc-br" data-en-html="For those who want early functional improvement&lt;br&gt;and to commit fully.">早い機能改善を希望し、<br>しっかりと取り組みたい方へ。</p>
         </div>
         <div class="price-card recommend reveal d1">
           <p class="pc-badge" data-en-html="Improve function and&lt;br&gt;build an exercise habit">体の機能向上と運動習慣を<br>身につけましょう</p>
-          <p class="pc-name" data-en="4 sessions / month">月4回コース</p>
+          <p class="pc-name" data-en="4 sessions / month"><span class="nw">月4回コース</span></p>
           <p class="pc-price"><span class="pc-yen">39,800</span><span class="pc-yenunit" data-en="yen">円</span></p>
           <p class="pc-tax" data-en="(tax incl.)">（税込）</p>
-          <span class="pc-freq" data-en="Once a week / 60 min">週1回 ／ 60分</span>
+          <span class="pc-freq" data-en="Once a week / 60 min"><span class="nw">週1回</span> ／ <span class="nw">60分</span></span>
           <p class="pc-desc pc-desc-br" data-en-html="An optimal mix of in-person guidance&lt;br&gt;and self-training at home.">対面指導と自宅<span class="nw">自主トレ</span>を<br>最適に組み合わせ。</p>
         </div>
         <div class="price-card reveal d2">
           <p class="pc-badge" data-en="For gently establishing an exercise habit">緩やかな運動習慣定着に</p>
-          <p class="pc-name" data-en="2 sessions / month">月2回コース</p>
+          <p class="pc-name" data-en="2 sessions / month"><span class="nw">月2回コース</span></p>
           <p class="pc-price"><span class="pc-yen">22,000</span><span class="pc-yenunit" data-en="yen">円</span></p>
           <p class="pc-tax" data-en="(tax incl.)">（税込）</p>
-          <span class="pc-freq" data-en="Every other week / 60 min">隔週 ／ 60分</span>
+          <span class="pc-freq" data-en="Every other week / 60 min">隔週 ／ <span class="nw">60分</span></span>
           <p class="pc-desc" data-en="For those who want regular body maintenance.">定期的な体の<span class="nw">メンテナンス</span>をしたい方向け。</p>
         </div>
       </div>

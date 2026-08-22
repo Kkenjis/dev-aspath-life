@@ -298,12 +298,18 @@ body.drawer-open{ overflow:hidden; }
 
 /* ボタン（c-btn01移植：丸ピル＋矢印スライド） */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  /* inline-flex にすると、ボタン内の span 要素がひとつずつ独立した塊として扱われ、
+     幅の狭い端末で「初回体験／を申し込む／（半額／4,400円）」のように
+     文字がバラバラに散る。inline-block なら普通の文章として自然に折り返す。
+     ※ここを inline-flex に戻さないこと。 */
+  display:inline-block; text-align:center; vertical-align:middle;
   font-family:var(--font-head); font-weight:500; text-decoration:none;
   border-radius:999px; transition:transform .25s, box-shadow .25s, background .25s;
   position:relative;
 }
-.btn .arw{ transition:transform .25s; }
+/* inline-block では gap が効かないため、アイコンと矢印の余白は margin で取る */
+.btn .line-ico{ vertical-align:-0.32em; margin-right:8px; }
+.btn .arw{ display:inline-block; margin-left:10px; transition:transform .25s; }
 .btn:hover{ transform:translateY(-3px); }
 .btn:hover .arw{ transform:translateX(5px); }
 .btn-form{ background:linear-gradient(135deg,var(--sun),#DD8236); color:#fff; box-shadow:0 10px 22px rgba(244,162,97,.35); }
@@ -1240,7 +1246,7 @@ table{ max-width:100%; }
       <p class="column-crumb" data-en-html="&lt;a href=&quot;index.html&quot;&gt;TOP&lt;/a&gt; / &lt;a href=&quot;news.html&quot;&gt;Column&lt;/a&gt; / In-person training"><a href="index.html">TOP</a> ／ <a href="news.html">コラム</a> ／ <span class="nw">対面トレーニング</span></p>
       <h1 data-en="In-Person Training at the ASPATH Studio"><span class="nw">アスパス</span>スタジオでの<span class="nw">対面トレーニング</span></h1>
       <p class="lead" data-en-html="Specialists with over 14 years of experience with Parkinson's disease support the body you need to do what you want to do.">14年以上<span class="nw">パーキンソン病</span>の方と向き合ってきた専門家が、あなたの“やりたいこと”を叶える身体づくりをサポートします。</p>
-      <p class="column-byline" data-en="By ASPATH ／ August 3, 2026">By ASPATH ／ 2026年8月3日</p>
+      <p class="column-byline" data-en="By ASPATH ／ August 3, 2026">By ASPATH ／ <span class="nw">2026年8月3日</span></p>
     </div>
   </section>
 
@@ -1341,18 +1347,18 @@ table{ max-width:100%; }
 
       <h3 data-en="Tenmonkan Studio"><span class="nw">天文館スタジオ</span></h3>
       <p data-en-html="The Tenmonkan Studio is appealing because it's easy to stop by for shopping or an outing alongside your ASPATH training."><span class="nw">天文館スタジオ</span>は、<span class="nw">アスパス</span>のトレーニングついでに、お買い物やお出かけへ立ち寄りやすいのが魅力です。</p>
-      <p data-en-html="It's conveniently located a five-minute walk from the &quot;Tenmonkan-dori&quot; tram stop.">市電『<span class="nw">天文館</span>通』駅から歩いて5分という、便利な立地にあるのが嬉しいポイント。</p>
+      <p data-en-html="It's conveniently located a five-minute walk from the &quot;Tenmonkan-dori&quot; tram stop.">市電『<span class="nw">天文館</span>通』駅から歩いて<span class="nw">5分</span>という、便利な立地にあるのが嬉しいポイント。</p>
       <p data-en-html="Even transferring by bus or tram from various areas, you can arrive smoothly.">各地からバスや市電を乗り継いでも、スムーズに到着できる場所ですよ。</p>
       <p data-en-html="Make the most of a downtown location that's easy to reach, and make exercise part of your life.">街の中心部で無理なく通える環境を活用して、運動を生活の一部にしていきましょう。</p>
 
       <h3 data-en="Josei Studio"><span class="nw">城西スタジオ</span></h3>
       <p data-en-html="For those who are often dropped off by car, the Josei Studio is ideal.">お車で送迎してもらうことが多い方には、<span class="nw">城西スタジオ</span>がぴったりですね。</p>
-      <p data-en-html="It is about a five-minute drive from Kagoshima-Chuo Station."><span class="nw">鹿児島中央駅</span>から車で5分ほどの距離にあります。</p>
+      <p data-en-html="It is about a five-minute drive from Kagoshima-Chuo Station."><span class="nw">鹿児島中央駅</span>から車で<span class="nw">5分</span>ほどの距離にあります。</p>
       <p data-en-html="The quiet, calm surroundings are another welcome feature, letting you face your own body in a relaxed state.">静かで落ち着いた環境が広がっており、リラックスしてご自身の身体と向き合えるのも嬉しい特徴。</p>
       <p data-en-html="Choose the place you can continue without strain, on a familiar route with less driving burden.">運転の負担が少ない通い慣れた道順で、ご自身の無理なく継続できる場所を選んでくださいね。</p>
 
       <h3 data-en="Chuo-cho"><span class="nw">中央町</span></h3>
-      <p data-en-html="This location has excellent access from the station—a five-minute walk from JR Kagoshima-Chuo Station.">こちらはJR『<span class="nw">鹿児島中央駅</span>』から徒歩5分と、駅からのアクセスが優れている環境。</p>
+      <p data-en-html="This location has excellent access from the station—a five-minute walk from JR Kagoshima-Chuo Station.">こちらはJR『<span class="nw">鹿児島中央駅</span>』から徒歩<span class="nw">5分</span>と、駅からのアクセスが優れている環境。</p>
       <p data-en-html="With plenty of shinkansen, train and bus services, it also suits those who don't usually drive. You might even enjoy some shopping alongside training, in the lively atmosphere around the station.">新幹線や電車、バスが充実しているので、車の運転を普段されない方にもおすすめです。駅周辺の活気ある雰囲気を感じながら、トレーニングついでにお買い物も楽しめるかも。</p>
       <p data-en-html="Make good use of public transport and fit it to your own lifestyle.">交通機関を上手く使いこなしながら、ご自身のライフスタイルに合わせてご活用ください。</p>
 
