@@ -24,6 +24,13 @@ ZIP = os.path.join(SRC, "_wp移行素材", "aspath-theme.zip")
 # ブラウザやキャッシュ系プラグインが古いCSS/JSを配り続けてしまう（実際に発生した）。
 VERSION = "1.1." + datetime.datetime.now().strftime("%Y%m%d.%H%M")
 
+# ── WordPress側で本文を持つページ（山口様がご自身で直せるページ） ──────────
+#   ここに入れたページは、テンプレートが本文を出力せず the_content() を呼ぶ。
+#   本文は tools/html2blocks.py で変換し、固定ページの編集画面に貼り付けてある。
+#   ★注意★ 追加したら、必ず本番の固定ページに本文を貼ってから公開すること。
+#           貼る前にテーマだけ更新すると、そのページが真っ白になる。
+EDITABLE_PAGES = {"about.html"}
+
 PAGES = ["index.html","about.html","price.html","access.html","contact.html","faq.html",
          "news.html","news-detail.html","column-parkinson.html","taimentraining.html","onlineaspath.html","info.html","news-campaign.html","privacy.html",
          "tokushoho.html","sitemap.html"]
@@ -971,10 +978,27 @@ if ( ! function_exists('aspath_info_url') ) {{
 
     # 固定ページ/TOPテンプレート
     def page_tpl(src, comment, kj=False, template_name=None):
-        main = clean(extract(read(src), r'<main[ >]', '</main>'), keep_jsonld=kj)
         head = "<?php\n/** "+comment+" */\n"
         if template_name:
             head = "<?php\n/*\nTemplate Name: "+template_name+"\n*/\n/** "+comment+" */\n"
+
+        if src in EDITABLE_PAGES:
+            # 本文はWordPress側（固定ページの編集画面）で持つ。
+            # 山口様がご自身で文章と写真を直せるようにするための切り替え。
+            # ここに本文を書き戻すと、編集内容が毎回テーマで上書きされてしまうので
+            # 絶対に戻さないこと。dev の %s は「元の姿の記録」として残してある。
+            main_html = extract(read(src), r'<main[ >]', '</main>')
+            head_block = re.search(r'<div class="page-head"[\s\S]*?</div>\s*(?=<div|<section)', main_html)
+            page_head = clean(head_block.group(0), keep_jsonld=kj) if head_block else ''
+            return (head
+                + "/*  ⚠ 本文はWordPressの固定ページ編集画面が持っています。\n"
+                  "    このファイルに本文を書き戻すと、山口様の編集が消えます。\n"
+                  "    元の姿は dev の " + src + " に残してあります。 */\n"
+                + "get_header(); ?>\n<main>\n" + page_head + "\n"
+                + "  <?php while ( have_posts() ) : the_post(); the_content(); endwhile; ?>\n"
+                + "</main>\n<?php get_footer(); ?>\n")
+
+        main = clean(extract(read(src), r'<main[ >]', '</main>'), keep_jsonld=kj)
         return head+"get_header(); ?>\n"+main+"\n<?php get_footer(); ?>\n"
 
     mapping = {

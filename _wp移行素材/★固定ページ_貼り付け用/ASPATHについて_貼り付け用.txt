@@ -1,0 +1,236 @@
+<!-- wp:group {"className":"page-wrap"} -->
+<div class="wp-block-group page-wrap">
+<!-- wp:group {"className":"page-main"} -->
+<div class="wp-block-group page-main">
+<!-- wp:heading {"level":2,"anchor":"origin"} -->
+<h2 class="wp-block-heading" id="origin"><span data-en="Origin of ASPATH">ASPATHの由来</span></h2>
+<!-- /wp:heading -->
+<!-- wp:html -->
+<div class="origin-hero"><div class="origin-hero-logo"><img class="origin-logo" src="https://aspath-life.com/wp-content/themes/aspath/images/logo-aspath.webp" alt="ASPATHロゴ"></div><div class="origin-acr" role="list" aria-label="ASPATHの頭文字が表す6つの価値"><div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">A</span><span class="acr-rest">pproach</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Approach">アプローチ</span></div><div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">S</span><span class="acr-rest">upport</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Support">支える</span></div><div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">P</span><span class="acr-rest">arkinson</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Parkinson">パーキンソン</span></div><div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">A</span><span class="acr-rest">ctive</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Active">活動的</span></div><div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">T</span><span class="acr-rest">raining</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Training">トレーニング</span></div><div class="acr-row" role="listitem"><span class="acr-en"><span class="acr-cap">H</span><span class="acr-rest">ealth・Hope</span></span><span class="acr-sep">—</span><span class="acr-jp" data-en="Health & Hope">健康・希望</span></div></div></div>
+<!-- /wp:html -->
+<!-- wp:group {"className":"origin-explain"} -->
+<div class="wp-block-group origin-explain">
+<!-- wp:paragraph {"className":"origin-tagline"} -->
+<p class="origin-tagline"><span data-en-html="&quot;As = toward tomorrow, Path = a road that connects.&quot;&lt;br&gt;It means a road toward a positive future that leads to tomorrow.">「アス＝明日へ、パス＝つなげる道」。<br>明日へつなげる、前向きな未来への道を意味します。</span></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph  -->
+<p><span data-en-html="The logo holds many meanings: &lt;strong&gt;a person stepping forward with hope, lit by the sun&lt;/strong&gt;; &lt;strong&gt;a figure full of life and energy&lt;/strong&gt;; and a place where &lt;strong&gt;a new step sprouts&lt;/strong&gt;. Its overall shape traces the initial &lt;strong&gt;&quot;A&quot;&lt;/strong&gt; of ASPATH and also draws on &lt;strong&gt;Sakurajima&lt;/strong&gt;, the symbol of Kagoshima.">ロゴには、いくつもの想いが込められています。<br class="br-pc"><strong>太陽に照らされ、希望を持って前へ進む人</strong>。<strong>イキイキと躍動する姿</strong>。<br class="br-pc">そして、新しい一歩が<strong>芽生える場所</strong>であること。<br class="br-pc">全体のかたちは「<span class="nw">アスパス</span>」の頭文字<strong>「A」</strong>をかたどり、鹿児島のシンボル<strong>「桜島」</strong>もモチーフにしています。</span></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph  -->
+<p><span data-en-html="The name &quot;ASPATH&quot; carries our wish that those facing Parkinson's disease or stroke can &lt;strong&gt;walk toward tomorrow with hope rather than resignation&lt;/strong&gt;. The six letters A・S・P・A・T・H express the values we cherish.">「ASPATH（<span class="nw">アスパス</span>）」という名前には、<span class="nw">パーキンソン病</span>と向き合う方々が、<br class="br-pc"><strong>希望を持って、明日へと歩んでいけるように</strong>——そんな願いを込めています。</span></p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+<!-- wp:heading {"level":2,"anchor":"feature"} -->
+<h2 class="wp-block-heading" id="feature"><span data-en="ASPATH's Features">ASPATHの特徴</span></h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph  -->
+<p><span data-en-html="One of the few specialized training studios in Kagoshima focused on Parkinson's disease and stroke. Built around three pillars—symptom-specific care, personalized plans, and online support—we stay close to each individual."><b><span class="nw">パーキンソン病</span>に特化した</b>、鹿児島初の専門<span class="nw">トレーニングスタジオ</span>です。<br class="br-pc">多くの経験と専門知識を兼ねそなえた運動と、おひとりおひとりとの丁寧な対話をおこないます。</span></p>
+<!-- /wp:paragraph -->
+<!-- wp:html -->
+<ul class="svc-list"><li class="svc-item is-gold reveal"><div class="img-slot svc-circle" role="img" aria-label="症状に合わせて丁寧にサポートするトレーニング"><img src="https://aspath-life.com/wp-content/themes/aspath/images/about-feature01-specialized.webp" alt="症状に合わせてマンツーマンでサポートするトレーニング" style="--pos:50% 24%;"></div><div class="svc-body"><h3 data-en="Symptom-specific training">症状に特化したトレーニング</h3><p data-en-html="We provide specialized training that takes the symptoms of Parkinson's disease and stroke into account. Even areas that are difficult at an ordinary gym are in safe hands with ASPATH's specialized experience, knowledge, and skills."><span class="nw">パーキンソン病</span>の症状を考慮して、専門的なトレーニングを実施します。<br class="br-pc">一般のジムでは難しい部分も、専門の経験・知識・技術がある<span class="nw">アスパス</span>なら安心です。</p></div></li><li class="svc-item is-leaf reveal d1"><div class="img-slot svc-circle" role="img" aria-label="カウンセリングで専用プランを提案"><img src="https://aspath-life.com/wp-content/themes/aspath/images/about-feature02-plan.webp" alt="ヒアリングしながらあなた専用の運動プランを作成" style="--pos:50% 26%;"></div><div class="svc-body"><h3 data-en="A personalized exercise plan for you">あなた専用の運動プランを提案</h3><p data-en-html="We objectively assess your physical condition and propose the right exercises, including a long-term outlook. We also value &quot;loosening&quot; and &quot;releasing&quot; conditioning as preparation.">お身体の状況を専門的にチェックします。<br class="br-pc">丁寧にお話をお聞きし、悩み事や目標を踏まえて最適な運動を提案します。</p></div></li><li class="svc-item is-sun reveal d2"><div class="img-slot svc-circle" role="img" aria-label="オンライントレーニングの様子"><img src="https://aspath-life.com/wp-content/themes/aspath/images/about-feature03-online.webp" alt="ビデオ通話で自宅から受けられるオンライントレーニング" style="--pos:50% 26%;"></div><div class="svc-body"><h3 data-en="Online available—connect from home">オンラインも対応！自宅からも繋がれます</h3><p data-en-html="Even if you live far away or find travel difficult, no problem! We specialize in online training via video call, and you can combine it with in-person sessions.">家が遠くても、移動が大変でも大丈夫！　テレビ通話を使った<span class="nw">オンライントレーニング</span>を<br class="br-pc">得意としています。対面との併用もできます。</p></div></li></ul>
+<!-- /wp:html -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"tr-sec","tagName":"section","anchor":"method"} -->
+<section class="wp-block-group tr-sec" id="method">
+<!-- wp:html -->
+<div class="tr-hero"><div class="tr-hero-bg" aria-hidden="true"><img src="https://aspath-life.com/wp-content/themes/aspath/images/hero-02.webp" alt=""></div><span class="tr-vlabel"><span class="tr-vlabel-en">Training</span><span class="nw">アスパス</span>のトレーニング</span><div class="tr-hero-in wrap"><p class="tr-vcopy">「自分らしい人生」を、<br>取り戻す場所。</p><div class="tr-lead"><p><span class="nw">パーキンソン病</span>と診断された日、あるいは症状が少しずつ進行していくのを感じた時、多くの方が言葉にできないほどの大きな不安を抱えられます。</p><p class="tr-quote">「これから自分の身体はどうなってしまうのだろう」<br>「今まで当たり前にできていたことが、少しずつ難しくなっていくのではないか」</p><p>そんな深い悩みを抱え、立ちすくんでいる方にこそ、<b>私たち<span class="nw">アスパス</span>のドア</b>を叩いていただきたいと強く願っています。</p><p>ここは、あなたが「自分らしい人生」を取り戻し、これからの未来を笑顔で歩んでいくための場所です。</p><p>私たちは<b><span class="nw">パーキンソン病</span>に特化した</b>専門的な知識と技術、そして何よりも<b>「あなたという一人の人間」</b>に寄り添う熱い想いを持って、日々のトレーニングに伴走します。</p></div></div></div>
+<!-- /wp:html -->
+<!-- wp:group {"className":"wrap"} -->
+<div class="wp-block-group wrap">
+<!-- wp:html -->
+<div class="tr-pillars"><p class="tr-pillars-lead"><span class="nw">アスパス</span>が提供するトレーニングの根底には、決してブレることのない確固たる理念があります。</p><figure class="tr-pillars-fig"><img src="https://aspath-life.com/wp-content/themes/aspath/images/about-four-pillars.webp" alt="アスパスが大切にする4つの理念：3つの芯を整えること／人生を豊かに彩ること／地域社会が連携するサードプレイスであること／共同研究を通した社会への貢献" width="1400" height="700" loading="lazy"></figure><p class="tr-pillars-sub">私たちが大切にしているこれらの想いと、具体的なトレーニングのあり方について、<br class="br-pc">丁寧にお伝えさせてください。</p></div>
+<!-- /wp:html -->
+<!-- wp:group {"className":"tr-chapter"} -->
+<div class="wp-block-group tr-chapter">
+<!-- wp:paragraph {"className":"tr-num"} -->
+<p class="tr-num">01</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":3,"className":"tr-h"} -->
+<h3 class="wp-block-heading tr-h">根本から生まれ変わるための「3つの芯」</h3>
+<!-- /wp:heading -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p"><span class="nw">パーキンソン病</span>の症状に向き合うとき、手足の震えや歩きにくさといった「目に見える症状」だけに囚われてしまうと、本当の意味での改善にはつながりません。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p"><span class="nw">アスパス</span>では、表面的な症状の奥深くにある「3つの芯」に焦点を当て、根本からお身体と心を整えていきます。</p>
+<!-- /wp:paragraph -->
+<!-- wp:html -->
+<figure class="tr-cores-fig reveal"><div class="tcf-inner"><img class="tcf-img" src="https://aspath-life.com/wp-content/themes/aspath/images/about-three-cores.webp" alt="身体の芯（BODY）・心の芯（MIND）・原因の芯（CAUSE）の3つが噛み合い、中心でASPATHがひとつにつなぐイメージ" width="1500" height="844" loading="lazy"></div><figcaption class="tcf-cap">『身体』『心』『原因』の芯が噛み合ってはじめて、<br class="br-pc">根本からの変化が生まれます。</figcaption></figure>
+<!-- /wp:html -->
+<!-- wp:group {"className":"tr-core-card"} -->
+<div class="wp-block-group tr-core-card">
+<!-- wp:paragraph {"className":"tcc-tag tcc-body"} -->
+<p class="tcc-tag tcc-body">① 身体の芯（<span class="nw">体幹</span>）を動きやすくする</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p"><span class="nw">パーキンソン病</span>において、多くの方が一番初めに動かしにくさを感じるのが、実は手足ではなく、身体の中心である『<span class="nw">体幹</span>』です。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">背骨周りの筋肉が硬くなり、しなやかさが失われることで、姿勢が前かがみになったり、寝返りや起き上がりが難しくなったりします。身体の芯が固まってしまうと、そこから繋がっている手足にもブレーキがかかり、歩幅が狭くなったり、足がすくんだりといった症状が引き起こされるのです。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">だからこそ、<span class="nw">アスパス</span>のトレーニングは『身体の芯』をターゲットに据えることから始めます。まずは長年の緊張で強張ってしまった背骨や骨盤周りの筋肉を丁寧に<b>『ほぐす』</b>。そして、正しい姿勢を維持できるように深層の筋肉を<b>『強くする』</b>。ここで大切なのは、私たちが一方的に施術をするのではなく、お客様ご自身の力で身体を動かし、脳と身体の感覚のズレを正しく<b>『感じる』</b>ことです。そのプロセスを共に重ねることで、最終的に日常生活のあらゆる場面でご自身の<span class="nw">体幹</span>を<b>上手に使う</b>ことができるようになります。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">身体の芯がしなやかに動くようになれば、驚くほど手足の動きも軽くなり、スムーズな第一歩が踏み出せるようになります。これが、私たちが<span class="nw">体幹</span>にこだわる最大の理由です。</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"tr-core-card"} -->
+<div class="wp-block-group tr-core-card">
+<!-- wp:paragraph {"className":"tcc-tag tcc-mind"} -->
+<p class="tcc-tag tcc-mind">② 心の芯（本当の想い）を大事にする</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">どんなに優れた運動プログラムであっても、ご本人の『心』が置き去りにされていては、決して良い結果は生まれません。私たちが向き合っているのは『<span class="nw">パーキンソン病</span>という病気』ではなく、『<span class="nw">パーキンソン病</span>と共に生きる、あなた』です。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">トレーニングを始める前、そして日々のセッションの中で、私たちは対話を何よりも大切にしています。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-quote"} -->
+<p class="tr-quote">「何に一番困っていますか？」<br>「どんな時に不安を感じますか？」<br>そして、<br>「本当は、これからどんな生活を送っていきたいですか？」</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">ご家族と一緒に旅行に行きたい。お孫さんと公園で思い切り遊びたい。趣味のガーデニングをもう一度楽しみたい。一人ひとりの中にある、そうした『大切にしている価値観』や『人生の目標』こそが、身体を前へ進めるための最大の原動力になります。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">私たちは、対話を通じてあなたの奥底にある『心の芯（本当の願い）』を丁寧に汲み取ります。その目標に向かっていくために必要なプロセスを共に考え、あなただけのメニューを作り上げます。自らの人生を輝かせるためのトレーニングとして、共に歩みを進めていきます。</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"tr-core-card"} -->
+<div class="wp-block-group tr-core-card">
+<!-- wp:paragraph {"className":"tcc-tag tcc-cause"} -->
+<p class="tcc-tag tcc-cause">③ 原因の芯（根本的な課題）を見抜く</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">「歩くときに足を引きずってしまう」というお悩みがあったとします。このとき、足首の筋肉だけを鍛えても、歩き方はなかなか改善しません。なぜなら、その症状を引き起こしている『本当の原因』は、足首ではなく、骨盤のねじれや、<span class="nw">体幹</span>の使い方のクセ、あるいは脳からの運動指令のタイミングのズレなど、全く別の場所に隠れていることが多いからです。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p"><span class="nw">アスパス</span>では、<span class="nw">理学療法士</span>としての長年の臨床経験と高度な専門知識を最大限に活用し、その方が気になっている動作のクセや、お身体の不調の『原因の芯』を鋭く見抜きます。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">表面的な症状に場当たり的に対処するのではなく、根本的な原因となっている機能低下を見つけ出し、そこにダイレクトにアプローチします。これにより、悪い動きのクセが定着してしまうのを防ぎ、より根本的で持続性のある課題解決へと導くことができるのです。</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"tr-chapter"} -->
+<div class="wp-block-group tr-chapter">
+<!-- wp:paragraph {"className":"tr-num"} -->
+<p class="tr-num">02</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":3,"className":"tr-h"} -->
+<h3 class="wp-block-heading tr-h">運動を通じて、あなたの人生をさらに豊かに彩るために</h3>
+<!-- /wp:heading -->
+<!-- wp:html -->
+<figure class="tr-chapfig reveal"><img src="https://aspath-life.com/wp-content/themes/aspath/images/about-training-02-enrich.webp" alt="運動によって旅行や庭仕事、孫との散歩など、やりたいことを取り戻していくイメージ" width="1400" height="787" loading="lazy"></figure>
+<!-- /wp:html -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p"><span class="nw">アスパス</span>でのトレーニングが目指すのは、運動を通じた「人生のウェルネス（心身の健康と豊かさ）の最大化」です。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p"><span class="nw">パーキンソン病</span>の診断を受けると、多くの方が「もうあれはできない」「これも諦めなければ」と、人生の選択肢をご自身で狭めていってしまう傾向にあります。しかし、適切なトレーニングによって身体が動かしやすくなり、できることが一つ、また一つと増えていくと、心の中に新たな活力が生まれてくる瞬間が必ず訪れます。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-quote"} -->
+<p class="tr-quote">「また旅行に行けるかもしれない」<br>「新しい趣味にチャレンジしてみようかな」</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">ご自身でも考えついていなかったような「やりたいこと」や「トライしてみたいこと」が自然と溢れ出してくる。それこそが、私たちが目指す真のゴールです。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">病気の進行に対する不安を和らげ、再び前を向いて人生の主役として生きていく。私たちは、あなたがご自身の人生を存分に楽しみ、豊かに彩っていくための「伴走者」として、全力でサポートさせていただきます。</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"tr-chapter"} -->
+<div class="wp-block-group tr-chapter">
+<!-- wp:paragraph {"className":"tr-num"} -->
+<p class="tr-num">03</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":3,"className":"tr-h"} -->
+<h3 class="wp-block-heading tr-h">医療・地域と連携し、心から安心できる「第3の居場所（<span class="nw">サードプレイス</span>）」へ</h3>
+<!-- /wp:heading -->
+<!-- wp:html -->
+<figure class="tr-chapfig reveal"><img src="https://aspath-life.com/wp-content/themes/aspath/images/about-training-03-thirdplace.webp" alt="中央のスタジオを病院・かかりつけ医・介護事業所・自宅がやわらかくつながり地域で支えるイメージ" width="1400" height="787" loading="lazy"></figure>
+<!-- /wp:html -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">社会の中で生きていく上で、ご自宅でもなく、職場でもない、心から安心できる「第3の居場所（<span class="nw">サードプレイス</span>）」を持つことは、心の健康を保つために非常に重要です。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">急性期の治療や専門的な医学管理を担う「病院」、そして広く一般の方々の健康増進を担う「フィットネスジム」。それぞれが社会において非常に重要で欠かせない役割を持っています。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p"><span class="nw">アスパス</span>は、それらの素晴らしい機関と競合するのではなく、それぞれの役割を尊重し合いながら、その「中間地点」として専門的なサポートを提供する場所でありたいと考えています。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">地域の主治医の先生方、医療機関、介護事業所、ケアマネージャーの方々。それぞれの専門機関が持つ強みを活かし合い、密に連携を取り合うネットワークの中で、<span class="nw">アスパス</span>は「<span class="nw">パーキンソン病</span>に特化した運動専門施設」としての役割をしっかりと果たしていきます。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">スタジオの扉を開けた瞬間から感じていただける、明るさ、優しさ、そして何でも受け止める包容力。ここでは、上手に動けない自分を気にする必要はありません。つらい時は「つらい」とありのままの感情を出していただいて構いません。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">私たちは、ただストイックに運動を行うだけでなく、ここへ来て、スタッフや同じ想いを持つ仲間と会話をし、思い切り笑うことで「心まで元気になって帰っていただける」空間づくりを大切にしています。地域の皆様にとっての、温かい拠り所となることを目指して。</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"tr-chapter"} -->
+<div class="wp-block-group tr-chapter">
+<!-- wp:paragraph {"className":"tr-num"} -->
+<p class="tr-num">04</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":3,"className":"tr-h"} -->
+<h3 class="wp-block-heading tr-h">世界的なエビデンスの活用と、大学・有識者との共同研究による社会貢献</h3>
+<!-- /wp:heading -->
+<!-- wp:html -->
+<figure class="tr-chapfig reveal"><img src="https://aspath-life.com/wp-content/themes/aspath/images/about-training-04-research.webp" alt="歩行データの分析と、大学の研究者・専門家との共同研究により知見を世界へ広げるイメージ" width="1400" height="787" loading="lazy"></figure>
+<!-- /wp:html -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p"><span class="nw">パーキンソン病</span>の治療や<span class="nw">リハビリテーション</span>の世界は、今この瞬間も絶え間なく進歩しています。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">だからこそ、<span class="nw">アスパス</span>では現場の経験則だけに頼るのではなく、海外の最新論文など、日々アップデートされる世界的な医学エビデンス（科学的根拠）を常にキャッチアップし、目の前のお客様にとっての「最善の選択」を提供し続けます。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">さらに私たちは、得られた知見を自分たちのスタジオの中だけで終わらせることはありません。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">現在<span class="nw">アスパス</span>では、大学の研究機関や<span class="nw">パーキンソン病</span>治療の有識者の方々と連携し、共同研究を進めています。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">現場のトレーニングを通じて得られた、<span class="nw">パーキンソン病</span>の方特有の身体の変化、適切な運動負荷のあり方、そしてサポートによる心理的な効果など、貴重なデータをしっかりと「見える化」し、専門的な視点から詳細な分析を行っています。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-p"} -->
+<p class="tr-p">こうした学術的な研究活動を通じて、<span class="nw">パーキンソン病</span>に対する<span class="nw">リハビリテーション</span>の新たな知見を見出し、その成果を広く発信していくこと。それがひいては、<span class="nw">パーキンソン病</span>分野全体の発展に繋がり、同じ病気で苦しむ日本中・世界中の方々への社会貢献になると私たちは確信しています。</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+<!-- wp:html -->
+<figure class="tr-closefig reveal"><img src="https://aspath-life.com/wp-content/themes/aspath/images/about-training-closing.webp" alt="朝日に向かう道を、高齢の方とスタッフが並んで歩いていく後ろ姿" width="1600" height="900" loading="lazy"></figure>
+<!-- /wp:html -->
+<!-- wp:group {"className":"tr-closing"} -->
+<div class="wp-block-group tr-closing">
+<!-- wp:paragraph  -->
+<p><span class="nw">パーキンソン病</span>は、確かに<span class="nw">一筋縄では</span>いかない病気かもしれません。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph  -->
+<p>しかし、適切な時期に、適切な運動を、<br class="br-pc">正しい知識と温かいサポートの中で継続していくことで、<br class="br-pc">進行のスピードを緩やかにし、<br class="br-pc">あなたらしい人生を長く楽しむことは十分に可能です。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph  -->
+<p>どうか、一人で抱え込まずに、<br class="br-pc">まずはあなたのお話を私たちに聞かせてください。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"tr-closing-em"} -->
+<p class="tr-closing-em"><span class="l1">これからの人生を、笑顔で、あなたらしく歩んでいくために。</span><br><span class="hl">私たちが全力で伴走いたします。</span></p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+</section>
+<!-- /wp:group -->
