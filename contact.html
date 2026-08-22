@@ -1042,6 +1042,20 @@ body{ overflow-wrap:normal; word-break:auto-phrase; line-break:strict; }
   .hbtn-line .hbtn-ico{ width:clamp(15px,1.5vw,26px) !important; height:clamp(15px,1.5vw,26px) !important; }
 }
 
+/* ===== 1181〜1599px：メニューを24px固定にすると入りきらず文字が重なる =====
+   上の `@media (min-width:1181px)` が `.site-header .gnav a{font-size:24px}` を
+   指定しており、詳細度が高いため上のclampが効かない。その結果この幅帯では
+   項目が押し潰され「ASPATHについて」が最大58px はみ出して隣と重なっていた。
+   TOPページはロゴが大きいぶん余白が少ないため、1700pxまで幅に追従させる。
+   文字サイズだけでなく項目の間隔も一緒に詰めることで、どの幅でも
+   すき間が均等になるようにしている。
+   ※この範囲だけを対象にしているので、他の幅の見た目は変わらない。 */
+@media (min-width:1181px) and (max-width:1699.98px){
+  .site-header .gnav a{ font-size:clamp(13px,1.5vw,24px) !important; }
+  .site-header .gnav{ gap:4px clamp(8px,2.1vw,58px) !important; padding-left:clamp(0px,1.1vw,90px) !important; }
+  .site-header .header-in{ padding-left:clamp(12px,2.2vw,56px) !important; padding-right:clamp(12px,2.2vw,56px) !important; }
+}
+
 /* ============================================================
    レスポンシブ基盤：全デバイス対応（PCの見た目は維持）
    ============================================================ */
