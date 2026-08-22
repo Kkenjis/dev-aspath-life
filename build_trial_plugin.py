@@ -207,6 +207,9 @@ plugin = '''<?php
  * Author:      ASPATH
  */
 
+/* CSS・JS のキャッシュ避けに使う。ビルドのたびに変わる。 */
+if ( ! defined('ASPATH_TRIAL_FORM_VER') ) define('ASPATH_TRIAL_FORM_VER', '%(ver)s');
+
 /* ==================================================================
    ASPATH 初回体験フォーム（本番先行設置用）
 
@@ -320,7 +323,12 @@ function aspath_trial_plugin_render() {
   if ( ! empty($_POST) ) aspath_trial_process();
 
   status_header(200);
-  $css = plugins_url('assets/trial.css', __FILE__);
+  /* CSS・JS のURLに必ずバージョンを付ける。
+     これが無いと、プラグインを新しくしてもブラウザや
+     Super Page Cache が古いファイルを使い続けてしまう。
+     （実際に「更新したのに直らない」という事故が起きた） */
+  $css = add_query_arg('ver', ASPATH_TRIAL_FORM_VER, plugins_url('assets/trial.css', __FILE__));
+  $js  = add_query_arg('ver', ASPATH_TRIAL_FORM_VER, plugins_url('assets/menu.js',  __FILE__));
 ?><!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -337,7 +345,7 @@ function aspath_trial_plugin_render() {
 %(header)s
 %(form)s
 %(footer)s
-<script src="<?php echo esc_url( plugins_url('assets/menu.js', __FILE__) ); ?>"></script>
+<script src="<?php echo esc_url($js); ?>"></script>
 </body>
 </html>
 <?php
@@ -413,4 +421,25 @@ def _verify_no_redeclare():
     print('  同名関数 %d個すべて二重定義から保護されています ✅' % len(dup))
 
 
+def _verify_cache_busting():
+    """CSS・JS のURLにバージョンが付いているか確かめる。
+
+    付け忘れると、プラグインを新しくしてもブラウザと Super Page Cache が
+    古いファイルを使い続け、「更新したのに直らない」という事故になる。
+    実際に一度起きたので、ビルド時に必ず検査する。
+    """
+    ng = []
+    if "add_query_arg('ver', ASPATH_TRIAL_FORM_VER, plugins_url('assets/trial.css'" not in plugin:
+        ng.append('trial.css')
+    if "add_query_arg('ver', ASPATH_TRIAL_FORM_VER, plugins_url('assets/menu.js'" not in plugin:
+        ng.append('menu.js')
+    if "define('ASPATH_TRIAL_FORM_VER'" not in plugin:
+        ng.append('バージョン定数')
+    if ng:
+        die('キャッシュ避けのバージョンが付いていません: %s\n'
+            '  これを直さないと、更新しても古い見た目のままになります。' % ', '.join(ng))
+    print('  CSS・JS にバージョンを付与しました（キャッシュ対策）✅')
+
+
 _verify_no_redeclare()
+_verify_cache_busting()
