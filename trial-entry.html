@@ -997,6 +997,26 @@ body{ overflow-wrap:normal; word-break:auto-phrase; line-break:strict; }
   .hbtn-line .hbtn-ico{ width:18px !important; height:18px !important; }
 }
 
+/* ===== ヘッダーメニューを常に1行に（ウィンドウ幅に追従／2段折返し防止） =====
+   他の全ページ（index / price / about など16本）には入っていたが、
+   このフォームページだけ入っていなかった。そのため幅1181〜1900pxで
+   メニューが2〜3段に折り返してヘッダーが最大230pxまで伸び、
+   フォーム上部のロゴを隠していた。同じ内容をそのまま移植する。 */
+@media (min-width:761px){
+  .header-in{ flex-wrap:nowrap !important; gap:clamp(4px,1vw,20px) !important; padding-left:clamp(12px,2.2vw,56px) !important; padding-right:clamp(12px,2.2vw,56px) !important; }
+  .header-right{ flex-wrap:nowrap !important; flex:1 1 auto !important; min-width:0 !important; gap:clamp(4px,0.9vw,18px) !important; }
+  .brand{ flex:0 0 auto !important; margin-right:clamp(6px,1.6vw,52px) !important; }
+  .brand-logo{ height:48px !important; transform:none !important; }
+  /* メニュー：縮小を許可し、間隔・文字を可変に */
+  .gnav{ flex-wrap:nowrap !important; flex:1 1 auto !important; min-width:0 !important; justify-content:center !important;
+         gap:4px clamp(8px,2.6vw,58px) !important; padding-left:clamp(0px,1.6vw,90px) !important; }
+  .gnav a{ white-space:nowrap !important; font-size:clamp(13px,1.5vw,24px) !important; padding:8px 0 !important; }
+  /* 公式LINE：縮まないが可変 */
+  .header-cta{ flex:0 0 auto !important; margin-left:auto !important; margin-right:clamp(2px,1.2vw,40px) !important; padding:0 clamp(2px,0.8vw,26px) !important; }
+  .hbtn-line{ font-size:clamp(12.5px,1.35vw,23px) !important; padding:clamp(9px,1.1vw,20px) clamp(12px,2vw,42px) !important; white-space:nowrap !important; }
+  .hbtn-line .hbtn-ico{ width:clamp(15px,1.5vw,26px) !important; height:clamp(15px,1.5vw,26px) !important; }
+}
+
 /* ===== 目次/カテゴリ撤去・本文を中央寄せ（TOP以外／50-70代の視認性重視） ===== */
 .side-toc{ display:none !important; }
 .page-wrap{ grid-template-columns:minmax(0,1fr) !important; gap:0 !important; max-width:1040px !important; }
@@ -1017,7 +1037,10 @@ body{ background:var(--paper); }
    ※このCSSは初回体験フォームのページでしか読み込まれないため、
      他のページのヘッダーには影響しない。 */
 .trial-page-header-fix .site-header,
-body .site-header{ position:relative; }
+body .site-header,
+body .site-header.scrolled{ position:relative !important; transform:none !important; }
+/* ヘッダーを重ねない配置にしたので、重なり避けの余白は不要 */
+body main{ padding-top:0 !important; }
 .trial-page{ padding-top:28px; }
 @media (max-width:760px){
   .trial-page{ padding-top:20px; }

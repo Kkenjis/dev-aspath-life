@@ -71,10 +71,30 @@ def theme_chrome():
     header.php の <head> 部分と、TOP限定の演出は取り除く。
     """
     # <body ...> より後ろがヘッダーの中身
-    m = re.search(r'<body[^>]*>', hdr)
+    # 注意：body タグは `<body <?php body_class(); ?>>` の形。単純に [^>]* で
+    # 探すと PHP の `?>` の「>」で止まってしまい、余った「>」が本文の先頭に
+    # 文字として出てしまう（実際に本番のフォームページで発生した）。
+    # PHPブロックを読み飛ばしてから、タグを閉じる「>」を探す。
+    m = re.search(r'<body\b', hdr)
     if not m:
         die('header.php から <body> を見つけられませんでした。')
-    head = hdr[m.end():]
+    i = m.end()
+    while i < len(hdr):
+        if hdr.startswith('<?', i):
+            j = hdr.find('?>', i)
+            if j < 0:
+                die('header.php の <body> タグ内のPHPブロックが閉じていません。')
+            i = j + 2
+            continue
+        if hdr[i] == '>':
+            i += 1
+            break
+        i += 1
+    else:
+        die('header.php の <body> タグを閉じられませんでした。')
+    head = hdr[i:]
+    if head.lstrip().startswith('>'):
+        die('<body> タグの解析に失敗しました（余分な「>」が残っています）。')
 
     # TOP専用の演出（ローディング・追従LINEボタン）は落とす
     head, n = re.subn(r'<\?php if \( is_front_page\(\) \) : \?>[\s\S]*?<\?php endif; \?>',
