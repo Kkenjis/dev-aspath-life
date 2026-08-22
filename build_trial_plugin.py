@@ -441,5 +441,49 @@ def _verify_cache_busting():
     print('  CSS・JS にバージョンを付与しました（キャッシュ対策）✅')
 
 
+def _verify_trial_fields():
+    """画面の入力欄と、PHP側の項目定義がずれていないか確かめる。
+
+    片方だけ直すと「入力はできるのに通知メールに載らない」「必須のはずが
+    素通りする」といった、気づきにくい抜けが起きる。順番・必須の有無まで
+    そろっているかをビルド時に照合する。
+    """
+    # PHP側の定義（順番どおり）
+    m = re.search(r'function aspath_trial_fields\(\)[\s\S]*?return array\(([\s\S]*?)\n  \);', plugin)
+    if not m:
+        die('aspath_trial_fields() を読み取れませんでした。')
+    php = re.findall(r"'([a-z_]+)'\s*=>\s*array\('([^']*)',\s*(true|false)\)", m.group(1))
+    php_keys = [k for k, _l, _r in php]
+    php_req  = {k: (r == 'true') for k, _l, r in php}
+
+    # 画面側（at_ 接頭辞つき）。ラジオは最初の1つに required が付く
+    html_keys, html_req = [], {}
+    for tag in re.findall(r'<(?:input|textarea)\b[^>]*>', plugin):
+        nm = re.search(r'name="at_([a-z_]+)"', tag)
+        if not nm:
+            continue
+        k = nm.group(1)
+        if k not in html_keys:
+            html_keys.append(k)
+            html_req[k] = False
+        if re.search(r'\brequired\b', tag):
+            html_req[k] = True
+
+    if php_keys != html_keys:
+        die('入力欄と項目定義がずれています。\n'
+            '  画面側 : %s\n  PHP側  : %s\n'
+            '  trial-entry.html と build_wp_theme.py の aspath_trial_fields() を'
+            'そろえてください。' % (html_keys, php_keys))
+
+    ng = [k for k in php_keys if php_req[k] != html_req.get(k)]
+    if ng:
+        die('必須の指定が画面とPHPで食い違っています: %s\n'
+            '  （画面に required があるのにPHPが false、または その逆）' % ', '.join(ng))
+
+    print('  入力欄 %d項目：画面とPHPの定義・必須指定が一致 ✅'
+          % len(php_keys))
+
+
 _verify_no_redeclare()
 _verify_cache_busting()
+_verify_trial_fields()

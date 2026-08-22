@@ -119,13 +119,18 @@ function aspath_trial_fields() {
     'kana'            => array('お名前（フリガナ）',              true),
     'birthday'        => array('生年月日',                       true),
     'email'           => array('メールアドレス',                 true),
-    'tel'             => array('お電話番号',                     false),
+    'tel'             => array('お電話番号',                     true),
     'address'         => array('ご住所',                         true),
     'who'             => array('どなたについてのご相談か',        true),
     'diagnosis'       => array('医師からの診断名',               true),
     'diagnosis_other' => array('診断名（その他）',               false),
-    'trouble'         => array('困っていること・改善したいこと',  false),
-    'source'          => array('ASPATHを知ったきっかけ',          false),
+    'trouble'         => array('気になること・困っていること・改善したいこと', false),
+    'source'          => array('ASPATHを知ったきっかけ',          true),
+    'studio'          => array('ご希望のスタジオ・方法',          true),
+    'lesson'          => array('現在の習いごと',                 false),
+    'hobby'           => array('趣味',                           false),
+    'mobility'        => array('普段の移動手段',                 true),
+    'holiday'         => array('休みの日の過ごし方',             false),
     'message'         => array('メッセージ・ご質問',              false),
   );
 }
@@ -440,7 +445,8 @@ def guard_trial_core(core_php, owner):
 #   衝突を根本から避けるため全項目に接頭辞を付ける。
 TRIAL_PREFIX = 'at_'
 TRIAL_FIELD_KEYS = ('name','kana','birthday','email','tel','address',
-                    'who','diagnosis','diagnosis_other','trouble','source','message')
+                    'who','diagnosis','diagnosis_other','trouble','source',
+                    'studio','lesson','hobby','mobility','holiday','message')
 
 
 def wp_trial_form(main_html):

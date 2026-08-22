@@ -1160,7 +1160,7 @@ table{ max-width:100%; }
   <div class="trial-wrap">
     <a class="trial-logo" href="index.html" aria-label="ASPATH"><img src="images/logo-aspath.webp" alt="ASPATH"></a>
     <h1 class="trial-title"><span class="nw">初回体験</span> お申し込みフォーム</h1>
-    <p class="trial-sub">下記フォームにご記入のうえ、送信してください。</p>
+    <p class="trial-sub" data-en-html="Please fill in the form and submit it. To make your first session go smoothly, we ask a wide range of questions. Thank you for your cooperation. (About 4 minutes to complete)">フォームにご記入のうえ、送信してください。<span class="nw">初回体験</span>をスムーズに進めるうえで、幅広い質問項目がございます。記入のご協力をお願いいたします。<span class="nw">（全回答時間 4分）</span></p>
 <form class="cform" name="trial" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="trial-entry.html">
         <input type="hidden" name="form-name" value="trial">
         <input type="hidden" name="subject" id="form-subject" value="【初回体験】ASPATH お申し込み">
@@ -1184,8 +1184,8 @@ table{ max-width:100%; }
           <input type="email" name="email" required="">
         </div>
         <div class="field">
-          <label data-en-html="Phone number">お電話番号</label>
-          <input type="tel" name="tel">
+          <label data-en-html="Phone number &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">お電話番号 <span class="req">必須</span></label>
+          <input type="tel" name="tel" required="">
         </div>
         <div class="field">
           <label data-en-html="Address &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;&lt;span class=&quot;note&quot;&gt;Used to arrange the trial location or for home-visit training. (e.g., 302 Roppongi Bldg., 10-30 Shimoibaki, Kagoshima City)&lt;/span&gt;">ご住所 <span class="req">必須</span><span class="note">体験場所の調整や、ご自宅での<span class="nw">訪問トレーニング</span>の際に使用します。（例：鹿児島県鹿児島市下伊敷10-30 六本木ビル302号）</span></label>
@@ -1211,15 +1211,45 @@ table{ max-width:100%; }
           <input type="text" name="diagnosis_other">
         </div>
         <div class="field">
-          <label data-en-html="Is there anything you are particularly struggling with or want to improve?">現在、特に困っていることや、改善したいことはありますか？</label>
+          <label data-en-html="Is there anything on your mind, anything you are struggling with, or anything you would like to improve?">現在、気になっていることや、困っていること、改善したいことはありますか？</label>
           <textarea name="trouble"></textarea>
         </div>
         <div class="field">
-          <label data-en-html="How did you hear about ASPATH?">ASPATHを何で知りましたか？</label>
-          <input type="text" name="source">
+          <label data-en-html="How did you hear about ASPATH? &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">ASPATHを何で知りましたか？ <span class="req">必須</span></label>
+          <input type="text" name="source" required="">
         </div>
-        
-        
+        <div class="field">
+          <label data-en-html="Which studio or format would you like for your first session? &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">ご希望の<span class="nw">初回体験</span>スタジオ・方法 <span class="req">必須</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="studio" value="天文館スタジオ" required=""> <span data-en="Tenmonkan studio"><span class="nw">天文館スタジオ</span></span></label>
+            <label><input type="radio" name="studio" value="城西スタジオ"> <span data-en="Josei studio"><span class="nw">城西スタジオ</span></span></label>
+            <label><input type="radio" name="studio" value="中央町スタジオ"> <span data-en="Chuo-cho studio"><span class="nw">中央町スタジオ</span></span></label>
+            <label><input type="radio" name="studio" value="オンライン（Zoom）"> <span data-en="Online (Zoom)"><span class="nw">オンライン（Zoom）</span></span></label>
+            <label><input type="radio" name="studio" value="自宅訪問"> <span data-en="Home visit"><span class="nw">自宅訪問</span></span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label data-en-html="If you currently take any lessons, please tell us what they are. (e.g., dance, calligraphy, table tennis)">現在習いごとをしていたらその内容を教えてください。<span class="note">（例：ダンス、書道、卓球など）</span></label>
+          <input type="text" name="lesson">
+        </div>
+        <div class="field">
+          <label data-en-html="Please tell us about your hobbies. (e.g., travel, reading, live music)">趣味を教えてください。<span class="note">（例：旅行、読書、ライブ観戦など）</span></label>
+          <input type="text" name="hobby">
+        </div>
+        <div class="field">
+          <label data-en-html="How do you usually get around? &lt;span class=&quot;req&quot;&gt;Required&lt;/span&gt;">普段の移動手段は何ですか？ <span class="req">必須</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="mobility" value="自立して道具なしで歩く" required=""> <span data-en="Walk independently without aids">自立して道具なしで歩く</span></label>
+            <label><input type="radio" name="mobility" value="杖を使用して歩く"> <span data-en="Walk with a cane">杖を使用して歩く</span></label>
+            <label><input type="radio" name="mobility" value="歩行車を使って歩く"> <span data-en="Walk with a walker">歩行車を使って歩く</span></label>
+            <label><input type="radio" name="mobility" value="車椅子を自分で漕ぐ"> <span data-en="Use a wheelchair independently">車椅子を自分で漕ぐ</span></label>
+            <label><input type="radio" name="mobility" value="車椅子で介助してもらう"> <span data-en="Use a wheelchair with assistance">車椅子で介助してもらう</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label data-en-html="What do you usually do on your days off?">休みの日は何をすることが多いですか？</label>
+          <textarea name="holiday"></textarea>
+        </div>
         <div class="field">
           <label data-en-html="Feel free to write any message or questions">メッセージやご質問があればご自由にどうぞ</label>
           <textarea name="message"></textarea>
