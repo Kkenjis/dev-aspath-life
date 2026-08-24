@@ -110,32 +110,45 @@ function steps(s,arr,x,y,w,col,sz){
    border:{type:'solid',color:'E2E6E8',pt:1},fill:{color:WHITE},rowH:.6,valign:'middle'});
  note(s,.7,6.0,12.1,.85,'全部で 文章52か所が直せます。触らないのは飾りの9か所だけです。','EDF6EE',GREEN,17);}
 
-/* --- 色分けマップ 1 --- */
-{const s=P.addSlide(); head(s,'どこが直せるか（前半）','ASPATHの由来 ／ ASPATHの特徴');
- pic(s,'M1_由来と特徴.jpg',.9,1.8,3.1,784/480);
- pic(s,'M2_01_3つの芯.jpg',4.3,1.8,3.1,784/480);
- s.addText('ASPATHの由来・特徴',{x:.9,y:6.85,w:3.1,h:.3,fontFace:F,fontSize:13,color:GREY,align:'center',margin:0});
- s.addText('01　3つの芯',{x:4.3,y:6.85,w:3.1,h:.3,fontFace:F,fontSize:13,color:GREY,align:'center',margin:0});
- s.addShape(P.ShapeType.roundRect,{x:7.9,y:1.85,w:4.9,h:1.5,fill:{color:'EDF6EE'},rectRadius:.12});
- s.addText('緑のところ',{x:8.2,y:2.05,w:4.3,h:.35,fontFace:F,bold:true,fontSize:19,color:GREEN,margin:0});
- s.addText('見出しと文章。クリックして\nそのまま書き換えられます。',{x:8.2,y:2.5,w:4.3,h:.7,fontFace:F,fontSize:15,color:INK,margin:0,lineSpacing:22});
- s.addShape(P.ShapeType.roundRect,{x:7.9,y:3.5,w:4.9,h:1.5,fill:{color:'FFF4EA'},rectRadius:.12});
- s.addText('オレンジのところ',{x:8.2,y:3.7,w:4.3,h:.35,fontFace:F,bold:true,fontSize:19,color:SUN,margin:0});
- s.addText('図やカード。クリックすると\n「カスタム HTML」と出ます。',{x:8.2,y:4.15,w:4.3,h:.7,fontFace:F,fontSize:15,color:INK,margin:0,lineSpacing:22});
- note(s,7.9,5.2,4.9,1.5,'01「3つの芯」がいちばん\n文章が多い場所です。\n17か所を直せます。','F2F5F6',NAVY,15);}
+/* --- 編集画面とサイトは見た目が違う --- */
+{const s=P.addSlide(); head(s,'編集画面は、サイトとは見た目が違います','ここを先にお伝えします');
+ pic(s,'E0_編集画面_色分け拡大.jpg',.8,1.85,6.6,460/760);
+ s.addShape(P.ShapeType.roundRect,{x:7.7,y:1.85,w:5.1,h:2.0,fill:{color:'FFF4EA'},rectRadius:.12});
+ s.addText('色も配置も付きません',{x:8.0,y:2.05,w:4.5,h:.4,fontFace:F,bold:true,fontSize:19,color:RED,margin:0});
+ s.addText('編集画面では、文字だけが\n上から順に並んで見えます。\nサイトの見た目とは違います。',
+  {x:8.0,y:2.55,w:4.5,h:1.1,fontFace:F,fontSize:15,color:INK,margin:0,lineSpacing:23});
+ s.addShape(P.ShapeType.roundRect,{x:7.7,y:4.0,w:5.1,h:1.8,fill:{color:'EDF6EE'},rectRadius:.12});
+ s.addText('でも中身は同じです',{x:8.0,y:4.2,w:4.5,h:.4,fontFace:F,bold:true,fontSize:19,color:GREEN,margin:0});
+ s.addText('文章の順番はサイトと同じ。\n直したい文章を探すときは\n文字を目印にしてください。',
+  {x:8.0,y:4.7,w:4.5,h:1.1,fontFace:F,fontSize:15,color:INK,margin:0,lineSpacing:23});
+ note(s,.8,6.1,12.0,.8,'この資料の緑・オレンジの色は説明のために付けたものです。実際の画面には出ません。','F2F5F6',NAVY,15);}
 
-/* --- 色分けマップ 2 --- */
-{const s=P.addSlide(); head(s,'どこが直せるか（後半）','02〜04 ／ 締めくくり');
- pic(s,'M3_02と03.jpg',.9,1.8,3.1,784/480);
- pic(s,'M4_04と締めくくり.jpg',4.3,1.8,3.1,784/480);
- s.addText('02 人生を豊かに ／ 03 第3の居場所',{x:.9,y:6.85,w:3.1,h:.3,fontFace:F,fontSize:12,color:GREY,align:'center',margin:0});
- s.addText('04 エビデンス ／ 締めくくり',{x:4.3,y:6.85,w:3.1,h:.3,fontFace:F,fontSize:12,color:GREY,align:'center',margin:0});
- s.addShape(P.ShapeType.roundRect,{x:7.9,y:1.85,w:4.9,h:2.3,fill:{color:'F2F5F6'},rectRadius:.12});
- s.addText('02・03・04 は同じ形',{x:8.2,y:2.05,w:4.3,h:.35,fontFace:F,bold:true,fontSize:19,color:NAVY,margin:0});
- s.addText('番号（02）\n→ 見出し\n→ 大きな写真（触らない）\n→ 文章がいくつか',
-  {x:8.2,y:2.5,w:4.3,h:1.5,fontFace:F,fontSize:15,color:INK,margin:0,lineSpacing:24});
- note(s,7.9,4.35,4.9,1.3,'1か所の直し方が分かれば\n残りも同じ手順です。','EDF6EE',GREEN,15);
- note(s,7.9,5.85,4.9,.85,'締めくくりの4行も直せます。','F2F5F6',NAVY,15);}
+/* --- 編集画面 どこが直せるか 前半 --- */
+{const s=P.addSlide(); head(s,'どこが直せるか（前半）','編集画面での見え方　緑＝直せる／オレンジ＝触らない');
+ s.addText('ASPATHの由来 ／ ASPATHの特徴',{x:.7,y:1.85,w:5.7,h:.35,fontFace:F,bold:true,fontSize:18,color:NAVY,margin:0});
+ s.addText('見出しと文章が緑。A S P A T H の一覧は\nひとつのオレンジの箱になっています。',
+  {x:.7,y:2.3,w:5.7,h:.75,fontFace:F,fontSize:14,color:INK,margin:0,lineSpacing:22});
+ pic(s,'E1_編集画面_由来と特徴.jpg',.7,3.15,5.2,570/890);
+ s.addText('01「3つの芯」',{x:7.1,y:1.85,w:5.7,h:.35,fontFace:F,bold:true,fontSize:18,color:NAVY,margin:0});
+ s.addText('「01」も「① 身体の芯…」も緑。真ん中の\n大きな図だけがオレンジ。17か所を直せます。',
+  {x:7.1,y:2.3,w:5.7,h:.75,fontFace:F,fontSize:14,color:INK,margin:0,lineSpacing:22});
+ pic(s,'E2_編集画面_01_3つの芯.jpg',7.1,3.15,5.2,570/890);
+ s.addText('編集画面での見え方',{x:.7,y:6.6,w:5.2,h:.3,fontFace:F,fontSize:12,color:GREY,align:'center',margin:0});
+ s.addText('編集画面での見え方',{x:7.1,y:6.6,w:5.2,h:.3,fontFace:F,fontSize:12,color:GREY,align:'center',margin:0});}
+
+/* --- 編集画面 どこが直せるか 後半 --- */
+{const s=P.addSlide(); head(s,'どこが直せるか（後半）','02・03・04 はすべて同じ形です');
+ pic(s,'E3_編集画面_04.jpg',.7,1.9,6.8,570/890);
+ s.addText('くり返しの形',{x:7.8,y:2.0,w:5.0,h:.4,fontFace:F,bold:true,fontSize:20,color:NAVY,margin:0});
+ const seq=[['番号（02・03・04）','緑'],['見出し','緑'],['大きな写真','オレンジ'],['文章がいくつか','緑']];
+ let y=2.55;
+ seq.forEach(([t,c])=>{
+   s.addShape(P.ShapeType.roundRect,{x:7.8,y,w:5.0,h:.62,fill:{color:c==='緑'?'EDF6EE':'FFF4EA'},rectRadius:.08});
+   s.addText(t,{x:8.05,y:y+.15,w:3.4,h:.35,fontFace:F,fontSize:16,color:INK,margin:0});
+   s.addText(c,{x:11.3,y:y+.15,w:1.3,h:.35,fontFace:F,bold:true,fontSize:15,color:c==='緑'?GREEN:SUN,align:'right',margin:0});
+   y+=.72;});
+ note(s,7.8,5.5,5.0,1.1,'1か所の直し方が分かれば、\n残りも同じ手順です。','EDF6EE',GREEN,16);
+ s.addText('画面は 04 の部分',{x:.7,y:6.35,w:6.8,h:.3,fontFace:F,fontSize:13,color:GREY,align:'center',margin:0});}
 
 /* --- 直せるが変えないほうがよいもの --- */
 {const s=P.addSlide(); head(s,'直せますが、変えないほうがよいもの','クリックできてしまうので、ご注意ください');
