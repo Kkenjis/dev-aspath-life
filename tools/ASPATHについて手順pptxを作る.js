@@ -96,6 +96,62 @@ function steps(s,arr,x,y,w,col,sz){
  s.addText('と出たら、それは飾りの部分です。',{x:9.5,y:3.2,w:3.3,h:.7,fontFace:F,fontSize:15,color:INK,margin:0,lineSpacing:22});
  note(s,9.45,4.1,3.35,2.5,'デザインが崩れないよう\n固めてあります。\n\nここを直したいときは\nご連絡ください。','FFF4EA',RED,15);}
 
+/* --- ページ全体の地図 --- */
+{const s=P.addSlide(); head(s,'ページ全体の地図','緑＝ご自身で直せる　オレンジ＝ご連絡ください');
+ const rows=[['ASPATHの由来','見出し1・文章3','A S P A T H の一覧'],
+   ['ASPATHの特徴','見出し1・文章1','特徴3カード／帯／4つの理念'],
+   ['01　3つの芯','見出し1・文章17','3つの芯の図'],
+   ['02　人生を豊かに','見出し1・文章5','大きな写真'],
+   ['03　第3の居場所','見出し1・文章6','大きな写真'],
+   ['04　エビデンスと共同研究','見出し1・文章10','大きな写真2点'],
+   ['締めくくり','文章4','—']];
+ s.addTable([[{text:'場所',options:{bold:true}},{text:'直せるもの',options:{bold:true,color:GREEN}},{text:'触らないもの',options:{bold:true,color:SUN}}]].concat(rows),
+  {x:.7,y:1.95,w:12.1,colW:[3.6,3.9,4.6],fontFace:F,fontSize:15,color:INK,
+   border:{type:'solid',color:'E2E6E8',pt:1},fill:{color:WHITE},rowH:.6,valign:'middle'});
+ note(s,.7,6.0,12.1,.85,'全部で 文章52か所が直せます。触らないのは飾りの9か所だけです。','EDF6EE',GREEN,17);}
+
+/* --- 色分けマップ 1 --- */
+{const s=P.addSlide(); head(s,'どこが直せるか（前半）','ASPATHの由来 ／ ASPATHの特徴');
+ pic(s,'M1_由来と特徴.jpg',.9,1.8,3.1,784/480);
+ pic(s,'M2_01_3つの芯.jpg',4.3,1.8,3.1,784/480);
+ s.addText('ASPATHの由来・特徴',{x:.9,y:6.85,w:3.1,h:.3,fontFace:F,fontSize:13,color:GREY,align:'center',margin:0});
+ s.addText('01　3つの芯',{x:4.3,y:6.85,w:3.1,h:.3,fontFace:F,fontSize:13,color:GREY,align:'center',margin:0});
+ s.addShape(P.ShapeType.roundRect,{x:7.9,y:1.85,w:4.9,h:1.5,fill:{color:'EDF6EE'},rectRadius:.12});
+ s.addText('緑のところ',{x:8.2,y:2.05,w:4.3,h:.35,fontFace:F,bold:true,fontSize:19,color:GREEN,margin:0});
+ s.addText('見出しと文章。クリックして\nそのまま書き換えられます。',{x:8.2,y:2.5,w:4.3,h:.7,fontFace:F,fontSize:15,color:INK,margin:0,lineSpacing:22});
+ s.addShape(P.ShapeType.roundRect,{x:7.9,y:3.5,w:4.9,h:1.5,fill:{color:'FFF4EA'},rectRadius:.12});
+ s.addText('オレンジのところ',{x:8.2,y:3.7,w:4.3,h:.35,fontFace:F,bold:true,fontSize:19,color:SUN,margin:0});
+ s.addText('図やカード。クリックすると\n「カスタム HTML」と出ます。',{x:8.2,y:4.15,w:4.3,h:.7,fontFace:F,fontSize:15,color:INK,margin:0,lineSpacing:22});
+ note(s,7.9,5.2,4.9,1.5,'01「3つの芯」がいちばん\n文章が多い場所です。\n17か所を直せます。','F2F5F6',NAVY,15);}
+
+/* --- 色分けマップ 2 --- */
+{const s=P.addSlide(); head(s,'どこが直せるか（後半）','02〜04 ／ 締めくくり');
+ pic(s,'M3_02と03.jpg',.9,1.8,3.1,784/480);
+ pic(s,'M4_04と締めくくり.jpg',4.3,1.8,3.1,784/480);
+ s.addText('02 人生を豊かに ／ 03 第3の居場所',{x:.9,y:6.85,w:3.1,h:.3,fontFace:F,fontSize:12,color:GREY,align:'center',margin:0});
+ s.addText('04 エビデンス ／ 締めくくり',{x:4.3,y:6.85,w:3.1,h:.3,fontFace:F,fontSize:12,color:GREY,align:'center',margin:0});
+ s.addShape(P.ShapeType.roundRect,{x:7.9,y:1.85,w:4.9,h:2.3,fill:{color:'F2F5F6'},rectRadius:.12});
+ s.addText('02・03・04 は同じ形',{x:8.2,y:2.05,w:4.3,h:.35,fontFace:F,bold:true,fontSize:19,color:NAVY,margin:0});
+ s.addText('番号（02）\n→ 見出し\n→ 大きな写真（触らない）\n→ 文章がいくつか',
+  {x:8.2,y:2.5,w:4.3,h:1.5,fontFace:F,fontSize:15,color:INK,margin:0,lineSpacing:24});
+ note(s,7.9,4.35,4.9,1.3,'1か所の直し方が分かれば\n残りも同じ手順です。','EDF6EE',GREEN,15);
+ note(s,7.9,5.85,4.9,.85,'締めくくりの4行も直せます。','F2F5F6',NAVY,15);}
+
+/* --- 直せるが変えないほうがよいもの --- */
+{const s=P.addSlide(); head(s,'直せますが、変えないほうがよいもの','クリックできてしまうので、ご注意ください');
+ const items=[['「01」「02」などの番号','章の順番を表しています。文章を足しても番号は自動で増えません'],
+   ['「① 身体の芯（体幹）を…」のラベル','①②③ の並びが崩れると読みにくくなります'],
+   ['見出しの文字（青い大きな字）','変えるとページ内リンクがずれることがあります。変えたいときはご連絡ください']];
+ let y=2.0;
+ items.forEach(([t,d])=>{
+   s.addShape(P.ShapeType.roundRect,{x:.7,y,w:12.1,h:1.4,fill:{color:'F2F5F6'},rectRadius:.12});
+   s.addShape(P.ShapeType.ellipse,{x:1.0,y:y+.42,w:.56,h:.56,fill:{color:SUN}});
+   s.addText('!',{x:1.0,y:y+.46,w:.56,h:.45,fontFace:F,bold:true,fontSize:20,color:WHITE,align:'center',margin:0});
+   s.addText(t,{x:1.85,y:y+.2,w:10.5,h:.4,fontFace:F,bold:true,fontSize:19,color:NAVY,margin:0});
+   s.addText(d,{x:1.85,y:y+.68,w:10.5,h:.5,fontFace:F,fontSize:15,color:GREY,margin:0});
+   y+=1.55;});
+ note(s,.7,6.15,12.1,.8,'本文（普通の大きさの文章）は、どこでも自由に直していただいて大丈夫です。','EDF6EE',GREEN,16);}
+
 /* 8 写真 */
 {const s=P.addSlide(); head(s,'⑤ 写真を差し替える','');
  steps(s,['写真をクリック','出てきたメニューの【置換】','「アップロード」で新しい写真を選ぶ','右上の【保存】'],.75,2.0,10.5,GREEN,19);
