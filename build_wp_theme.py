@@ -15,7 +15,7 @@ WordPress側の更新手順（上書き）:
     外観 → テーマ → 新規追加 → テーマのアップロード → aspath-theme.zip
     → 「アップロードしたもので現在のテーマを置き換える」を選択
 """
-import re, os, shutil, zipfile, datetime, unicodedata
+import re, os, shutil, zipfile, datetime, unicodedata, json, sys
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(SRC, "_wp移行素材", "aspath-theme")
@@ -46,6 +46,10 @@ LINKS = {
  'info.html':'/info/', 'news-campaign.html':'/campaign/',
 }
 TPL = '<?php echo get_template_directory_uri(); ?>'
+
+def die(msg):
+    print('[エラー] ' + msg)
+    sys.exit(1)
 
 def read(p): return open(os.path.join(SRC,p),encoding="utf-8").read()
 
@@ -769,6 +773,27 @@ def main():
     news_names    = [n for n,_ in news_js]
     def enq(names, indent="  "):
         return "\n".join(f"{indent}wp_enqueue_script('aspath-{n[:-3]}', $uri.'/js/{n}', array(), $ver, true);" for n in names)
+
+    # ── 構造化データ ────────────────────────────────────────────────
+    #   dev の index.html <head> に置いてある JSON-LD をそのまま引き継ぐ。
+    #   移行時、<main> だけをテンプレート化していたため丸ごと失われていた。
+    #   ここで拾い直し、functions.php から出力する。
+    STRUCTURED_HEALTHCLUB, STRUCTURED_FAQ = "", ""
+    _idx = read("index.html")
+    for _m in re.finditer(r'<script[^>]*application/ld\+json[^>]*>([\s\S]*?)</script>', _idx):
+        try:
+            _j = json.loads(_m.group(1))
+        except Exception:
+            die("index.html の構造化データ（JSON-LD）が壊れています。")
+        _one = json.dumps(_j, ensure_ascii=False, separators=(',', ':'))
+        if _j.get('@type') == 'HealthClub':
+            STRUCTURED_HEALTHCLUB = _one
+        elif _j.get('@type') == 'FAQPage':
+            STRUCTURED_FAQ = _one
+    if not STRUCTURED_HEALTHCLUB or not STRUCTURED_FAQ:
+        die("index.html から構造化データ（HealthClub / FAQPage）を取り出せませんでした。\n"
+            "  検索での見つかりやすさに関わるため、見つからない場合はビルドを止めています。")
+
     functions_php = f"""<?php
 /** functions.php — ASPATH theme（build_wp_theme.py 自動生成） */
 function aspath_setup() {{
@@ -885,6 +910,115 @@ function aspath_title_break( $title ) {{
   $safe = esc_html( $title );
   return str_replace( '｜', '｜<br class="title-br">', $safe );
 }}
+
+/* ==================================================================
+   検索対策（SEO）
+   ------------------------------------------------------------------
+   移行のときに、dev の <head> にあった構造化データが失われていた。
+   また、テンプレートで作っている固定ページは本文が空のため、
+   SEOプラグイン（SureRank）が説明文を作れず、検索結果に出る紹介文が
+   空欄になっていた。この2つをテーマ側で埋める。
+
+   ★ 二重出力を避けるしくみ
+     SEOプラグインが説明文やOGP画像を出している場合は、こちらは何もしない。
+     <head> の中身を一度ためて、無いものだけを足す方式にしている。
+   ================================================================== */
+
+/** ページごとの説明文（検索結果でタイトルの下に出る紹介文・80〜120字が目安） */
+function aspath_seo_descriptions() {{
+  return array(
+    'column'    => 'パーキンソン病・脳卒中の症状や運動について、鹿児島のトレーニングスタジオASPATH（アスパス）が専門家の視点でお伝えするコラムです。ご自宅でできる運動もご紹介しています。',
+    'info'      => 'ASPATH（アスパス）からのお知らせ一覧です。キャンペーン、講演・イベント、営業に関するご案内を掲載しています。',
+    'access'    => 'ASPATH（アスパス）鹿児島スタジオへの行き方をご案内します。天文館・鹿児島中央町・城西の3カ所で実施しており、駐車場や最寄り駅からの経路を掲載しています。',
+    'faq'       => '初回体験・料金・トレーニング内容について、よくいただくご質問にお答えします。パーキンソン病や脳卒中のご不安にも、専門スタッフがお応えします。',
+    'privacy'   => 'ASPATH（アスパス）の個人情報の取り扱いについてご説明します。お預かりした情報は、ご相談とトレーニング運営以外の目的には使用いたしません。',
+    'tokushoho' => 'ASPATH（アスパス）の特定商取引法に基づく表記です。販売事業者、料金、お支払い方法、キャンセルについて記載しています。',
+    'sitemap'   => 'ASPATH（アスパス）のサイトマップです。サイト内の各ページへのリンクをまとめています。',
+  );
+}}
+
+/** いま表示しているページの説明文を返す（無ければ空） */
+function aspath_seo_current_description() {{
+  $d = aspath_seo_descriptions();
+  if ( is_home() || is_post_type_archive('post') )        return isset($d['column']) ? $d['column'] : '';
+  if ( is_category() ) {{
+    $slug = get_queried_object() ? get_queried_object()->slug : '';
+    if ( isset($d[$slug]) ) return $d[$slug];
+  }}
+  if ( is_page() ) {{
+    $slug = get_post_field('post_name', get_queried_object_id());
+    if ( isset($d[$slug]) ) return $d[$slug];
+  }}
+  return '';
+}}
+
+/** SNSで共有したときのサムネイル（テーマに同梱しているので必ず存在する） */
+function aspath_seo_share_image() {{
+  return get_template_directory_uri() . '/images/ogp-share.jpg';
+}}
+
+/**
+ * <head> を一度ためて、足りないものだけを補う。
+ *
+ * ・説明文が無ければ足す
+ * ・SNS用の画像が無い、または他所のサイトを指している場合は自社の画像に差し替える
+ *   （移行直後、LINEのボタン画像が共有サムネイルになっていた）
+ */
+function aspath_seo_start_buffer() {{ ob_start(); }}
+add_action('wp_head', 'aspath_seo_start_buffer', 0);
+
+function aspath_seo_flush_buffer() {{
+  $head = ob_get_clean();
+
+  // 1) 説明文
+  if ( strpos($head, 'name="description"') === false ) {{
+    $desc = aspath_seo_current_description();
+    if ( $desc !== '' ) {{
+      $head .= '<meta name="description" content="' . esc_attr($desc) . '">' . "\\n";
+    }}
+  }}
+
+  // 2) SNS共有画像
+  $home = wp_parse_url( home_url(), PHP_URL_HOST );
+  $need = true;
+  if ( preg_match('/property=["\\']og:image["\\'][^>]*content=["\\']([^"\\']+)/i', $head, $m) ) {{
+    $host = wp_parse_url( $m[1], PHP_URL_HOST );
+    if ( $host === $home ) {{
+      $need = false;                       // 自サイトの画像なら触らない
+    }} else {{
+      // 他所のサイトを指している → 自社の画像に置き換える
+      $head = str_replace( $m[1], aspath_seo_share_image(), $head );
+      $need = false;
+    }}
+  }}
+  if ( $need ) {{
+    $head .= '<meta property="og:image" content="' . esc_url( aspath_seo_share_image() ) . '">' . "\\n"
+           . '<meta property="og:image:width" content="1200">' . "\\n"
+           . '<meta property="og:image:height" content="630">' . "\\n";
+  }}
+
+  echo $head;
+}}
+add_action('wp_head', 'aspath_seo_flush_buffer', 999);
+
+/**
+ * 構造化データ。
+ * 検索エンジンに「何のお店か」を機械が読める形で伝える。
+ * 地域＋症状での検索に効くため、移行前から用意してあったものを復活させる。
+ */
+function aspath_seo_structured_data() {{
+  if ( is_front_page() ) {{
+    echo '<script type="application/ld+json">' . "\\n"
+       . '{STRUCTURED_HEALTHCLUB}' . "\\n"
+       . '</script>' . "\\n";
+  }}
+  if ( is_page('faq') ) {{
+    echo '<script type="application/ld+json">' . "\\n"
+       . '{STRUCTURED_FAQ}' . "\\n"
+       . '</script>' . "\\n";
+  }}
+}}
+add_action('wp_head', 'aspath_seo_structured_data', 5);
 
 /**
  * コメント1件の表示。

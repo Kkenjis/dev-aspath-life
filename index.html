@@ -443,7 +443,7 @@ body.drawer-open{ overflow:hidden; }
   font-weight:500; opacity:.9; margin-left:.28em; }
 .hero-spec{ font-family:"Zen Kaku Gothic New",var(--font-head); font-weight:700; color:#fff;
   white-space:nowrap; font-size:clamp(13px,3.15vw,27px); letter-spacing:.02em; line-height:1.4;
-  margin-top:18px; text-shadow:0 2px 16px rgba(0,0,0,.5); }
+  margin:18px 0 0; text-shadow:0 2px 16px rgba(0,0,0,.5); }
 .hero-spec .hl{ color:#F4E9D8; font-weight:900; }
 .hero-spec .loc{ color:#FFFFFF; font-weight:900; }
 .hero-spec .sep{ color:rgba(255,255,255,.7); margin:0 .35em; font-weight:400; }
@@ -1447,7 +1447,10 @@ table{ max-width:100%; }
 
     <div class="hero-center">
       <span class="hero-brand" data-en-html="ASPATH">ASPATH<span class="read"><span class="nw">アスパス</span></span></span>
-      <p class="hero-spec" data-en-html="&lt;span class=&quot;loc&quot;&gt;Kagoshima&#39;s First&lt;/span&gt;&lt;span class=&quot;sep&quot;&gt;｜&lt;/span&gt;&lt;span class=&quot;hl&quot;&gt;Parkinson&#39;s&lt;/span&gt; Specialized Training Studio"><span class="loc">鹿児島初</span><span class="sep">｜</span><span class="hl nw">パーキンソン病専門</span> <span class="nw">トレーニングスタジオ</span></p>
+      <!-- 検索エンジンはページの主題を h1 で判断する。TOPに h1 が無いと
+           「何のページか」が伝わりにくいため、この行を h1 にしている。
+           見た目は .hero-spec のCSSで決まるので、以前と変わらない。 -->
+      <h1 class="hero-spec" data-en-html="&lt;span class=&quot;loc&quot;&gt;Kagoshima&#39;s First&lt;/span&gt;&lt;span class=&quot;sep&quot;&gt;｜&lt;/span&gt;&lt;span class=&quot;hl&quot;&gt;Parkinson&#39;s&lt;/span&gt; Specialized Training Studio"><span class="loc">鹿児島初</span><span class="sep">｜</span><span class="hl nw">パーキンソン病専門</span> <span class="nw">トレーニングスタジオ</span></h1>
       <hr class="hero-div">
       <p class="hero-copy2" data-en="So you can move as yourself again, ASPATH walks alongside you."><span class="nw">あなたが自分らしく動けるように、</span><span class="nw">アスパスが伴走します</span></p>
     </div>
