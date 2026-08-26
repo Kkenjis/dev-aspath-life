@@ -740,7 +740,10 @@ def main():
                   if re.sub(r'\s+','',c) not in sub_codes]
     news_js    = [(n,c) for n,c in build_js("news.html","news")
                   if re.sub(r'\s+','',c) not in sub_codes]
-    for name,code in front_js + sub_js + contact_js + column_js + news_js:
+    # 「プランと料金」ページ固有のJS（プラン内容の吹き出しなど）
+    services_js= [(n,c) for n,c in build_js("price.html","services")
+                  if re.sub(r'\s+','',c) not in sub_codes]
+    for name,code in front_js + sub_js + contact_js + column_js + news_js + services_js:
         open(os.path.join(OUT,"js",name),"w",encoding="utf-8").write(code)
 
     idx = read("index.html")
@@ -787,6 +790,7 @@ def main():
     contact_names = [n for n,_ in contact_js]
     column_names  = [n for n,_ in column_js]
     news_names    = [n for n,_ in news_js]
+    services_names= [n for n,_ in services_js]
     def enq(names, indent="  "):
         return "\n".join(f"{indent}wp_enqueue_script('aspath-{n[:-3]}', $uri.'/js/{n}', array(), $ver, true);" for n in names)
 
@@ -860,6 +864,9 @@ function aspath_assets() {{
   }}
   if ( is_home() || is_archive() ) {{
 {enq(news_names,'    ')}
+  }}
+  if ( is_page('services') ) {{
+{enq(services_names,'    ')}
   }}
 }}
 add_action('wp_enqueue_scripts','aspath_assets');

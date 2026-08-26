@@ -486,6 +486,48 @@ body.drawer-open{ overflow:hidden; }
 .trial-price .z{ font-family:var(--font-head); color:var(--sun); font-size:clamp(42px,6vw,58px); line-height:1; }
 .trial-price .z small{ font-size:.4em; }
 .price-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch; position:relative; z-index:1; }
+/* ── プランの「内容を見る」ボタンと吹き出し ──────────────────
+   カードをクリックすると、グリッドのすぐ下に吹き出しが開く。
+   三角の先が、押したカードの真ん中を指すようにしている。 */
+.pc-more{ margin-top:auto; align-self:center; display:inline-flex; align-items:center; gap:8px;
+  background:#fff; color:var(--gold-deep); border:2px solid var(--gold); border-radius:999px;
+  font-family:var(--font-head); font-weight:700; font-size:14.5px; padding:11px 20px;
+  cursor:pointer; transition:background .2s, color .2s, transform .2s; }
+.pc-more:hover{ background:var(--gold-soft); }
+.pc-more[aria-expanded="true"]{ background:var(--sun); border-color:var(--sun); color:#fff; }
+.pc-more[aria-expanded="true"] .pc-more-ico{ transform:rotate(45deg); }
+.pc-more-ico{ display:inline-block; font-size:16px; line-height:1; transition:transform .25s; }
+.pc-more:focus-visible{ outline:3px solid var(--sun); outline-offset:3px; }
+.pc-detail{ display:none; }
+
+.pc-pop{ position:relative; margin:26px auto 0; max-width:820px; background:#fff;
+  border:2px solid var(--sun); border-radius:18px; padding:26px 26px 24px;
+  box-shadow:0 14px 34px rgba(38,70,83,.14); text-align:left; z-index:3;
+  animation:pcPopIn .28s ease; }
+@keyframes pcPopIn{ from{ opacity:0; transform:translateY(-8px); } to{ opacity:1; transform:none; } }
+.pc-pop-tail{ position:absolute; top:-13px; left:var(--tail-x,50%); transform:translateX(-50%);
+  width:24px; height:13px; overflow:hidden; }
+.pc-pop-tail::before{ content:""; position:absolute; left:0; top:2px; width:24px; height:24px;
+  background:#fff; border-left:2px solid var(--sun); border-top:2px solid var(--sun);
+  transform:rotate(45deg); transform-origin:center; }
+.pc-pop-title{ font-family:var(--font-head); font-weight:700; font-size:20px; color:var(--brown);
+  margin:0 40px 14px 0; }
+.pc-pop-close{ position:absolute; top:12px; right:14px; width:38px; height:38px; border-radius:50%;
+  border:none; background:var(--gold-soft); color:var(--brown); font-size:22px; line-height:1;
+  cursor:pointer; transition:background .2s; }
+.pc-pop-close:hover{ background:var(--gold); color:#fff; }
+.pc-pop-close:focus-visible{ outline:3px solid var(--sun); outline-offset:2px; }
+.pd-lead{ font-size:13.5px; color:#8A7A63; background:#FFF7EC; border-radius:8px;
+  padding:8px 12px; margin:0 0 14px; }
+.pd-list{ margin:0 0 14px; padding-left:1.25em; }
+.pd-list li{ font-size:15.5px; line-height:1.95; margin-bottom:8px; }
+.pd-fit{ font-size:15px; background:var(--paper); border-radius:10px; padding:12px 14px; margin:0; }
+.pd-fit b{ color:var(--gold-deep); margin-right:.5em; }
+@media (max-width:760px){
+  .pc-pop{ margin-top:20px; padding:22px 18px 20px; }
+  .pc-pop-title{ font-size:18px; }
+  .pd-list li{ font-size:15px; }
+}
 .price-card{ background:#fff; border-radius:16px; box-shadow:0 8px 22px rgba(38,70,83,.07); padding:30px 16px 28px; text-align:center; border:1px solid var(--gold-soft); display:flex; flex-direction:column; }
 .price-card.recommend{ border:2.5px solid var(--sun); position:relative; transform:scale(1.05); box-shadow:0 14px 34px rgba(244,162,97,.25); z-index:2; }
 .price-card.recommend::before{ content:"いちばん選ばれています"; position:absolute; top:-15px; left:50%; transform:translateX(-50%); background:var(--sun); color:#fff; font-family:var(--font-head); font-size:13.5px; font-weight:700; padding:5px 18px; border-radius:999px; white-space:nowrap; box-shadow:0 4px 10px rgba(244,162,97,.35); }
@@ -1223,6 +1265,18 @@ table{ max-width:100%; }
           <p class="pc-tax" data-en="(tax incl.)">（税込）</p>
           <span class="pc-freq" data-en="Twice a week / 60 min"><span class="nw">週2回</span> ／ <span class="nw">60分</span></span>
           <p class="pc-desc pc-desc-br" data-en-html="For those who want early functional improvement&lt;br&gt;and to commit fully.">早い機能改善を希望し、<br>しっかりと取り組みたい方へ。</p>
+          <button type="button" class="pc-more" data-plan="plan8"
+                  aria-expanded="false" aria-controls="pc-pop"
+                  data-en="See what this plan includes">このプランの内容を見る<span class="pc-more-ico" aria-hidden="true">＋</span></button>
+          <div class="pc-detail" id="detail-plan8" hidden>
+            <p class="pd-lead">※ここは仮の文章です。山口様のご意向に合わせて差し替えます。</p>
+            <ul class="pd-list">
+              <li><b>週2回の対面</b>で、動きの変化をその都度確認しながら進められます。</li>
+              <li>運動の量が確保できるため、<b>変化を実感するまでの期間が短く</b>なります。</li>
+              <li>ご自宅での自主トレも、体調に合わせてこまめに組み替えます。</li>
+            </ul>
+            <p class="pd-fit"><b>こんな方に</b>　できるだけ早く改善したい／ご家族の付き添いが得やすい方</p>
+          </div>
         </div>
         <div class="price-card recommend reveal d1">
           <p class="pc-badge" data-en-html="Improve function and&lt;br&gt;build an exercise habit">体の機能向上と運動習慣を<br>身につけましょう</p>
@@ -1231,6 +1285,18 @@ table{ max-width:100%; }
           <p class="pc-tax" data-en="(tax incl.)">（税込）</p>
           <span class="pc-freq" data-en="Once a week / 60 min"><span class="nw">週1回</span> ／ <span class="nw">60分</span></span>
           <p class="pc-desc pc-desc-br" data-en-html="An optimal mix of in-person guidance&lt;br&gt;and self-training at home.">対面指導と自宅<span class="nw">自主トレ</span>を<br>最適に組み合わせ。</p>
+          <button type="button" class="pc-more" data-plan="plan4"
+                  aria-expanded="false" aria-controls="pc-pop"
+                  data-en="See what this plan includes">このプランの内容を見る<span class="pc-more-ico" aria-hidden="true">＋</span></button>
+          <div class="pc-detail" id="detail-plan4" hidden>
+            <p class="pd-lead">※ここは仮の文章です。山口様のご意向に合わせて差し替えます。</p>
+            <ul class="pd-list">
+              <li><b>週1回の対面</b>で運動を習慣にしながら、自宅での自主トレと組み合わせます。</li>
+              <li>もっとも多くの方が選ばれており、<b>続けやすさと変化のバランス</b>が取れます。</li>
+              <li>ご都合に合わせて、オンラインへの振替もご相談いただけます。</li>
+            </ul>
+            <p class="pd-fit"><b>こんな方に</b>　はじめて運動を続けたい／無理なく長く通いたい方</p>
+          </div>
         </div>
         <div class="price-card reveal d2">
           <p class="pc-badge" data-en="For gently establishing an exercise habit">緩やかな運動習慣定着に</p>
@@ -1239,8 +1305,29 @@ table{ max-width:100%; }
           <p class="pc-tax" data-en="(tax incl.)">（税込）</p>
           <span class="pc-freq" data-en="Every other week / 60 min">隔週 ／ <span class="nw">60分</span></span>
           <p class="pc-desc" data-en="For those who want regular body maintenance.">定期的な体の<span class="nw">メンテナンス</span>をしたい方向け。</p>
+          <button type="button" class="pc-more" data-plan="plan2"
+                  aria-expanded="false" aria-controls="pc-pop"
+                  data-en="See what this plan includes">このプランの内容を見る<span class="pc-more-ico" aria-hidden="true">＋</span></button>
+          <div class="pc-detail" id="detail-plan2" hidden>
+            <p class="pd-lead">※ここは仮の文章です。山口様のご意向に合わせて差し替えます。</p>
+            <ul class="pd-list">
+              <li><b>隔週</b>のペースで、今の状態を保つことを目的にお使いいただけます。</li>
+              <li>ご自宅での運動が習慣になっている方の<b>確認の場</b>として適しています。</li>
+              <li>体調の変化があれば、回数の増減もその都度ご相談いただけます。</li>
+            </ul>
+            <p class="pd-fit"><b>こんな方に</b>　すでに運動の習慣がある／遠方でこまめに通えない方</p>
+          </div>
         </div>
       </div>
+
+      <!-- プランの詳しい内容を出す吹き出し。中身は上の .pc-detail から差し込む -->
+      <div class="pc-pop" id="pc-pop" role="region" aria-label="プランの詳しい内容" hidden>
+        <span class="pc-pop-tail" aria-hidden="true"></span>
+        <button type="button" class="pc-pop-close" aria-label="閉じる">×</button>
+        <p class="pc-pop-title"></p>
+        <div class="pc-pop-body"></div>
+      </div>
+
       <p class="price-foot reveal" data-en-html="Beyond specialized training itself, we also provide quantitative checks of your condition, and advice on self-training and daily habits.">専門的なトレーニングの実施のみならず、お身体の状態の定量チェック、<br class="br-pc"><span class="nw">自主トレ</span>や生活習慣の助言まで実施します。</p>
       <p class="more-link reveal"><a class="btn btn-ghost mid" href="about.html#method" data-en-html="See service details&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;">サービス内容の詳細を見る<span class="arw">→</span></a></p>
 
@@ -1525,6 +1612,60 @@ table{ max-width:100%; }
     var w=window.innerWidth; if(w<=760||w>1180) return;
     if(over()&&sns) sns.style.display='none'; if(over()&&lineTxt) lineTxt.style.display='none'; }
   fit(); window.addEventListener('resize', fit, {passive:true}); window.addEventListener('load', fit);
+})();
+
+</script>
+
+<script>
+/* ===== プランの内容を吹き出しで表示 ===== */
+(function(){
+  var pop = document.getElementById('pc-pop');
+  if(!pop) return;
+  var grid  = document.querySelector('.price-grid');
+  var title = pop.querySelector('.pc-pop-title');
+  var body  = pop.querySelector('.pc-pop-body');
+  var tail  = pop.querySelector('.pc-pop-tail');
+  var openBtn = null;
+
+  function close(){
+    if(!openBtn) return;
+    pop.hidden = true;
+    openBtn.setAttribute('aria-expanded','false');
+    openBtn.focus();
+    openBtn = null;
+  }
+
+  function open(btn){
+    var card = btn.closest('.price-card');
+    var name = card.querySelector('.pc-name');
+    var src  = document.getElementById('detail-' + btn.dataset.plan);
+    if(!src) return;
+    if(openBtn) openBtn.setAttribute('aria-expanded','false');
+    title.textContent = name ? name.textContent.trim() : '';
+    body.innerHTML = src.innerHTML;
+    pop.hidden = false;
+    btn.setAttribute('aria-expanded','true');
+    openBtn = btn;
+    // 三角の先が、押したカードの中央を向くようにする
+    var c = card.getBoundingClientRect(), p = pop.getBoundingClientRect();
+    var x = c.left + c.width/2 - p.left;
+    x = Math.max(26, Math.min(p.width - 26, x));
+    tail.style.setProperty('--tail-x', x + 'px');
+    if (pop.getBoundingClientRect().bottom > window.innerHeight) {
+      pop.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+  }
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.pc-more');
+    if(btn){
+      if(openBtn === btn){ close(); } else { open(btn); }
+      return;
+    }
+    if(e.target.closest('.pc-pop-close')){ close(); return; }
+    if(openBtn && !e.target.closest('#pc-pop') && !e.target.closest('.price-card')) close();
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
 })();
 </script>
 </body>
