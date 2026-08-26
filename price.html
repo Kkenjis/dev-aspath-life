@@ -524,7 +524,8 @@ body.drawer-open{ overflow:hidden; }
 .pd-fit{ font-size:15px; background:var(--paper); border-radius:10px; padding:12px 14px; margin:0; }
 .pd-fit b{ color:var(--gold-deep); margin-right:.5em; }
 @media (max-width:760px){
-  .pc-pop{ margin-top:20px; padding:22px 18px 20px; }
+  .pc-pop{ margin-top:14px; padding:22px 18px 20px; }
+  .pc-pop-tail{ left:50% !important; }
   .pc-pop-title{ font-size:18px; }
   .pd-list li{ font-size:15px; }
 }
@@ -1643,6 +1644,14 @@ table{ max-width:100%; }
     if(openBtn) openBtn.setAttribute('aria-expanded','false');
     title.textContent = name ? name.textContent.trim() : '';
     body.innerHTML = src.innerHTML;
+    /* スマホはカードが縦1列に並ぶ。グリッドの後ろに出すと、
+       1枚目を押しても3枚目の下に吹き出しが出てしまうため、
+       押したカードのすぐ下へ移す。PCでは元の位置（グリッドの後ろ）に戻す。 */
+    if (window.matchMedia('(max-width:760px)').matches) {
+      card.insertAdjacentElement('afterend', pop);
+    } else if (pop.previousElementSibling !== grid) {
+      grid.insertAdjacentElement('afterend', pop);
+    }
     pop.hidden = false;
     btn.setAttribute('aria-expanded','true');
     openBtn = btn;
@@ -1666,6 +1675,7 @@ table{ max-width:100%; }
     if(openBtn && !e.target.closest('#pc-pop') && !e.target.closest('.price-card')) close();
   });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  window.addEventListener('resize', function(){ if(openBtn) open(openBtn); });
 })();
 </script>
 </body>
