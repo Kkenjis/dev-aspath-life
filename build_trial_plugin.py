@@ -53,7 +53,8 @@ z = zipfile.ZipFile(THEMEZIP)
 try:
     tpl = z.read('aspath/template-trial-entry.php').decode('utf-8')
     css = z.read('aspath/css/trial-entry.css').decode('utf-8')
-    logo = z.read('aspath/images/logo-aspath.webp')
+    logo   = z.read('aspath/images/logo-aspath.webp')
+    banner = z.read('aspath/images/footer-salon-banner.webp')
     fnc = z.read('aspath/functions.php').decode('utf-8')
     hdr = z.read('aspath/header.php').decode('utf-8')
     ftr = z.read('aspath/footer.php').decode('utf-8')
@@ -123,7 +124,7 @@ def theme_chrome():
 site_header, site_footer, n_front = theme_chrome()
 
 # 同梱するファイル（これ以外を参照していたらビルドを止める）
-BUNDLED = {'logo-aspath.webp', 'trial.css', 'menu.js'}
+BUNDLED = {'logo-aspath.webp', 'footer-salon-banner.webp', 'trial.css', 'menu.js'}
 
 # ヘッダー・フッターに残った参照を確認（プラグイン単体で動く条件）
 for label, part in (('ヘッダー', site_header), ('フッター', site_footer)):
@@ -372,6 +373,7 @@ os.makedirs(os.path.join(root, 'assets'))
 open(os.path.join(root, 'aspath-trial-form.php'), 'w', encoding='utf-8').write(plugin)
 open(os.path.join(root, 'assets', 'trial.css'), 'w', encoding='utf-8').write(css)
 open(os.path.join(root, 'assets', 'logo-aspath.webp'), 'wb').write(logo)
+open(os.path.join(root, 'assets', 'footer-salon-banner.webp'), 'wb').write(banner)
 # ハンバーガー／ドロワーの開閉用（テーマのsub-01.jsと同じもの）
 open(os.path.join(root, 'assets', 'menu.js'), 'w', encoding='utf-8').write(drawer_js)
 

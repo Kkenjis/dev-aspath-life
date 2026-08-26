@@ -788,6 +788,15 @@ body.drawer-open{ overflow:hidden; }
 @media(max-width:360px){ .sns-grid{ grid-template-columns:1fr; } }
 
 .site-footer{ background:var(--brown); color:#fff; margin-top:0; }
+/* ── フッターのオンラインサロン用バナー ──
+   外部サイト（mosh.jp）へのご案内。文章のすぐ下に置く。 */
+.footer-banner{ display:block; margin-top:20px; max-width:360px; border-radius:10px;
+  overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.22);
+  transition:transform .25s ease, box-shadow .25s ease; }
+.footer-banner img{ width:100%; height:auto; display:block; }
+.footer-banner:hover{ transform:translateY(-3px); box-shadow:0 10px 26px rgba(0,0,0,.32); }
+.footer-banner:focus-visible{ outline:3px solid var(--sun); outline-offset:3px; }
+@media (max-width:760px){ .footer-banner{ max-width:100%; margin-left:auto; margin-right:auto; } }
 .footer-in{ max-width:var(--maxw); margin:0 auto; padding:56px 20px 36px; display:grid; grid-template-columns:1.8fr 1fr 1fr; gap:36px 48px; }
 .footer-logo{ width:120px; height:120px; margin-bottom:10px; }
 .footer-nav-col h5{ font-size:14px; font-weight:700; color:var(--gold); letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px; border-bottom:1px solid rgba(176,138,69,.3); padding-bottom:8px; }
@@ -1447,6 +1456,15 @@ table{ max-width:100%; }
         ※ご予約確定後に場所の詳細をご案内。<br>
         訪問・オンラインも対応。
       </p>
+
+      <!-- オンラインサロンのご案内バナー（外部サイト mosh.jp へ） -->
+      <a class="footer-banner" href="https://mosh.jp/services/379106?openExternalBrowser=1"
+         target="_blank" rel="noopener"
+         aria-label="パーキンソン病フィットネス オンラインサロンのご案内（外部サイトが開きます）">
+        <img src="images/footer-salon-banner.webp"
+             alt="全国のパーキンソン病の方と一緒に運動を続けられる場 パーキンソン病フィットネス オンラインサロンはこちら"
+             width="699" height="174" loading="lazy" decoding="async">
+      </a>
       
     </div>
 
