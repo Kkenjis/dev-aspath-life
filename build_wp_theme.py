@@ -669,6 +669,22 @@ def build_css_files():
         body = f"/* {key}.css — {src} の<style>をそのまま抽出（ページ単位で分離） */\n" + page_css(src)
         if key in CSS_WITH_COMMENTS:
             body += COMMENTS_CSS
+
+        # CSS内の画像パスを1階層上げる。
+        #   devでは HTML と images/ が同じ階層にあるので url(images/…) で届く。
+        #   テーマでは CSS が css/ の中に入るため、そのままだと
+        #   css/images/… を探しにいって画像が出ない。
+        #   （実際に「実績・受賞歴」のメダルが表示されない不具合が出た）
+        body = re.sub(r'url\(\s*(["\']?)images/', r'url(\1../images/', body)
+
+        # PHPはCSSファイルの中では動かない。混ざっていたら気づけるようにする。
+        if '<?php' in body:
+            die(f"{key}.css にPHPタグが混ざっています。CSSファイル内では動きません。")
+        # 直せなかった相対パスが残っていないか
+        left = re.findall(r'url\(\s*["\']?images/[^)]*\)', body)
+        if left:
+            die(f"{key}.css に画像パスの直し漏れがあります: {left[:3]}")
+
         open(os.path.join(css_dir, f"{key}.css"), "w", encoding="utf-8").write(body)
         written[key] = len(body)
     return written
