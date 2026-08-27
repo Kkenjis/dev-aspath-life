@@ -935,6 +935,58 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .site-footer{ background:var(--brown); color:#fff; margin-top:0; }
 /* ── フッターのオンラインサロン用バナー ──
    外部サイト（mosh.jp）へのご案内。文章のすぐ下に置く。 */
+/* ── お悩みの先にある「得られる未来」──────────────────────
+   悩みだけで終わらせず、その先に何が待っているかを3つで示す。 */
+.worry-future{ max-width:900px; margin:34px auto 0; }
+.wf-head{ text-align:center; font-family:var(--font-head); font-weight:700;
+  font-size:clamp(17px,2.1vw,21px); color:var(--brown); margin-bottom:20px; }
+.wf-list{ list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.wf-list li{ background:#fff; border-radius:16px; padding:24px 20px 22px; text-align:center;
+  box-shadow:0 8px 22px rgba(38,70,83,.07); border:1px solid var(--gold-soft); }
+.wf-tag{ display:inline-block; background:var(--sun); color:#fff; font-family:var(--font-head);
+  font-weight:700; font-size:15px; padding:5px 20px; border-radius:999px; margin-bottom:12px; }
+.wf-list p{ font-size:15.5px; line-height:1.9; margin:0; }
+@media (max-width:760px){
+  .wf-list{ grid-template-columns:1fr; gap:12px; }
+  .wf-list li{ padding:18px 16px; }
+}
+
+/* ── サービス紹介の手前に置く申し込み導線 ────────────────── */
+.sb-cta{ text-align:center; margin-bottom:38px; }
+.sb-cta-lead{ font-family:var(--font-head); font-weight:700;
+  font-size:clamp(16px,2vw,20px); color:var(--brown); margin-bottom:18px; }
+.sb-cta-btns{ display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap; }
+.sb-cta-more{ display:inline-block; margin-top:14px; font-size:15.5px; color:var(--gold-deep);
+  font-weight:700; text-decoration:underline; text-decoration-color:var(--gold);
+  text-decoration-thickness:2px; text-underline-offset:4px; }
+.sb-cta-more:hover{ color:var(--sun); }
+.sb-cta-more .arw{ display:inline-block; margin-left:6px; transition:transform .2s; }
+.sb-cta-more:hover .arw{ transform:translateX(4px); }
+@media (max-width:760px){
+  .sb-cta{ margin-bottom:28px; }
+  .sb-cta-btns{ flex-direction:column; gap:12px; }
+  .sb-cta-btns .btn{ width:100%; max-width:340px; }
+}
+
+/* ── 対象となる方（理念ブロック内） ────────────────────── */
+.ahs-target{ background:var(--paper); border-left:4px solid var(--sun);
+  border-radius:0 12px 12px 0; padding:16px 20px; margin:18px 0; }
+
+/* ── 利用者の声 ──────────────────────────────────── */
+.voices-section{ background:var(--paper); }
+.voice-list{ list-style:none; display:grid; grid-template-columns:repeat(2,1fr);
+  gap:20px; max-width:960px; margin:0 auto; position:relative; z-index:1; }
+.voice-card{ background:#fff; border-radius:18px; padding:28px 26px 22px;
+  box-shadow:0 8px 22px rgba(38,70,83,.07); border:1px solid var(--gold-soft); position:relative; }
+.voice-card::before{ content:"“"; position:absolute; top:6px; left:18px;
+  font-family:var(--font-head); font-size:52px; line-height:1; color:var(--gold-soft); }
+.voice-text{ font-size:16px; line-height:2.0; margin:0 0 14px; position:relative; z-index:1; }
+.voice-who{ font-size:14.5px; color:var(--gold-deep); font-weight:700; margin:0; text-align:right; }
+@media (max-width:760px){
+  .voice-list{ grid-template-columns:1fr; gap:14px; }
+  .voice-card{ padding:22px 20px 18px; }
+  .voice-text{ font-size:15.5px; }
+}
 .footer-banner{ display:block; margin-top:20px; max-width:360px; border-radius:10px;
   overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.22);
   transition:transform .25s ease, box-shadow .25s ease; }
@@ -1461,7 +1513,7 @@ table{ max-width:100%; }
            見た目は .hero-spec のCSSで決まるので、以前と変わらない。 -->
       <h1 class="hero-spec" data-en-html="&lt;span class=&quot;loc&quot;&gt;Kagoshima&#39;s First&lt;/span&gt;&lt;span class=&quot;sep&quot;&gt;｜&lt;/span&gt;&lt;span class=&quot;hl&quot;&gt;Parkinson&#39;s&lt;/span&gt; Specialized Training Studio"><span class="loc">鹿児島初</span><span class="sep">｜</span><span class="hl nw">パーキンソン病専門</span> <span class="nw">トレーニングスタジオ</span></h1>
       <hr class="hero-div">
-      <p class="hero-copy2" data-en="So you can move as yourself again, ASPATH walks alongside you."><span class="nw">あなたが自分らしく動けるように、</span><span class="nw">アスパスが伴走します</span></p>
+      <p class="hero-copy2" data-en="ASPATH staff with over 14 years of experience walk alongside you."><span class="nw">14年以上の経験をもつ</span><span class="nw">アスパススタッフ</span>が<span class="nw">あなたと伴走します</span></p>
     </div>
 
 
@@ -1490,12 +1542,41 @@ table{ max-width:100%; }
       <p class="worry-close reveal" data-en="Let's resolve these concerns with ASPATH's training so you can live as yourself.">
         <span class="nw">アスパス</span>のトレーニングでこれらのお悩みを解消し、<br class="br-pc">自分らしく過ごせるようにしましょう。
       </p>
+
+        <!-- お悩みの先にある「得られる未来」を3つで示す -->
+        <div class="worry-future reveal">
+          <p class="wf-head" data-en="Continuing training brings changes like these.">トレーニングを続けると、<span class="nw">こんな変化</span>が生まれます</p>
+          <ul class="wf-list">
+            <li>
+              <span class="wf-tag" data-en="Walking">歩き</span>
+              <p data-en="Walking became easier, and I could go shopping again—something I had given up on.">歩きやすくなって、諦めていた買い物に行けるようになった。</p>
+            </li>
+            <li>
+              <span class="wf-tag" data-en="Posture">姿勢</span>
+              <p data-en="My leaning posture improved, and I feel steadier when standing.">傾いていた姿勢が良くなって、立つときの安定感が増した。</p>
+            </li>
+            <li>
+              <span class="wf-tag" data-en="Exercise">運動</span>
+              <p data-en="With exercise suited to me, I felt the effects and enjoy moving again.">自分に合った運動で効果を感じ、動くのが楽しくなった。</p>
+            </li>
+          </ul>
+        </div>
     </div>
   </section>
 
   <section class="service-banners" id="service-banners">
     <div class="wrap">
-      <div class="sb-grid">
+      
+      <!-- 初回体験への導線（サービス紹介の手前に置く） -->
+      <div class="sb-cta reveal">
+        <p class="sb-cta-lead" data-en="Start with a first session. A simple question is welcome, too.">まずは<span class="nw">初回体験</span>から。ご相談だけでも構いません。</p>
+        <div class="sb-cta-btns">
+          <a class="btn btn-line big" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en="Register on Official LINE"><span class="nw">公式LINEに登録</span></a>
+          <a class="btn btn-form big" href="contact.html" data-en="Apply for a first session"><span class="nw">初回体験を申し込む</span></a>
+        </div>
+        <a class="sb-cta-more" href="price.html#trial" data-en="See details of the first session"><span class="nw">初回体験の詳細はこちら</span><span class="arw">→</span></a>
+      </div>
+<div class="sb-grid">
         <a class="sb-card reveal" href="taimentraining.html">
           <div class="sb-img"><img src="images/top-service-inperson.webp" alt="マットの上で腕を持ち上げて可動域を確認する対面トレーニング" width="1400" height="934" style="--pos:50% 50%;"></div>
           <div class="sb-body">
@@ -1531,10 +1612,10 @@ table{ max-width:100%; }
         <div class="about-hsr-text">
           <h2 data-en="Walking with you, ASPATH">あなたとともに歩む、<span class="nw">ASPATH</span></h2>
           <p data-en-html="ASPATH is a training studio specializing in Parkinson&#39;s disease and stroke that turns anxiety into &lt;strong&gt;&quot;hope.&quot;&lt;/strong&gt;"><span class="nw">ASPATH</span>は不安を「<strong>希望</strong>」に変える、<br><span class="nw">パーキンソン病</span>専門の<span class="nw">トレーニングスタジオ</span>です。</p>
+          <p class="ahs-target" data-en-html="We provide specialized training and rehabilitation for people with Parkinson&#39;s disease—those recently diagnosed or with mild symptoms, and those who want to ease motor symptoms so they can enjoy their hobbies."><span class="nw">診断早期</span>・<span class="nw">軽度の方</span>や、<br class="br-sp">運動症状を緩和して<span class="nw">趣味の実施</span>をしたい<br class="br-sp"><span class="nw">パーキンソン病</span>の方に、<br class="br-pc">専門的な<span class="nw">トレーニング</span>・<span class="nw">リハビリ</span>をおこないます。</p>
           <p data-en-html="The name ASPATH holds a wish—that everyone involved can walk toward their tomorrow: &lt;strong&gt;&quot;As = toward tomorrow, Path = a road that connects.&quot;&lt;/strong&gt;"><span class="nw">ASPATH</span>の名前は、関わった皆様が<br class="br-sp"><strong>「<span class="nw">アス＝明日へ</span>、<span class="nw">パス＝つなげる道</span>」</strong>へ<br>伴走できるように、<br class="br-sp">といった意味が込められています。</p>
           <p data-en-html="Delivering the right exercise at the right time becomes hope, and together we walk toward a better future."><span class="nw">ASPATH</span>が適切な時期に適した運動を届けることが<br class="br-sp">希望となり、<br class="br-pc">より良い未来を共に歩みます。</p>
-          <p class="ahs-lead" data-en-html="Easing the symptoms of Parkinson&#39;s disease and helping prevent their progression. Not giving up a life that is truly your own, even long after onset."><span class="nw">パーキンソン病</span>の症状を緩和し、<br class="br-sp"><span class="nw">進行を予防していく——</span><br>発症から時間が経過しても<br class="br-sp"><span class="nw">自分らしい生活</span>を<span class="nw">諦めない——</span></p>
-          <p data-en-html="To make these possible, nationally licensed physical therapists and highly experienced specialist trainers provide support.">それらをかなえるべく、<span class="nw">国家資格</span>である<span class="nw">理学療法士</span>と<br>豊富な経験を保有する<br class="br-sp"><span class="nw">専門トレーナー</span>がサポートします。</p>
+          <p data-en-html="Nationally licensed physical therapists and highly experienced specialist trainers provide support."><span class="nw">国家資格</span>である<span class="nw">理学療法士</span>と<br>豊富な経験を保有する<br class="br-sp"><span class="nw">専門トレーナー</span>がサポートします。</p>
           <p data-en-html="Our mission is to spread—from here in Kagoshima—a warm society where each person believes in their own physical and mental potential and can face forward and walk on.">一人ひとりが自分自身の<span class="nw">心身の可能性</span>を信じ、<br>前を向いて歩んでいける温かい社会を、<br>この<span class="nw">鹿児島の地</span>から広げることが使命です。</p>
           <p class="about-hsr-more">
             <a class="btn btn-ghost mid" href="about.html" data-en-html="More about ASPATH&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;"><span class="nw">ASPATH</span>について詳しく<span class="arw">→</span></a>
@@ -1579,6 +1660,36 @@ table{ max-width:100%; }
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <!-- ============ 利用者の声 ============ -->
+  <section class="section voices-section" id="voices">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-node" aria-hidden="true"></span>
+        <p class="sec-sub" data-en="Voices from our clients">ご利用者さまの声</p>
+        <h2 data-en="What our clients say">お客様の声</h2>
+      </div>
+      <ul class="voice-list">
+        <li class="voice-card reveal">
+          <p class="voice-text" data-en="&quot;My leaning posture improved, and now I can walk upright.&quot;">「傾いていた姿勢が良くなって、<br class="br-sp">まっすぐ歩けるようになりました。」</p>
+          <p class="voice-who" data-en="Woman in her 60s">60代・女性</p>
+        </li>
+        <li class="voice-card reveal d1">
+          <p class="voice-text" data-en="&quot;Even with an intractable illness, I saw hope that exercise could slow its progression.&quot;">「難病でも、運動で進行を遅らせられることに<br class="br-sp">希望が見えました。」</p>
+          <p class="voice-who" data-en="Man in his 40s">40代・男性</p>
+        </li>
+        <li class="voice-card reveal d2">
+          <p class="voice-text" data-en="&quot;Thanks to the trainer&#39;s bright personality, I can keep going and enjoy it.&quot;">「トレーナーの明るい人柄のおかげで<br class="br-sp">楽しく続けられます。」</p>
+          <p class="voice-who" data-en="Woman in her 70s">70代・女性</p>
+        </li>
+        <li class="voice-card reveal d3">
+          <p class="voice-text" data-en="&quot;I used to dislike exercise, but lately I enjoy moving my body.&quot;">「運動が苦手でしたが、<br class="br-sp">最近では体を動かすことが楽しいです。」</p>
+          <p class="voice-who" data-en="Woman in her 60s">60代・女性</p>
+        </li>
+      </ul>
     </div>
   </section>
 
