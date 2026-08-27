@@ -1034,6 +1034,78 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
   .voice-avatar{ width:46px; height:46px; }
   .voice-text{ font-size:15.5px; }
 }
+/* ── Before / After ＆ 動画コンテンツ（現在は準備中）────────────────
+   ■ 公開するときの手順（開発者向け）
+     1. .is-preparing クラスを外す
+     2. <div class="cs-veil"> ... </div> のブロックごと削除する
+     3. .ba-slot / .yt-slot の中身を、実際の画像・YouTubeの埋め込みに差し替える
+   この2つを消すだけで、下の枠組みがそのまま本番として動きます。 */
+
+/* 準備中の覆い（半透明＋すりガラス）。見出しは覆わず、中身だけを隠す */
+.cs-box{ position:relative; }
+.is-preparing .cs-stage{ filter:saturate(.35); }
+.cs-veil{ position:absolute; inset:0; z-index:5; display:grid; place-items:center;
+  background:rgba(244,233,216,.72); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
+  border-radius:20px; }
+.cs-badge{ text-align:center; padding:26px 34px; background:rgba(255,255,255,.92);
+  border:2px dashed var(--sun); border-radius:18px; box-shadow:0 10px 30px rgba(38,70,83,.14); }
+.cs-en{ font-family:var(--font-head); font-weight:700; letter-spacing:.16em;
+  font-size:clamp(19px,2.6vw,27px); color:var(--sun); margin:0 0 6px; }
+.cs-ja{ font-family:var(--font-head); font-weight:700; font-size:clamp(15px,1.9vw,18px);
+  color:var(--brown); margin:0 0 8px; }
+.cs-note{ font-size:14px; line-height:1.8; color:var(--gold-deep); margin:0; }
+@media (max-width:760px){ .cs-badge{ padding:20px 22px; } .cs-note{ font-size:13px; } }
+
+/* 中身が入るまでの仮の枠（画像・動画のかわり） */
+.slot{ background:repeating-linear-gradient(135deg,#EFE6D5,#EFE6D5 14px,#E7D9C1 14px,#E7D9C1 28px);
+  border:1px solid var(--gold-soft); border-radius:14px; display:grid; place-items:center;
+  color:#8A7C64; font-size:13.5px; font-weight:700; }
+
+/* ── Before / After ───────────────────────────────── */
+.ba-section .cs-stage{ max-width:1000px; margin:0 auto; }
+.ba-list{ list-style:none; margin:0; padding:0; display:grid; gap:22px; }
+.ba-card{ background:#fff; border:1px solid var(--gold-soft); border-radius:18px;
+  padding:22px 22px 18px; box-shadow:0 8px 22px rgba(38,70,83,.07); }
+.ba-pair{ display:grid; grid-template-columns:1fr auto 1fr; gap:16px; align-items:center; }
+.ba-col{ min-width:0; }
+.ba-cap{ text-align:center; font-family:var(--font-head); font-weight:700; font-size:14px;
+  margin:0 0 8px; padding:3px 0; border-radius:999px; }
+.ba-cap.before{ background:var(--paper); color:var(--gold-deep); }
+.ba-cap.after{ background:var(--sun); color:#fff; }
+.ba-slot{ aspect-ratio:4/3; }
+.ba-arrow{ width:44px; height:44px; border-radius:50%; background:var(--sun); color:#fff;
+  display:grid; place-items:center; font-size:22px; font-weight:700; flex-shrink:0; }
+.ba-who{ font-size:14.5px; color:var(--gold-deep); font-weight:700; margin:14px 0 4px; }
+.ba-txt{ font-size:15px; line-height:1.85; margin:0; }
+@media (min-width:861px){ .ba-list{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:520px){
+  /* 幅が狭いと左右2枚が潰れるので縦積みにし、矢印を下向きにする */
+  .ba-pair{ grid-template-columns:1fr; gap:10px; }
+  .ba-arrow{ margin:0 auto; transform:rotate(90deg); }
+}
+
+/* ── 動画コンテンツ（横スライド）────────────────────────── */
+.yt-section .cs-stage{ max-width:1060px; margin:0 auto; position:relative; }
+.yt-track{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(280px,1fr);
+  gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 14px;
+  scrollbar-width:thin; }
+.yt-track > *{ scroll-snap-align:start; }
+.yt-card{ background:#fff; border:1px solid var(--gold-soft); border-radius:16px;
+  padding:12px 12px 16px; box-shadow:0 8px 22px rgba(38,70,83,.07); }
+.yt-slot{ aspect-ratio:16/9; margin-bottom:10px; }
+.yt-title{ font-size:15px; line-height:1.65; color:var(--brown); font-weight:700; margin:0 0 4px; }
+.yt-meta{ font-size:13.5px; color:var(--gold-deep); margin:0; }
+.yt-nav{ display:flex; justify-content:center; gap:12px; margin-top:6px; }
+.yt-btn{ width:44px; height:44px; border-radius:50%; border:1px solid var(--gold-soft);
+  background:#fff; color:var(--brown); font-size:20px; cursor:pointer; line-height:1;
+  display:grid; place-items:center; transition:background .2s, transform .2s; }
+.yt-btn:hover:not(:disabled){ background:var(--paper); transform:translateY(-2px); }
+.yt-btn:disabled{ opacity:.4; cursor:not-allowed; }
+@media (max-width:760px){
+  .yt-track{ grid-auto-columns:minmax(240px,1fr); gap:14px; }
+  .yt-btn{ width:40px; height:40px; }
+}
+
 .footer-banner{ display:block; margin-top:22px; max-width:440px; border-radius:10px;
   overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.22);
   transition:transform .25s ease, box-shadow .25s ease; }
@@ -1663,7 +1735,7 @@ table{ max-width:100%; }
      リンク先は初回体験フォーム（限定URL / noindex）。変更するとお申し込みが届かなくなるので触らないこと。 -->
           <a class="btn btn-form big" href="https://aspath-life.com/taiken-2026as9y/" data-en="Apply for a first session"><span class="nw">初回体験を申し込む</span></a>
         </div>
-        <a class="sb-cta-more" href="price.html#trial" data-en="See details of the first session"><span class="nw">初回体験の詳細はこちら</span><span class="arw">→</span></a>
+        <a class="sb-cta-more" href="news-campaign.html" data-en="See details of the first session"><span class="nw">初回体験の詳細はこちら</span><span class="arw">→</span></a>
       </div>
 <div class="sb-grid">
         <a class="sb-card reveal" href="taimentraining.html">
@@ -1791,6 +1863,146 @@ table{ max-width:100%; }
           </div>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ============ Before / After（準備中）============
+       ■ 公開するときは2つだけ
+         1. 下の <div class="cs-box is-preparing"> から is-preparing を消す
+         2. <div class="cs-veil"> ... </div> のブロックごと消す
+         3. .ba-slot の中身を実際の写真（<img>）に差し替える
+       中身は aria-hidden="true" にしてあるので、準備中は読み上げソフトにも読まれません。 -->
+  <section class="section ba-section" id="beforeafter" aria-label="ビフォーアフター（準備中）">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-node" aria-hidden="true"></span>
+        <p class="sec-sub" data-en="Before &amp; After">変化の記録</p>
+        <h2 data-en="Before &amp; After">Before / After</h2>
+      </div>
+      <div class="cs-box is-preparing">
+        <div class="cs-stage" aria-hidden="true">
+          <ul class="ba-list">
+            <li class="ba-card">
+              <div class="ba-pair">
+                <div class="ba-col">
+                  <p class="ba-cap before">Before</p>
+                  <div class="ba-slot slot">写真が入ります</div>
+                </div>
+                <div class="ba-arrow">→</div>
+                <div class="ba-col">
+                  <p class="ba-cap after">After</p>
+                  <div class="ba-slot slot">写真が入ります</div>
+                </div>
+              </div>
+              <p class="ba-who">60代・女性</p>
+              <p class="ba-txt">歩幅が広がり、外出の距離が伸びました。</p>
+            </li>
+            <li class="ba-card">
+              <div class="ba-pair">
+                <div class="ba-col">
+                  <p class="ba-cap before">Before</p>
+                  <div class="ba-slot slot">写真が入ります</div>
+                </div>
+                <div class="ba-arrow">→</div>
+                <div class="ba-col">
+                  <p class="ba-cap after">After</p>
+                  <div class="ba-slot slot">写真が入ります</div>
+                </div>
+              </div>
+              <p class="ba-who">70代・男性</p>
+              <p class="ba-txt">前かがみだった姿勢がまっすぐになりました。</p>
+            </li>
+            <li class="ba-card">
+              <div class="ba-pair">
+                <div class="ba-col">
+                  <p class="ba-cap before">Before</p>
+                  <div class="ba-slot slot">写真が入ります</div>
+                </div>
+                <div class="ba-arrow">→</div>
+                <div class="ba-col">
+                  <p class="ba-cap after">After</p>
+                  <div class="ba-slot slot">写真が入ります</div>
+                </div>
+              </div>
+              <p class="ba-who">60代・男性</p>
+              <p class="ba-txt">立ち上がりがふらつかなくなりました。</p>
+            </li>
+            <li class="ba-card">
+              <div class="ba-pair">
+                <div class="ba-col">
+                  <p class="ba-cap before">Before</p>
+                  <div class="ba-slot slot">写真が入ります</div>
+                </div>
+                <div class="ba-arrow">→</div>
+                <div class="ba-col">
+                  <p class="ba-cap after">After</p>
+                  <div class="ba-slot slot">写真が入ります</div>
+                </div>
+              </div>
+              <p class="ba-who">70代・女性</p>
+              <p class="ba-txt">手すりなしで階段をのぼれるようになりました。</p>
+            </li>
+          </ul>
+        </div>
+        <div class="cs-veil">
+          <div class="cs-badge">
+            <p class="cs-en">Coming Soon</p>
+            <p class="cs-ja" data-en="Now preparing">ただいま準備中です</p>
+            <p class="cs-note" data-en="We are preparing before-and-after records with our clients' permission.">ご本人の許可をいただいたうえで、<br class="br-sp">変化の記録を準備しています。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 動画コンテンツ（準備中）============
+       公開手順は Before/After と同じ。
+       .yt-slot の中身を YouTube の埋め込み（iframe）に差し替えてください。
+       is-preparing を外すと、左右ボタンでの横スライドが動き始めます。 -->
+  <section class="section sec-alt yt-section" id="movies" aria-label="動画コンテンツ（準備中）">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-node" aria-hidden="true"></span>
+        <p class="sec-sub" data-en="Movies">動画で見る</p>
+        <h2 data-en="Movie contents">動画コンテンツ</h2>
+      </div>
+      <div class="cs-box is-preparing">
+        <div class="cs-stage" aria-hidden="true">
+          <div class="yt-track" id="ytTrack">
+            <article class="yt-card">
+              <div class="yt-slot slot">動画が入ります</div>
+              <p class="yt-title">体験の流れを見てみる</p>
+              <p class="yt-meta">初回体験の40分でおこなうこと</p>
+            </article>
+            <article class="yt-card">
+              <div class="yt-slot slot">動画が入ります</div>
+              <p class="yt-title">自宅でできる姿勢の整え方</p>
+              <p class="yt-meta">椅子に座ったままできる3分の体操</p>
+            </article>
+            <article class="yt-card">
+              <div class="yt-slot slot">動画が入ります</div>
+              <p class="yt-title">歩きやすくなる足の運び方</p>
+              <p class="yt-meta">すくみ足への向き合い方</p>
+            </article>
+            <article class="yt-card">
+              <div class="yt-slot slot">動画が入ります</div>
+              <p class="yt-title">スタッフインタビュー</p>
+              <p class="yt-meta">14年の経験から伝えたいこと</p>
+            </article>
+          </div>
+          <div class="yt-nav">
+            <button class="yt-btn" type="button" data-yt="prev" aria-label="前の動画へ" disabled>‹</button>
+            <button class="yt-btn" type="button" data-yt="next" aria-label="次の動画へ" disabled>›</button>
+          </div>
+        </div>
+        <div class="cs-veil">
+          <div class="cs-badge">
+            <p class="cs-en">Coming Soon</p>
+            <p class="cs-ja" data-en="Now preparing">ただいま準備中です</p>
+            <p class="cs-note" data-en="We are preparing videos on training and daily exercises.">トレーニングの様子やご自宅でできる体操を、<br class="br-sp">動画でお届けする予定です。</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2240,6 +2452,49 @@ table{ max-width:100%; }
   adjust();
   window.addEventListener('resize', adjust, {passive:true});
   window.addEventListener('load', adjust);
+})();
+</script>
+
+<script>
+/* ===== 動画コンテンツの横スライド =====
+   準備中（.is-preparing）の間はボタンを無効のままにしておく。
+   公開時に .is-preparing を外せば、そのまま左右スライドとして動きます。 */
+(function(){
+  var track = document.getElementById('ytTrack');
+  if(!track) return;
+  var sec  = track.closest('.cs-box');
+  var btns = document.querySelectorAll('[data-yt]');
+  if(!sec || !btns.length) return;
+
+  function step(){
+    var card = track.querySelector('.yt-card');
+    if(!card) return track.clientWidth;
+    var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+    return card.getBoundingClientRect().width + gap;
+  }
+  function refresh(){
+    if(sec.classList.contains('is-preparing')){
+      btns.forEach(function(b){ b.disabled = true; });
+      return;
+    }
+    var max = track.scrollWidth - track.clientWidth - 2;
+    btns.forEach(function(b){
+      b.disabled = b.dataset.yt === 'prev' ? track.scrollLeft <= 2
+                                           : track.scrollLeft >= max;
+    });
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      if(sec.classList.contains('is-preparing')) return;
+      track.scrollBy({ left: (b.dataset.yt === 'prev' ? -1 : 1) * step(), behavior:'smooth' });
+      /* 環境によっては scroll イベントが飛ばないことがあるため、
+         スムーススクロールの完了を待って明示的にボタンの状態を取り直す */
+      [120, 350, 700].forEach(function(ms){ setTimeout(refresh, ms); });
+    });
+  });
+  track.addEventListener('scroll', refresh, { passive:true });
+  window.addEventListener('resize', refresh);
+  refresh();
 })();
 </script>
 </body></html>
