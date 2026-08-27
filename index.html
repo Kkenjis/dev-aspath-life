@@ -948,9 +948,13 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .wf-tag{ display:inline-block; background:var(--sun); color:#fff; font-family:var(--font-head);
   font-weight:700; font-size:15px; padding:5px 20px; border-radius:999px; margin-bottom:12px; }
 .wf-list p{ font-size:15.5px; line-height:1.9; margin:0; }
+/* カード上部の飾りイラスト。文字を読まなくても内容が伝わるようにする補助。
+   意味は本文が担うので alt="" の装飾扱い。 */
+.wf-ill{ display:block; width:86px; height:86px; margin:0 auto 10px; }
 @media (max-width:760px){
   .wf-list{ grid-template-columns:1fr; gap:12px; }
   .wf-list li{ padding:18px 16px; }
+  .wf-ill{ width:74px; height:74px; margin-bottom:8px; }
 }
 
 /* ── サービス紹介の手前に置く申し込み導線 ────────────────── */
@@ -983,10 +987,14 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .voice-card::before{ content:"“"; position:absolute; top:6px; left:18px;
   font-family:var(--font-head); font-size:52px; line-height:1; color:var(--gold-soft); }
 .voice-text{ font-size:16px; line-height:2.0; margin:0 0 14px; position:relative; z-index:1; }
+.voice-foot{ display:flex; align-items:center; justify-content:flex-end; gap:11px; }
+.voice-avatar{ width:52px; height:52px; border-radius:50%; flex:0 0 auto;
+  border:2px solid var(--gold-soft); background:var(--paper); }
 .voice-who{ font-size:14.5px; color:var(--gold-deep); font-weight:700; margin:0; text-align:right; }
 @media (max-width:760px){
   .voice-list{ grid-template-columns:1fr; gap:14px; }
   .voice-card{ padding:22px 20px 18px; }
+  .voice-avatar{ width:46px; height:46px; }
   .voice-text{ font-size:15.5px; }
 }
 .footer-banner{ display:block; margin-top:22px; max-width:440px; border-radius:10px;
@@ -1550,14 +1558,17 @@ table{ max-width:100%; }
           <p class="wf-head" data-en="Continuing training brings changes like these.">トレーニングを続けると、<span class="nw">こんな変化</span>が生まれます</p>
           <ul class="wf-list">
             <li>
+              <img class="wf-ill" src="images/ill-future-walk.svg" alt="" width="86" height="86" loading="lazy" decoding="async">
               <span class="wf-tag" data-en="Walking">歩き</span>
               <p data-en="Walking became easier, and I could go shopping again—something I had given up on.">歩きやすくなって、諦めていた買い物に行けるようになった。</p>
             </li>
             <li>
+              <img class="wf-ill" src="images/ill-future-posture.svg" alt="" width="86" height="86" loading="lazy" decoding="async">
               <span class="wf-tag" data-en="Posture">姿勢</span>
               <p data-en="My leaning posture improved, and I feel steadier when standing.">傾いていた姿勢が良くなって、立つときの安定感が増した。</p>
             </li>
             <li>
+              <img class="wf-ill" src="images/ill-future-exercise.svg" alt="" width="86" height="86" loading="lazy" decoding="async">
               <span class="wf-tag" data-en="Exercise">運動</span>
               <p data-en="With exercise suited to me, I felt the effects and enjoy moving again.">自分に合った運動で効果を感じ、動くのが楽しくなった。</p>
             </li>
@@ -1679,19 +1690,31 @@ table{ max-width:100%; }
       <ul class="voice-list">
         <li class="voice-card reveal">
           <p class="voice-text" data-en="&quot;My leaning posture improved, and now I can walk upright.&quot;">「傾いていた姿勢が良くなって、<br class="br-sp">まっすぐ歩けるようになりました。」</p>
-          <p class="voice-who" data-en="Woman in her 60s">60代・女性</p>
+          <div class="voice-foot">
+            <img class="voice-avatar" src="images/ill-voice-w60.svg" alt="" width="52" height="52" loading="lazy" decoding="async">
+            <p class="voice-who" data-en="Woman in her 60s">60代・女性</p>
+          </div>
         </li>
         <li class="voice-card reveal d1">
           <p class="voice-text" data-en="&quot;Even with an intractable illness, I saw hope that exercise could slow its progression.&quot;">「難病でも、運動で進行を遅らせられることに<br class="br-sp">希望が見えました。」</p>
-          <p class="voice-who" data-en="Man in his 40s">40代・男性</p>
+          <div class="voice-foot">
+            <img class="voice-avatar" src="images/ill-voice-m40.svg" alt="" width="52" height="52" loading="lazy" decoding="async">
+            <p class="voice-who" data-en="Man in his 40s">40代・男性</p>
+          </div>
         </li>
         <li class="voice-card reveal d2">
           <p class="voice-text" data-en="&quot;Thanks to the trainer&#39;s bright personality, I can keep going and enjoy it.&quot;">「トレーナーの明るい人柄のおかげで<br class="br-sp">楽しく続けられます。」</p>
-          <p class="voice-who" data-en="Woman in her 70s">70代・女性</p>
+          <div class="voice-foot">
+            <img class="voice-avatar" src="images/ill-voice-w70.svg" alt="" width="52" height="52" loading="lazy" decoding="async">
+            <p class="voice-who" data-en="Woman in her 70s">70代・女性</p>
+          </div>
         </li>
         <li class="voice-card reveal d3">
           <p class="voice-text" data-en="&quot;I used to dislike exercise, but lately I enjoy moving my body.&quot;">「運動が苦手でしたが、<br class="br-sp">最近では体を動かすことが楽しいです。」</p>
-          <p class="voice-who" data-en="Woman in her 60s">60代・女性</p>
+          <div class="voice-foot">
+            <img class="voice-avatar" src="images/ill-voice-w60b.svg" alt="" width="52" height="52" loading="lazy" decoding="async">
+            <p class="voice-who" data-en="Woman in her 60s">60代・女性</p>
+          </div>
         </li>
       </ul>
     </div>
