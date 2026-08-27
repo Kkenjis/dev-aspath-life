@@ -951,16 +951,28 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 /* 02は図版だけ右に置き、本文は01・03と同じ左揃えのまま揃える（右端寄りを避ける） */
 .wf-step.is-rev .wf-fig{ order:2; }
 .wf-step.is-rev .wf-body{ order:1; }
-.wf-fig{ border-radius:18px; overflow:hidden; background:var(--paper);
-  box-shadow:0 10px 28px rgba(38,70,83,.10); border:1px solid var(--gold-soft); }
-.wf-fig img{ width:100%; height:auto; display:block; }
+/* 図版は「ただ置いた四角い画像」に見えないよう、
+   ①上部をアーチ型に抜く ②背面にずらした紙のレイヤーを敷く
+   ③タグを丸バッジにして絵に重ねる — の3点で立体感を出している。 */
+.wf-fig{ position:relative; }
+.wf-fig::before{ content:""; position:absolute; z-index:0;
+  top:22px; left:-16px; right:16px; bottom:-16px;
+  background:var(--gold-soft); border-radius:118px 118px 20px 20px; }
+.wf-fig img{ position:relative; z-index:1; width:100%; height:auto; display:block;
+  border-radius:118px 118px 20px 20px;
+  box-shadow:0 14px 34px rgba(38,70,83,.16); }
+.wf-badge{ position:absolute; z-index:2; right:-18px; bottom:34px;
+  width:86px; height:86px; border-radius:50%; background:var(--sun); color:#fff;
+  display:grid; place-items:center; text-align:center;
+  font-family:var(--font-head); font-weight:700; font-size:19px; letter-spacing:.06em;
+  border:4px solid var(--paper); box-shadow:0 8px 20px rgba(244,162,97,.45); }
+.wf-step.is-rev .wf-fig::before{ left:16px; right:-16px; }
+.wf-step.is-rev .wf-badge{ right:auto; left:-18px; }
 /* PCでは本文を折り返さず一文で見せたいので幅の制限は掛けない。
    スマホでは画面幅に合わせて自然に折り返る（下の760px以下の指定を参照）。 */
 .wf-body{ min-width:0; text-align:left; }
 .wf-num{ font-family:var(--font-head); font-weight:700; font-size:46px; line-height:1;
-  color:var(--sun); opacity:.35; margin:0 0 6px; letter-spacing:.02em; }
-.wf-tag{ display:inline-block; background:var(--sun); color:#fff; font-family:var(--font-head);
-  font-weight:700; font-size:15px; padding:5px 20px; border-radius:999px; margin-bottom:12px; }
+  color:var(--sun); opacity:.35; margin:0 0 10px; letter-spacing:.02em; }
 .wf-lead{ font-family:var(--font-head); font-weight:700; color:var(--brown);
   font-size:clamp(19px,2.4vw,26px); line-height:1.5; margin:0 0 12px; }
 .wf-txt{ font-size:16.5px; line-height:1.95; margin:0 0 10px; }
@@ -986,7 +998,12 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
   .wf-step, .wf-step.is-rev{ grid-template-columns:1fr; gap:16px; margin-bottom:30px; }
   .wf-step.is-rev .wf-fig{ order:0; }  /* スマホは図版を上に */
   .wf-fig{ max-width:220px; margin:0 auto; }
-  .wf-num{ font-size:38px; margin-bottom:4px; }
+  .wf-num{ font-size:38px; margin-bottom:8px; }
+  .wf-fig::before{ top:16px; left:-10px; right:10px; bottom:-10px; border-radius:98px 98px 16px 16px; }
+  .wf-fig img{ border-radius:98px 98px 16px 16px; }
+  .wf-badge{ width:66px; height:66px; font-size:16px; right:-10px; bottom:22px; border-width:3px; }
+  .wf-step.is-rev .wf-fig::before{ left:-10px; right:10px; }
+  .wf-step.is-rev .wf-badge{ left:auto; right:-10px; }
   .wf-lead{ font-size:19px; }
   .wf-txt{ font-size:15.5px; }
   .wf-sub{ font-size:14.5px; margin-bottom:12px; }
@@ -1694,11 +1711,11 @@ table{ max-width:100%; }
           <li class="wf-step">
             <div class="wf-fig">
               <img src="images/future-aruki.webp" alt="鹿児島の海辺を旅行する高齢のご夫婦、孫と散歩する様子、友人とお茶を楽しむ様子、そして笑顔で並んで歩くご夫婦のイラスト" width="348" height="640" loading="lazy" decoding="async">
+                <span class="wf-badge" aria-hidden="true"><span data-en="Walking">歩き</span></span>
             </div>
             <div class="wf-body">
               <p class="wf-num" aria-hidden="true">01</p>
-              <span class="wf-tag" data-en="Walking">歩き</span>
-              <h3 class="wf-lead" data-en="Going out on your own feet again">また、自分の足で出かけられる</h3>
+                            <h3 class="wf-lead" data-en="Going out on your own feet again">また、自分の足で出かけられる</h3>
               <p class="wf-txt">歩きやすくなって、諦めていた買い物に行けるようになった。</p>
               <p class="wf-sub" data-en="Seaside trips, walks with grandchildren, tea with friends — the places you can go keep growing.">海辺の旅行、孫との散歩、友人とのお茶。行き先が増えていきます。</p>
               <ul class="wf-pts">
@@ -1711,11 +1728,11 @@ table{ max-width:100%; }
           <li class="wf-step is-rev">
             <div class="wf-fig">
               <img src="images/future-shisei.webp" alt="背すじがまっすぐ伸びた状態で堂々と立つ男性と、横から・後ろから見た姿勢の変化を示すイラスト" width="348" height="640" loading="lazy" decoding="async">
+                <span class="wf-badge" aria-hidden="true"><span data-en="Posture">姿勢</span></span>
             </div>
             <div class="wf-body">
               <p class="wf-num" aria-hidden="true">02</p>
-              <span class="wf-tag" data-en="Posture">姿勢</span>
-              <h3 class="wf-lead" data-en="Standing tall, steady on your feet">まっすぐ立てる、その安定感</h3>
+                            <h3 class="wf-lead" data-en="Standing tall, steady on your feet">まっすぐ立てる、その安定感</h3>
               <p class="wf-txt">傾いていた姿勢が良くなって、立つときの安定感が増した。</p>
               <p class="wf-sub" data-en="When your body is aligned, standing, sitting and turning all become easier.">体の軸が整うと、立つ・座る・振り向くといった毎日の動作が楽になります。</p>
               <ul class="wf-pts">
@@ -1728,11 +1745,11 @@ table{ max-width:100%; }
           <li class="wf-step">
             <div class="wf-fig">
               <img src="images/future-undou.webp" alt="オレンジのポロシャツを着たアスパスのトレーナーが寄り添いながら、椅子スクワットやダンベル、ストレッチに取り組む方々のイラスト" width="348" height="640" loading="lazy" decoding="async">
+                <span class="wf-badge" aria-hidden="true"><span data-en="Exercise">運動</span></span>
             </div>
             <div class="wf-body">
               <p class="wf-num" aria-hidden="true">03</p>
-              <span class="wf-tag" data-en="Exercise">運動</span>
-              <h3 class="wf-lead" data-en="Moving your body becomes a pleasure">動くことが、楽しくなる</h3>
+                            <h3 class="wf-lead" data-en="Moving your body becomes a pleasure">動くことが、楽しくなる</h3>
               <p class="wf-txt">自分に合った運動で効果を感じ、動くのが楽しくなった。</p>
               <p class="wf-sub" data-en="ASPATH trainers adjust each session to how you feel that day.">アスパスのトレーナーが、その日の体調に合わせて内容を調整します。</p>
               <ul class="wf-pts">
