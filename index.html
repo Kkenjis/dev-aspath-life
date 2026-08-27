@@ -1113,17 +1113,20 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 @media (max-width:760px){
   .cs-band{ padding-top:40px; padding-bottom:46px; }
   .cs-track{ gap:16px; }
-  .cs-badge{ padding:22px 24px; }
+  .cs-badge{ padding:20px 18px; max-width:calc(100% - 28px); }
   .cs-note{ font-size:13.5px; }
   .cs-btn{ width:42px; height:42px; font-size:20px; }
   .cs-nav{ margin-top:16px; }
   .yt-track{ grid-auto-columns:82%; }
   .yt-title{ font-size:15px; }
-  /* 幅が狭いと Before/After の2枚が潰れるので縦積みにし、矢印を下向きに */
-  .ba-pair{ grid-template-columns:1fr; gap:12px; }
-  .ba-arrow{ margin:0 auto; transform:rotate(90deg); width:46px; height:46px; font-size:22px; }
-  .ba-slot{ aspect-ratio:4/3; }
-  .ba-note{ gap:2px 10px; margin-top:10px; }
+  /* Before/After はスマホでも左右に並べたまま。縦積みにすると帯が1000pxを超えて
+     1画面に収まらなくなるため、写真を縦長(3:4)にして矢印を小さくして収める。 */
+  .ba-pair{ grid-template-columns:1fr auto 1fr; gap:8px; }
+  .ba-arrow{ width:32px; height:32px; font-size:17px; box-shadow:0 4px 10px rgba(244,162,97,.35); }
+  .ba-slot{ aspect-ratio:3/4; }
+  .ba-cap{ font-size:12.5px; padding:3px 0; margin-bottom:6px; }
+  .slot{ font-size:11px; }
+  .ba-note{ gap:2px 10px; margin-top:12px; }
   .ba-txt{ font-size:15px; }
 }
 
