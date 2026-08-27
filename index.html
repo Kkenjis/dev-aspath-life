@@ -948,9 +948,9 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
   position:relative; z-index:1; margin-bottom:34px; }
 .wf-step:last-child{ margin-bottom:0; }
 .wf-step.is-rev{ grid-template-columns:1fr 250px; }
+/* 02は図版だけ右に置き、本文は01・03と同じ左揃えのまま揃える（右端寄りを避ける） */
 .wf-step.is-rev .wf-fig{ order:2; }
-.wf-step.is-rev .wf-body{ order:1; text-align:right; }
-.wf-step.is-rev .wf-body .wf-tag{ margin-left:auto; }
+.wf-step.is-rev .wf-body{ order:1; }
 .wf-fig{ border-radius:18px; overflow:hidden; background:var(--paper);
   box-shadow:0 10px 28px rgba(38,70,83,.10); border:1px solid var(--gold-soft); }
 .wf-fig img{ width:100%; height:auto; display:block; }
@@ -967,7 +967,6 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .wf-sub{ font-size:15px; line-height:1.9; color:var(--gold-deep); margin:0 0 16px; }
 /* 具体的な場面。図版が縦長なので、本文側もこのリストで高さを揃えて釣り合わせている。 */
 .wf-pts{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px 10px; }
-.wf-step.is-rev .wf-pts{ justify-content:flex-end; }
 .wf-pts li{ display:flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--gold-soft);
   border-radius:999px; padding:7px 15px 7px 12px; font-size:14.5px; color:var(--brown); }
 .wf-pts li::before{ content:""; flex:0 0 auto; width:6px; height:11px; margin-top:-3px;
@@ -985,16 +984,13 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
   .worry-future{ margin-top:28px; }
   .wf-head{ margin-bottom:24px; }
   .wf-step, .wf-step.is-rev{ grid-template-columns:1fr; gap:16px; margin-bottom:30px; }
-  .wf-step.is-rev .wf-fig{ order:0; }
-  .wf-step.is-rev .wf-body{ order:0; text-align:left; }
-  .wf-step.is-rev .wf-body .wf-tag{ margin-left:0; }
+  .wf-step.is-rev .wf-fig{ order:0; }  /* スマホは図版を上に */
   .wf-fig{ max-width:220px; margin:0 auto; }
   .wf-num{ font-size:38px; margin-bottom:4px; }
   .wf-lead{ font-size:19px; }
   .wf-txt{ font-size:15.5px; }
   .wf-sub{ font-size:14.5px; margin-bottom:12px; }
   .wf-pts{ gap:7px 8px; }
-  .wf-step.is-rev .wf-pts{ justify-content:flex-start; }
   .wf-pts li{ font-size:13.5px; padding:6px 13px 6px 10px; }
 }
 
