@@ -939,26 +939,24 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
    外部サイト（mosh.jp）へのご案内。文章のすぐ下に置く。 */
 /* ── お悩みの先にある「得られる未来」──────────────────────
    「ASPATHが選ばれる3つの理由」のような、01→02→03 と読み進める物語型。
-   図版と本文を交互に左右入れ替え、左端の縦線で3ステップをつなぐ。 */
-.worry-future{ max-width:1000px; margin:40px auto 0; }
+   図版と本文を交互に左右入れ替えて、視線を上から下へ運ぶ。 */
+.worry-future{ max-width:1060px; margin:40px auto 0; }
 .wf-head{ text-align:center; font-family:var(--font-head); font-weight:700;
   font-size:clamp(18px,2.3vw,23px); color:var(--brown); margin-bottom:34px; }
 .wf-list{ list-style:none; display:block; margin:0; padding:0; position:relative; }
-/* 3つのステップをつなぐ縦線（物語として続いていることを示す） */
-.wf-list::before{ content:""; position:absolute; left:50%; top:40px; bottom:40px; width:2px;
-  background:linear-gradient(180deg,transparent,var(--gold-soft) 12%,var(--gold-soft) 88%,transparent);
-  transform:translateX(-50%); z-index:0; }
 .wf-step{ display:grid; grid-template-columns:250px 1fr; gap:40px; align-items:center;
   position:relative; z-index:1; margin-bottom:34px; }
 .wf-step:last-child{ margin-bottom:0; }
 .wf-step.is-rev{ grid-template-columns:1fr 250px; }
 .wf-step.is-rev .wf-fig{ order:2; }
-.wf-step.is-rev .wf-body{ order:1; text-align:right; margin-left:auto; }
+.wf-step.is-rev .wf-body{ order:1; text-align:right; }
 .wf-step.is-rev .wf-body .wf-tag{ margin-left:auto; }
 .wf-fig{ border-radius:18px; overflow:hidden; background:var(--paper);
   box-shadow:0 10px 28px rgba(38,70,83,.10); border:1px solid var(--gold-soft); }
 .wf-fig img{ width:100%; height:auto; display:block; }
-.wf-body{ min-width:0; max-width:440px; text-align:left; }
+/* PCでは本文を折り返さず一文で見せたいので幅の制限は掛けない。
+   スマホでは画面幅に合わせて自然に折り返る（下の760px以下の指定を参照）。 */
+.wf-body{ min-width:0; text-align:left; }
 .wf-num{ font-family:var(--font-head); font-weight:700; font-size:46px; line-height:1;
   color:var(--sun); opacity:.35; margin:0 0 6px; letter-spacing:.02em; }
 .wf-tag{ display:inline-block; background:var(--sun); color:#fff; font-family:var(--font-head);
@@ -975,17 +973,20 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .wf-pts li::before{ content:""; flex:0 0 auto; width:6px; height:11px; margin-top:-3px;
   border:solid var(--sun); border-width:0 2.5px 2.5px 0; transform:rotate(45deg); }
 @media (max-width:860px){
-  .wf-step, .wf-step.is-rev{ grid-template-columns:210px 1fr; gap:24px; }
+  /* タブレット縦などの中間幅。本文を1行に保つため、図版と文字を少しだけ詰める */
+  .wf-step{ grid-template-columns:185px 1fr; gap:22px; }
+  .wf-step.is-rev{ grid-template-columns:1fr 185px; gap:22px; }
+  .wf-txt{ font-size:15.5px; }
+  .wf-sub{ font-size:14px; }
+  .wf-pts li{ font-size:13.5px; padding:6px 13px 6px 10px; }
 }
 @media (max-width:760px){
   /* スマホは縦積み。左右入れ替えは解除し、図版を上に置いて読み順を素直にする */
   .worry-future{ margin-top:28px; }
   .wf-head{ margin-bottom:24px; }
-  .wf-list::before{ display:none; }
   .wf-step, .wf-step.is-rev{ grid-template-columns:1fr; gap:16px; margin-bottom:30px; }
   .wf-step.is-rev .wf-fig{ order:0; }
-  .wf-step.is-rev .wf-body{ order:0; text-align:left; margin-left:0; }
-  .wf-body{ max-width:none; }
+  .wf-step.is-rev .wf-body{ order:0; text-align:left; }
   .wf-step.is-rev .wf-body .wf-tag{ margin-left:0; }
   .wf-fig{ max-width:220px; margin:0 auto; }
   .wf-num{ font-size:38px; margin-bottom:4px; }
