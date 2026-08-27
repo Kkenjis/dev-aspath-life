@@ -617,6 +617,12 @@ body.drawer-open{ overflow:hidden; }
 .line-hero .btn-line-white{ display:inline-flex; align-items:center; justify-content:center; gap:15px; background:#fff; color:#06C755;
   font-family:var(--font-head); font-weight:700; font-size:clamp(20px,3.4vw,28px); padding:clamp(18px,2.6vw,24px) clamp(38px,5.6vw,63px); border-radius:999px; text-decoration:none; max-width:100%;
   box-shadow:0 6px 16px rgba(0,0,0,.18); transition:transform .2s ease, box-shadow .2s ease; }
+/* LINEを使われない方向けの、申し込みフォームへの直行リンク */
+.line-hero-alt{ text-align:center; margin:14px 0 0; font-size:15.5px; }
+.line-hero-alt a{ color:var(--gold-deep); font-weight:700; text-decoration:underline;
+  text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:4px; }
+.line-hero-alt a:hover{ color:var(--sun); }
+.line-hero-alt .arw{ display:inline-block; margin-left:6px; }
 .line-hero .btn-line-white:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(0,0,0,.24); }
 .line-hero .btn-line-white svg{ width:1.25em; height:1.25em; }
 .line-hero .lh-sub{ color:rgba(255,255,255,.92); font-size:18.5px; margin-top:14px; }
@@ -1204,6 +1210,7 @@ table{ max-width:100%; }
         <a class="btn-line-white" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Ask on LINE"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg>LINEで相談する</a>
         <p class="lh-sub" data-en-html="We also share helpful tips!">お役立ち情報も発信中</p>
       </div>
+      <p class="line-hero-alt"><a href="https://aspath-life.com/taiken-2026as9y/" data-en="Not using LINE? You can apply directly here.">LINEを使われない方は、<span class="nw">こちらから直接お申し込み</span>いただけます<span class="arw">→</span></a></p>
 
       <div class="contact-tel" id="contact-tel">
         <p class="ct-label" data-en="By phone">お電話でのお問い合わせ</p>
@@ -1245,7 +1252,8 @@ table{ max-width:100%; }
       </div>
 
       <div id="trial-line" class="reveal">
-        <p class="trial-line-msg" data-en-html="All enquiries and applications are handled through our official LINE.&lt;br&gt;Add us as a friend and send a message.">ご相談・お申し込みは、すべて<strong><span class="nw">公式LINE</span></strong>から承っています。<br class="br-pc">お友だち登録のうえ、メッセージをお送りください。</p>
+        <p class="trial-line-msg" data-en-html="Apply from the form below.&lt;br&gt;You can also add us on official LINE and send a message.">お申し込みは、下の<strong>お申し込みフォーム</strong>から承っています。<br class="br-pc"><span class="nw">公式LINE</span>のお友だち登録からご連絡いただくことも可能です。</p>
+        <a class="btn btn-form big" style="margin-bottom:14px;" href="https://aspath-life.com/taiken-2026as9y/" data-en="Apply for a first session"><span class="nw">初回体験を申し込む</span></a>
         <a class="btn btn-line big trial-line-btn" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span class="nw">公式LINE</span>に登録する</a>
         <p class="trial-line-note" data-en="After adding us, we will send the application form (a private URL) and arrange a date via LINE.">友だち登録後、<span class="nw">初回体験</span>のお申し込みフォーム（<span class="nw">専用URL</span>）のご案内と、<br class="br-pc">日程調整を<span class="nw">LINE</span>でスムーズに行います。</p>
       </div>
