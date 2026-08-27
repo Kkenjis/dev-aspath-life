@@ -1284,13 +1284,10 @@ get_header(); ?>
         <h3>まずは一度、お話を聞かせてください</h3>
         <p><span class="nw">初回体験</span>は期間限定 半額<span class="nw">4,400円</span>。<span class="nw">パーキンソン病</span>専門の<span class="nw">理学療法士</span>が、<br class="br-pc">あなたの状態と目標を丁寧に伺います。</p>
         <?php
-          /* 2026-08-28 変更：初回体験の申し込みフォームが復活したため、
-             LINEボタン1本から「申し込みフォーム」＋「公式LINE」の2本立てに戻した。
-             地域柄LINEを使われないお客様がいるため、フォームを先（左）に置いている。
-             リンク先のスラッグ taiken-2026as9y は変更しないこと（変えると申込が届かない）。 */
+          /* お問い合わせページはフォームを置かず公式LINE案内のみの設計なので、
+             「フォームで問い合わせる」を挟むと遠回りになる。LINEボタン1本に統一。 */
         ?>
-        <div class="cta-row">
-          <a class="btn btn-form" href="<?php echo esc_url( home_url('/taiken-2026as9y/') ); ?>"><span class="nw">初回体験を申し込む</span></a>
+        <div class="cta-row cta-row--single">
           <a class="btn btn-line btn-line--wide" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span class="nw">公式LINE</span>に登録する</a>
         </div>
         <p class="cta-note">ご登録後、トークにメッセージをお送りください。<br class="br-sp">スタンプ一つでも構いません。</p>
