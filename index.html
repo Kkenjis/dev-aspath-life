@@ -449,7 +449,9 @@ body.drawer-open{ overflow:hidden; }
 .hero-spec .sep{ color:rgba(255,255,255,.7); margin:0 .35em; font-weight:400; }
 .hero-div{ height:2px; width:70px; background:#F4A261; border:0; margin:24px 0 20px; }
 .hero-copy2{ font-family:var(--font-head); font-weight:600; color:#FFFFFF;
-  font-size:clamp(13px,1.7vw,18px); line-height:1.85; text-shadow:0 2px 12px rgba(0,0,0,.5); }
+  /* 「パーキンソン病専門トレーニングスタジオ」(.hero-spec = clamp(13px,3.15vw,27px)) に
+     近づけつつ、常にひと回り小さく見えるよう 2.45vw / 上限22px に抑えている。 */
+  font-size:clamp(13px,2.45vw,22px); line-height:1.75; text-shadow:0 2px 12px rgba(0,0,0,.5); }
 .hero-copy2 .accent{ color:#F6D9AC; }
 /* スマホ・小型タブレット：何のお店かを最優先で見せる（キャッチコピーより大きく） */
 @media(max-width:760px){
@@ -457,7 +459,7 @@ body.drawer-open{ overflow:hidden; }
     font-weight:900 !important; color:#FFFFFF; margin-top:14px; text-shadow:0 2px 14px rgba(0,0,0,.55); }
   .hero-spec .loc, .hero-spec .hl{ font-weight:900; color:#FFFFFF; }
   .hero-spec .sep{ margin:0 .2em; }
-  .hero-copy2{ font-size:clamp(12.5px,3.1vw,14.5px) !important; line-height:1.8; letter-spacing:.02em;
+  .hero-copy2{ font-size:clamp(13px,3.9vw,17px) !important; line-height:1.8; letter-spacing:.02em;
     font-weight:500 !important; opacity:.9; margin-top:12px; }
 }
 /* SCROLLインジケーター */
@@ -987,7 +989,7 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
   .voice-card{ padding:22px 20px 18px; }
   .voice-text{ font-size:15.5px; }
 }
-.footer-banner{ display:block; margin-top:20px; max-width:360px; border-radius:10px;
+.footer-banner{ display:block; margin-top:22px; max-width:440px; border-radius:10px;
   overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.22);
   transition:transform .25s ease, box-shadow .25s ease; }
 .footer-banner img{ width:100%; height:auto; display:block; }
