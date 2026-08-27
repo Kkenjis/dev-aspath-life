@@ -938,23 +938,63 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 /* ── フッターのオンラインサロン用バナー ──
    外部サイト（mosh.jp）へのご案内。文章のすぐ下に置く。 */
 /* ── お悩みの先にある「得られる未来」──────────────────────
-   悩みだけで終わらせず、その先に何が待っているかを3つで示す。 */
-.worry-future{ max-width:900px; margin:34px auto 0; }
+   「ASPATHが選ばれる3つの理由」のような、01→02→03 と読み進める物語型。
+   図版と本文を交互に左右入れ替え、左端の縦線で3ステップをつなぐ。 */
+.worry-future{ max-width:1000px; margin:40px auto 0; }
 .wf-head{ text-align:center; font-family:var(--font-head); font-weight:700;
-  font-size:clamp(17px,2.1vw,21px); color:var(--brown); margin-bottom:20px; }
-.wf-list{ list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.wf-list li{ background:#fff; border-radius:16px; padding:24px 20px 22px; text-align:center;
-  box-shadow:0 8px 22px rgba(38,70,83,.07); border:1px solid var(--gold-soft); }
+  font-size:clamp(18px,2.3vw,23px); color:var(--brown); margin-bottom:34px; }
+.wf-list{ list-style:none; display:block; margin:0; padding:0; position:relative; }
+/* 3つのステップをつなぐ縦線（物語として続いていることを示す） */
+.wf-list::before{ content:""; position:absolute; left:50%; top:40px; bottom:40px; width:2px;
+  background:linear-gradient(180deg,transparent,var(--gold-soft) 12%,var(--gold-soft) 88%,transparent);
+  transform:translateX(-50%); z-index:0; }
+.wf-step{ display:grid; grid-template-columns:250px 1fr; gap:40px; align-items:center;
+  position:relative; z-index:1; margin-bottom:34px; }
+.wf-step:last-child{ margin-bottom:0; }
+.wf-step.is-rev{ grid-template-columns:1fr 250px; }
+.wf-step.is-rev .wf-fig{ order:2; }
+.wf-step.is-rev .wf-body{ order:1; text-align:right; margin-left:auto; }
+.wf-step.is-rev .wf-body .wf-tag{ margin-left:auto; }
+.wf-fig{ border-radius:18px; overflow:hidden; background:var(--paper);
+  box-shadow:0 10px 28px rgba(38,70,83,.10); border:1px solid var(--gold-soft); }
+.wf-fig img{ width:100%; height:auto; display:block; }
+.wf-body{ min-width:0; max-width:440px; text-align:left; }
+.wf-num{ font-family:var(--font-head); font-weight:700; font-size:46px; line-height:1;
+  color:var(--sun); opacity:.35; margin:0 0 6px; letter-spacing:.02em; }
 .wf-tag{ display:inline-block; background:var(--sun); color:#fff; font-family:var(--font-head);
   font-weight:700; font-size:15px; padding:5px 20px; border-radius:999px; margin-bottom:12px; }
-.wf-list p{ font-size:15.5px; line-height:1.9; margin:0; }
-/* カード上部の飾りイラスト。文字を読まなくても内容が伝わるようにする補助。
-   意味は本文が担うので alt="" の装飾扱い。 */
-.wf-ill{ display:block; width:86px; height:86px; margin:0 auto 10px; }
+.wf-lead{ font-family:var(--font-head); font-weight:700; color:var(--brown);
+  font-size:clamp(19px,2.4vw,26px); line-height:1.5; margin:0 0 12px; }
+.wf-txt{ font-size:16.5px; line-height:1.95; margin:0 0 10px; }
+.wf-sub{ font-size:15px; line-height:1.9; color:var(--gold-deep); margin:0 0 16px; }
+/* 具体的な場面。図版が縦長なので、本文側もこのリストで高さを揃えて釣り合わせている。 */
+.wf-pts{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px 10px; }
+.wf-step.is-rev .wf-pts{ justify-content:flex-end; }
+.wf-pts li{ display:flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--gold-soft);
+  border-radius:999px; padding:7px 15px 7px 12px; font-size:14.5px; color:var(--brown); }
+.wf-pts li::before{ content:""; flex:0 0 auto; width:6px; height:11px; margin-top:-3px;
+  border:solid var(--sun); border-width:0 2.5px 2.5px 0; transform:rotate(45deg); }
+@media (max-width:860px){
+  .wf-step, .wf-step.is-rev{ grid-template-columns:210px 1fr; gap:24px; }
+}
 @media (max-width:760px){
-  .wf-list{ grid-template-columns:1fr; gap:12px; }
-  .wf-list li{ padding:18px 16px; }
-  .wf-ill{ width:74px; height:74px; margin-bottom:8px; }
+  /* スマホは縦積み。左右入れ替えは解除し、図版を上に置いて読み順を素直にする */
+  .worry-future{ margin-top:28px; }
+  .wf-head{ margin-bottom:24px; }
+  .wf-list::before{ display:none; }
+  .wf-step, .wf-step.is-rev{ grid-template-columns:1fr; gap:16px; margin-bottom:30px; }
+  .wf-step.is-rev .wf-fig{ order:0; }
+  .wf-step.is-rev .wf-body{ order:0; text-align:left; margin-left:0; }
+  .wf-body{ max-width:none; }
+  .wf-step.is-rev .wf-body .wf-tag{ margin-left:0; }
+  .wf-fig{ max-width:220px; margin:0 auto; }
+  .wf-num{ font-size:38px; margin-bottom:4px; }
+  .wf-lead{ font-size:19px; }
+  .wf-txt{ font-size:15.5px; }
+  .wf-sub{ font-size:14.5px; margin-bottom:12px; }
+  .wf-pts{ gap:7px 8px; }
+  .wf-step.is-rev .wf-pts{ justify-content:flex-start; }
+  .wf-pts li{ font-size:13.5px; padding:6px 13px 6px 10px; }
 }
 
 /* ── サービス紹介の手前に置く申し込み導線 ────────────────── */
@@ -1553,26 +1593,62 @@ table{ max-width:100%; }
         <span class="nw">アスパス</span>のトレーニングでこれらのお悩みを解消し、<br class="br-pc">自分らしく過ごせるようにしましょう。
       </p>
 
-        <!-- お悩みの先にある「得られる未来」を3つで示す -->
+        <!-- お悩みの先にある「得られる未来」を、01→02→03 の物語として見せる -->
         <div class="worry-future reveal">
           <p class="wf-head" data-en="Continuing training brings changes like these.">トレーニングを続けると、<span class="nw">こんな変化</span>が生まれます</p>
-          <ul class="wf-list">
-            <li>
-              <img class="wf-ill" src="images/ill-future-walk.svg" alt="" width="86" height="86" loading="lazy" decoding="async">
-              <span class="wf-tag" data-en="Walking">歩き</span>
-              <p data-en="Walking became easier, and I could go shopping again—something I had given up on.">歩きやすくなって、諦めていた買い物に行けるようになった。</p>
+          <ol class="wf-list">
+            <li class="wf-step">
+              <div class="wf-fig">
+                <img src="images/future-aruki.webp" alt="鹿児島の海辺を旅行する高齢のご夫婦、孫と散歩する様子、友人とお茶を楽しむ様子、そして笑顔で並んで歩くご夫婦のイラスト" width="348" height="640" loading="lazy" decoding="async">
+              </div>
+              <div class="wf-body">
+                <p class="wf-num" aria-hidden="true">01</p>
+                <span class="wf-tag" data-en="Walking">歩き</span>
+                <h3 class="wf-lead" data-en="Going out on your own feet again">また、自分の足で出かけられる</h3>
+                <p class="wf-txt">歩きやすくなって、諦めていた買い物に行けるようになった。</p>
+                <p class="wf-sub" data-en="Seaside trips, walks with grandchildren, tea with friends — the places you can go keep growing.">海辺の旅行、孫との散歩、友人とのお茶。行き先が増えていきます。</p>
+                <ul class="wf-pts">
+                  <li data-en="Trips to the sea">海辺へ出かける</li>
+                  <li data-en="Walking hand in hand with grandchildren">孫と手をつないで歩く</li>
+                  <li data-en="Tea with friends">友人とお茶を楽しむ</li>
+                </ul>
+              </div>
             </li>
-            <li>
-              <img class="wf-ill" src="images/ill-future-posture.svg" alt="" width="86" height="86" loading="lazy" decoding="async">
-              <span class="wf-tag" data-en="Posture">姿勢</span>
-              <p data-en="My leaning posture improved, and I feel steadier when standing.">傾いていた姿勢が良くなって、立つときの安定感が増した。</p>
+            <li class="wf-step is-rev">
+              <div class="wf-fig">
+                <img src="images/future-shisei.webp" alt="背すじがまっすぐ伸びた状態で堂々と立つ男性と、横から・後ろから見た姿勢の変化を示すイラスト" width="348" height="640" loading="lazy" decoding="async">
+              </div>
+              <div class="wf-body">
+                <p class="wf-num" aria-hidden="true">02</p>
+                <span class="wf-tag" data-en="Posture">姿勢</span>
+                <h3 class="wf-lead" data-en="Standing tall, steady on your feet">まっすぐ立てる、その安定感</h3>
+                <p class="wf-txt">傾いていた姿勢が良くなって、立つときの安定感が増した。</p>
+                <p class="wf-sub" data-en="When your body is aligned, standing, sitting and turning all become easier.">体の軸が整うと、立つ・座る・振り向くといった毎日の動作が楽になります。</p>
+                <ul class="wf-pts">
+                  <li data-en="Standing up feels steady">立ち上がる動作が安定する</li>
+                  <li data-en="Less tired when standing a while">長く立っていても疲れにくい</li>
+                  <li data-en="A more upright impression">見た目の印象が変わる</li>
+                </ul>
+              </div>
             </li>
-            <li>
-              <img class="wf-ill" src="images/ill-future-exercise.svg" alt="" width="86" height="86" loading="lazy" decoding="async">
-              <span class="wf-tag" data-en="Exercise">運動</span>
-              <p data-en="With exercise suited to me, I felt the effects and enjoy moving again.">自分に合った運動で効果を感じ、動くのが楽しくなった。</p>
+            <li class="wf-step">
+              <div class="wf-fig">
+                <img src="images/future-undou.webp" alt="オレンジのポロシャツを着たアスパスのトレーナーが寄り添いながら、椅子スクワットやダンベル、ストレッチに取り組む方々のイラスト" width="348" height="640" loading="lazy" decoding="async">
+              </div>
+              <div class="wf-body">
+                <p class="wf-num" aria-hidden="true">03</p>
+                <span class="wf-tag" data-en="Exercise">運動</span>
+                <h3 class="wf-lead" data-en="Moving your body becomes a pleasure">動くことが、楽しくなる</h3>
+                <p class="wf-txt">自分に合った運動で効果を感じ、動くのが楽しくなった。</p>
+                <p class="wf-sub" data-en="ASPATH trainers adjust each session to how you feel that day.">アスパスのトレーナーが、その日の体調に合わせて内容を調整します。</p>
+                <ul class="wf-pts">
+                  <li data-en="Adjusted to how you feel">その日の体調に合わせて調整</li>
+                  <li data-en="Can be done seated">椅子に座ったままでもできる</li>
+                  <li data-en="A trainer stays beside you">トレーナーがそばで見守る</li>
+                </ul>
+              </div>
             </li>
-          </ul>
+          </ol>
         </div>
     </div>
   </section>
