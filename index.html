@@ -1035,75 +1035,96 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
   .voice-text{ font-size:15.5px; }
 }
 /* ── Before / After ＆ 動画コンテンツ（現在は準備中）────────────────
+   メッセージ帯（不安を希望に変え…）と同じ「画面幅いっぱい・高さ520px前後」の
+   サイズ感に合わせた帯。中身が決まるまでは半透明で覆い Coming Soon を出す。
+
    ■ 公開するときの手順（開発者向け）
-     1. .is-preparing クラスを外す
+     1. .cs-box から is-preparing クラスを外す
      2. <div class="cs-veil"> ... </div> のブロックごと削除する
      3. .ba-slot / .yt-slot の中身を、実際の画像・YouTubeの埋め込みに差し替える
    この2つを消すだけで、下の枠組みがそのまま本番として動きます。 */
 
-/* 準備中の覆い（半透明＋すりガラス）。見出しは覆わず、中身だけを隠す */
+.cs-band{ padding-top:44px; padding-bottom:50px; }
+.cs-band .sec-head{ margin-bottom:20px; }
+
+/* 準備中の覆い。見出しは覆わず、中身(.cs-stage)だけを隠す */
 .cs-box{ position:relative; }
-.is-preparing .cs-stage{ filter:saturate(.35); }
+.is-preparing .cs-stage{ filter:saturate(.3); pointer-events:none; }
 .cs-veil{ position:absolute; inset:0; z-index:5; display:grid; place-items:center;
-  background:rgba(244,233,216,.72); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
+  background:rgba(244,233,216,.70); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
   border-radius:20px; }
-.cs-badge{ text-align:center; padding:26px 34px; background:rgba(255,255,255,.92);
-  border:2px dashed var(--sun); border-radius:18px; box-shadow:0 10px 30px rgba(38,70,83,.14); }
+.cs-badge{ text-align:center; padding:30px 40px; background:rgba(255,255,255,.94);
+  border:2px dashed var(--sun); border-radius:18px; box-shadow:0 12px 34px rgba(38,70,83,.16); }
 .cs-en{ font-family:var(--font-head); font-weight:700; letter-spacing:.16em;
-  font-size:clamp(19px,2.6vw,27px); color:var(--sun); margin:0 0 6px; }
-.cs-ja{ font-family:var(--font-head); font-weight:700; font-size:clamp(15px,1.9vw,18px);
-  color:var(--brown); margin:0 0 8px; }
-.cs-note{ font-size:14px; line-height:1.8; color:var(--gold-deep); margin:0; }
-@media (max-width:760px){ .cs-badge{ padding:20px 22px; } .cs-note{ font-size:13px; } }
+  font-size:clamp(21px,3vw,32px); color:var(--sun); margin:0 0 8px; }
+.cs-ja{ font-family:var(--font-head); font-weight:700; font-size:clamp(16px,2vw,19px);
+  color:var(--brown); margin:0 0 10px; }
+.cs-note{ font-size:14.5px; line-height:1.85; color:var(--gold-deep); margin:0; }
 
 /* 中身が入るまでの仮の枠（画像・動画のかわり） */
-.slot{ background:repeating-linear-gradient(135deg,#EFE6D5,#EFE6D5 14px,#E7D9C1 14px,#E7D9C1 28px);
+.slot{ background:repeating-linear-gradient(135deg,#EFE6D5,#EFE6D5 16px,#E7D9C1 16px,#E7D9C1 32px);
   border:1px solid var(--gold-soft); border-radius:14px; display:grid; place-items:center;
-  color:#8A7C64; font-size:13.5px; font-weight:700; }
+  color:#8A7C64; font-size:14px; font-weight:700; }
 
-/* ── Before / After ───────────────────────────────── */
-.ba-section .cs-stage{ max-width:1000px; margin:0 auto; }
-.ba-list{ list-style:none; margin:0; padding:0; display:grid; gap:22px; }
-.ba-card{ background:#fff; border:1px solid var(--gold-soft); border-radius:18px;
-  padding:22px 22px 18px; box-shadow:0 8px 22px rgba(38,70,83,.07); }
-.ba-pair{ display:grid; grid-template-columns:1fr auto 1fr; gap:16px; align-items:center; }
+/* 横スライドの土台（Before/After と 動画 で共通） */
+.cs-viewport{ overflow:hidden; }
+.cs-track{ list-style:none; margin:0; padding:0; display:grid; grid-auto-flow:column;
+  gap:26px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+  scrollbar-width:none; -ms-overflow-style:none; }
+.cs-track::-webkit-scrollbar{ display:none; }
+.cs-track > *{ scroll-snap-align:start; }
+.cs-nav{ display:flex; justify-content:center; gap:14px; margin-top:16px; }
+.cs-btn{ width:48px; height:48px; border-radius:50%; border:1px solid var(--gold-soft);
+  background:#fff; color:var(--brown); font-size:22px; cursor:pointer; line-height:1;
+  display:grid; place-items:center; transition:background .2s, transform .2s; }
+.cs-btn:hover:not(:disabled){ background:var(--paper); transform:translateY(-2px); }
+.cs-btn:disabled{ opacity:.35; cursor:not-allowed; }
+
+/* ── Before / After ─ 1件を大きく見せ、左右で事例を切り替える ───────── */
+.ba-track{ grid-auto-columns:100%; }
+.ba-item{ min-width:0; }
+.ba-pair{ display:grid; grid-template-columns:1fr auto 1fr; gap:22px; align-items:center; }
 .ba-col{ min-width:0; }
-.ba-cap{ text-align:center; font-family:var(--font-head); font-weight:700; font-size:14px;
-  margin:0 0 8px; padding:3px 0; border-radius:999px; }
+.ba-cap{ text-align:center; font-family:var(--font-head); font-weight:700; font-size:15px;
+  margin:0 0 10px; padding:5px 0; border-radius:999px; }
 .ba-cap.before{ background:var(--paper); color:var(--gold-deep); }
 .ba-cap.after{ background:var(--sun); color:#fff; }
-.ba-slot{ aspect-ratio:4/3; }
-.ba-arrow{ width:44px; height:44px; border-radius:50%; background:var(--sun); color:#fff;
-  display:grid; place-items:center; font-size:22px; font-weight:700; flex-shrink:0; }
-.ba-who{ font-size:14.5px; color:var(--gold-deep); font-weight:700; margin:14px 0 4px; }
-.ba-txt{ font-size:15px; line-height:1.85; margin:0; }
-@media (min-width:861px){ .ba-list{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:520px){
-  /* 幅が狭いと左右2枚が潰れるので縦積みにし、矢印を下向きにする */
-  .ba-pair{ grid-template-columns:1fr; gap:10px; }
-  .ba-arrow{ margin:0 auto; transform:rotate(90deg); }
-}
+.ba-slot{ aspect-ratio:16/10; }
+.ba-arrow{ width:54px; height:54px; border-radius:50%; background:var(--sun); color:#fff;
+  display:grid; place-items:center; font-size:26px; font-weight:700; flex-shrink:0;
+  box-shadow:0 6px 16px rgba(244,162,97,.4); }
+/* 帯を高くしすぎないよう、お客様の属性と一文は1行にまとめる */
+.ba-note{ display:flex; justify-content:center; align-items:baseline; flex-wrap:wrap; gap:4px 14px;
+  margin:14px 0 0; text-align:center; }
+.ba-who{ font-size:15px; color:var(--gold-deep); font-weight:700; margin:0; }
+.ba-txt{ font-size:16px; line-height:1.7; margin:0; }
 
-/* ── 動画コンテンツ（横スライド）────────────────────────── */
-.yt-section .cs-stage{ max-width:1060px; margin:0 auto; position:relative; }
-.yt-track{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(280px,1fr);
-  gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 2px 14px;
-  scrollbar-width:thin; }
-.yt-track > *{ scroll-snap-align:start; }
+/* ── 動画コンテンツ ─ 3枚ずつ見せて横に送る ────────────────── */
+.yt-track{ grid-auto-columns:calc((100% - 52px) / 3); }
 .yt-card{ background:#fff; border:1px solid var(--gold-soft); border-radius:16px;
-  padding:12px 12px 16px; box-shadow:0 8px 22px rgba(38,70,83,.07); }
-.yt-slot{ aspect-ratio:16/9; margin-bottom:10px; }
-.yt-title{ font-size:15px; line-height:1.65; color:var(--brown); font-weight:700; margin:0 0 4px; }
-.yt-meta{ font-size:13.5px; color:var(--gold-deep); margin:0; }
-.yt-nav{ display:flex; justify-content:center; gap:12px; margin-top:6px; }
-.yt-btn{ width:44px; height:44px; border-radius:50%; border:1px solid var(--gold-soft);
-  background:#fff; color:var(--brown); font-size:20px; cursor:pointer; line-height:1;
-  display:grid; place-items:center; transition:background .2s, transform .2s; }
-.yt-btn:hover:not(:disabled){ background:var(--paper); transform:translateY(-2px); }
-.yt-btn:disabled{ opacity:.4; cursor:not-allowed; }
+  padding:14px 14px 18px; box-shadow:0 8px 22px rgba(38,70,83,.07); min-width:0; }
+.yt-slot{ aspect-ratio:16/9; margin-bottom:12px; }
+.yt-title{ font-size:16px; line-height:1.6; color:var(--brown); font-weight:700; margin:0 0 4px; }
+.yt-meta{ font-size:14px; color:var(--gold-deep); margin:0; }
+
+@media (max-width:900px){
+  .yt-track{ grid-auto-columns:calc((100% - 26px) / 2); }
+}
 @media (max-width:760px){
-  .yt-track{ grid-auto-columns:minmax(240px,1fr); gap:14px; }
-  .yt-btn{ width:40px; height:40px; }
+  .cs-band{ padding-top:40px; padding-bottom:46px; }
+  .cs-track{ gap:16px; }
+  .cs-badge{ padding:22px 24px; }
+  .cs-note{ font-size:13.5px; }
+  .cs-btn{ width:42px; height:42px; font-size:20px; }
+  .cs-nav{ margin-top:16px; }
+  .yt-track{ grid-auto-columns:82%; }
+  .yt-title{ font-size:15px; }
+  /* 幅が狭いと Before/After の2枚が潰れるので縦積みにし、矢印を下向きに */
+  .ba-pair{ grid-template-columns:1fr; gap:12px; }
+  .ba-arrow{ margin:0 auto; transform:rotate(90deg); width:46px; height:46px; font-size:22px; }
+  .ba-slot{ aspect-ratio:4/3; }
+  .ba-note{ gap:2px 10px; margin-top:10px; }
+  .ba-txt{ font-size:15px; }
 }
 
 .footer-banner{ display:block; margin-top:22px; max-width:440px; border-radius:10px;
@@ -1867,12 +1888,13 @@ table{ max-width:100%; }
   </section>
 
   <!-- ============ Before / After（準備中）============
-       ■ 公開するときは2つだけ
-         1. 下の <div class="cs-box is-preparing"> から is-preparing を消す
+       メッセージ帯と同じ「画面幅いっぱい・高さ520px前後」のサイズ感で見せる帯。
+       ■ 公開するときは3つだけ
+         1. <div class="cs-box is-preparing"> から is-preparing を消す
          2. <div class="cs-veil"> ... </div> のブロックごと消す
          3. .ba-slot の中身を実際の写真（<img>）に差し替える
-       中身は aria-hidden="true" にしてあるので、準備中は読み上げソフトにも読まれません。 -->
-  <section class="section ba-section" id="beforeafter" aria-label="ビフォーアフター（準備中）">
+       中身は aria-hidden="true" なので、準備中は読み上げソフトにも読まれません。 -->
+  <section class="section cs-band ba-section" id="beforeafter" aria-label="ビフォーアフター（準備中）">
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="sec-node" aria-hidden="true"></span>
@@ -1881,68 +1903,65 @@ table{ max-width:100%; }
       </div>
       <div class="cs-box is-preparing">
         <div class="cs-stage" aria-hidden="true">
-          <ul class="ba-list">
-            <li class="ba-card">
-              <div class="ba-pair">
-                <div class="ba-col">
-                  <p class="ba-cap before">Before</p>
-                  <div class="ba-slot slot">写真が入ります</div>
+          <div class="cs-viewport">
+            <ul class="cs-track ba-track" data-slider>
+              <li class="ba-item">
+                <div class="ba-pair">
+                  <div class="ba-col">
+                    <p class="ba-cap before">Before</p>
+                    <div class="ba-slot slot">写真が入ります</div>
+                  </div>
+                  <div class="ba-arrow">→</div>
+                  <div class="ba-col">
+                    <p class="ba-cap after">After</p>
+                    <div class="ba-slot slot">写真が入ります</div>
+                  </div>
                 </div>
-                <div class="ba-arrow">→</div>
-                <div class="ba-col">
-                  <p class="ba-cap after">After</p>
-                  <div class="ba-slot slot">写真が入ります</div>
+                <div class="ba-note">
+                  <p class="ba-who">60代・女性</p>
+                  <p class="ba-txt">歩幅が広がり、外出の距離が伸びました。</p>
                 </div>
-              </div>
-              <p class="ba-who">60代・女性</p>
-              <p class="ba-txt">歩幅が広がり、外出の距離が伸びました。</p>
-            </li>
-            <li class="ba-card">
-              <div class="ba-pair">
-                <div class="ba-col">
-                  <p class="ba-cap before">Before</p>
-                  <div class="ba-slot slot">写真が入ります</div>
+              </li>
+              <li class="ba-item">
+                <div class="ba-pair">
+                  <div class="ba-col">
+                    <p class="ba-cap before">Before</p>
+                    <div class="ba-slot slot">写真が入ります</div>
+                  </div>
+                  <div class="ba-arrow">→</div>
+                  <div class="ba-col">
+                    <p class="ba-cap after">After</p>
+                    <div class="ba-slot slot">写真が入ります</div>
+                  </div>
                 </div>
-                <div class="ba-arrow">→</div>
-                <div class="ba-col">
-                  <p class="ba-cap after">After</p>
-                  <div class="ba-slot slot">写真が入ります</div>
+                <div class="ba-note">
+                  <p class="ba-who">70代・男性</p>
+                  <p class="ba-txt">前かがみだった姿勢がまっすぐになりました。</p>
                 </div>
-              </div>
-              <p class="ba-who">70代・男性</p>
-              <p class="ba-txt">前かがみだった姿勢がまっすぐになりました。</p>
-            </li>
-            <li class="ba-card">
-              <div class="ba-pair">
-                <div class="ba-col">
-                  <p class="ba-cap before">Before</p>
-                  <div class="ba-slot slot">写真が入ります</div>
+              </li>
+              <li class="ba-item">
+                <div class="ba-pair">
+                  <div class="ba-col">
+                    <p class="ba-cap before">Before</p>
+                    <div class="ba-slot slot">写真が入ります</div>
+                  </div>
+                  <div class="ba-arrow">→</div>
+                  <div class="ba-col">
+                    <p class="ba-cap after">After</p>
+                    <div class="ba-slot slot">写真が入ります</div>
+                  </div>
                 </div>
-                <div class="ba-arrow">→</div>
-                <div class="ba-col">
-                  <p class="ba-cap after">After</p>
-                  <div class="ba-slot slot">写真が入ります</div>
+                <div class="ba-note">
+                  <p class="ba-who">60代・男性</p>
+                  <p class="ba-txt">立ち上がりがふらつかなくなりました。</p>
                 </div>
-              </div>
-              <p class="ba-who">60代・男性</p>
-              <p class="ba-txt">立ち上がりがふらつかなくなりました。</p>
-            </li>
-            <li class="ba-card">
-              <div class="ba-pair">
-                <div class="ba-col">
-                  <p class="ba-cap before">Before</p>
-                  <div class="ba-slot slot">写真が入ります</div>
-                </div>
-                <div class="ba-arrow">→</div>
-                <div class="ba-col">
-                  <p class="ba-cap after">After</p>
-                  <div class="ba-slot slot">写真が入ります</div>
-                </div>
-              </div>
-              <p class="ba-who">70代・女性</p>
-              <p class="ba-txt">手すりなしで階段をのぼれるようになりました。</p>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
+            <div class="cs-nav">
+              <button class="cs-btn" type="button" data-slide="prev" aria-label="前の事例へ" disabled>‹</button>
+              <button class="cs-btn" type="button" data-slide="next" aria-label="次の事例へ" disabled>›</button>
+            </div>
         </div>
         <div class="cs-veil">
           <div class="cs-badge">
@@ -1959,7 +1978,7 @@ table{ max-width:100%; }
        公開手順は Before/After と同じ。
        .yt-slot の中身を YouTube の埋め込み（iframe）に差し替えてください。
        is-preparing を外すと、左右ボタンでの横スライドが動き始めます。 -->
-  <section class="section sec-alt yt-section" id="movies" aria-label="動画コンテンツ（準備中）">
+  <section class="section sec-alt cs-band yt-section" id="movies" aria-label="動画コンテンツ（準備中）">
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="sec-node" aria-hidden="true"></span>
@@ -1968,32 +1987,39 @@ table{ max-width:100%; }
       </div>
       <div class="cs-box is-preparing">
         <div class="cs-stage" aria-hidden="true">
-          <div class="yt-track" id="ytTrack">
-            <article class="yt-card">
-              <div class="yt-slot slot">動画が入ります</div>
-              <p class="yt-title">体験の流れを見てみる</p>
-              <p class="yt-meta">初回体験の40分でおこなうこと</p>
-            </article>
-            <article class="yt-card">
-              <div class="yt-slot slot">動画が入ります</div>
-              <p class="yt-title">自宅でできる姿勢の整え方</p>
-              <p class="yt-meta">椅子に座ったままできる3分の体操</p>
-            </article>
-            <article class="yt-card">
-              <div class="yt-slot slot">動画が入ります</div>
-              <p class="yt-title">歩きやすくなる足の運び方</p>
-              <p class="yt-meta">すくみ足への向き合い方</p>
-            </article>
-            <article class="yt-card">
-              <div class="yt-slot slot">動画が入ります</div>
-              <p class="yt-title">スタッフインタビュー</p>
-              <p class="yt-meta">14年の経験から伝えたいこと</p>
-            </article>
+          <div class="cs-viewport">
+            <ul class="cs-track yt-track" data-slider>
+              <li class="yt-card">
+                <div class="yt-slot slot">動画が入ります</div>
+                <p class="yt-title">体験の流れを見てみる</p>
+                <p class="yt-meta">初回体験の40分でおこなうこと</p>
+              </li>
+              <li class="yt-card">
+                <div class="yt-slot slot">動画が入ります</div>
+                <p class="yt-title">自宅でできる姿勢の整え方</p>
+                <p class="yt-meta">椅子に座ったままできる3分の体操</p>
+              </li>
+              <li class="yt-card">
+                <div class="yt-slot slot">動画が入ります</div>
+                <p class="yt-title">歩きやすくなる足の運び方</p>
+                <p class="yt-meta">すくみ足への向き合い方</p>
+              </li>
+              <li class="yt-card">
+                <div class="yt-slot slot">動画が入ります</div>
+                <p class="yt-title">スタッフインタビュー</p>
+                <p class="yt-meta">14年の経験から伝えたいこと</p>
+              </li>
+              <li class="yt-card">
+                <div class="yt-slot slot">動画が入ります</div>
+                <p class="yt-title">スタジオのご紹介</p>
+                <p class="yt-meta">鹿児島中央町スタジオを歩いて回る</p>
+              </li>
+            </ul>
           </div>
-          <div class="yt-nav">
-            <button class="yt-btn" type="button" data-yt="prev" aria-label="前の動画へ" disabled>‹</button>
-            <button class="yt-btn" type="button" data-yt="next" aria-label="次の動画へ" disabled>›</button>
-          </div>
+            <div class="cs-nav">
+              <button class="cs-btn" type="button" data-slide="prev" aria-label="前の動画へ" disabled>‹</button>
+              <button class="cs-btn" type="button" data-slide="next" aria-label="次の動画へ" disabled>›</button>
+            </div>
         </div>
         <div class="cs-veil">
           <div class="cs-badge">
@@ -2456,45 +2482,46 @@ table{ max-width:100%; }
 </script>
 
 <script>
-/* ===== 動画コンテンツの横スライド =====
+/* ===== 横スライド（Before/After と 動画コンテンツで共通） =====
    準備中（.is-preparing）の間はボタンを無効のままにしておく。
    公開時に .is-preparing を外せば、そのまま左右スライドとして動きます。 */
 (function(){
-  var track = document.getElementById('ytTrack');
-  if(!track) return;
-  var sec  = track.closest('.cs-box');
-  var btns = document.querySelectorAll('[data-yt]');
-  if(!sec || !btns.length) return;
+  document.querySelectorAll('[data-slider]').forEach(function(track){
+    var box  = track.closest('.cs-box');
+    if(!box) return;
+    var btns = box.querySelectorAll('[data-slide]');
+    if(!btns.length) return;
 
-  function step(){
-    var card = track.querySelector('.yt-card');
-    if(!card) return track.clientWidth;
-    var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
-    return card.getBoundingClientRect().width + gap;
-  }
-  function refresh(){
-    if(sec.classList.contains('is-preparing')){
-      btns.forEach(function(b){ b.disabled = true; });
-      return;
+    function step(){
+      var item = track.firstElementChild;
+      if(!item) return track.clientWidth;
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+      return item.getBoundingClientRect().width + gap;
     }
-    var max = track.scrollWidth - track.clientWidth - 2;
+    function refresh(){
+      if(box.classList.contains('is-preparing')){
+        btns.forEach(function(b){ b.disabled = true; });
+        return;
+      }
+      var max = track.scrollWidth - track.clientWidth - 2;
+      btns.forEach(function(b){
+        b.disabled = b.dataset.slide === 'prev' ? track.scrollLeft <= 2
+                                                : track.scrollLeft >= max;
+      });
+    }
     btns.forEach(function(b){
-      b.disabled = b.dataset.yt === 'prev' ? track.scrollLeft <= 2
-                                           : track.scrollLeft >= max;
+      b.addEventListener('click', function(){
+        if(box.classList.contains('is-preparing')) return;
+        track.scrollBy({ left: (b.dataset.slide === 'prev' ? -1 : 1) * step(), behavior:'smooth' });
+        /* 環境によっては scroll イベントが飛ばないことがあるため、
+           スムーススクロールの完了を待って明示的にボタンの状態を取り直す */
+        [120, 350, 700].forEach(function(ms){ setTimeout(refresh, ms); });
+      });
     });
-  }
-  btns.forEach(function(b){
-    b.addEventListener('click', function(){
-      if(sec.classList.contains('is-preparing')) return;
-      track.scrollBy({ left: (b.dataset.yt === 'prev' ? -1 : 1) * step(), behavior:'smooth' });
-      /* 環境によっては scroll イベントが飛ばないことがあるため、
-         スムーススクロールの完了を待って明示的にボタンの状態を取り直す */
-      [120, 350, 700].forEach(function(ms){ setTimeout(refresh, ms); });
-    });
+    track.addEventListener('scroll', refresh, { passive:true });
+    window.addEventListener('resize', refresh);
+    refresh();
   });
-  track.addEventListener('scroll', refresh, { passive:true });
-  window.addEventListener('resize', refresh);
-  refresh();
 })();
 </script>
 </body></html>
