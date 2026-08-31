@@ -1282,7 +1282,7 @@ get_header(); ?>
       ?>
       <div class="column-cta">
         <h3>まずは一度、お話を聞かせてください</h3>
-        <p><span class="nw">初回体験</span>は期間限定 半額<span class="nw">4,400円</span>。<span class="nw">パーキンソン病</span>専門の<span class="nw">理学療法士</span>が、<br class="br-pc">あなたの状態と目標を丁寧に伺います。</p>
+        <p><span class="nw">初回体験</span>は<span class="nw">公式LINE登録</span>で半額<span class="nw">4,400円</span>。<span class="nw">パーキンソン病</span>専門の<span class="nw">理学療法士</span>が、<br class="br-pc">あなたの状態と目標を丁寧に伺います。</p>
         <?php
           /* お問い合わせページはフォームを置かず公式LINE案内のみの設計なので、
              「フォームで問い合わせる」を挟むと遠回りになる。LINEボタン1本に統一。 */
