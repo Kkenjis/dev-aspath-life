@@ -1156,7 +1156,12 @@ table{ max-width:100%; }
 }
 @media (max-width:760px){
   .tr-vlabel{ position:static; writing-mode:horizontal-tb; display:block; padding:0 16px; margin-bottom:10px; letter-spacing:.12em; }
-  .tr-vlabel-en{ writing-mode:horizontal-tb; display:inline; margin-left:10px; }
+  .tr-vlabel-en{ display:none; }   /* スマホでは英字の Training を出さない（2026-08-28 ご指摘） */
+  /* スマホの背景写真だけ、人物の顔と動きが見える縦写真に差し替える。
+     このページの本文はWordPress側にあるためHTMLでは変えられない。CSSで上書きする。 */
+  .tr-hero-bg img{ display:none; }
+  .tr-hero-bg::before{ content:""; position:absolute; inset:0; opacity:.30;
+    background:url(images/about-training-hero-sp.webp) center 30% / cover no-repeat; }
   .tr-hero{ padding:56px 0 40px; }
   .tr-hero-in{ padding-left:16px; }
     .tr-core-card{ padding:20px 16px; }

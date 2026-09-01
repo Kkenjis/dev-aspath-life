@@ -479,6 +479,10 @@ body.drawer-open{ overflow:hidden; }
 
 /* 料金 */
 .trial-card{ max-width:760px; margin:0 auto 34px; background:#fff; border:3px solid var(--sun); border-radius:var(--radius); box-shadow:0 12px 30px rgba(244,162,97,.18); padding:34px 30px; text-align:center; position:relative; z-index:1; }
+/* 半額の条件（公式LINE登録＋当日の画面提示）を、価格のすぐ下に置く */
+.trial-line-cond{ font-size:15px; line-height:1.85; color:#C77B3A; font-weight:700;
+  max-width:34em; margin:10px auto 0; }
+.trial-line-cond strong{ color:var(--sun); }
 .trial-card::before{ content:"まずはこれから！"; position:absolute; top:-17px; left:50%; transform:translateX(-50%); background:var(--sun); color:#fff; font-family:var(--font-head); font-size:15px; padding:6px 22px; border-radius:999px; white-space:nowrap; }
 .price-plan{ font-family:var(--font-head); font-size:20px; color:var(--brown); }
 .trial-price{ display:flex; align-items:baseline; justify-content:center; gap:14px; flex-wrap:wrap; margin:10px 0 4px; }
@@ -519,6 +523,10 @@ body.drawer-open{ overflow:hidden; }
 .pc-pop-close:focus-visible{ outline:3px solid var(--sun); outline-offset:2px; }
 .pd-list{ margin:0 0 14px; padding-left:1.25em; }
 .pd-list li{ font-size:15.5px; line-height:1.95; margin-bottom:8px; }
+/* 月2回コースだけに出す、開始プランのおすすめ注記 */
+.pd-note{ background:#FFF4E4; border:1px solid var(--sun); border-radius:10px;
+  padding:10px 14px; font-size:14.5px; line-height:1.75; color:#A4501C; margin:0 0 12px; }
+.pd-note b{ color:var(--sun); }
 .pd-fit{ font-size:15px; background:var(--paper); border-radius:10px; padding:12px 14px; margin:0; }
 .pd-fit b{ color:var(--gold-deep); margin-right:.5em; }
 @media (max-width:760px){
@@ -536,6 +544,31 @@ body.drawer-open{ overflow:hidden; }
 .single-plan{ max-width:760px; margin:26px auto 0; background:#fff; border-radius:14px; box-shadow:var(--shadow); padding:18px 24px; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; position:relative; z-index:1; }
 .single-plan b{ font-family:var(--font-head); color:var(--brown); font-size:16.5px; }
 .single-plan .yen{ font-family:var(--font-head); color:var(--gold-deep); font-size:21px; }
+/* ── フィードバックシートの紹介（継続プランの下）────────────────
+   「しっかり定量的にチェックしてもらえて、私専用の運動ができるんだ」と
+   伝わるように、実際のシートを2枚並べて見せる。 */
+.fb-sheet{ max-width:var(--maxw); margin:56px auto 0; background:#fff;
+  border:1px solid var(--gold-soft); border-radius:22px; padding:36px 34px 30px;
+  box-shadow:0 10px 26px rgba(38,70,83,.08); position:relative; z-index:1; }
+.fb-sheet-head{ text-align:center; max-width:820px; margin:0 auto 26px; }
+.fb-eyebrow{ font-family:var(--font-head); font-weight:700; letter-spacing:.14em;
+  color:var(--sun); font-size:14px; margin:0 0 6px; }
+.fb-title{ font-family:var(--font-head); font-weight:700; color:var(--brown);
+  font-size:clamp(19px,2.5vw,26px); line-height:1.6; margin:0 0 14px;
+  border:none !important; padding:0 !important; }
+.fb-lead{ font-size:16px; line-height:1.95; margin:0; }
+.fb-lead strong{ color:var(--gold-deep); }
+.fb-sheet-imgs{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+.fb-sheet-imgs figure{ margin:0; border:1px solid var(--gold-soft); border-radius:12px;
+  overflow:hidden; background:#fff; }
+.fb-sheet-imgs img{ width:100%; height:auto; display:block; }
+.fb-note{ text-align:center; font-size:13.5px; color:#7A8C93; margin:14px 0 0; }
+@media (max-width:760px){
+  .fb-sheet{ padding:26px 16px 22px; margin-top:40px; border-radius:18px; }
+  .fb-sheet-imgs{ grid-template-columns:1fr; gap:14px; }
+  .fb-lead{ font-size:15.5px; }
+}
+
 .price-foot{ text-align:center; margin-top:26px; font-size:15px; color:#52707A; position:relative; z-index:1; }
 
 /* 継続プランカード：利用者が比較しやすいレイアウト */
@@ -1249,16 +1282,16 @@ table{ max-width:100%; }
           <span class="strike" data-en="8,800 yen (tax incl.)"><span class="nw">8,800円</span>（税込）</span>
           <span class="z" data-en-html="4,400&lt;small&gt;yen&lt;/small&gt;">4,400<small>円</small></span>
         </div>
-        <p style="font-weight:700; color:#C77B3A;" data-en="Opening campaign｜with official LINE, until December 31, 2026"> 営業開始キャンペーン｜<span class="nw">公式LINE登録</span>で半額<span class="nw">4,400円</span>（<span class="nw">12月31日まで</span>）</p>
+        <p class="trial-line-cond" data-en-html="Opening campaign｜Register on our official LINE and show the coupon screen at the studio to get the first session for half price, ¥4,400 (until December 31, 2026).">営業開始キャンペーン｜<span class="nw">公式LINE</span>にご登録のうえ、<strong>当日その画面をお見せいただくと半額<span class="nw">4,400円</span></strong>になります。（<span class="nw">2026年12月31日まで</span>）</p>
         <a class="btn btn-form big" style="margin-top:14px;" href="contact.html" data-en-html="Book the trial&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;"><span class="nw">初回体験を申し込む</span><span class="arw">→</span></a>
       </div>
 
       <h2 id="plans" style="margin-top:52px;" data-en="Ongoing Plans">継続プラン</h2>
       <h3 style="text-align:center; margin:44px 0 6px; position:relative; z-index:1;" data-en="Personal Training — Ongoing Plans"><span class="nw">パーソナルトレーニング</span>　継続プラン</h3>
-      <p style="text-align:center; color:#52707A; margin-bottom:26px; position:relative; z-index:1;" data-en-html="We provide continuous training to help improve your body.&lt;br&gt;We propose a plan suited to each person.">体を良くしていけるよう、継続的なトレーニングを行います。<br>それぞれの方にあったプランをご提案させていただきます。</p>
+      <p style="text-align:center; color:#52707A; margin-bottom:26px; position:relative; z-index:1;" data-en-html="We provide continuous training to help improve your body.&lt;br&gt;We recommend starting with the 4 or 8 sessions-per-month course to build a solid foundation and an exercise habit.">お身体を良くしていけるよう、継続的なトレーニングを行います。<br>まずは<span class="nw">月4回〜月8回コース</span>で、<span class="nw">お身体の基盤</span>と<span class="nw">運動習慣</span>をしっかり作ることをオススメしています。</p>
       <div class="price-grid">
         <div class="price-card reveal">
-          <p class="pc-badge" data-en-html="Intensive—steadily&lt;br&gt;improve your body">集中的に！<br>お身体をしっかりと向上へ</p>
+          <p class="pc-badge" data-en-html="Exercise intensively and&lt;br&gt;improve your body further">集中的に運動し、<br>お身体をより良く</p>
           <p class="pc-name" data-en="8 sessions / month"><span class="nw">月8回コース</span></p>
           <p class="pc-price"><span class="pc-yen">77,440</span><span class="pc-yenunit" data-en="yen">円</span></p>
           <p class="pc-tax" data-en="(tax incl.)">（税込）</p>
@@ -1269,30 +1302,30 @@ table{ max-width:100%; }
                   data-en="See what this plan includes">このプランの内容を見る<span class="pc-more-ico" aria-hidden="true">＋</span></button>
           <div class="pc-detail" id="detail-plan8" hidden>
             <ul class="pd-list">
-              <li><b>週2回の対面</b>で、動きの変化をその都度確認しながら進められます。</li>
-              <li>運動の量が確保できるため、<b>変化を実感するまでの期間が短く</b>なります。</li>
-              <li>ご自宅での自主トレも、体調に合わせてこまめに組み替えます。</li>
+              <li><b>週2回</b>のパーソナルトレーニングを実施します。</li>
+              <li>専門的な運動を頻度多く実施し、<b>お身体の変化を早く実感しやすい</b>です。</li>
+              <li>お身体の状況をこまめに確認でき、<b>自主トレーニングを正確に組み替え</b>られます。</li>
             </ul>
-            <p class="pd-fit"><b>こんな方に</b>　できるだけ早く改善したい／ご家族の付き添いが得やすい方</p>
+            <p class="pd-fit"><b>こんな方に</b>　体の傾きや姿勢が強くなってきたと感じる方／着実に身体を良くしていきたい方</p>
           </div>
         </div>
         <div class="price-card recommend reveal d1">
-          <p class="pc-badge" data-en-html="Improve function and&lt;br&gt;build an exercise habit">体の機能向上と運動習慣を<br>身につけましょう</p>
+          <p class="pc-badge" data-en-html="Feel the results while&lt;br&gt;building an exercise habit">効果を実感しながら、<br>運動習慣を身につけます</p>
           <p class="pc-name" data-en="4 sessions / month"><span class="nw">月4回コース</span></p>
           <p class="pc-price"><span class="pc-yen">39,800</span><span class="pc-yenunit" data-en="yen">円</span></p>
           <p class="pc-tax" data-en="(tax incl.)">（税込）</p>
           <span class="pc-freq" data-en="Once a week / 60 min"><span class="nw">週1回</span> ／ <span class="nw">60分</span></span>
-          <p class="pc-desc pc-desc-br" data-en-html="An optimal mix of in-person guidance&lt;br&gt;and self-training at home.">対面指導と自宅<span class="nw">自主トレ</span>を<br>最適に組み合わせ。</p>
+          <p class="pc-desc pc-desc-br" data-en-html="For those who want real change&lt;br&gt;and a lasting exercise habit.">お身体の良い変化を出し、<br><span class="nw">運動習慣</span>を定着させたい方へ。</p>
           <button type="button" class="pc-more" data-plan="plan4"
                   aria-expanded="false" aria-controls="pc-pop"
                   data-en="See what this plan includes">このプランの内容を見る<span class="pc-more-ico" aria-hidden="true">＋</span></button>
           <div class="pc-detail" id="detail-plan4" hidden>
             <ul class="pd-list">
-              <li><b>週1回の対面</b>で運動を習慣にしながら、自宅での自主トレと組み合わせます。</li>
-              <li>もっとも多くの方が選ばれており、<b>続けやすさと変化のバランス</b>が取れます。</li>
-              <li>ご都合に合わせて、オンラインへの振替もご相談いただけます。</li>
+              <li><b>週1回</b>のパーソナルトレーニングを実施します。</li>
+              <li>アスパスの専門運動で、<b>着実に体の変化を引き出します</b>。</li>
+              <li>自主トレーニングの確認も併用することで、<b>正しい動きの習得と運動習慣の定着</b>を図ります。</li>
             </ul>
-            <p class="pd-fit"><b>こんな方に</b>　はじめて運動を続けたい／無理なく長く通いたい方</p>
+            <p class="pd-fit"><b>こんな方に</b>　姿勢の傾きや歩きづらさを感じる方／パーキンソン病と診断されて、どんな運動をすればいいか分からない方</p>
           </div>
         </div>
         <div class="price-card reveal d2">
@@ -1301,17 +1334,18 @@ table{ max-width:100%; }
           <p class="pc-price"><span class="pc-yen">22,000</span><span class="pc-yenunit" data-en="yen">円</span></p>
           <p class="pc-tax" data-en="(tax incl.)">（税込）</p>
           <span class="pc-freq" data-en="Every other week / 60 min">隔週 ／ <span class="nw">60分</span></span>
-          <p class="pc-desc" data-en="For those who want regular body maintenance.">定期的な体の<span class="nw">メンテナンス</span>をしたい方向け。</p>
+          <p class="pc-desc" data-en="For those who want to exercise regularly and maintain their body.">定期的に運動し、<span class="nw">身体の維持</span>をしたい方向け。</p>
           <button type="button" class="pc-more" data-plan="plan2"
                   aria-expanded="false" aria-controls="pc-pop"
                   data-en="See what this plan includes">このプランの内容を見る<span class="pc-more-ico" aria-hidden="true">＋</span></button>
           <div class="pc-detail" id="detail-plan2" hidden>
             <ul class="pd-list">
-              <li><b>隔週</b>のペースで、今の状態を保つことを目的にお使いいただけます。</li>
-              <li>ご自宅での運動が習慣になっている方の<b>確認の場</b>として適しています。</li>
-              <li>体調の変化があれば、回数の増減もその都度ご相談いただけます。</li>
+              <li><b>2週間に1回</b>のパーソナルトレーニングを実施します。</li>
+              <li>専門運動を定期的に実施します。</li>
+              <li>お身体の維持を目標に、<b>緩やかに運動習慣を定着</b>させます。</li>
             </ul>
-            <p class="pd-fit"><b>こんな方に</b>　すでに運動の習慣がある／遠方でこまめに通えない方</p>
+            <p class="pd-note">※最初は<b>月4回</b>か<b>月8回コース</b>からの開始がオススメです。</p>
+            <p class="pd-fit"><b>こんな方に</b>　多忙で頻回なパーソナルトレーニングが困難な方／月4回以上のプランでお身体の状態が安定してきた方の運動習慣に</p>
           </div>
         </div>
       </div>
@@ -1328,6 +1362,21 @@ table{ max-width:100%; }
       <p class="more-link reveal"><a class="btn btn-ghost mid" href="about.html#method" data-en-html="See service details&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;">サービス内容の詳細を見る<span class="arw">→</span></a></p>
 
       <div class="train-flow reveal">
+
+      <!-- 継続プランの初回にお渡しするフィードバックシートの紹介（2026-08-28 山口様ご要望） -->
+      <div class="fb-sheet reveal">
+        <div class="fb-sheet-head">
+          <p class="fb-eyebrow" data-en="Feedback sheet">お渡しするもの</p>
+          <h3 class="fb-title" data-en="We check your body first, then confirm the training plan">継続プランでは<span class="nw">初回に体チェック</span>をして、<br class="br-pc"><span class="nw">トレーニング方針</span>を確認します</h3>
+          <p class="fb-lead" data-en="Seven items are measured and scored, so you can see in numbers where you are strong and what to work on. We put together your own exercise plan from there.">7つの項目を計測して点数で表すので、<strong>ご自身の強みと、これから取り組むこと</strong>が数字で分かります。そのうえで、あなた専用の運動メニューを組み立てます。</p>
+        </div>
+        <div class="fb-sheet-imgs">
+          <figure><img src="images/feedback-sheet-01.webp" alt="カラダの動き・姿勢フィードバックシートの1〜4ページ。総合評価サマリー、お悩みとご希望、姿勢の様子、身体機能バランスを記載" width="1400" height="933" loading="lazy" decoding="async"></figure>
+          <figure><img src="images/feedback-sheet-02.webp" alt="カラダの動き・姿勢フィードバックシートの5〜6ページ。評価項目ごとの測定結果と判定、今後の取り組み方針を記載" width="1400" height="1050" loading="lazy" decoding="async"></figure>
+        </div>
+        <p class="fb-note" data-en="The sheets shown here are samples using a fictional case.">※画像は<span class="nw">サンプル</span>（架空の事例）です。</p>
+      </div>
+
         <h2 data-en="Flow up to starting training">トレーニング開始までのフロー</h2>
         <p class="tf-lead" data-en="Here is the flow from application through to the day of your first session.">お申し込みから<span class="nw">初回体験</span>当日までのながれをご紹介します。</p>
         <ol class="tf-list">

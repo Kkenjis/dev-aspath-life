@@ -1085,6 +1085,33 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
   .voice-avatar{ width:46px; height:46px; }
   .voice-text{ font-size:15.5px; }
 }
+/* ── ご家族の皆様へ（お手紙のような語りかけ）──────────────────
+   ご本人向けの文章が続いたあとに、支えるご家族へ宛てた一通として置く。
+   紙のような余白と、左の縦線で「手紙」らしさを出している。 */
+.family-section{ background:var(--paper); }
+.family-note{ display:grid; grid-template-columns:minmax(0,340px) 1fr; gap:44px;
+  align-items:center; max-width:var(--maxw); margin:0 auto;
+  background:#fff; border-radius:24px; padding:42px 48px;
+  box-shadow:0 12px 32px rgba(38,70,83,.10); }
+.family-fig{ border-radius:18px; overflow:hidden; }
+.family-fig img{ width:100%; height:auto; display:block; }
+.family-body{ min-width:0; border-left:3px solid var(--gold-soft); padding-left:30px; }
+.family-eyebrow{ font-family:var(--font-head); font-weight:700; letter-spacing:.12em;
+  color:var(--sun); font-size:15px; margin:0 0 6px; }
+.family-title{ font-family:var(--font-head); font-weight:700; color:var(--brown);
+  font-size:clamp(22px,3vw,31px); line-height:1.5; margin:0 0 20px;
+  border:none !important; padding:0 !important; }
+.family-body p{ font-size:16.5px; line-height:2.05; margin:0 0 16px; }
+.family-body p:last-child{ margin-bottom:0; }
+.family-body strong{ color:var(--gold-deep); }
+@media (max-width:860px){
+  .family-note{ grid-template-columns:1fr; gap:24px; padding:30px 24px; border-radius:20px; }
+  .family-fig{ max-width:320px; margin:0 auto; }
+  .family-body{ border-left:none; border-top:3px solid var(--gold-soft);
+    padding-left:0; padding-top:22px; }
+  .family-body p{ font-size:15.5px; line-height:1.95; margin-bottom:14px; }
+}
+
 /* ── 準備が整うまで非表示にしているセクション ──────────────────
    2026-08-28 山口様のご指示：中身が用意できるまではサイトに出さない。
    ただし作り込みは残しておき、準備ができたら
@@ -1685,16 +1712,28 @@ table{ max-width:100%; }
     <div class="hero-slides">
       <!-- 実写真4枚（クロスフェード＋Ken Burns）。差し替えは <img src> を変更するだけ -->
       <div class="hero-slide">
-        <img src="images/hero-01.webp" alt="タブレットを用いた姿勢・動作分析" style="--pos:50% 40%;">
+        <picture>
+          <source media="(max-width:760px)" srcset="images/hero-01-sp.webp">
+          <img src="images/hero-01.webp" alt="オレンジのポロシャツを着たアスパスのスタッフが、タブレットで姿勢を確認している様子" style="--pos:50% 40%;">
+        </picture>
       </div>
       <div class="hero-slide">
-        <img src="images/hero-02.webp" alt="マットの上でのマンツーマン・コンディショニング" style="--pos:50% 42%;">
+        <picture>
+          <source media="(max-width:760px)" srcset="images/hero-02-sp.webp">
+          <img src="images/hero-02.webp" alt="マットの上で、スタッフが利用者さまの腕をゆっくり動かしている様子" style="--pos:50% 42%;">
+        </picture>
       </div>
       <div class="hero-slide on">
-        <img src="images/hero-03.webp" alt="専門トレーナーによる運動指導" style="--pos:50% 40%;">
+        <picture>
+          <source media="(max-width:760px)" srcset="images/hero-03-sp.webp">
+          <img src="images/hero-03.webp" alt="マットに座って向き合い、スタッフが動きを説明している様子" style="--pos:50% 40%;">
+        </picture>
       </div>
       <div class="hero-slide">
-        <img src="images/hero-04.webp" alt="ASPATHのトレーニング風景" style="--pos:50% 40%;">
+        <picture>
+          <source media="(max-width:760px)" srcset="images/hero-04-sp.webp">
+          <img src="images/hero-04.webp" alt="パソコンの前でスタッフが運動の見本を見せている様子" style="--pos:50% 40%;">
+        </picture>
       </div>
     </div>
 
@@ -1959,6 +1998,25 @@ table{ max-width:100%; }
           </div>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ============ ご家族の皆様へ（お手紙のような語りかけ）============
+       2026-08-28 山口様ご要望。ご本人だけでなくご家族にも届くように。 -->
+  <section class="section family-section" id="family" aria-label="ご家族の皆様へ">
+    <div class="wrap">
+      <div class="family-note reveal">
+        <div class="family-fig">
+          <img src="images/family-talk.webp" alt="スタジオでアスパスのスタッフとご利用者さまが向かい合って和やかに話している様子" width="880" height="1100" loading="lazy" decoding="async">
+        </div>
+        <div class="family-body">
+          <p class="family-eyebrow" data-en="A letter to families">ご家族の皆様へ</p>
+          <h2 class="family-title" data-en="Shall we ease that worry together?">ご不安を、<span class="nw">解消しませんか</span>？</h2>
+          <p data-en="It is not only the person themselves who is facing Parkinson&#39;s disease.">パーキンソン病と向き合っているのは、決してご本人だけではありません。<span class="nw">一番近くで支え続けるご家族</span>もまた、「この先どうなってしまうのか」「私に何ができるのか」と、言葉にできない不安を抱えていらっしゃると思います。</p>
+          <p data-en="ASPATH is also a place to lighten the emotional load that families carry.">アスパスは、ご本人のお身体と心を整えることで、<strong>ご家族の「心の負担」を軽くするための場所</strong>でもあります。ご本人がご自身の力で動ける喜びを取り戻すことは、<span class="nw">ご家族が安心して</span>自分の人生を楽しむ時間を取り戻すことにもつながります。</p>
+          <p data-en="Neither a hospital nor home — we hope this studio becomes a third place where families can breathe out, too.">病院でもご自宅でもないこのスタジオが、ご家族にとってもホッと一息つける<strong>「第3の居場所」</strong>になれたら嬉しいです。</p>
+        </div>
+      </div>
     </div>
   </section>
 
