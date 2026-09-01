@@ -556,6 +556,15 @@ body.drawer-open{ overflow:hidden; }
 .fb-title{ font-family:var(--font-head); font-weight:700; color:var(--brown);
   font-size:clamp(19px,2.5vw,26px); line-height:1.6; margin:0 0 14px;
   border:none !important; padding:0 !important; }
+/* 測定項目のチップ（2026-09-01 山口様ご要望）
+   何を測るのかを先に見せてから「点数で表します」と続けることで、
+   体チェックの具体性が伝わるようにする。 */
+.fb-items{ list-style:none; margin:0 0 16px; padding:0;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+.fb-items li{ background:var(--paper); border:1px solid var(--gold-soft);
+  color:var(--gold-deep); border-radius:999px; padding:7px 16px;
+  font-size:15px; font-weight:700; line-height:1.5; }
+.fb-items li.is-key{ background:var(--sun); border-color:var(--sun); color:#fff; }
 .fb-lead{ font-size:16px; line-height:1.95; margin:0; }
 .fb-lead strong{ color:var(--gold-deep); }
 .fb-sheet-imgs{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
@@ -566,6 +575,8 @@ body.drawer-open{ overflow:hidden; }
 @media (max-width:760px){
   .fb-sheet{ padding:26px 16px 22px; margin-top:40px; border-radius:18px; }
   .fb-sheet-imgs{ grid-template-columns:1fr; gap:14px; }
+  .fb-items{ gap:8px; margin-bottom:14px; }
+  .fb-items li{ font-size:13.5px; padding:6px 13px; }
   .fb-lead{ font-size:15.5px; }
 }
 
@@ -1369,7 +1380,15 @@ table{ max-width:100%; }
         <div class="fb-sheet-head">
           <p class="fb-eyebrow" data-en="Feedback sheet">お渡しするもの</p>
           <h3 class="fb-title" data-en="We check your body first, then confirm the training plan">継続プランでは<span class="nw">初回に体チェック</span>をして、<br class="br-pc"><span class="nw">トレーニング方針</span>を確認します</h3>
-          <p class="fb-lead" data-en="Seven items are measured and scored, so you can see in numbers where you are strong and what to work on. We put together your own exercise plan from there.">7つの項目を計測して点数で表すので、<strong>ご自身の強みと、これから取り組むこと</strong>が数字で分かります。そのうえで、あなた専用の運動メニューを組み立てます。</p>
+          <ul class="fb-items">
+            <li class="is-key" data-en="Parkinson's motor symptom assessment">パーキンソン病運動症状評価</li>
+            <li data-en="Standing posture">立ち姿勢</li>
+            <li data-en="Walking pattern">歩きの様子</li>
+            <li data-en="Balance">バランス能力</li>
+            <li data-en="Leg and hip strength">足腰の力</li>
+            <li data-en="Body awareness">体の感覚</li>
+          </ul>
+          <p class="fb-lead" data-en="We measure items such as these and express them as scores, so you can see in numbers where you are strong and what to work on. We put together your own exercise plan from there.">などといった項目を測定して、点数で表します。<strong>ご自身の強みと、これから取り組むこと</strong>が数字で分かります。そのうえで、あなた専用の運動メニューを組み立てます。</p>
         </div>
         <div class="fb-sheet-imgs">
           <figure><img src="images/feedback-sheet-01.webp" alt="カラダの動き・姿勢フィードバックシートの1〜4ページ。総合評価サマリー、お悩みとご希望、姿勢の様子、身体機能バランスを記載" width="1400" height="933" loading="lazy" decoding="async"></figure>
