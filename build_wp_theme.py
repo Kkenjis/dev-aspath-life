@@ -15,7 +15,7 @@ WordPress側の更新手順（上書き）:
     外観 → テーマ → 新規追加 → テーマのアップロード → aspath-theme.zip
     → 「アップロードしたもので現在のテーマを置き換える」を選択
 """
-import re, os, shutil, zipfile, datetime, unicodedata, json, sys
+import re, os, shutil, zipfile, datetime, unicodedata, json, sys, hashlib
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(SRC, "_wp移行素材", "aspath-theme")
@@ -76,9 +76,31 @@ def rewrite_links(s):
         s = s.replace('&quot;'+fname+'&quot;', '&quot;'+php_url(base)+'&quot;')
     return s
 
+# 画像URLに付ける「中身のハッシュ」。
+# サーバーが画像に Cache-Control: immutable, max-age=31536000（1年）を付けているため、
+# ファイル名が同じだとブラウザは1年間サーバーに問い合わせず、差し替えても古い画像が出続ける。
+# そこでファイルの中身から8桁のハッシュを作り ?v= として付ける。
+# 中身が変わった画像だけURLが変わるので、他の画像のキャッシュは効いたまま。
+_IMG_VER_CACHE = {}
+def img_ver(name):
+    if name in _IMG_VER_CACHE: return _IMG_VER_CACHE[name]
+    path = os.path.join(SRC, 'images', name.split('?')[0])
+    try:
+        with open(path,'rb') as f: h = hashlib.md5(f.read()).hexdigest()[:8]
+    except OSError:
+        h = ''
+    _IMG_VER_CACHE[name] = h
+    return h
+
+def _img_url(name):
+    v = img_ver(name)
+    return TPL + '/images/' + name + ('?v=' + v if v else '')
+
 def rewrite_imgs(s):
-    s = re.sub(r'(src|href)="images/([^"]+)"', r'\1="'+TPL+r'/images/\2"', s)
-    s = re.sub(r'url\(images/([^)]+)\)', r'url('+TPL+r'/images/\1)', s)
+    s = re.sub(r'(src|href)="images/([^"]+)"',
+               lambda m: m.group(1) + '="' + _img_url(m.group(2)) + '"', s)
+    s = re.sub(r'url\(images/([^)]+)\)',
+               lambda m: 'url(' + _img_url(m.group(1)) + ')', s)
     return s
 
 def strip_noise(s, keep_jsonld=False):
@@ -675,7 +697,12 @@ def build_css_files():
         #   テーマでは CSS が css/ の中に入るため、そのままだと
         #   css/images/… を探しにいって画像が出ない。
         #   （実際に「実績・受賞歴」のメダルが表示されない不具合が出た）
-        body = re.sub(r'url\(\s*(["\']?)images/', r'url(\1../images/', body)
+        # CSSからの画像も、HTMLと同じく中身のハッシュを付ける（immutable対策）
+        def _css_img(m):
+            q, name = m.group(1), m.group(2)
+            v = img_ver(name)
+            return 'url(' + q + '../images/' + name + ('?v='+v if v else '') + q
+        body = re.sub(r'url\(\s*(["\']?)images/([^)\'"]+)\1', _css_img, body)
 
         # PHPはCSSファイルの中では動かない。混ざっていたら気づけるようにする。
         if '<?php' in body:
