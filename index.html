@@ -1033,15 +1033,22 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 }
 
 /* ── パーキンソン病における運動の重要性（サービス紹介の下）────────── */
-.pk-note{ display:grid; grid-template-columns:minmax(0,380px) 1fr; gap:30px; align-items:center;
-  max-width:var(--maxw); margin:40px auto 0; background:#fff; border:1px solid var(--gold-soft);
-  border-left:6px solid var(--sun); border-radius:18px; padding:26px 30px;
-  box-shadow:0 8px 22px rgba(38,70,83,.07); }
+/* 「まずはこれから！」の料金カードと同じ作法で、全体をオレンジの枠で囲む。
+   端だけの線より、ページの中で1つの塊として目に留まる。 */
+.pk-note{ position:relative; display:grid; grid-template-columns:minmax(0,380px) 1fr;
+  gap:30px; align-items:center; max-width:var(--maxw); margin:52px auto 0;
+  background:#fff; border:3px solid var(--sun); border-radius:22px; padding:34px 34px 30px;
+  box-shadow:0 12px 30px rgba(244,162,97,.18); }
+.pk-note::before{ content:"知っておいてほしいこと"; position:absolute; top:-16px; left:50%;
+  transform:translateX(-50%); background:var(--sun); color:#fff; font-family:var(--font-head);
+  font-weight:700; font-size:15px; padding:6px 24px; border-radius:999px; white-space:nowrap;
+  box-shadow:0 4px 12px rgba(244,162,97,.35); }
 .pk-note-fig{ border-radius:12px; overflow:hidden; }
 .pk-note-fig img{ width:100%; height:auto; display:block; }
 .pk-note-body{ min-width:0; }
 .pk-note-title{ font-family:var(--font-head); font-weight:700; color:var(--brown);
-  font-size:clamp(19px,2.5vw,26px); line-height:1.5; margin:0 0 12px; }
+  font-size:clamp(20px,2.7vw,28px); line-height:1.5; margin:0 0 14px; }
+.pk-note-title em{ font-style:normal; color:var(--sun); }
 .pk-note-body p{ font-size:16px; line-height:1.95; margin:0 0 8px; }
 .pk-note-link{ display:inline-block; margin-top:10px; font-size:16px; font-weight:700;
   color:var(--gold-deep); text-decoration:underline; text-decoration-color:var(--gold);
@@ -1050,7 +1057,8 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .pk-note-link .arw{ display:inline-block; margin-left:6px; transition:transform .2s; }
 .pk-note-link:hover .arw{ transform:translateX(4px); }
 @media (max-width:860px){
-  .pk-note{ grid-template-columns:1fr; gap:18px; padding:22px 20px; }
+  .pk-note{ grid-template-columns:1fr; gap:18px; padding:30px 20px 24px; margin-top:44px; }
+  .pk-note::before{ font-size:13.5px; padding:5px 18px; top:-14px; }
   .pk-note-body p{ font-size:15.5px; }
 }
 
@@ -1837,7 +1845,7 @@ table{ max-width:100%; }
           <img src="images/column-parkinson-treatment.webp" alt="パーキンソン病の治療。お薬・手術・再生医療に加えて、大切なのは運動療法とリハビリであることを示した図" width="768" height="432" loading="lazy" decoding="async">
         </div>
         <div class="pk-note-body">
-          <h3 class="pk-note-title" data-en="Exercise matters in Parkinson&#39;s disease"><span class="nw">パーキンソン病</span>では<span class="nw">運動が大事</span>！</h3>
+          <h3 class="pk-note-title" data-en-html="In Parkinson&#39;s disease, &lt;em&gt;exercise matters&lt;/em&gt;"><span class="nw">パーキンソン病</span>では<em><span class="nw">運動が大事</span>！</em></h3>
           <p data-en="Starting appropriate specialist training as early as possible can ease symptoms and slow progression in Parkinson&#39;s disease."><span class="nw">パーキンソン病</span>はなるべく早い時期から適切な専門<span class="nw">トレーニング</span>をすることで、<span class="nw">症状の低減</span>・<span class="nw">進行の緩和</span>ができます。</p>
           <p data-en="Combine medication with exercise and keep living well.">薬物療法と運動を組み合わせて、<span class="nw">元気に過ごしましょう</span>。</p>
           <a class="pk-note-link" href="column-parkinson.html" data-en="Read more about Parkinson&#39;s disease and exercise"><span class="nw">パーキンソン病と運動</span>の<span class="nw">詳細はこちら</span><span class="arw">→</span></a>
