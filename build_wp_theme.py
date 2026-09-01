@@ -99,6 +99,22 @@ def _img_url(name):
 def rewrite_imgs(s):
     s = re.sub(r'(src|href)="images/([^"]+)"',
                lambda m: m.group(1) + '="' + _img_url(m.group(2)) + '"', s)
+    # <picture><source srcset="images/…"> も忘れずに変換する。
+    # ここを漏らすと /images/… という存在しない場所を指して404になり、
+    # スマホでヒーローの写真が真っ白になる（2026-08-28 の不具合）。
+    def _srcset(m):
+        out = []
+        for part in m.group(1).split(','):
+            part = part.strip()
+            if not part: continue
+            bits = part.split(None, 1)
+            url  = bits[0]
+            desc = (' ' + bits[1]) if len(bits) > 1 else ''
+            if url.startswith('images/'):
+                url = _img_url(url[len('images/'):])
+            out.append(url + desc)
+        return 'srcset="' + ', '.join(out) + '"'
+    s = re.sub(r'srcset="([^"]+)"', _srcset, s)
     s = re.sub(r'url\(images/([^)]+)\)',
                lambda m: 'url(' + _img_url(m.group(1)) + ')', s)
     return s
@@ -742,6 +758,23 @@ def build_js(page, prefix):
         i += 1
         out.append((f"{prefix}-{i:02d}.js", code))
     return out
+
+def _verify_image_urls(outdir):
+    """テンプレートに images/ の相対パスが残っていないか検査する。
+    残っていると /images/… という存在しない場所を指し、404で画像が出ない。
+    2026-08-28 に <source srcset> の変換漏れでスマホのヒーローが真っ白になった。"""
+    bad = []
+    for root, _dirs, files in os.walk(outdir):
+        for f in files:
+            if not f.endswith('.php'): continue
+            path = os.path.join(root, f)
+            t = open(path, encoding='utf-8').read()
+            for attr in ('src', 'href', 'srcset'):
+                for m in re.finditer(attr + r'="\s*images/', t):
+                    bad.append(f'{f} の {attr}')
+    if bad:
+        die('画像URLがテーマの場所に変換されていません: ' + ', '.join(sorted(set(bad))))
+    print('  画像URLはすべてテーマの場所を指しています ✅')
 
 def main():
     if os.path.isdir(OUT): shutil.rmtree(OUT)
@@ -1524,6 +1557,7 @@ get_header(); ?>
     css_kb = os.path.getsize(os.path.join(OUT,"style.css"))//1024
     zip_kb = os.path.getsize(ZIP)//1024
     print(f"✓ テーマ生成完了 v{VERSION}")
+    _verify_image_urls(OUT)
     print(f"  PHP:{len(php)} / JS:{len(js)} / 画像:{len(img)} / style.css:{css_kb}KB / zip:{zip_kb}KB")
     print(f"  → {ZIP}")
 

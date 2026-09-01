@@ -482,12 +482,17 @@ body.drawer-open{ overflow:hidden; }
   background-size:cover; background-repeat:no-repeat;
   background-position:var(--pos, center);
 }
-.hero-slide > img{
+/* 2026-08-28 スマホ用の縦写真を出すため <picture> で包んだ。
+   包んだことで img が .hero-slide の「直下」ではなくなるため、
+   ここは「> img」（直下）ではなく子孫セレクタで書く。
+   直下指定のままだと、写真が全面に広がらずスライドが動いていないように見える。 */
+.hero-slide > picture{ position:absolute; inset:0; display:block; }
+.hero-slide img{
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover; object-position:var(--pos, center);
 }
-.hero-slide:has(> img) .kb{ display:none; }  /* 写真使用時は装飾グラデ停止 */
-.hero-slide:has(> img) .slot-label{ display:none; }
+.hero-slide:has(img) .kb{ display:none; }  /* 写真使用時は装飾グラデ停止 */
+.hero-slide:has(img) .slot-label{ display:none; }
 .hero-slide.on{ opacity:1; }
 .hero-slide .kb{ position:absolute; inset:0; background:inherit; }
 .hero-slide .slot-label{
