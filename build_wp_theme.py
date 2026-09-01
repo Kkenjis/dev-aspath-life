@@ -445,6 +445,54 @@ function aspath_trial_noindex() {
 }
 add_action('wp_head','aspath_trial_noindex',1);
 
+/**
+ * 添付ファイルページを塞ぐ（2026-09-01）
+ *
+ * WordPressは画像を1枚アップロードするごとに、その画像だけを表示する
+ * 「添付ファイルページ」を公開URLで自動生成する。
+ * 例: /aspath　ロゴ完成/ ＝ ロゴ画像(ID:14)の添付ファイルページ
+ *
+ * 中身がほぼ無いページが画像の数だけ量産され、実際に Google の
+ * サイトリンクに「ASPATHロゴ」として拾われていた（山口様よりご指摘）。
+ * 親記事があれば親へ、無ければトップへ301で転送して存在しない状態にする。
+ */
+function aspath_kill_attachment_pages() {
+  if ( ! is_attachment() ) return;
+  $parent = wp_get_post_parent_id( get_queried_object_id() );
+  $to = ( $parent && get_post_status($parent) === 'publish' )
+        ? get_permalink($parent)
+        : home_url('/');
+  wp_safe_redirect( $to, 301 );
+  exit;
+}
+add_action('template_redirect','aspath_kill_attachment_pages',1);
+
+/**
+ * 404ページのSEOタグを是正する（2026-09-01）
+ *
+ * SureRankが404ページのcanonicalに「管理画面のURL」を出力してしまう。
+ * 実測: /zzz-random-404/ の canonical が
+ *   https://aspath-life.com/wp-admin/admin.php?page=super-page-cache
+ * になっていた（未ログイン・Referer無しでも再現）。
+ * さらに robots が index,follow のままだった。
+ *
+ * 404は検索結果に載せる必要がないので、誤ったcanonicalを取り除き
+ * noindexに統一する。404はキャッシュ対象外なので速度への影響は無い。
+ */
+function aspath_fix_404_meta() {
+  if ( is_admin() || ! is_404() ) return;
+  ob_start(function( $html ) {
+    $html = preg_replace('#<link[^>]+rel=(["\'])canonical\1[^>]*>#i', '', $html);
+    $html = preg_replace('#<meta[^>]+name=(["\'])robots\1[^>]*>#i', '', $html);
+    return preg_replace(
+      '#</head>#i',
+      '<meta name="robots" content="noindex, follow" />' . "\n</head>",
+      $html, 1
+    );
+  });
+}
+add_action('template_redirect','aspath_fix_404_meta',20);
+
 /** WordPress標準のサイトマップから限定公開ページを外す */
 function aspath_trial_hide_from_sitemap( $args, $post_type ) {
   if ( $post_type !== 'page' ) return $args;
