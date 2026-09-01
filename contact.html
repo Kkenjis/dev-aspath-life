@@ -1023,6 +1023,13 @@ body{ overflow-wrap:normal; word-break:auto-phrase; line-break:strict; }
 .trial-line-msg{ font-size:clamp(16px,2.4vw,18px); color:var(--brown); line-height:1.9; margin:0 auto 20px; max-width:30em; }
 .trial-line-btn{ font-size:clamp(17px,2.6vw,20px)!important; padding:16px 34px!important; }
 .trial-line-note{ font-size:14px; color:var(--gold); margin:18px auto 0; max-width:34em; line-height:1.85; }
+/* LINEを使われない方への二番手の導線。
+   半額は公式LINE登録が条件なので、LINEボタンより控えめな見た目にしている。 */
+.trial-alt{ margin-top:22px; padding-top:20px; border-top:1px dashed var(--gold-soft); }
+.trial-alt-lead{ font-family:var(--font-head); font-weight:700; color:var(--gold-deep);
+  font-size:15px; margin:0 0 10px; }
+.trial-alt-btn{ font-size:16px !important; }
+.trial-alt-note{ font-size:14px; line-height:1.85; color:#5E7681; margin:12px auto 0; max-width:34em; }
 .contact-after .ca-mail{ margin-top:14px; font-size:clamp(17px,2.6vw,20px); }
 .contact-after .ca-mail a{ font-family:var(--font-head); font-weight:700; color:var(--sun); text-decoration:none; white-space:nowrap; }
 .contact-after .ca-mail a:hover{ text-decoration:underline; }
@@ -1245,21 +1252,28 @@ table{ max-width:100%; }
       </div>
 
       <div id="trial-line" class="reveal">
-        <p class="trial-line-msg" data-en-html="All enquiries and applications are handled through our official LINE.&lt;br&gt;Add us as a friend and send a message.">ご相談・お申し込みは、すべて<strong><span class="nw">公式LINE</span></strong>から承っています。<br class="br-pc">お友だち登録のうえ、メッセージをお送りください。</p>
+        <p class="trial-line-msg" data-en-html="Register on our official LINE and the first session is half price, ¥4,400.&lt;br&gt;Show the coupon you receive after adding us as a friend."><span class="nw">初回体験</span>は<strong><span class="nw">公式LINE</span>のご登録で半額<span class="nw">4,400円</span></strong>になります。<br class="br-pc">お友だち登録後にお渡しする<span class="nw">クーポン</span>を、当日ご提示ください。</p>
         <a class="btn btn-line big trial-line-btn" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span class="nw">公式LINE</span>に登録する</a>
         <p class="trial-line-note" data-en="After adding us, we will send the application form (a private URL) and arrange a date via LINE.">友だち登録後、<span class="nw">初回体験</span>のお申し込みフォーム（<span class="nw">専用URL</span>）のご案内と、<br class="br-pc">日程調整を<span class="nw">LINE</span>でスムーズに行います。</p>
+        <div class="trial-alt">
+          <p class="trial-alt-lead" data-en="If you do not use LINE"><span class="nw">LINE</span>を使われない方へ</p>
+          <a class="btn btn-ghost mid trial-alt-btn" href="https://aspath-life.com/taiken-2026as9y/" data-en-html="Apply from the form&lt;span class=&quot;arw&quot;&gt;→&lt;/span&gt;"><span class="nw">お申し込みフォーム</span>から申し込む<span class="arw">→</span></a>
+          <p class="trial-alt-note" data-en="Applying from the form is also welcome. The half-price coupon is only for those who register on our official LINE, so the regular price of 8,800 yen applies.">フォームからのお申し込みも承っています。<br class="br-pc">半額クーポンは<span class="nw">公式LINE</span>にご登録いただいた方が対象のため、<span class="nw">通常8,800円</span>となります。</p>
+        </div>
       </div>
 
       <div class="contact-side">
           <div class="contact-flow">
             <p class="cs-lead" data-en-html="How to apply">お申し込みの流れ</p>
             <ol>
-              <li><b data-en="Add ASPATH&#39;s official LINE as a friend"><span class="nw">アスパス</span>の<span class="nw">公式LINE</span>をお友達登録</b></li>
+              <li><b data-en="Add ASPATH&#39;s official LINE as a friend"><span class="nw">アスパス</span>の<span class="nw">公式LINE</span>をお友達登録</b>
+                <span class="cf-note" data-en-html="You will receive a coupon that makes the first session half price.">ご登録いただくと、<b>初回体験が半額になるクーポン</b>をお渡しします</span></li>
               <li><b data-en="Send us your name in the LINE chat"><span class="nw">公式LINE</span>のチャットでお名前を入力・送信</b>
                 <span class="cf-note" data-en="This lets us identify you on our side.">送信いただくことで<span class="nw">アスパス</span>側がお客さまを確認できるようになります</span></li>
               <li><b data-en="Fill in the trial application form yourself">お客さまご自身で、<span class="nw">初回体験</span>申し込みフォームに必要事項を入力</b></li>
               <li><b data-en="ASPATH staff contact you to arrange a date"><span class="nw">アスパス</span>のスタッフからご日程調整などのご連絡</b></li>
-              <li><b data-en="Your first training session">初回トレーニング体験を実施</b></li>
+              <li><b data-en="Your first training session">初回トレーニング体験を実施</b>
+                <span class="cf-note" data-en-html="On the day, show the coupon screen on our official LINE to get the half price of 4,400 yen.">当日、<span class="nw">公式LINE</span>のクーポン画面をお見せください。<b>半額4,400円</b>でご利用いただけます</span></li>
             </ol>
             <p class="cf-tel" data-en-html="You can also apply by phone: &lt;a href=&quot;tel:09082980433&quot;&gt;090-8298-0433&lt;/a&gt;">※お電話でもお申し込みいただけます。<br class="br-pc"><a href="tel:09082980433">090-8298-0433</a> までご連絡ください。</p>
           </div>
