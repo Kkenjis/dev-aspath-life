@@ -468,6 +468,42 @@ function aspath_kill_attachment_pages() {
 add_action('template_redirect','aspath_kill_attachment_pages',1);
 
 /**
+ * 役目を終えた旧URLを、統合先へ301で転送する（2026-09-03）
+ *
+ * 【なぜ必要か】
+ * /for-parkinsons-disease/ と /パーキンソン病とアスパスの歩み方/ は、
+ * 見出し4つが完全に一致する重複ページだった。
+ * 導線（サイト内リンク）は「歩み方」に12本集まっているのに対し、
+ * /for-parkinsons-disease/ は1本も無い孤立ページ。
+ * 放置するとGoogleがどちらを出すか選べず、両方の評価が下がる。
+ *
+ * 301（恒久的な移転）で転送すると、旧URLに溜まった検索評価が
+ * 統合先へ引き継がれる。単に削除すると、その評価は捨てることになる。
+ *
+ * 【増やし方】下の配列に「旧スラッグ => 転送先のパス」を足すだけ。
+ *   転送先は、先頭に / を付けたサイト内のパスで書く。
+ */
+function aspath_legacy_redirect_map() {
+  return array(
+    // 旧URL（先頭・末尾の / は不要）      => 転送先
+    'for-parkinsons-disease' => '/パーキンソン病とアスパスの歩み方/',
+  );
+}
+
+function aspath_legacy_redirects() {
+  if ( is_admin() ) return;
+  $path = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+  if ( $path === '' ) return;
+  $path = rawurldecode( $path );
+  $map  = aspath_legacy_redirect_map();
+  if ( isset( $map[ $path ] ) ) {
+    wp_redirect( home_url( $map[ $path ] ), 301 );
+    exit;
+  }
+}
+add_action('template_redirect','aspath_legacy_redirects',1);
+
+/**
  * 404ページのSEOタグを是正する（2026-09-01）
  *
  * SureRankが404ページのcanonicalに「管理画面のURL」を出力してしまう。
