@@ -708,8 +708,15 @@ TAGS_CSS = r'''
 .column-tags{ margin:34px 0 0; padding-top:22px; border-top:1px solid var(--gold-soft); }
 .column-tags-head{ font-family:var(--font-head); font-weight:700; font-size:14px;
   letter-spacing:.08em; color:var(--gold-deep); margin:0 0 12px; }
+/* 記事本文用の .column-body ul li（白いカード＋オレンジの丸）が
+   タグにも当たってしまうため、同じ強さのセレクタで打ち消す。 */
+.column-body .column-tags-list,
 .column-tags-list{ list-style:none; margin:0; padding:0;
   display:flex; flex-wrap:wrap; gap:9px; }
+.column-body .column-tags-list li{
+  position:static; padding:0; margin:0; line-height:1.5;
+  background:none; border:0; border-radius:0; box-shadow:none; }
+.column-body .column-tags-list li::before{ content:none; display:none; }
 .column-tags-list a{ display:inline-block; text-decoration:none;
   background:var(--paper); border:1px solid var(--gold-soft); color:var(--gold-deep);
   border-radius:999px; padding:6px 15px; font-size:14px; font-weight:700; line-height:1.5;
