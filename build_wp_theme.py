@@ -946,19 +946,31 @@ def main():
         die("faq.html からQ&Aを取り出せませんでした（見つかった数: %d）。\n"
             "  <details><summary>…</summary><p class=\"a\">…</p></details> の形を確認してください。"
             % len(_pairs))
-    STRUCTURED_FAQ = json.dumps({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {"@type": "Question", "name": _plain(q),
-             "acceptedAnswer": {"@type": "Answer", "text": _plain(a)}}
-            for q, a in _pairs
-        ],
-    }, ensure_ascii=False, separators=(',', ':'))
-    if "'" in STRUCTURED_FAQ:
+    def _faq_schema(pairs):
+        s = json.dumps({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": _plain(q),
+                 "acceptedAnswer": {"@type": "Answer", "text": _plain(a)}}
+                for q, a in pairs
+            ],
+        }, ensure_ascii=False, separators=(',', ':'))
         # functions.php ではPHPのシングルクォート文字列に埋め込むため
-        STRUCTURED_FAQ = STRUCTURED_FAQ.replace("'", "\\'")
-    print("  FAQ構造化データ: faq.html の実データ %d問から生成 ✅" % len(_pairs))
+        return s.replace("'", "\\'")
+
+    STRUCTURED_FAQ = _faq_schema(_pairs)
+
+    # TOPにも「よくある質問」セクションがあるが、質問文が faq.html とは別物。
+    # ここまで index.html 由来のJSON-LDを /faq/ に出していたのが不一致の原因だった。
+    # TOP用は index.html の実データから作り、TOPに出す（TOPは検索対象のため効果がある）。
+    _top_pairs = re.findall(
+        r'<details[^>]*>\s*<summary[^>]*>([\s\S]*?)</summary>\s*'
+        r'<p class="a"[^>]*>([\s\S]*?)</p>',
+        _idx)
+    STRUCTURED_FAQ_TOP = _faq_schema(_top_pairs) if len(_top_pairs) >= 3 else ""
+    print("  FAQ構造化データ: /faq/ は faq.html の%d問、TOPは index.html の%d問から生成 ✅"
+          % (len(_pairs), len(_top_pairs)))
 
     functions_php = f"""<?php
 /** functions.php — ASPATH theme（build_wp_theme.py 自動生成） */
@@ -1179,6 +1191,11 @@ function aspath_seo_structured_data() {{
   if ( is_front_page() ) {{
     echo '<script type="application/ld+json">' . "\\n"
        . '{STRUCTURED_HEALTHCLUB}' . "\\n"
+       . '</script>' . "\\n";
+    // TOPの「よくある質問」セクションに対応する構造化データ。
+    // 画面に出ている質問と1問ずつ一致させてある（build_wp_theme.py が自動生成）。
+    echo '<script type="application/ld+json">' . "\\n"
+       . '{STRUCTURED_FAQ_TOP}' . "\\n"
        . '</script>' . "\\n";
   }}
   if ( is_page('faq') ) {{
