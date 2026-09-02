@@ -922,6 +922,44 @@ def main():
         die("index.html から構造化データ（HealthClub / FAQPage）を取り出せませんでした。\n"
             "  検索での見つかりやすさに関わるため、見つからない場合はビルドを止めています。")
 
+    # ── FAQPage は faq.html の「実際に画面に出ている」Q&Aから作り直す ──────
+    #   2026-09-02 山口様よりご指摘。
+    #   これまで index.html（TOPの短縮版FAQ）のJSON-LDをそのまま /faq/ に出していた。
+    #   その結果、構造化データの6問中5問が faq.html に存在しない状態だった。
+    #   Googleは「構造化データの内容はページ上に表示されていること」を必須要件と
+    #   しており、違反すると無視されるか手動対策の対象になる。
+    #   ズレが二度と起きないよう、faq.html から機械的に生成する。
+    def _plain(html_fragment):
+        """タグとルビ用spanを取り除いて、読み手に見えている文字だけにする"""
+        s = re.sub(r'<[^>]+>', '', html_fragment)
+        s = s.replace('&nbsp;', ' ')
+        s = (s.replace('&amp;', '&').replace('&lt;', '<')
+               .replace('&gt;', '>').replace('&quot;', '"').replace('&#039;', "'"))
+        return re.sub(r'\s+', ' ', s).strip()
+
+    _faq_src = read("faq.html")
+    _pairs = re.findall(
+        r'<details[^>]*>\s*<summary[^>]*>([\s\S]*?)</summary>\s*'
+        r'<p class="a"[^>]*>([\s\S]*?)</p>',
+        _faq_src)
+    if len(_pairs) < 3:
+        die("faq.html からQ&Aを取り出せませんでした（見つかった数: %d）。\n"
+            "  <details><summary>…</summary><p class=\"a\">…</p></details> の形を確認してください。"
+            % len(_pairs))
+    STRUCTURED_FAQ = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": _plain(q),
+             "acceptedAnswer": {"@type": "Answer", "text": _plain(a)}}
+            for q, a in _pairs
+        ],
+    }, ensure_ascii=False, separators=(',', ':'))
+    if "'" in STRUCTURED_FAQ:
+        # functions.php ではPHPのシングルクォート文字列に埋め込むため
+        STRUCTURED_FAQ = STRUCTURED_FAQ.replace("'", "\\'")
+    print("  FAQ構造化データ: faq.html の実データ %d問から生成 ✅" % len(_pairs))
+
     functions_php = f"""<?php
 /** functions.php — ASPATH theme（build_wp_theme.py 自動生成） */
 function aspath_setup() {{
