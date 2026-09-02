@@ -493,6 +493,29 @@ function aspath_fix_404_meta() {
 }
 add_action('template_redirect','aspath_fix_404_meta',20);
 
+/**
+ * タグ一覧ページを検索対象から外す（2026-09-03）
+ *
+ * タグは「同じテーマの記事へ回遊してもらう道しるべ」として記事下に置いている。
+ * 一方でタグ1つあたりの記事は2〜3本しかなく、タグ一覧ページまで検索結果に
+ * 載せると「中身の薄いページ」が増え、サイト全体の評価を下げる要因になる。
+ * 記事そのものと、カテゴリ（コラム／お知らせ）は今まで通り検索対象のまま。
+ *
+ * follow は残すため、タグ一覧から各記事へのリンクは正しく辿られる。
+ */
+function aspath_noindex_tag_archive() {
+  if ( is_admin() || ! is_tag() ) return;
+  ob_start(function( $html ) {
+    $html = preg_replace('#<meta[^>]+name=(["\'])robots\1[^>]*>#i', '', $html);
+    return preg_replace(
+      '#</head>#i',
+      '<meta name="robots" content="noindex, follow" />' . "\n</head>",
+      $html, 1
+    );
+  });
+}
+add_action('template_redirect','aspath_noindex_tag_archive',20);
+
 /** WordPress標準のサイトマップから限定公開ページを外す */
 function aspath_trial_hide_from_sitemap( $args, $post_type ) {
   if ( $post_type !== 'page' ) return $args;
@@ -639,6 +662,32 @@ CSS_SOURCES = {
 # 記事にコメント欄を出すページ（この3つだけにコメント用CSSを足す）
 CSS_WITH_COMMENTS = ("column", "column-parkinson", "news-single")
 
+# 記事下のタグ表示（2026-09-03 追加）
+#   見積の「ブログ機能（カテゴリ・タグ設計）」に対応する。
+#   タグを作るだけでは画面のどこにも出ないため、記事下に置いて
+#   同じテーマの記事へ回遊できるようにする。
+CSS_WITH_TAGS = ("column", "column-parkinson", "news-single")
+TAGS_CSS = r'''
+/* ── 記事下のタグ ───────────────────────────────────────── */
+.column-tags{ margin:34px 0 0; padding-top:22px; border-top:1px solid var(--gold-soft); }
+.column-tags-head{ font-family:var(--font-head); font-weight:700; font-size:14px;
+  letter-spacing:.08em; color:var(--gold-deep); margin:0 0 12px; }
+.column-tags-list{ list-style:none; margin:0; padding:0;
+  display:flex; flex-wrap:wrap; gap:9px; }
+.column-tags-list a{ display:inline-block; text-decoration:none;
+  background:var(--paper); border:1px solid var(--gold-soft); color:var(--gold-deep);
+  border-radius:999px; padding:6px 15px; font-size:14px; font-weight:700; line-height:1.5;
+  transition:background .2s, color .2s, border-color .2s; }
+.column-tags-list a:hover{ background:var(--sun); border-color:var(--sun); color:#fff; }
+/* タグ一覧ページ（archive.php）の見出し */
+.tag-archive-lead{ font-size:15px; color:var(--gold-deep); margin:6px 0 0; }
+@media (max-width:760px){
+  .column-tags{ margin-top:26px; padding-top:18px; }
+  .column-tags-list{ gap:7px; }
+  .column-tags-list a{ font-size:13px; padding:5px 13px; }
+}
+'''
+
 # コメント欄のCSS。devのHTMLには無い要素なので、ここで持つ。
 # 4ファイルに同じものを書くと必ずズレるため、生成時に必要なCSSだけ足す方式にした。
 COMMENTS_CSS = r'''
@@ -755,6 +804,8 @@ def build_css_files():
         body = f"/* {key}.css — {src} の<style>をそのまま抽出（ページ単位で分離） */\n" + page_css(src)
         if key in CSS_WITH_COMMENTS:
             body += COMMENTS_CSS
+        if key in CSS_WITH_TAGS:
+            body += TAGS_CSS
 
         # CSS内の画像パスを1階層上げる。
         #   devでは HTML と images/ が同じ階層にあるので url(images/…) で届く。
@@ -1438,6 +1489,22 @@ get_header(); ?>
     <div class="wrap">
       <?php if ( has_post_thumbnail() ) : ?><div class="column-eyecatch img-slot" style="--ratio:16/9;"><?php the_post_thumbnail('large'); ?></div><?php endif; ?>
       <?php the_content(); ?>
+      <?php
+        /* 記事下のタグ（2026-09-03 追加）
+           タグを登録しても、表示する場所が無ければ読み手には届かない。
+           同じテーマの記事へ回遊してもらうため、本文の直後に置く。
+           タグが付いていない記事では、何も出力しない。 */
+        $aspath_tags = get_the_tags();
+        if ( $aspath_tags && ! is_wp_error($aspath_tags) ) : ?>
+      <div class="column-tags">
+        <p class="column-tags-head">この記事のテーマ</p>
+        <ul class="column-tags-list">
+          <?php foreach ( $aspath_tags as $aspath_tag ) : ?>
+          <li><a href="<?php echo esc_url( get_tag_link($aspath_tag->term_id) ); ?>"><?php echo esc_html($aspath_tag->name); ?></a></li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+      <?php endif; ?>
       <?php
         /* 記事末尾の共通CTA。
            dev の各コラムに入っていたものをテーマ側にまとめた。
