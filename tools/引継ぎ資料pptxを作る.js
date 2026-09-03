@@ -5,7 +5,8 @@ const W = 13.3, H = 7.5;
 
 const NAVY='264653', SUN='DD8236', SUNL='F4A261', CREAM='F7EFE4',
       GREEN='2E7D32', GREY='5E7681', WHITE='FFFFFF', INK='1E2D34',
-      SUND='C96A1E';   // 応用編タグ用（2026-09-04 追加）
+      SUND='C96A1E',   // 応用編タグ用（2026-09-04 追加）
+      RED='B4453C', PURPLE='5B5391';   // 最応用編・AI活用編タグ用
 const F='Meiryo';
 const IMG='/sessions/compassionate-sweet-heisenberg/mnt/dev-aspath-life-main/_wp移行素材/★引継ぎ資料/画像/';
 
@@ -55,28 +56,30 @@ function pic(s,f,x,y,w){ s.addImage({path:IMG+f, x:x, y:y, w:w, h:w*764/1568}); 
 
 /* 2b 資料の全体像（2026-09-04 追加）
    資料が5冊に増え、内容が一部重なったため、どれを見ればよいかを最初に示す。 */
-{ const s=P.addSlide(); head(s,'資料は6冊あります','困ったときに、どれを開けばよいか');
+{ const s=P.addSlide(); head(s,'資料は8冊あります','困ったときに、どれを開けばよいか');
   const books=[
     ['基本編','ASPATH_サイト運用マニュアル_基本編','日々の更新。画面写真つき。まずこれ',SUN,'★'],
-    ['応用編','ASPATH_サイト運用マニュアル_応用編','壊さない触り方・検索対策・AIの使い方',SUND,'★'],
+    ['応用編','ASPATH_サイト運用マニュアル_応用編','壊さない触り方と、検索対策',SUND,'★'],
+    ['最応用編','ASPATH_サイト運用マニュアル_最応用編','公開後の点検と、直し方',RED,'★'],
+    ['AI活用編','ASPATH_サイト運用マニュアル_AI活用編','そのまま使えるプロンプト8種',PURPLE,'★'],
     ['この資料','ASPATH_サイト更新マニュアル','全体像と、PC作業の手順。開発担当も見る',NAVY,''],
     ['やさしい版','山口様向け_ページの直し方','記事の書き方を、やさしく。連絡の文例つき',GREEN,''],
     ['固定ページ','山口様向け_ASPATHについて_文章の直し方','「ASPATHについて」だけの専用手順',GREY,''],
     ['検索対策','山口様向け_検索で見つけてもらう記事の書き方','記事の題名の付け方',GREY,''],
   ];
-  let y=1.8;
+  let y=1.72;
   books.forEach(([tag,name,desc,col,mark])=>{
-    s.addShape(P.ShapeType.roundRect,{x:0.7,y:y,w:12.1,h:0.8,fill:{color:'F6F7F8'},rectRadius:0.1});
-    s.addShape(P.ShapeType.roundRect,{x:0.95,y:y+0.16,w:1.55,h:0.48,fill:{color:col},rectRadius:0.24});
-    s.addText(tag,{x:0.95,y:y+0.16,w:1.55,h:0.48,fontFace:F,bold:true,fontSize:12.5,
+    s.addShape(P.ShapeType.roundRect,{x:0.7,y:y,w:12.1,h:0.62,fill:{color:'F6F7F8'},rectRadius:0.09});
+    s.addShape(P.ShapeType.roundRect,{x:0.95,y:y+0.09,w:1.6,h:0.44,fill:{color:col},rectRadius:0.22});
+    s.addText(tag,{x:0.95,y:y+0.09,w:1.6,h:0.44,fontFace:F,bold:true,fontSize:11.5,
                    color:WHITE,align:'center',valign:'middle',margin:0});
-    s.addText(mark+name,{x:2.7,y:y+0.22,w:5.0,h:0.35,fontFace:F,bold:true,fontSize:13,color:NAVY,margin:0});
-    s.addText(desc,{x:7.9,y:y+0.24,w:4.7,h:0.35,fontFace:F,fontSize:11.5,color:GREY,margin:0});
-    y+=0.88;
+    s.addText(mark+name,{x:2.75,y:y+0.14,w:5.1,h:0.34,fontFace:F,bold:true,fontSize:12.5,color:NAVY,margin:0});
+    s.addText(desc,{x:8.0,y:y+0.15,w:4.6,h:0.34,fontFace:F,fontSize:11,color:GREY,margin:0});
+    y+=0.68;
   });
-  s.addText('★の2冊が本編です。内容が重なる部分もありますが、迷ったら「基本編」→「応用編」の順に見てください。',
-    {x:0.7,y:7.0,w:12.1,h:0.35,fontFace:F,fontSize:12,color:GREY,margin:0});
-  s.addNotes('6冊の役割分担。レクチャーでは基本編を使い、応用編は必要になった章だけ開く使い方でよい。');
+  s.addText('★の4冊が本編です。まず「基本編」。困ったときに応用編、月1回の点検に最応用編、記事づくりにAI活用編。',
+    {x:0.7,y:7.02,w:12.1,h:0.35,fontFace:F,fontSize:11.5,color:GREY,margin:0});
+  s.addNotes('8冊の役割分担。レクチャーでは基本編を使う。他は必要になったときに開く。');
 }
 
 /* 3 2つの道 */

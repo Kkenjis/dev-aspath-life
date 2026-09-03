@@ -1,7 +1,7 @@
 // ASPATH サイト運用マニュアル 応用編 — スライド生成
 //   A. 触ると壊れる領域と、その安全な触り方
 //   B. やっておいて損はないこと
-//   C. AIを使いこなす（汎用プロンプト集）
+//   C. AIの使い方は別冊「AI活用編」へ（2026-09-04 分離）
 // 実行: NODE_PATH=<node_modules> node 応用編pptxを作る.js
 const pptx = require("pptxgenjs");
 
@@ -132,7 +132,7 @@ function chapterCover(s, num, title, lines) {
   s.addText("サイト運用マニュアル", { x: 0.9, y: 2.05, w: 11, h: 0.95, fontSize: 42, bold: true, color: WHITE, fontFace: F, isTextBox: true, margin: 0 });
   s.addShape(P.ShapeType.roundRect, { x: 0.9, y: 3.2, w: 2.1, h: 0.64, rectRadius: 0.32, fill: { color: SUN } });
   s.addText("応 用 編", { x: 0.9, y: 3.2, w: 2.1, h: 0.64, align: "center", valign: "middle", fontSize: 18, bold: true, color: WHITE, fontFace: F, isTextBox: true, margin: 0 });
-  s.addText("壊さない触り方・やっておいて損はないこと・AIの使いこなし", { x: 0.9, y: 4.15, w: 11, h: 0.45, fontSize: 16, color: "CFE0E4", fontFace: F, isTextBox: true, margin: 0 });
+  s.addText("壊さない触り方と、やっておいて損はないこと", { x: 0.9, y: 4.15, w: 11, h: 0.45, fontSize: 16, color: "CFE0E4", fontFace: F, isTextBox: true, margin: 0 });
   s.addText("2026年9月　ASPATH 様　ご納品資料", { x: 0.9, y: 6.3, w: 8, h: 0.4, fontSize: 12, color: "9FBAC1", fontFace: F, isTextBox: true, margin: 0 });
   s.addNotes("基本編を終えた方向け。1回で全部やらず、必要になった章だけ開く使い方でよい。");
 }
@@ -144,7 +144,7 @@ function chapterCover(s, num, title, lines) {
   const ch = [
     { n: "A", t: "触ると壊れる領域", d: "テーマの入れ替え、固定ページの修正、\nバックアップ。事故を防ぐための章", c: RED },
     { n: "B", t: "やっておいて損はないこと", d: "検索対策、数字の見方、スパム対策。\nじわじわ効く章", c: GREEN },
-    { n: "C", t: "AIを使いこなす", d: "記事の下書き、返信文、画像。\nいちばん時間が浮く章", c: SUND },
+    { n: "C", t: "AIを使いこなす", d: "別冊「AI活用編」に\nまとめています", c: SUND },
   ];
   ch.forEach((c, i) => {
     const x = 0.65 + i * 4.05;
@@ -411,230 +411,25 @@ function chapterCover(s, num, title, lines) {
   s.addNotes("再発時に原因を思い出せるように。全て対応済みである点を強調。");
 }
 
-/* ══════════ 15 C章 扉 ══════════ */
+/* ══════════ 15 AI活用は別冊へ（2026-09-04 分離） ══════════ */
 {
   const s = P.addSlide();
-  chapterCover(s, "C", "AIを使いこなす", [
-    "AIに任せられること・任せてはいけないこと",
-    "プロンプト（指示文）の基本形",
-    "そのまま貼って使えるプロンプト5種",
-    "画像を作らせる",
-    "使うときの3つの約束",
-  ]);
-  pageNo++;
-  s.addNotes("ChatGPT・Claude・Geminiどれでも使える書き方。幸喜はClaudeを使用中。");
-}
+  head(s, null, "AIの使い方は、別冊にまとめました", "分量が増えたため、独立した1冊にしています");
+  s.addShape(P.ShapeType.roundRect, { x: 1.6, y: 1.9, w: 10.1, h: 2.5, rectRadius: 0.16,
+    fill: { color: PAPER }, line: { color: SUND, width: 1.5 } });
+  s.addShape(P.ShapeType.roundRect, { x: 2.0, y: 2.25, w: 2.4, h: 0.6, rectRadius: 0.3, fill: { color: SUND } });
+  s.addText("AI活用編", { x: 2.0, y: 2.25, w: 2.4, h: 0.6, align: "center", valign: "middle",
+    fontSize: 15, bold: true, color: WHITE, fontFace: F, isTextBox: true, margin: 0 });
+  s.addText("★ASPATH_サイト運用マニュアル_AI活用編", { x: 2.0, y: 3.0, w: 9.3, h: 0.45,
+    fontSize: 18, bold: true, color: NAVY, fontFace: F, isTextBox: true, margin: 0 });
+  s.addText("そのまま貼って使えるプロンプトを8種類。記事のネタ出し・構成案・下書き・検索用の説明文・題名の短縮・お客様への返信文・点検結果の読み取り・イラスト生成。",
+    { x: 2.0, y: 3.5, w: 9.3, h: 0.75, fontSize: 12.5, color: INK, fontFace: F, isTextBox: true, margin: 0, lineSpacingMultiple: 1.25 });
 
-/* ══════════ 16 任せられること ══════════ */
-{
-  const s = P.addSlide();
-  head(s, "AIに任せられること・任せてはいけないこと", "線引きを先に決めておくと、安心して使えます", { chapter: "C" });
-  const ok = ["記事のネタ出し（10個出させて選ぶ）", "記事の構成案づくり", "本文の下書き（そのまま出さない）", "検索用の説明文づくり", "お客様への返信文のたたき台", "長い文章を短くまとめる", "イラスト生成の指示文づくり"];
-  const ng = ["医学的な正しさの最終判断", "「治る」「改善する」などの効果の断定", "お客様の個人情報を入れた相談", "料金・営業時間などの事実確認", "そのまま公開する（必ず読み直す）"];
-  s.addShape(P.ShapeType.roundRect, { x: 0.65, y: 1.68, w: 5.95, h: 4.05, rectRadius: 0.12, fill: { color: "EDF6EE" }, line: { color: GREEN, width: 1.2 } });
-  s.addText("任せてよいこと", { x: 0.95, y: 1.88, w: 5.4, h: 0.4, fontSize: 16, bold: true, color: GREEN, fontFace: F, isTextBox: true, margin: 0 });
-  s.addText(ok.map((t, i) => ({ text: t, options: { bullet: true, breakLine: i < ok.length - 1 } })),
-    { x: 0.95, y: 2.35, w: 5.4, h: 3.2, fontSize: 12.5, color: INK, fontFace: F, isTextBox: true, margin: 0, paraSpaceAfter: 7 });
-  s.addShape(P.ShapeType.roundRect, { x: 6.7, y: 1.68, w: 5.92, h: 4.05, rectRadius: 0.12, fill: { color: "FBEDEC" }, line: { color: RED, width: 1.2 } });
-  s.addText("人が判断すること", { x: 7.0, y: 1.88, w: 5.4, h: 0.4, fontSize: 16, bold: true, color: RED, fontFace: F, isTextBox: true, margin: 0 });
-  s.addText(ng.map((t, i) => ({ text: t, options: { bullet: true, breakLine: i < ng.length - 1 } })),
-    { x: 7.0, y: 2.35, w: 5.4, h: 3.2, fontSize: 12.5, color: INK, fontFace: F, isTextBox: true, margin: 0, paraSpaceAfter: 7 });
-  box(s, 0.65, 5.95, 11.97, 1.05, "AIは、もっともらしく間違えます",
-    "とくに医学的な数字や研究の引用は、実在しないものを自信たっぷりに書くことがあります。山口様の目で必ず確認してください。", "warn");
-  s.addNotes("ここが一番大事。医療系サイトなので線引きを明確に。");
-}
-
-/* ══════════ 17 プロンプトの基本形 ══════════ */
-{
-  const s = P.addSlide();
-  head(s, "プロンプト（指示文）の基本形", "この5つを順に書くだけで、精度が大きく変わります", { chapter: "C" });
-  const parts = [
-    ["①", "誰として答えるか", "あなたは鹿児島のパーキンソン病専門トレーニングスタジオの運営者です"],
-    ["②", "前提", "理学療法士が保険外でマンツーマン指導。初回体験はLINE登録で半額4,400円"],
-    ["③", "してほしいこと", "コラムの構成案を作ってください"],
-    ["④", "条件・制約", "1500〜2500字／見出しは質問の形／効果の断定はしない"],
-    ["⑤", "出力の形", "表形式で／箇条書きで／そのまま貼れる形で"],
-  ];
-  let y = 1.65;
-  parts.forEach(([n, t, ex]) => {
-    s.addShape(P.ShapeType.roundRect, { x: 0.65, y, w: 11.97, h: 0.92, rectRadius: 0.1, fill: { color: "F7FAFA" }, line: { color: "DCE6E8", width: 1 } });
-    s.addText(n, { x: 0.85, y: y + 0.26, w: 0.42, h: 0.4, align: "center", fontSize: 17, bold: true, color: SUND, fontFace: F, isTextBox: true, margin: 0 });
-    s.addText(t, { x: 1.4, y: y + 0.28, w: 2.9, h: 0.36, fontSize: 14, bold: true, color: NAVY, fontFace: F, isTextBox: true, margin: 0 });
-    s.addText(ex, { x: 4.45, y: y + 0.2, w: 7.95, h: 0.6, fontSize: 11.5, color: MUTED, fontFace: MONO, isTextBox: true, margin: 0, lineSpacingMultiple: 1.15 });
-    y += 1.02;
-  });
-  box(s, 0.65, 6.4, 11.97, 0.85, "うまくいかないときは、条件（④）を足してください",
-    "「もっと短く」「専門用語を減らして」「当事者が使う言葉で」など、後から追加で指示できます。", "ok");
-  s.addNotes("この型を覚えれば、どのAIでも使える。");
-}
-
-/* ══════════ 18-22 プロンプト実例 ══════════ */
-const promptSlides = [
-  {
-    t: "① 記事のネタを出させる", sub: "何を書くか決まらないときに使います",
-    label: "そのまま貼って使えます",
-    body:
-`あなたは鹿児島のパーキンソン病専門トレーニングスタジオ
-「ASPATH（アスパス）」の運営者です。
-理学療法士が、保険外のマンツーマン運動指導を行っています。
-
-パーキンソン病のご本人とご家族が検索しそうな悩みを、10個挙げてください。
-
-条件
-・実際に検索窓に打ち込まれそうな言葉で
-・すでに書いた記事とは重複しないこと
-　（すくみ足の対策／体幹の運動／振るえ／運動習慣のつけ方）
-・専門用語ではなく、当事者が使う言葉で
-
-出力は表形式で、「検索されそうな言葉」「記事の題名案」の2列でお願いします。`,
-    note: "10個出させて、山口様が3つ選ぶ使い方。全部使わなくてよい。",
-    tip: ["10個出させて、良いものだけ選ぶ", "「もっと家族向けで」など追加指示もできる"],
-  },
-  {
-    t: "② 記事の構成案を作らせる", sub: "書く順番が決まると、本文はぐっと楽になります",
-    label: "①の続きに貼ります",
-    body:
-`「〇〇」というテーマでコラムを書きます。見出しの構成案を作ってください。
-
-条件
-・全体で1500〜2500字を想定
-・見出しは質問の形にする（なぜ起きるの？／どうすればいい？）
-・最初に「この記事で分かること」を3行
-・最後は「アスパスでできること」に自然につなげる
-・断定的な効果の約束はしない（「必ず改善」などは使わない）
-
-出力は、見出しと、その中に書く内容のメモを添えてください。`,
-    note: "テーマ名だけ差し替えて繰り返し使える。",
-    tip: ["〇〇にテーマを入れるだけ", "構成が気に入らなければ「別の切り口で」と言う"],
-  },
-  {
-    t: "③ 本文の下書きを作らせる", sub: "たたき台をもらって、山口様が直すのがいちばん速い進め方です",
-    label: "②の続きに貼ります",
-    body:
-`上の構成案のうち、「△△」の部分の本文だけを書いてください。
-
-条件
-・ですます調。1文は40字以内
-・専門用語を使うときは、直後にやさしい言い換えを入れる
-・「治る」「改善します」などの断定は避け、
-　「〜と報告されています」「〜の方が多いです」に置き換える
-・箇条書きは3〜5項目まで
-・読み手に呼びかける文を、最後に1文だけ入れる`,
-    note: "見出し1つずつ書かせると品質が上がる。全部まとめて書かせない。",
-    tip: ["見出し1つずつ書かせる", "出てきた文章は必ず読み直す"],
-  },
-  {
-    t: "④ 検索用の説明文を作らせる", sub: "SureRank に貼る文章です。B章と合わせて使ってください",
-    label: "記事の本文を貼ってから使います",
-    body:
-`次のコラム記事について、検索結果に表示される説明文を作ってください。
-
-条件
-・全角で60〜160字におさめる
-・冒頭30字で内容が分かるように書く
-・「鹿児島」「パーキンソン病」を必ず入れる
-・記号（！や★）は使わない
-・3案出してください
-
-【記事の内容】
-（ここに記事の本文を貼り付ける）`,
-    note: "3案出させて選ぶ。文字数は必ず自分で数え直す（AIは数え間違える）。",
-    tip: ["3案出させて選ぶ", "文字数はSureRankの画面で確認する"],
-  },
-  {
-    t: "⑤ お客様への返信文を作らせる", sub: "個人情報は伏せてから貼ってください",
-    label: "お問い合わせ内容を貼ってから使います",
-    body:
-`あなたは鹿児島のパーキンソン病専門トレーニングスタジオ
-「ASPATH」の運営者です。次のお問い合わせに、返信の下書きを作ってください。
-
-条件
-・ていねいだが、かたすぎない言葉で
-・不安に寄り添う一文を、いちばん最初に置く
-・診断や治療の断定はしない
-　（「一度お身体を見せていただいてから」に寄せる）
-・初回体験は公式LINEのご登録で半額4,400円である旨を、
-　押しつけずに最後に添える
-・200〜300字
-
-【いただいた内容】
-（お名前・連絡先は消して、ご相談の内容だけ貼る）`,
-    note: "個人情報を貼らないことを強調。名前は「A様」等に置き換える。",
-    tip: ["お名前・連絡先は必ず消す", "そのまま送らず、一度読み直す"],
-  },
-];
-
-promptSlides.forEach((ps) => {
-  const s = P.addSlide();
-  head(s, ps.t, ps.sub, { chapter: "C" });
-  prompt(s, 0.65, 1.85, 8.15, 4.6, ps.label, ps.body);
-  s.addText("使い方のコツ", { x: 9.05, y: 1.85, w: 3.57, h: 0.35, fontSize: 13.5, bold: true, color: NAVY, fontFace: F, isTextBox: true, margin: 0 });
-  ps.tip.forEach((t, i) => {
-    const y = 2.3 + i * 1.05;
-    s.addShape(P.ShapeType.roundRect, { x: 9.05, y, w: 3.57, h: 0.9, rectRadius: 0.1, fill: { color: PAPER }, line: { color: "E2D5BE", width: 1 } });
-    s.addText(t, { x: 9.25, y: y + 0.1, w: 3.2, h: 0.7, fontSize: 11.5, color: INK, fontFace: F, isTextBox: true, margin: 0, valign: "middle", lineSpacingMultiple: 1.2 });
-  });
-  box(s, 9.05, 4.55, 3.57, 1.9, "AIはどれでも同じように使えます",
-    "ChatGPT・Claude・Gemini、どれでもこの書き方で動きます。幸喜はClaudeを使っています。", "info");
-  box(s, 0.65, 6.6, 8.15, 0.68, "出てきた文章は、必ず山口様の言葉に直してください", "", "warn");
-  s.addNotes(ps.note);
-});
-
-/* ══════════ 23 画像生成 ══════════ */
-{
-  const s = P.addSlide();
-  head(s, "イラストを作らせる", "ブランドの色を守るため、必ず色を指定してください", { chapter: "C" });
-  prompt(s, 0.65, 1.85, 8.15, 4.0, "画像生成AIに貼ります",
-`ASPATH（鹿児島のパーキンソン病専門トレーニングスタジオ）の
-ウェブサイト用のイラストを作ってください。
-
-【描いてほしい場面】
-（例：椅子に座って足を上げる運動を、笑顔で行う高齢の女性）
-
-【色の指定】※必ず守ってください
-・服やアクセントは オレンジ（#F4A261）
-・線や濃い部分は 紺色（#264653）
-・背景は生成りの白（#F4E9D8）
-
-【絵の雰囲気】
-・やわらかい手描き風。線は細め
-・写実的すぎず、親しみのある表情
-・医療器具や病院らしさは出さない
-・文字は入れない`);
-  s.addText("色の見本", { x: 9.05, y: 1.85, w: 3.57, h: 0.35, fontSize: 13.5, bold: true, color: NAVY, fontFace: F, isTextBox: true, margin: 0 });
-  [["F4A261", "オレンジ", "#F4A261"], ["264653", "紺色", "#264653"], ["F4E9D8", "生成り", "#F4E9D8"]].forEach(([c, n, code], i) => {
-    const y = 2.3 + i * 0.75;
-    s.addShape(P.ShapeType.roundRect, { x: 9.05, y, w: 0.62, h: 0.62, rectRadius: 0.08, fill: { color: c }, line: { color: "C9D5D9", width: 1 } });
-    s.addText(n, { x: 9.82, y: y + 0.04, w: 2.8, h: 0.3, fontSize: 12.5, bold: true, color: NAVY, fontFace: F, isTextBox: true, margin: 0 });
-    s.addText(code, { x: 9.82, y: y + 0.32, w: 2.8, h: 0.28, fontSize: 11, color: MUTED, fontFace: MONO, isTextBox: true, margin: 0 });
-  });
-  box(s, 9.05, 4.65, 3.57, 1.2, "何度も作り直せます",
-    "1回で決まりません。「もっと明るく」など足していきます。", "ok");
-  box(s, 0.65, 6.0, 11.97, 1.15, "できた画像は、横1200ピクセルくらいに縮めてから入れてください",
-    "大きすぎるとページが重くなります。詳しいプロンプトは別冊『★イラスト生成プロンプト集』にもまとめています。", "info");
-  s.addNotes("ブランド色の指定が要。既存のプロンプト集も案内する。");
-}
-
-/* ══════════ 24 3つの約束 ══════════ */
-{
-  const s = P.addSlide();
-  head(s, "AIを使うときの、3つの約束", "この3つを守れば、安心して使えます", { chapter: "C" });
-  const rules = [
-    ["1", "個人情報を貼らない", "お名前・ご連絡先・ご住所・診断名は、AIに貼らないでください。返信文を作るときは「A様」などに置き換え、ご相談の内容だけを貼ります。"],
-    ["2", "医学的な内容は必ず確認する", "AIは、実在しない研究や数字を、自信たっぷりに書くことがあります。数字や引用が出てきたら、そのまま使わないでください。"],
-    ["3", "そのまま公開しない", "AIの文章は、どこか他人の言葉です。山口様の言葉に直してから公開してください。読み直すだけで、ぐっと良くなります。"],
-  ];
-  let y = 1.7;
-  rules.forEach(([n, t, d]) => {
-    s.addShape(P.ShapeType.roundRect, { x: 0.65, y, w: 11.97, h: 1.55, rectRadius: 0.12, fill: { color: PAPER }, line: { color: "E2D5BE", width: 1 } });
-    s.addShape(P.ShapeType.ellipse, { x: 1.0, y: y + 0.45, w: 0.65, h: 0.65, fill: { color: SUND } });
-    s.addText(n, { x: 1.0, y: y + 0.45, w: 0.65, h: 0.65, align: "center", valign: "middle", fontSize: 24, bold: true, color: WHITE, fontFace: F, isTextBox: true, margin: 0 });
-    s.addText(t, { x: 1.95, y: y + 0.2, w: 10.3, h: 0.4, fontSize: 17, bold: true, color: NAVY, fontFace: F, isTextBox: true, margin: 0 });
-    s.addText(d, { x: 1.95, y: y + 0.68, w: 10.3, h: 0.75, fontSize: 12.5, color: INK, fontFace: F, isTextBox: true, margin: 0, lineSpacingMultiple: 1.2 });
-    y += 1.68;
-  });
-  box(s, 0.65, 6.8, 11.97, 0.5, "薬機法・景品表示法の観点でも、効果の断定は避けてください。", "", "ng");
-  s.addNotes("医療系サイトなので、ここは飛ばさず読み上げる。");
+  box(s, 1.6, 4.7, 4.95, 1.9, "どのAIでも使えます",
+    "ChatGPT・Claude・Gemini、どれをお使いでも同じ書き方で動きます。幸喜はClaudeを使っています。", "info");
+  box(s, 6.75, 4.7, 4.95, 1.9, "3つの約束だけ、先に覚えてください",
+    "個人情報を貼らない／医学的な内容は必ず確認する／そのまま公開しない。詳しくは別冊に書いています。", "warn");
+  s.addNotes("応用編からAI章を分離した。別冊を渡していることを必ず伝える。");
 }
 
 /* ══════════ 25 まとめ ══════════ */
@@ -645,7 +440,7 @@ promptSlides.forEach((ps) => {
   const sum = [
     ["A", "壊さないために", "変えてはいけない4つ\n作業前のバックアップ\n困ったらキャッシュ"],
     ["B", "続けると効くこと", "説明文は自分で書く\n数字は3つだけ見る\n進捗は site: 検索で"],
-    ["C", "AIの使い方", "ネタ出し・構成・下書き\n個人情報は貼らない\n医学的内容は必ず確認"],
+    ["C", "AIの使い方", "別冊「AI活用編」に\nプロンプト8種を\nまとめています"],
   ];
   sum.forEach(([n, t, d], i) => {
     const x = 0.9 + i * 4.05;
