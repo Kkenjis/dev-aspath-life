@@ -52,6 +52,31 @@ function pic(s,f,x,y,w){ s.addImage({path:IMG+f, x:x, y:y, w:w, h:w*764/1568}); 
   });
 }
 
+/* 2b 資料の全体像（2026-09-04 追加）
+   資料が5冊に増え、内容が一部重なったため、どれを見ればよいかを最初に示す。 */
+{ const s=P.addSlide(); head(s,'資料は5冊あります','困ったときに、どれを開けばよいか');
+  const books=[
+    ['基本編','ASPATH_サイト運用マニュアル_基本編','日々の更新。画面写真つき。\nまずこれ',SUN,'★'],
+    ['この資料','ASPATH_サイト更新マニュアル','全体像と、PC作業の手順。\n開発担当も見る',NAVY,''],
+    ['やさしい版','山口様向け_ページの直し方','記事の書き方を、やさしく。\n連絡の文例つき',GREEN,''],
+    ['固定ページ','山口様向け_ASPATHについて_文章の直し方','「ASPATHについて」だけの\n専用手順',GREY,''],
+    ['検索対策','山口様向け_検索で見つけてもらう記事の書き方','記事の題名の付け方',GREY,''],
+  ];
+  let y=1.85;
+  books.forEach(([tag,name,desc,col,mark])=>{
+    s.addShape(P.ShapeType.roundRect,{x:0.7,y:y,w:12.1,h:0.92,fill:{color:'F6F7F8'},rectRadius:0.1});
+    s.addShape(P.ShapeType.roundRect,{x:0.95,y:y+0.22,w:1.55,h:0.48,fill:{color:col},rectRadius:0.24});
+    s.addText(tag,{x:0.95,y:y+0.22,w:1.55,h:0.48,fontFace:F,bold:true,fontSize:12.5,
+                   color:WHITE,align:'center',valign:'middle',margin:0});
+    s.addText(mark+name,{x:2.7,y:y+0.12,w:4.9,h:0.35,fontFace:F,bold:true,fontSize:13.5,color:NAVY,margin:0});
+    s.addText(desc,{x:7.8,y:y+0.08,w:4.8,h:0.78,fontFace:F,fontSize:11.5,color:GREY,margin:0,lineSpacing:15});
+    y+=1.02;
+  });
+  s.addText('内容が重なっている部分があります。迷ったら「基本編」→ この資料 の順に見てください。',
+    {x:0.7,y:6.95,w:12.1,h:0.35,fontFace:F,fontSize:12,color:GREY,margin:0});
+  s.addNotes('5冊の役割分担。レクチャーでは基本編を使い、この資料は手元の参照用として渡す。');
+}
+
 /* 3 2つの道 */
 { const s=P.addSlide(); head(s,'更新には「2つの道」があります','どちらの道かを最初に見分けることが、いちばん大事です');
   s.addImage({path:IMG+'00_ふたつの道.png', x:0.85, y:1.75, w:11.6, h:11.6*800/1400});
@@ -150,6 +175,7 @@ function pic(s,f,x,y,w){ s.addImage({path:IMG+f, x:x, y:y, w:w, h:w*764/1568}); 
               ['オンライン','/onlineaspath/','onlineaspath.html'],['よくある質問','/faq/','faq.html'],
               ['アクセス','/access/','access.html'],['お問い合わせ','/contact/','contact.html'],
               ['プライバシーポリシー','/privacy/','privacy.html'],['特定商取引法','/tokushoho/','tokushoho.html'],
+              ['サイトマップ','/sitemap/','sitemap.html'],
               ['初回体験フォーム','/taiken-2026as9y/','trial-entry.html']];
   s.addTable([[{text:'サイトのページ',options:{bold:true}},{text:'URL',options:{bold:true}},{text:'開くファイル',options:{bold:true}}]].concat(
       rows.map(r=>[r[0],{text:r[1],options:{fontFace:'Consolas'}},{text:r[2],options:{bold:r[0]==='ASPATHについて'}}])),
