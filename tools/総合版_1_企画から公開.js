@@ -1,6 +1,7 @@
 // ASPATH 総合版 ── 第0部〜第3部（はじめに／企画と設計／制作と仕組み／公開と移行）
 // 単体では出力しない。総合版pptxを作る.js から読み込まれる。
 const { C, F, MONO, LV } = require("./総合版_lib.js");
+const { LOGO_LIGHT, RATIO, cover: _cover } = require("./ブランドヘッダー.js");
 
 module.exports = function build(P, B){
 
@@ -8,16 +9,15 @@ module.exports = function build(P, B){
 
 /* 表紙 */
 {
-  const s=P.addSlide(); s.background={color:C.NAVY};
-  s.addText("ASPATH",{x:0.9,y:1.25,w:8,h:0.5,fontSize:17,bold:true,color:C.SUN,charSpacing:6,fontFace:F,isTextBox:true,margin:0});
-  s.addText("ウェブサイト 総合ドキュメント",{x:0.9,y:1.85,w:11.5,h:1.0,fontSize:40,bold:true,color:C.WHITE,fontFace:F,isTextBox:true,margin:0});
-  s.addText("企画から、制作・公開・運用・保守まで",{x:0.9,y:3.0,w:11,h:0.5,fontSize:18,color:"CFE0E4",fontFace:F,isTextBox:true,margin:0});
-  s.addShape(P.ShapeType.roundRect,{x:0.9,y:3.85,w:11.5,h:1.5,rectRadius:0.14,fill:{color:C.DEEP}});
-  s.addText("このサイトが「なぜ、こうなっているのか」を残すための資料です。\n手順だけでなく、そう決めた理由まで書いてあります。",
-    {x:1.2,y:4.05,w:10.9,h:1.1,fontSize:14,color:"DCE7EA",fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.35});
-  s.addText("https://aspath-life.com/　／　2026年9月　ASPATH 様　ご納品資料",
-    {x:0.9,y:6.25,w:11,h:0.4,fontSize:12,color:"9FBAC1",fontFace:F,isTextBox:true,margin:0});
+  const s=P.addSlide();
+  _cover(P, s, {
+    title: "ウェブサイト 総合ドキュメント",
+    titleSize: 33,
+    sub: "企画から、制作・公開・運用・保守まで\nこのサイトが「なぜ、こうなっているのか」を残すための資料です。",
+    note: "2026年9月　ASPATH 様　ご納品資料",
+  });
   B.page++;
+  B.toc.push({ level:1, title:"表紙", page:B.page });   // しおり用
   s.addNotes("全網羅版。通読は想定せず、必要な部を開く使い方。");
 }
 
@@ -25,28 +25,40 @@ module.exports = function build(P, B){
 {
   const s=P.addSlide();
   B.head(s,"この資料の使い方","全部を読む必要はありません。必要な部だけ開いてください");
+  // 14部構成。1列だと入りきらないので、7部ずつの2段組みにしている。
   const parts=[
-    ["1","企画と設計","なぜこのサイトを作ったか。何を決めたか",C.PURPLE],
+    ["1","企画と設計","なぜ作ったか。何を決めたか",C.PURPLE],
     ["2","制作と仕組み","どういう作りになっているか",C.NAVY],
-    ["3","公開と移行","どうやって公開したか。何が起きたか",C.NAVY],
+    ["3","公開と移行","どう公開したか。何が起きたか",C.NAVY],
     ["4","日々の運用","記事・申込・写真・コメント",C.SUN],
     ["5","壊さない触り方","テーマ入替・固定ページ・検索対策",C.SUND],
-    ["6","点検と保守","公開後の点検。月に1回5分",C.RED],
+    ["6","点検と保守","月に1回5分の点検",C.RED],
     ["7","AIの活用","そのまま使えるプロンプト集",C.PURPLE],
+    ["8","自分でやる","調べる道具箱。開発者と同じ仕事を",C.GREEN],
+    ["9","集客の仕組み","地図・記事・口コミ",C.SUN],
+    ["10","アスパスという事業","責任者・料金・場所・読み手",C.NAVY],
+    ["11","書いてよい/いけない","法令と表現。お客様の声の取り方",C.RED],
+    ["12","見た目と文章の作法","画像・alt・表記・読みやすさ",C.SUND],
+    ["13","止まったときの初動","申込停止・表示不能・乗っ取り・契約",C.RED],
+    ["14","この夏に変わったこと","公開後の差分。本編より優先",C.PURPLE],
+    ["15","この先に備える","資料の直し方・将来の懸念・体制",C.GREEN],
   ];
-  let y=1.55;
-  parts.forEach(([n,t,d,col])=>{
-    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:0.62,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
-    s.addShape(P.ShapeType.roundRect,{x:0.9,y:y+0.11,w:0.85,h:0.4,rectRadius:0.08,fill:{color:col}});
-    s.addText("第"+n+"部",{x:0.9,y:y+0.11,w:0.85,h:0.4,align:"center",valign:"middle",
+  // 8件ずつの2段組み
+  const col2 = (i)=> i<8 ? 0.65 : 6.72;
+  parts.forEach(([n,t,d,col],i)=>{
+    const x = col2(i), y = 1.48 + (i%8)*0.60;
+    // PDF化したあとに、この四角をクリックできるようにする（しおりを付ける.py が使う）
+    B.links.push({ page: B.page, x, y, w: 5.9, h: 0.58, part: n });
+    s.addShape(P.ShapeType.roundRect,{x,y,w:5.9,h:0.58,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
+    s.addShape(P.ShapeType.roundRect,{x:x+0.18,y:y+0.09,w:0.88,h:0.4,rectRadius:0.08,fill:{color:col}});
+    s.addText("第"+n+"部",{x:x+0.18,y:y+0.09,w:0.88,h:0.4,align:"center",valign:"middle",
       fontSize:10.5,bold:true,color:C.WHITE,fontFace:F,isTextBox:true,margin:0});
-    s.addText(t,{x:1.95,y:y+0.13,w:3.4,h:0.36,fontSize:13.5,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
-    s.addText(d,{x:5.5,y:y+0.13,w:6.9,h:0.36,fontSize:12,color:C.MUTED,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
-    y+=0.66;
+    s.addText(t,{x:x+1.18,y:y+0.04,w:4.5,h:0.29,fontSize:12.5,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
+    s.addText(d,{x:x+1.18,y:y+0.30,w:4.5,h:0.25,fontSize:10,color:C.MUTED,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
   });
-  B.box(s,0.65,y+0.12,11.97,0.9,"よく使うのは第4部です",
-    "日々の更新は第4部だけで足ります。第1〜3部は「なぜこうなっているか」を知りたくなったときに開いてください。","ok");
-  s.addNotes("7部構成。通読不要であることを最初に伝える。");
+  B.box(s,0.65,6.32,11.97,0.60,
+    "上の枠をクリックするとその部に飛べます（PDF）。日々の更新は第4部、困ったときは第13部、公開後の変更は第14部。","","ok");
+  s.addNotes("14部構成。通読不要。第4部＝日常、第13部＝非常時、第14部＝差分、という3点だけ覚えてもらう。");
 }
 
 /* 難易度の見方 */
@@ -81,7 +93,7 @@ module.exports = function build(P, B){
   B.head(s,"サイトの全体像","1枚で把握できるようにまとめました",{lv:"read"});
   const cols=[
     ["お客様が見る場所", C.SUN, ["トップページ","ASPATHについて","プランと料金","アクセス","よくある質問","コラム（7記事）","お知らせ（3件）","初回体験フォーム"]],
-    ["動かしている仕組み", C.NAVY, ["WordPress","専用テーマ aspath","プラグイン16個","SureForms（問合せ）","SureRank（検索対策）","Super Page Cache","LatePoint（予約）","Site Kit（解析）"]],
+    ["動かしている仕組み", C.NAVY, ["WordPress","専用テーマ aspath","プラグイン25個","SureForms（問合せ）","SureRank（検索対策）","Super Page Cache","LatePoint（予約）","Site Kit（解析）"]],
     ["外とつながる先", C.PURPLE, ["公式LINE","Google アナリティクス","Google Search Console","Instagram","YouTube","Gmail（通知の受け取り）","エックスサーバー","GitHub（ソース管理）"]],
   ];
   cols.forEach(([t,col,items],i)=>{
@@ -256,7 +268,7 @@ module.exports = function build(P, B){
     "どういう作りになっているか",
     "なぜ、HTMLからテーマを作っているのか",
     "ファイルとページの対応表",
-    "プラグイン16個の役割",
+    "プラグインの役割（現在25個）",
     "フォーム・言語切替・スマホ対応の仕組み",
     "構造化データ ─ Googleへの申告",
   ],C.NAVY);
@@ -327,7 +339,7 @@ module.exports = function build(P, B){
 /* プラグイン */
 {
   const s=P.addSlide();
-  B.head(s,"プラグイン16個の役割","止めてよいもの・止めてはいけないもの",{lv:"read"});
+  B.head(s,"プラグインの役割（現在25個）","止めてよいもの・止めてはいけないもの",{lv:"read"});
   const must=[["SureForms","お問い合わせフォーム"],["SureRank SEO","検索対策（題名・説明文）"],
     ["Super Page Cache","表示を速くする"],["ASPATH 初回体験フォーム","申込フォーム（自作）"],
     ["Site Kit by Google","アナリティクス・Search Console"],["LatePoint","予約機能"]];

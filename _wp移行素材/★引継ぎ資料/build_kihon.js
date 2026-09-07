@@ -1,5 +1,9 @@
 // ASPATH サイト運用マニュアル 基本編 — スライド生成
 // 実行: node build_kihon.js
+const { LOGO_LIGHT: _LOGOL, RATIO: _RATIO, cover: _cover } = require("../../tools/ブランドヘッダー.js");
+
+const { brand: _brand } = require("../../tools/ブランドヘッダー.js");
+
 const pptx = require("pptxgenjs");
 const path = require("path");
 
@@ -25,6 +29,7 @@ const W = 13.3, H = 7.5;
 // ── 共通パーツ ──────────────────────────────────
 // 見出し（明るい背景のスライド用）
 function heading(s, num, text) {
+  _brand(s, false);   // 右上のロゴと肩書き
   if (num !== null) {
     s.addShape(p.ShapeType.ellipse, {
       x: 0.6, y: 0.42, w: 0.62, h: 0.62, fill: { color: SUN },
@@ -116,27 +121,11 @@ function note(s, x, y, w, h, title, body, tone) {
 // ══════════════════════════════════════════════
 {
   const s = p.addSlide();
-  s.background = { color: NAVY };
-  s.addText("ASPATH", {
-    x: 0.9, y: 1.5, w: 8, h: 0.6, fontSize: 18, bold: true, color: SUN,
-    charSpacing: 6, fontFace: FONT, isTextBox: true, margin: 0,
-  });
-  s.addText("サイト運用マニュアル", {
-    x: 0.9, y: 2.15, w: 11, h: 1.0,
-    fontSize: 44, bold: true, color: WHITE, fontFace: FONT, isTextBox: true, margin: 0,
-  });
-  s.addShape(p.ShapeType.roundRect, {
-    x: 0.9, y: 3.35, w: 2.1, h: 0.66, rectRadius: 0.33, fill: { color: SUN },
-  });
-  s.addText("基 本 編", {
-    x: 0.9, y: 3.35, w: 2.1, h: 0.66, align: "center", valign: "middle",
-    fontSize: 19, bold: true, color: WHITE, fontFace: FONT, isTextBox: true, margin: 0,
-  });
-  s.addText("この1冊で、日々の更新はひととおりできるようになります。", {
-    x: 0.9, y: 4.35, w: 10, h: 0.5, fontSize: 16, color: "CFE0E4", fontFace: FONT, isTextBox: true, margin: 0,
-  });
-  s.addText("2026年9月　ASPATH 様　ご納品資料", {
-    x: 0.9, y: 6.3, w: 8, h: 0.4, fontSize: 12, color: "9FBAC1", fontFace: FONT, isTextBox: true, margin: 0,
+  _cover(p, s, {
+    title: "サイト運用マニュアル",
+    badge: "基 本 編",
+    sub: "この1冊で、日々の更新はひととおりできるようになります。",
+    note: "2026年9月　ASPATH 様　ご納品資料",
   });
   s.addNotes("レクチャー冒頭。所要60分の想定。コラムの書き方は既に操作いただいているため、本資料では扱いません。");
 }

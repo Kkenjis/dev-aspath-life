@@ -3,6 +3,7 @@
 // 単体では出力しない。総合版pptxを作る.js から読み込まれる。
 const path = require("path");
 const { C, F, MONO, LV } = require("./総合版_lib.js");
+const { brand } = require("./ブランドヘッダー.js");
 
 const HANDOFF = "/sessions/compassionate-sweet-heisenberg/mnt/dev-aspath-life-main/_wp移行素材/★引継ぎ資料/";
 const IMG  = (n) => path.join(HANDOFF, "レクチャー素材", n);
@@ -21,6 +22,7 @@ const FONT = F, MONOF = MONO;   // 基本編は FONT という名前を使って
 const LINE = C.LINE, PAPERLINE = C.PAPERLINE;   // 基本編は小文字 p で pptx インスタンスを参照している
 function head(s, t, sub, opt){ B.head(s, t, sub, opt||{}); }
 function heading(s, num, text){
+  brand(s, false);   // 右上のロゴと肩書き
   // 基本編の heading(s, num, text) → 見出しに番号丸を付ける
   if(num!==null && num!==undefined){
     s.addShape(P.ShapeType.ellipse,{x:0.6,y:0.36,w:0.52,h:0.52,fill:{color:SUN}});
@@ -28,12 +30,13 @@ function heading(s, num, text){
       fontSize:19,bold:true,color:WHITE,fontFace:F,isTextBox:true,margin:0});
   }
   B.page++;
+  B.toc.push({ level: B.part ? 2 : 1, title: text, page: B.page });   // しおり用
   s.addText(text,{x:num!==null?1.32:0.6,y:0.3,w:9.0,h:0.62,fontSize:26,bold:true,
     color:NAVY,fontFace:F,valign:"middle",isTextBox:true,margin:0});
   const v=LV.easy;
-  s.addShape(P.ShapeType.roundRect,{x:10.45,y:0.36,w:2.17,h:0.42,rectRadius:0.21,
+  s.addShape(P.ShapeType.roundRect,{x:10.45,y:0.58,w:2.17,h:0.42,rectRadius:0.21,
     fill:{color:v.bg},line:{color:v.color,width:1.2}});
-  s.addText(v.label,{x:10.45,y:0.36,w:2.17,h:0.42,align:"center",valign:"middle",
+  s.addText(v.label,{x:10.45,y:0.58,w:2.17,h:0.42,align:"center",valign:"middle",
     fontSize:11.5,bold:true,color:v.color,fontFace:F,isTextBox:true,margin:0});
   if(B.part) s.addText(B.part,{x:0.6,y:6.95,w:6,h:0.28,fontSize:10,color:"A8B4B8",fontFace:F,isTextBox:true,margin:0});
   s.addText(String(B.page),{x:12.45,y:6.95,w:0.45,h:0.28,align:"right",fontSize:10.5,color:"A8B4B8",fontFace:F,isTextBox:true,margin:0});
@@ -270,7 +273,7 @@ function shot(s,file,bx,imgW,imgH,callouts,useCrop){
     x: 0.62, y: 3.05, w: 6.0, h: 0.4, fontSize: 15, bold: true, color: NAVY, fontFace: FONT, isTextBox: true, margin: 0,
   });
   // 番号は画像の外（右側）に置き、項目名が隠れないようにする
-  shot(s, "13b_固定ポップ.jpg", { x: 0.62, y: 3.52, w: 2.95, h: 4.04 }, 810, 1110,
+  shot(s, "13b_固定ポップ.jpg", { x: 0.62, y: 3.52, w: 2.85, h: 3.90 }, 810, 1110,
     [{ px: 890, py: 978, n: 2 }], true);
 
   note(s, 6.85, 1.9, 5.82, 1.9,

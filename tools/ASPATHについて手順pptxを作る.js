@@ -1,3 +1,7 @@
+const { cover: _cover } = require("./ブランドヘッダー.js");
+
+const { brand: _brand } = require("./ブランドヘッダー.js");
+
 const pptx=require('pptxgenjs'); const P=new pptx(); P.layout='LAYOUT_WIDE';
 const NAVY='264653',SUN='DD8236',SUNL='F4A261',GREEN='2E7D32',GREY='5E7681',
       WHITE='FFFFFF',INK='1E2D34',RED='B85042';
@@ -6,6 +10,7 @@ const IMG='/sessions/compassionate-sweet-heisenberg/mnt/dev-aspath-life-main/_wp
 let n=0;
 function head(s,t,sub,dark){
   n++; s.background={color:dark?NAVY:WHITE};
+  _brand(s, !!dark);
   s.addText(t,{x:0.6,y:0.3,w:12.1,h:0.8,fontFace:F,bold:true,fontSize:34,color:dark?WHITE:NAVY,margin:0});
   if(sub)s.addText(sub,{x:0.62,y:1.12,w:12.1,h:0.4,fontFace:F,fontSize:16,color:dark?'C9D6DA':GREY,margin:0});
   s.addText(String(n),{x:12.4,y:6.9,w:.5,h:.3,fontFace:F,fontSize:11,color:dark?'7E969E':'A8B4B8',align:'right',margin:0});
@@ -26,12 +31,13 @@ function steps(s,arr,x,y,w,col,sz){
 }
 
 /* 1 */
-{const s=P.addSlide(); s.background={color:NAVY};
- s.addText('「ASPATHについて」ページの\n文章の直し方',{x:1.0,y:2.0,w:11.3,h:1.6,fontFace:F,bold:true,fontSize:40,color:WHITE,margin:0,lineSpacing:56});
- s.addText('山口様へ　／　2026年8月',{x:1.05,y:3.8,w:11,h:.5,fontFace:F,fontSize:20,color:SUNL,margin:0});
- s.addShape(P.ShapeType.roundRect,{x:1.0,y:4.6,w:7.6,h:1.6,fill:{color:'32596B'},rectRadius:.12});
- s.addText('このページの文章と写真は、\n山口様ご自身で直せるようになりました。',
-  {x:1.3,y:4.95,w:7.1,h:1.0,fontFace:F,fontSize:17,color:'DCE7EA',margin:0,lineSpacing:28});}
+{const s=P.addSlide();
+ _cover(P, s, {
+   title: "「ASPATHについて」ページの\n文章の直し方",
+   titleSize: 31,
+   sub: "山口様へ\nこのページの文章と写真は、山口様ご自身で直せるようになりました。",
+   note: "2026年8月　ASPATH 様　ご納品資料",
+ });}
 
 /* 2 できること */
 {const s=P.addSlide(); head(s,'できること・できないこと','まずここだけ押さえてください');

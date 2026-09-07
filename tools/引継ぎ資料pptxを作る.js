@@ -1,3 +1,7 @@
+const { cover: _cover } = require("./ブランドヘッダー.js");
+
+const { brand: _brand } = require("./ブランドヘッダー.js");
+
 const pptx = require('pptxgenjs');
 const P = new pptx();
 P.layout = 'LAYOUT_WIDE';           // 13.3 x 7.5
@@ -13,6 +17,7 @@ const IMG='/sessions/compassionate-sweet-heisenberg/mnt/dev-aspath-life-main/_wp
 let n=0;
 function head(s, t, sub, dark){
   n++;
+  _brand(s, !!dark);
   s.background = { color: dark ? NAVY : WHITE };
   s.addText(t, {x:0.6, y:0.35, w:11.4, h:0.75, fontFace:F, bold:true, fontSize:32,
                 color: dark?WHITE:NAVY, margin:0});
@@ -24,12 +29,12 @@ function head(s, t, sub, dark){
 function pic(s,f,x,y,w){ s.addImage({path:IMG+f, x:x, y:y, w:w, h:w*764/1568}); }
 
 /* 1 表紙 */
-{ const s=P.addSlide(); s.background={color:NAVY};
-  s.addText('ASPATH サイト更新マニュアル', {x:1.0,y:2.3,w:11.3,h:1.0,fontFace:F,bold:true,fontSize:44,color:WHITE,margin:0});
-  s.addText('引継ぎ資料　／　2026年8月23日', {x:1.05,y:3.5,w:11,h:0.5,fontFace:F,fontSize:20,color:SUNL,margin:0});
-  s.addShape(P.ShapeType.roundRect,{x:1.0,y:4.5,w:6.4,h:1.5,fill:{color:'32596B'},rectRadius:0.12});
-  s.addText('この資料は「追記しながら育てる」前提で作っています。\n新しい作業を覚えたら、その日のうちに書き足してください。',
-    {x:1.3,y:4.72,w:5.9,h:1.1,fontFace:F,fontSize:14,color:'DCE7EA',margin:0,lineSpacing:22});
+{ const s=P.addSlide();
+  _cover(P, s, {
+    title: "サイト更新マニュアル",
+    sub: "引継ぎ資料\nこの資料は「追記しながら育てる」前提で作っています。新しい作業を覚えたら、その日のうちに書き足してください。",
+    note: "2026年8月23日　ASPATH 様　ご納品資料",
+  });
   s.addNotes('まず全員が「0. 2つの道」を読む。そこで自分の作業がどちらか判断できる。');
 }
 

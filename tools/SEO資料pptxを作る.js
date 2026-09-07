@@ -1,3 +1,7 @@
+const { cover: _cover } = require("./ブランドヘッダー.js");
+
+const { brand: _brand } = require("./ブランドヘッダー.js");
+
 const pptx=require('pptxgenjs'); const P=new pptx(); P.layout='LAYOUT_WIDE';
 const NAVY='264653',SUN='DD8236',SUNL='F4A261',GREEN='2E7D32',GREY='5E7681',
       WHITE='FFFFFF',INK='1E2D34',RED='B85042';
@@ -6,6 +10,7 @@ const IMG='/sessions/compassionate-sweet-heisenberg/mnt/dev-aspath-life-main/_wp
 let n=0;
 function head(s,t,sub,dark){
   n++; s.background={color:dark?NAVY:WHITE};
+  _brand(s, !!dark);
   s.addText(t,{x:.6,y:.3,w:12.1,h:.8,fontFace:F,bold:true,fontSize:33,color:dark?WHITE:NAVY,margin:0});
   if(sub)s.addText(sub,{x:.62,y:1.12,w:12.1,h:.4,fontFace:F,fontSize:16,color:dark?'C9D6DA':GREY,margin:0});
   s.addText(String(n),{x:12.4,y:6.9,w:.5,h:.3,fontFace:F,fontSize:11,color:dark?'7E969E':'A8B4B8',align:'right',margin:0});
@@ -25,12 +30,13 @@ function steps(s,arr,x,y,w,col,sz){
 }
 
 /* 1 表紙 */
-{const s=P.addSlide(); s.background={color:NAVY};
- s.addText('検索で見つけてもらう\n記事の書き方',{x:1.0,y:2.0,w:11.3,h:1.6,fontFace:F,bold:true,fontSize:42,color:WHITE,margin:0,lineSpacing:58});
- s.addText('山口様へ　／　2026年8月',{x:1.05,y:3.85,w:11,h:.5,fontFace:F,fontSize:20,color:SUNL,margin:0});
- s.addShape(P.ShapeType.roundRect,{x:1.0,y:4.65,w:8.2,h:1.6,fill:{color:'32596B'},rectRadius:.12});
- s.addText('サイトの土台づくりは済んでいます。\nここから先は「どんな記事を書くか」で決まります。',
-  {x:1.3,y:5.0,w:7.7,h:1.0,fontFace:F,fontSize:17,color:'DCE7EA',margin:0,lineSpacing:28});}
+{const s=P.addSlide();
+ _cover(P, s, {
+   title: "検索で見つけてもらう\n記事の書き方",
+   titleSize: 33,
+   sub: "山口様へ\nサイトの土台づくりは済んでいます。ここから先は「どんな記事を書くか」で決まります。",
+   note: "2026年8月　ASPATH 様　ご納品資料",
+ });}
 
 /* 2 前提 */
 {const s=P.addSlide(); head(s,'はじめに ── 順位は買えません','「これをやれば1位」という設定はありません');

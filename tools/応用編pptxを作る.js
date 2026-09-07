@@ -3,6 +3,12 @@
 //   B. やっておいて損はないこと
 //   C. AIの使い方は別冊「AI活用編」へ（2026-09-04 分離）
 // 実行: NODE_PATH=<node_modules> node 応用編pptxを作る.js
+const { cover: _cover } = require("./ブランドヘッダー.js");
+
+const { LOGO_LIGHT: _LOGOL, RATIO: _RATIO } = require("./ブランドヘッダー.js");
+
+const { brand: _brand } = require("./ブランドヘッダー.js");
+
 const pptx = require("pptxgenjs");
 
 const P = new pptx();
@@ -20,6 +26,7 @@ const IMG = "/sessions/compassionate-sweet-heisenberg/mnt/dev-aspath-life-main/_
 let pageNo = 0;
 function head(s, t, sub, opts) {
   const o = opts || {};
+  _brand(s, !!o.dark);
   pageNo++;
   s.background = { color: o.dark ? NAVY : WHITE };
   if (o.chapter) {
@@ -127,13 +134,12 @@ function chapterCover(s, num, title, lines) {
 /* ══════════ 1 表紙 ══════════ */
 {
   const s = P.addSlide();
-  s.background = { color: NAVY };
-  s.addText("ASPATH", { x: 0.9, y: 1.45, w: 8, h: 0.5, fontSize: 17, bold: true, color: SUN, charSpacing: 6, fontFace: F, isTextBox: true, margin: 0 });
-  s.addText("サイト運用マニュアル", { x: 0.9, y: 2.05, w: 11, h: 0.95, fontSize: 42, bold: true, color: WHITE, fontFace: F, isTextBox: true, margin: 0 });
-  s.addShape(P.ShapeType.roundRect, { x: 0.9, y: 3.2, w: 2.1, h: 0.64, rectRadius: 0.32, fill: { color: SUN } });
-  s.addText("応 用 編", { x: 0.9, y: 3.2, w: 2.1, h: 0.64, align: "center", valign: "middle", fontSize: 18, bold: true, color: WHITE, fontFace: F, isTextBox: true, margin: 0 });
-  s.addText("壊さない触り方と、やっておいて損はないこと", { x: 0.9, y: 4.15, w: 11, h: 0.45, fontSize: 16, color: "CFE0E4", fontFace: F, isTextBox: true, margin: 0 });
-  s.addText("2026年9月　ASPATH 様　ご納品資料", { x: 0.9, y: 6.3, w: 8, h: 0.4, fontSize: 12, color: "9FBAC1", fontFace: F, isTextBox: true, margin: 0 });
+  _cover(P, s, {
+    title: "サイト運用マニュアル",
+    badge: "応 用 編",
+    sub: "壊さない触り方と、やっておいて損はないこと",
+    note: "2026年9月　ASPATH 様　ご納品資料",
+  });
   s.addNotes("基本編を終えた方向け。1回で全部やらず、必要になった章だけ開く使い方でよい。");
 }
 

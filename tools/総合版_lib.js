@@ -1,6 +1,7 @@
 // ASPATH 総合版 ── 共通の部品（レイアウト・色・難易度表示）
 // 各部のファイルから require して使う
 const pptx = require("pptxgenjs");
+const { brand } = require("./ブランドヘッダー.js");
 
 const C = {
   NAVY:"264653", DEEP:"1E3A44", SUN:"F4A261", SUND:"DD8236",
@@ -31,20 +32,27 @@ function Builder(P){
   this.P = P;
   this.page = 0;
   this.part = "";
+  // PDFのしおり（目次）を後から付けるための記録。
+  //   toc  : {level, title, page} の並び。level1＝部、level2＝各ページ
+  //   links: 目次スライドに貼るクリック領域（inch単位。PDF化後にptへ換算する）
+  this.toc = [];
+  this.links = [];
 }
 
 Builder.prototype.head = function(s, t, sub, opt){
   const o = opt || {};
   this.page++;
+  this.toc.push({ level: this.part ? 2 : 1, title: t, page: this.page });
   const P = this.P;
   s.background = { color: o.dark ? C.NAVY : C.WHITE };
+  brand(s, !!o.dark);   // 右上のロゴと肩書き
 
-  // 難易度バッジ
+  // 難易度バッジ（ブランド帯の下に置く）
   if (o.lv) {
     const v = LV[o.lv];
-    s.addShape(P.ShapeType.roundRect,{x:10.45,y:0.36,w:2.17,h:0.42,rectRadius:0.21,
+    s.addShape(P.ShapeType.roundRect,{x:10.45,y:0.58,w:2.17,h:0.42,rectRadius:0.21,
       fill:{color:v.bg},line:{color:v.color,width:1.2}});
-    s.addText(v.label,{x:10.45,y:0.36,w:2.17,h:0.42,align:"center",valign:"middle",
+    s.addText(v.label,{x:10.45,y:0.58,w:2.17,h:0.42,align:"center",valign:"middle",
       fontSize:11.5,bold:true,color:v.color,fontFace:F,isTextBox:true,margin:0});
   }
   s.addText(t,{x:0.6,y:0.3,w:o.lv?9.6:12.1,h:0.62,fontSize:o.small?24:27,bold:true,
@@ -118,13 +126,18 @@ Builder.prototype.rows = function(s,x,y,w,items,rowH,leftW,fs){
 // 部の扉
 Builder.prototype.partCover = function(s, num, title, lines, tone){
   const P=this.P;
+  // 巻末は num が "巻" のように数字ではない。その場合「第◯部」とは書かない。
+  const isNum = /^\d+$/.test(String(num));
+  const label = isNum ? ("第" + num + "部") : title;
   this.page++;
-  this.part = "第" + num + "部　" + title;
+  this.part = isNum ? (label + "　" + title) : title;
+  this.toc.push({ level: 1, title: this.part, page: this.page, part: String(num) });
   s.background={color:C.NAVY};
+  brand(s, true);
   s.addShape(P.ShapeType.roundRect,{x:1.0,y:2.0,w:1.15,h:1.15,rectRadius:0.575,fill:{color:tone||C.SUN}});
   s.addText(num,{x:1.0,y:2.0,w:1.15,h:1.15,align:"center",valign:"middle",
-    fontSize:40,bold:true,color:C.WHITE,fontFace:F,isTextBox:true,margin:0});
-  s.addText("第"+num+"部",{x:2.5,y:1.95,w:9.8,h:0.4,fontSize:15,bold:true,color:C.SUN,
+    fontSize:isNum?40:30,bold:true,color:C.WHITE,fontFace:F,isTextBox:true,margin:0});
+  s.addText(label,{x:2.5,y:1.95,w:9.8,h:0.4,fontSize:15,bold:true,color:C.SUN,
     charSpacing:3,fontFace:F,isTextBox:true,margin:0});
   s.addText(title,{x:2.5,y:2.35,w:9.8,h:0.85,fontSize:33,bold:true,color:C.WHITE,
     fontFace:F,valign:"middle",isTextBox:true,margin:0});

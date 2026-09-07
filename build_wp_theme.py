@@ -767,9 +767,34 @@ COMMENTS_CSS = r'''
   background:var(--gold); color:#fff; font-size:12.5px; font-weight:700;
   border-radius:999px; padding:2px 10px;
 }
-.ac-text{ font-size:16.5px; line-height:1.95; }
-.ac-text p{ margin:0 0 10px; }
+/* 本文より1回り小さくする（2026-09-07 山口様ご要望）。
+   コラム本文が16.5pxなので、コメントは15pxに落として主従をはっきりさせる。
+   「自分の書き込みが記事と同じ大きさで居座る」印象を減らし、書きやすくするため。 */
+.ac-text{ font-size:15px; line-height:1.9; }
+.ac-text p{ margin:0 0 9px; }
 .ac-text p:last-child{ margin-bottom:0; }
+
+/* 長いコメントは冒頭4行ほどだけ見せて、「もっと見る」で開く。
+   is-clamped は JavaScript が付ける。JSが動かない環境では全文が出るだけなので、
+   読めなくなることはない。 */
+.ac-text.is-clamped{ position:relative; max-height:7.6em; overflow:hidden; }
+.ac-text.is-clamped::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:2.6em;
+  background:linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%);
+  pointer-events:none;
+}
+.ac-more{
+  display:inline-flex; align-items:center; gap:7px;
+  margin-top:10px; padding:7px 16px;
+  font-family:var(--font-head); font-size:14px; font-weight:700; line-height:1;
+  color:var(--gold-deep); background:#FFFCF7;
+  border:1.5px solid var(--gold-soft); border-radius:999px; cursor:pointer;
+}
+.ac-more::after{ content:"▼"; font-size:9px; }
+.ac-more.is-open::after{ content:"▲"; }
+.ac-more:hover{ border-color:var(--sun); color:var(--sun); }
+.ac-more:focus-visible{ outline:3px solid rgba(244,162,97,.5); outline-offset:2px; }
+
 .ac-actions{ margin-top:12px; font-size:15px; }
 .ac-actions a{ color:var(--gold-deep); text-decoration:none; font-weight:700; }
 .ac-actions a:hover{ color:var(--sun); }
@@ -1351,6 +1376,40 @@ function aspath_comment_reply_script() {{
   }}
 }}
 add_action('wp_enqueue_scripts','aspath_comment_reply_script');
+
+/**
+ * 長いコメントを「もっと見る」で開閉する（2026-09-07 山口様ご要望）。
+ * 記事と同じ大きさで長文が居座ると、次の人が書き込みにくくなるため、
+ * 冒頭4行ほどだけ見せて畳んでおく。
+ * 6行に満たない短いコメントには、ボタンを付けない（押す意味がないため）。
+ */
+function aspath_comment_more_script() {{
+  if ( ! is_singular('post') ) return;
+  ?>
+<script>
+(function(){{
+  var LIMIT = 150;   // これ以上の高さ(px)のときだけ畳む
+  document.querySelectorAll('.aspath-comments .ac-text').forEach(function(el){{
+    if (el.scrollHeight <= LIMIT) return;
+    el.classList.add('is-clamped');
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'ac-more';
+    b.textContent = 'もっと見る';
+    b.setAttribute('aria-expanded', 'false');
+    b.addEventListener('click', function(){{
+      var open = !el.classList.toggle('is-clamped');
+      b.textContent = open ? '閉じる' : 'もっと見る';
+      b.classList.toggle('is-open', open);
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }});
+    el.parentNode.insertBefore(b, el.nextSibling);
+  }});
+}})();
+</script>
+  <?php
+}}
+add_action('wp_footer','aspath_comment_more_script',20);
 
 /**
  * お知らせ一覧のURL。

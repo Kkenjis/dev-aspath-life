@@ -1,5 +1,11 @@
 // ASPATH サイト運用マニュアル AI活用編 ── そのまま使えるプロンプト集
 // 実行: NODE_PATH=<node_modules> node AI活用編pptxを作る.js
+const { cover: _cover } = require("./ブランドヘッダー.js");
+
+const { LOGO_LIGHT: _LOGOL, RATIO: _RATIO } = require("./ブランドヘッダー.js");
+
+const { brand: _brand } = require("./ブランドヘッダー.js");
+
 const pptx = require("pptxgenjs");
 
 const P = new pptx();
@@ -15,6 +21,7 @@ const F="Meiryo", MONO="Consolas";
 let no = 0;
 function head(s, t, sub, dark) {
   no++;
+  _brand(s, !!dark);
   s.background = { color: dark ? NAVY : WHITE };
   s.addText(t, { x:0.6, y:0.32, w:12.1, h:0.66, fontSize:28, bold:true,
     color: dark?WHITE:NAVY, fontFace:F, valign:"middle", isTextBox:true, margin:0 });
@@ -48,14 +55,13 @@ function prompt(s,x,y,w,h,label,text,fs){
 
 /* ══════ 1 表紙 ══════ */
 {
-  const s=P.addSlide(); s.background={color:NAVY};
-  s.addText("ASPATH",{x:0.9,y:1.45,w:8,h:0.5,fontSize:17,bold:true,color:SUN,charSpacing:6,fontFace:F,isTextBox:true,margin:0});
-  s.addText("サイト運用マニュアル",{x:0.9,y:2.05,w:11,h:0.95,fontSize:42,bold:true,color:WHITE,fontFace:F,isTextBox:true,margin:0});
-  s.addShape(P.ShapeType.roundRect,{x:0.9,y:3.2,w:2.9,h:0.64,rectRadius:0.32,fill:{color:SUN}});
-  s.addText("A I 活 用 編",{x:0.9,y:3.2,w:2.9,h:0.64,align:"center",valign:"middle",fontSize:18,bold:true,color:WHITE,fontFace:F,isTextBox:true,margin:0});
-  s.addText("そのまま貼って使えるプロンプト集",{x:0.9,y:4.15,w:11,h:0.45,fontSize:16,color:"CFE0E4",fontFace:F,isTextBox:true,margin:0});
-  s.addText("ChatGPT・Claude・Gemini、どれでも同じように使えます。",{x:0.9,y:4.75,w:11,h:0.45,fontSize:13,color:"9FBAC1",fontFace:F,isTextBox:true,margin:0});
-  s.addText("2026年9月　ASPATH 様　ご納品資料",{x:0.9,y:6.3,w:8,h:0.4,fontSize:12,color:"9FBAC1",fontFace:F,isTextBox:true,margin:0});
+  const s=P.addSlide();
+  _cover(P, s, {
+    title: "サイト運用マニュアル",
+    badge: "A I 活 用 編", badgeW: 2.9,
+    sub: "そのまま貼って使えるプロンプト集\nChatGPT・Claude・Gemini、どれでも同じように使えます。",
+    note: "2026年9月　ASPATH 様　ご納品資料",
+  });
   s.addNotes("幸喜はClaudeを使用中。どのAIでも動く書き方にしてある。");
 }
 

@@ -354,7 +354,12 @@ h3{ font-size:clamp(19px,2.5vw,23px); }
 .drawer-sns svg{ width:22px; height:22px; }
 .drawer-cta{ width:100%; }
 /* ドロワー内のLINEボタンは幅が狭いので、1行に収まるよう文字と余白を調整 */
-.drawer-cta.btn.big{ padding:17px 12px; font-size:clamp(15.5px,4vw,17px); gap:8px; white-space:nowrap; }
+/* ドロワーのLINEボタンだけは flex で中央寄せにする（2026-09-07 山口様ご要望）。
+   inline-block だと、アイコンぶん文字が右にずれて見えるため。
+   1行しか入らない短い文言なので、.btn の注意書き（inline-flex禁止）には当たらない。 */
+.drawer-cta.btn.big{ display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:17px 12px; font-size:clamp(15.5px,4vw,17px); white-space:nowrap; }
+.drawer-cta .line-ico{ margin-right:0; vertical-align:0; }
 .drawer-cta .line-ico{ width:20px; height:20px; flex:none; }
 body.drawer-open{ overflow:hidden; }
 @media (max-width:760px){ .gnav{ gap:4px 18px; } .gnav a{ font-size:18px; } .header-right{ gap:12px; } }
@@ -1071,24 +1076,77 @@ html[lang="en"] .profile blockquote::before{ content:"My Belief"; }
 .ahs-target{ background:var(--paper); border-left:4px solid var(--sun);
   border-radius:0 12px 12px 0; padding:16px 20px; margin:18px 0; }
 
-/* ── 利用者の声 ──────────────────────────────────── */
+/* ── 利用者の声 ──────────────────────────────────────
+   2026-09-06 山口様ご要望で全面的に作り直した。
+   ・実際にお声をいただけたのは2名だけなので、4件の短い引用をやめ、
+     長文2件をしっかり読ませる形にした（＝件数の少なさを密度で補う）
+   ・カード上部の濃い帯に「年代・パーキンソン病歴」を置き、
+     読み手が自分と近い方かどうかを最初の1秒で判断できるようにしている
+   ・お顔のイラストはカード右下。文章の下に置くと、読み終えた視線の先に
+     人の顔が来るため、文章が「誰かの言葉」として残りやすい。 */
 .voices-section{ background:var(--paper); }
 .voice-list{ list-style:none; display:grid; grid-template-columns:repeat(2,1fr);
-  gap:20px; max-width:960px; margin:0 auto; position:relative; z-index:1; }
-.voice-card{ background:#fff; border-radius:18px; padding:28px 26px 22px;
-  box-shadow:0 8px 22px rgba(38,70,83,.07); border:1px solid var(--gold-soft); position:relative; }
-.voice-card::before{ content:"“"; position:absolute; top:6px; left:18px;
-  font-family:var(--font-head); font-size:52px; line-height:1; color:var(--gold-soft); }
-.voice-text{ font-size:16px; line-height:2.0; margin:0 0 14px; position:relative; z-index:1; }
-.voice-foot{ display:flex; align-items:center; justify-content:flex-end; gap:11px; }
-.voice-avatar{ width:52px; height:52px; border-radius:50%; flex:0 0 auto;
-  border:2px solid var(--gold-soft); background:var(--paper); }
-.voice-who{ font-size:14.5px; color:var(--gold-deep); font-weight:700; margin:0; text-align:right; }
-@media (max-width:760px){
-  .voice-list{ grid-template-columns:1fr; gap:14px; }
-  .voice-card{ padding:22px 20px 18px; }
-  .voice-avatar{ width:46px; height:46px; }
-  .voice-text{ font-size:15.5px; }
+  gap:24px; max-width:1000px; margin:0 auto; position:relative; z-index:1; }
+.voice-card{ background:#fff; border-radius:18px; position:relative;
+  box-shadow:0 8px 22px rgba(38,70,83,.07); border:1px solid var(--gold-soft);
+  display:flex; flex-direction:column; padding-bottom:96px; overflow:hidden; }
+.voice-head{ background:var(--gold-deep); color:#fff; margin:0;
+  padding:15px 18px; text-align:center; font-family:var(--font-head);
+  font-weight:600; font-size:17.5px; line-height:1.5; letter-spacing:.02em; }
+.voice-body{ padding:24px 26px 4px; }
+.voice-body p{ font-size:15.5px; line-height:2.05; margin:0 0 1.1em; }
+.voice-body p:last-child{ margin-bottom:0; }
+/* 山口様が原文で赤字にされていた箇所。強調しすぎると広告的になるため、
+   ブランドの赤茶（#B4453C）で落ち着かせている。 */
+.voice-em{ color:#B4453C; font-weight:700; }
+.voice-face{ position:absolute; right:20px; bottom:12px;
+  width:88px; height:auto; }
+@media (max-width:860px){
+  .voice-list{ grid-template-columns:1fr; gap:18px; }
+  .voice-head{ font-size:16px; padding:13px 14px; }
+  .voice-body{ padding:20px 20px 4px; }
+  .voice-body p{ font-size:15px; line-height:2.0; }
+  .voice-card{ padding-bottom:86px; }
+  .voice-face{ width:76px; right:14px; bottom:10px; }
+}
+
+/* ── モデルケース（想定されるお客様像）────────────────────
+   2026-09-06 山口様ご要望。実在の事例ではないので、
+   「お客様の声」とは背景色・カード色・見出しの語を変え、
+   さらに末尾に注記を必ず出して、体験談と混ざらないようにしている。
+   （医療・健康分野では、想定例を実例と誤認させると景表法上の問題になる） */
+.cases-section{ background:#fff; }
+.cases-lead{ max-width:880px; margin:0 auto 36px; }
+.cases-lead p{ font-size:16px; line-height:2.05; margin:0 0 1em; }
+.cases-lead p:last-child{ margin-bottom:0; }
+.case-list{ list-style:none; display:grid; grid-template-columns:repeat(3,1fr);
+  gap:22px; max-width:1060px; margin:0 auto; align-items:stretch; }
+.case-card{ background:var(--paper); border:1px solid var(--gold-soft);
+  border-radius:18px; padding:24px 22px 26px; display:flex; flex-direction:column; }
+.case-fig{ height:126px; display:grid; place-items:end center; margin:0 0 16px; }
+.case-fig img{ max-height:126px; width:auto; }
+.case-catch{ font-family:var(--font-head); font-weight:600; font-size:19px;
+  line-height:1.65; color:var(--gold-deep); text-align:center; margin:0 0 14px; }
+.case-attr{ font-size:13.5px; line-height:1.75; font-weight:700; color:#5E7681;
+  text-align:center; background:#fff; border:1px solid var(--gold-soft);
+  border-radius:12px; padding:8px 12px; margin:0 0 18px; }
+.case-row{ margin:0 0 15px; }
+.case-row:last-child{ margin-bottom:0; }
+.case-label{ display:inline-block; font-size:12.5px; font-weight:700; color:#fff;
+  background:var(--gold-deep); border-radius:5px; padding:3px 11px; margin:0 0 8px; }
+.case-row.is-hope .case-label{ background:var(--sun); color:var(--gold-deep); }
+.case-row p{ font-size:14.5px; line-height:1.95; margin:0; }
+/* 注記は3枚のカードの「下」に置く（2026-09-07 山口様ご指定の位置）。 */
+.cases-note{ max-width:1060px; margin:30px auto 0; padding:15px 20px;
+  background:var(--paper); border-radius:12px;
+  font-size:13.5px; line-height:1.95; color:#5E7681; }
+.cases-note strong{ color:var(--gold-deep); }
+@media (max-width:980px){
+  .case-list{ grid-template-columns:1fr; gap:16px; max-width:560px; }
+  .cases-lead p{ font-size:15.5px; line-height:2.0; }
+  .case-fig{ height:104px; margin-bottom:12px; }
+  .case-fig img{ max-height:104px; }
+  .case-catch{ font-size:18px; }
 }
 /* ── ご家族の皆様へ（お手紙のような語りかけ）──────────────────
    ご本人向けの文章が続いたあとに、支えるご家族へ宛てた一通として置く。
@@ -1704,7 +1762,7 @@ table{ max-width:100%; }
       <a href="https://www.facebook.com/profile.php?id=61583682097185" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.87 11.85v-8.38H7.08V12h3.05V9.36c0-3 1.8-4.67 4.53-4.67 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87V12h3.33l-.53 3.47h-2.8v8.38A12 12 0 0 0 24 12z"></path></svg></a>
     </div>
   <a class="btn btn-line big drawer-cta" href="https://lin.ee/5kiH4i3" target="_blank" rel="noopener" data-en-html="&lt;svg class=&quot;line-ico&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;Register on Official LINE"><svg class="line-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.79 2 10.46c0 4.19 3.57 7.7 8.4 8.36.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.09-.47 5.87-3.46 8.01-5.92C21.6 14.06 22 12.33 22 10.46 22 5.79 17.52 2 12 2z"></path></svg><span class="nw">公式LINE</span>に登録する</a>
-  <p class="drawer-line-note"><span class="nw">友だち登録</span>で、<span class="nw">無料相談</span>も、<span class="nw">お役立ち情報</span>の配信も。<span class="nw">いつでも解除</span>できます。</p>
+  <p class="drawer-line-note">お友達登録でお気軽にご相談ください。<br class="br-sp">お役立ち情報もお届けします。</p>
 </nav>
 
 <!-- 追従する公式LINE登録（丸・スクロール追従） -->
@@ -1758,7 +1816,11 @@ table{ max-width:100%; }
            見た目は .hero-spec のCSSで決まるので、以前と変わらない。 -->
       <h1 class="hero-spec" data-en-html="&lt;span class=&quot;loc&quot;&gt;Kagoshima&#39;s First&lt;/span&gt;&lt;span class=&quot;sep&quot;&gt;｜&lt;/span&gt;&lt;span class=&quot;hl&quot;&gt;Parkinson&#39;s&lt;/span&gt; Specialized Training Studio"><span class="loc">鹿児島初</span><span class="sep">｜</span><span class="hl nw">パーキンソン病専門</span> <span class="nw">トレーニングスタジオ</span></h1>
       <hr class="hero-div">
-      <p class="hero-copy2" data-en="ASPATH staff with over 14 years of experience walk alongside you."><span class="nw">14年以上の経験をもつ</span><span class="nw">アスパススタッフ</span>が<span class="nw">あなたと伴走します</span></p>
+      <!-- 2026-09-07 山口様ご要望で文言変更。「何の14年か」を明記した。
+           .nw は途中で改行させたくない塊。スマホでは12〜13字ずつ折り返る。
+           data-en-html にしているのは、英語に切り替えて日本語に戻したときに
+           .nw のまとまりを失わないようにするため（data-en だとテキストだけ戻る）。 -->
+      <p class="hero-copy2" data-en-html="Staff with over 14 years of experience guiding exercise for people with Parkinson&#39;s disease walk alongside you."><span class="nw">14年以上、</span><span class="nw">パーキンソン病の方への</span><span class="nw">運動指導歴をもつスタッフが</span><span class="nw">あなたと伴走します</span></p>
     </div>
 
 
@@ -1970,39 +2032,91 @@ table{ max-width:100%; }
     <div class="wrap">
       <div class="sec-head">
         <span class="sec-node" aria-hidden="true"></span>
-        <p class="sec-sub" data-en="Voices from our clients">ご利用者さまの声</p>
+        <!-- 2026-09-06 山口様ご要望により「ご利用者さまの声」の小見出しを削除。
+             「お客様の声」と意味が重複していたため。 -->
         <h2 data-en="What our clients say">お客様の声</h2>
       </div>
       <ul class="voice-list">
         <li class="voice-card reveal">
-          <p class="voice-text" data-en="&quot;My leaning posture improved, and now I can walk upright.&quot;">「傾いていた姿勢が良くなって、<br class="br-sp">まっすぐ歩けるようになりました。」</p>
-          <div class="voice-foot">
-            <img class="voice-avatar" src="images/ill-voice-w60.svg" alt="" width="52" height="52" loading="lazy" decoding="async">
-            <p class="voice-who" data-en="Woman in her 60s">60代・女性</p>
+          <p class="voice-head" data-en="Woman in her 60s / 4 years with Parkinson's">60代女性・パーキンソン病歴4年</p>
+          <div class="voice-body">
+            <p data-en="My main symptoms are leaning to one side, pain around the hips, and freezing of gait. In each session they first take time to listen to how I am, then check my posture and the way I walk. After exercising, my posture straightens and there are more days when I can walk lightly. At home too, little by little I have become able to lift my legs and walk with better posture, and lately I can even roll over in bed, which used to be difficult.">私にとっては体の横への傾き、腰回りの痛み、すくみ足などが主な症状です。トレーニングでは、まずゆっくり症状を聴いてもらい、姿勢や歩き方を確認します。運動後には姿勢がまっすぐになり、軽やかに歩けることも増えました。家の中でも少しずつ姿勢よく脚を上げて歩けるようになり、以前は難しかった寝返りも最近できるようになってきました。</p>
+            <p data-en-html="My condition still has its ups and downs, but &lt;span class=&quot;voice-em&quot;&gt;I feel far more positive than before — &quot;I want to travel alone again,&quot; &quot;maybe I could even go somewhere nearby overseas.&quot;&lt;/span&gt; The sessions are enjoyable every time, and I am grateful that they encourage me without ever dismissing what I say. I hope to keep exercising at ASPATH and go on enjoying the same life I have always had.">体調には波がありますが、<span class="voice-em">以前より「また一人旅に行きたい」「海外も近場なら行けるかも」と前向きな気持ちが強くなっています。</span>トレーニングは毎回楽しく、否定せず励ましてくださることもありがたいです。アスパスで運動を続けながら、できるだけこれまでと同じ生活を楽しんでいきたいと思っています。</p>
           </div>
+          <img class="voice-face" src="images/voice-face-w60.webp" alt="" width="88" height="94" loading="lazy" decoding="async">
         </li>
         <li class="voice-card reveal d1">
-          <p class="voice-text" data-en="&quot;Even with an intractable illness, I saw hope that exercise could slow its progression.&quot;">「難病でも、運動で進行を遅らせられることに<br class="br-sp">希望が見えました。」</p>
-          <div class="voice-foot">
-            <img class="voice-avatar" src="images/ill-voice-m40.svg" alt="" width="52" height="52" loading="lazy" decoding="async">
-            <p class="voice-who" data-en="Man in his 40s">40代・男性</p>
+          <p class="voice-head" data-en="Woman in her 70s / 12 years with Parkinson's">70代女性・パーキンソン病歴12年</p>
+          <div class="voice-body">
+            <p data-en-html="Just as I was beginning to give up, thinking this was a hard illness to live with, I was fortunate enough to meet a trainer at ASPATH and started rehabilitation. It has only been a few months, but &lt;span class=&quot;voice-em&quot;&gt;I now look forward to every session.&lt;/span&gt;">大変な病気だとあきらめかけていた矢先、ご縁がありアスパスのトレーナーと出会い、リハビリを受けるようになりました。まだ通い始めて数ヶ月ですが、<span class="voice-em">毎回のトレーニングが楽しみになっています。</span></p>
+            <p data-en="I used to need help getting in and out of bed, but now I can do it on my own. Little by little, the number of things I can do for myself has grown, and that makes me very happy. Now I would like to travel with my husband again.">以前はベッドからの上がり降りにも介助が必要でしたが、今では一人でできるようになりました。少しずつ「自分でできること」が増えてきたことが、とても嬉しいです。今は主人と一緒に旅行にも行きたいと思っています。</p>
+            <p data-en="The staff are courteous, and the atmosphere during training is bright and fun. I would love anyone who is feeling anxious to come and try a session at ASPATH at least once.">担当スタッフの対応も丁寧で、トレーニング中の雰囲気も明るく楽しいです。不安を抱えている方にも、ぜひ一度アスパスのトレーニングを体験してほしいと思います。</p>
+          </div>
+          <img class="voice-face" src="images/voice-face-w70.webp" alt="" width="88" height="97" loading="lazy" decoding="async">
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ モデルケース（想定されるお客様像）============
+       2026-09-06 山口様ご要望。実際のお声がまだ2件のため、
+       「こういう方に来ていただけたら嬉しい」という想定像を並べる。
+       ■ 実在の事例ではないので、注記（.cases-note）は消さないでください。
+       ■ 2026-09-07 山口様ご指定の文面に差し替え。注記（.cases-note）は
+         3枚のカードの「下」に置いています（山口様ご指定の位置）。 -->
+  <section class="section cases-section" id="cases">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-node" aria-hidden="true"></span>
+        <p class="sec-sub" data-en="Who we hope to walk alongside">こんな想いをお持ちの方へ</p>
+        <h2 data-en="Model cases">モデルケース</h2>
+      </div>
+      <div class="cases-lead reveal">
+        <p data-en="The people who come to ASPATH differ widely in age, in how long they have lived with the condition, and in the kind of daily life they want to protect. We support each person one at a time.">アスパスに通われる方は、年代も、症状とのお付き合いの長さも、守りたい暮らしの形も、一人ひとり違います。だからこそ、お一人ずつに合わせて伴走しています。</p>
+        <p data-en="There may well be others who share the concerns and hopes described below. Please feel free to talk to ASPATH.">以下のようなお悩みやご希望がある方も多いかもしれません。ぜひアスパスにお気軽にご相談ください。</p>
+      </div>
+      <ul class="case-list">
+        <li class="case-card reveal">
+          <div class="case-fig"><img src="images/case-walk-senior.webp" alt="" width="111" height="126" loading="lazy" decoding="async"></div>
+          <p class="case-catch" data-en-html="I want to feel confident going out on my own again">もう一度、<br>一人で出かける自信を</p>
+          <p class="case-attr" data-en-html="Woman in her 60s / retired / diagnosed less than 8 years ago">60代女性・退職後<br>パーキンソン病診断歴8年未満</p>
+          <div class="case-row">
+            <span class="case-label" data-en="Concern">悩み</span>
+            <p data-en="The first step is hard to take, so a family member comes along every time she goes out. She is afraid of falling in crowded places, and outings have gradually decreased.">歩き出しの一歩が出づらく、外出のたびに家族に付き添ってもらっている。人の多い場所で転ぶのが怖く、出かける回数が少しずつ減ってきた。</p>
+          </div>
+          <div class="case-row is-hope">
+            <span class="case-label" data-en="Hope">希望</span>
+            <p data-en="To travel on her own feet once more. To go out without making her family feel they must worry.">また自分の足で旅行に行きたい。家族に気を遣わせずに、行きたいところへ出かけられるようになりたい。</p>
           </div>
         </li>
-        <li class="voice-card reveal d2">
-          <p class="voice-text" data-en="&quot;Thanks to the trainer&#39;s bright personality, I can keep going and enjoy it.&quot;">「トレーナーの明るい人柄のおかげで<br class="br-sp">楽しく続けられます。」</p>
-          <div class="voice-foot">
-            <img class="voice-avatar" src="images/ill-voice-w70.svg" alt="" width="52" height="52" loading="lazy" decoding="async">
-            <p class="voice-who" data-en="Woman in her 70s">70代・女性</p>
+        <li class="case-card reveal d1">
+          <div class="case-fig"><img src="images/case-work-desk.webp" alt="" width="121" height="126" loading="lazy" decoding="async"></div>
+          <p class="case-catch" data-en-html="I want to keep working while living with my body">仕事を続けながら、<br>体と付き合っていきたい</p>
+          <p class="case-attr" data-en-html="Man in his 50s / still working / diagnosed less than 3 years ago">50代男性・就業中<br>パーキンソン病診断歴3年未満</p>
+          <div class="case-row">
+            <span class="case-label" data-en="Concern">悩み</span>
+            <p data-en="Trembling hands and stiffness around the shoulders make long hours of desk work hard. He cannot bring it up with colleagues, and carries the worry alone.">手のふるえと肩まわりの硬さで、長時間のデスクワークがつらい。同僚には相談しづらく、一人で抱えたままになっている。</p>
+          </div>
+          <div class="case-row is-hope">
+            <span class="case-label" data-en="Hope">希望</span>
+            <p data-en="To keep his current job until retirement. To have a place, apart from hospital visits, where he can tune up his body on weekday evenings or weekends.">定年まで今の仕事を続けたい。通院とは別に、平日の夜や休日に体を整えられる場所がほしい。</p>
           </div>
         </li>
-        <li class="voice-card reveal d3">
-          <p class="voice-text" data-en="&quot;I used to dislike exercise, but lately I enjoy moving my body.&quot;">「運動が苦手でしたが、<br class="br-sp">最近では体を動かすことが楽しいです。」</p>
-          <div class="voice-foot">
-            <img class="voice-avatar" src="images/ill-voice-w60b.svg" alt="" width="52" height="52" loading="lazy" decoding="async">
-            <p class="voice-who" data-en="Woman in her 60s">60代・女性</p>
+        <li class="case-card reveal d2">
+          <div class="case-fig"><img src="images/case-shopping.webp" alt="" width="94" height="126" loading="lazy" decoding="async"></div>
+          <p class="case-catch" data-en-html="I do not want to give up my household or my own time">家事も自分の時間も、<br>あきらめたくない</p>
+          <p class="case-attr" data-en-html="Woman in her 60s / caring for family / diagnosed around 5 years ago">60代女性・家族の介護と両立<br>パーキンソン病診断歴5年前後</p>
+          <div class="case-row">
+            <span class="case-label" data-en="Concern">悩み</span>
+            <p data-en="Carrying shopping tips her posture forward, and after housework she is too tired to move. Her own needs keep getting put off.">買い物の荷物を持つと姿勢が前に傾き、家事を終えると疲れて動けない。自分のことは、つい後回しになってしまう。</p>
+          </div>
+          <div class="case-row is-hope">
+            <span class="case-label" data-en="Hope">希望</span>
+            <p data-en="To keep shopping and running the household at her own pace. To go out with friends as she always has.">買い物や家事を、自分のペースで続けたい。友人とのお出かけも、これまでどおり楽しみたい。</p>
           </div>
         </li>
       </ul>
+      <p class="cases-note" data-en-html="The two accounts under &lt;strong&gt;“What our clients say”&lt;/strong&gt; above were given to us by actual clients.&lt;br&gt;The three profiles below are &lt;strong&gt;model cases&lt;/strong&gt; created from our experience of supporting clients. &lt;strong&gt;They are not the case of any specific client.&lt;/strong&gt;">上の『お客様の声』は、実際に2名のご利用者さまからいただいたお声を記載しています。<br>下の3名の情報はこれまでの支援経験をもとに作成した<strong>モデルケース</strong>です。<strong>特定のお客様の事例ではありません。</strong></p>
     </div>
   </section>
 
