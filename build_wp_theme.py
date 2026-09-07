@@ -1412,6 +1412,32 @@ function aspath_comment_more_script() {{
 add_action('wp_footer','aspath_comment_more_script',20);
 
 /**
+ * WordPressに保存されている本文の中の画像に、更新の印（?v=）を付ける。
+ *
+ * テンプレート側の画像はビルド時に ?v=ハッシュ が付くが、
+ * 「ASPATHについて」のように本文をWordPressに保存しているページは
+ * 保存された時点のURLのまま出るため、印が付かない。
+ * その結果、画像を差し替えても各自のブラウザが古い画像を持ち続ける。
+ * （2026-09-07、実際にこの状態になっていた）
+ *
+ * ファイルの更新日時から印を作るので、差し替えれば自動的に切り替わる。
+ */
+function aspath_content_image_version( $html ) {{
+  if ( is_admin() || strpos( $html, '/themes/aspath/images/' ) === false ) return $html;
+  return preg_replace_callback(
+    '#(/wp-content/themes/aspath/images/([A-Za-z0-9._\\-]+\\.(?:webp|jpg|jpeg|png|gif|svg)))(?![?\\w])#',
+    function( $m ) {{
+      $file = get_template_directory() . '/images/' . $m[2];
+      $time = @filemtime( $file );
+      return $time ? $m[1] . '?v=' . substr( md5( $m[2] . $time ), 0, 8 ) : $m[1];
+    }},
+    $html
+  );
+}}
+add_filter('the_content','aspath_content_image_version', 20);
+add_filter('post_thumbnail_html','aspath_content_image_version', 20);
+
+/**
  * お知らせ一覧のURL。
  * 「お知らせ」はカテゴリー(slug: info)のアーカイブなので、実URLは環境により
  * /category/info/ だったり /info/ だったりする。WordPressに解決させて404を防ぐ。
@@ -1629,16 +1655,35 @@ get_header(); ?>
       <?php
         $aspath_prev = get_previous_post();   // 1つ古い記事
         $aspath_next = get_next_post();       // 1つ新しい記事
+        // 表紙（アイキャッチ）を小さく添える。無い記事はロゴ代わりの文字を出す。
         if ( $aspath_prev ) : ?>
         <a class="cn-prev" href="<?php echo esc_url( get_permalink($aspath_prev) ); ?>">
-          <span class="label">← 前の記事</span>
-          <span class="title"><?php echo esc_html( get_the_title($aspath_prev) ); ?></span>
+          <span class="cn-thumb"><?php
+            if ( has_post_thumbnail($aspath_prev) ) {{
+              echo get_the_post_thumbnail( $aspath_prev, 'medium', array('alt'=>'','loading'=>'lazy','decoding'=>'async') );
+            }} else {{
+              echo '<span class="cn-noimg" aria-hidden="true">ASPATH</span>';
+            }}
+          ?></span>
+          <span class="cn-body">
+            <span class="label">← 前の記事</span>
+            <span class="title"><?php echo esc_html( get_the_title($aspath_prev) ); ?></span>
+          </span>
         </a>
       <?php endif;
         if ( $aspath_next ) : ?>
         <a class="cn-next" href="<?php echo esc_url( get_permalink($aspath_next) ); ?>">
-          <span class="label">次の記事 →</span>
-          <span class="title"><?php echo esc_html( get_the_title($aspath_next) ); ?></span>
+          <span class="cn-thumb"><?php
+            if ( has_post_thumbnail($aspath_next) ) {{
+              echo get_the_post_thumbnail( $aspath_next, 'medium', array('alt'=>'','loading'=>'lazy','decoding'=>'async') );
+            }} else {{
+              echo '<span class="cn-noimg" aria-hidden="true">ASPATH</span>';
+            }}
+          ?></span>
+          <span class="cn-body">
+            <span class="label">次の記事 →</span>
+            <span class="title"><?php echo esc_html( get_the_title($aspath_next) ); ?></span>
+          </span>
         </a>
       <?php endif; ?>
       </nav>
