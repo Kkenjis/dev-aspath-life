@@ -45,23 +45,25 @@ module.exports = function build(P, B){
     ["16","この先に備える","資料の直し方・将来の懸念・体制",C.GREEN],
     ["17","開発者への引き継ぎ","技術編。外注・引き継ぎはここだけで着手可",C.DEEP],
     ["18","これから作る方へ","同じ専門をお持ちの方が、自分の形を見つける章",C.SUN],
+    ["19","AIと一緒に作る","バイブコーディング。実例プロンプト10件",C.SUND],
+    ["20","パソコンの準備","Windows / Mac / その他。OS別の入れ方",C.GREEN],
   ];
-  // 9件ずつの2段組み（左9・右8）
-  const col2 = (i)=> i<9 ? 0.65 : 6.72;
+  // 10件ずつの2段組み（左10・右10）
+  const col2 = (i)=> i<10 ? 0.65 : 6.72;
   parts.forEach(([n,t,d,col],i)=>{
-    const x = col2(i), y = 1.46 + (i%9)*0.545;
+    const x = col2(i), y = 1.46 + (i%10)*0.49;
     // PDF化したあとに、この四角をクリックできるようにする（しおりを付ける.py が使う）
-    B.links.push({ page: B.page, x, y, w: 5.9, h: 0.525, part: n });
-    s.addShape(P.ShapeType.roundRect,{x,y,w:5.9,h:0.525,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
-    s.addShape(P.ShapeType.roundRect,{x:x+0.18,y:y+0.07,w:0.88,h:0.38,rectRadius:0.08,fill:{color:col}});
-    s.addText("第"+n+"部",{x:x+0.18,y:y+0.07,w:0.88,h:0.38,align:"center",valign:"middle",
-      fontSize:10.5,bold:true,color:C.WHITE,fontFace:F,isTextBox:true,margin:0});
-    s.addText(t,{x:x+1.18,y:y+0.02,w:4.5,h:0.28,fontSize:12,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
-    s.addText(d,{x:x+1.18,y:y+0.27,w:4.5,h:0.24,fontSize:9.5,color:C.MUTED,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
+    B.links.push({ page: B.page, x, y, w: 5.9, h: 0.47, part: n });
+    s.addShape(P.ShapeType.roundRect,{x,y,w:5.9,h:0.47,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
+    s.addShape(P.ShapeType.roundRect,{x:x+0.16,y:y+0.06,w:0.88,h:0.35,rectRadius:0.08,fill:{color:col}});
+    s.addText("第"+n+"部",{x:x+0.16,y:y+0.06,w:0.88,h:0.35,align:"center",valign:"middle",
+      fontSize:10,bold:true,color:C.WHITE,fontFace:F,isTextBox:true,margin:0});
+    s.addText(t,{x:x+1.14,y:y+0.01,w:4.6,h:0.25,fontSize:11.5,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
+    s.addText(d,{x:x+1.14,y:y+0.24,w:4.6,h:0.22,fontSize:9,color:C.MUTED,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
   });
-  B.box(s,0.65,6.44,11.97,0.55,
-    "上の枠をクリックするとその部に飛べます（PDF）。日々の更新は第4部、困ったときは第13部、公開後の変更は第14部。","","ok");
-  s.addNotes("18部構成。通読不要。第4部＝日常、第13部＝非常時、第14部＝差分、という3点だけ覚えてもらう。");
+  B.box(s,0.65,6.5,11.97,0.62,
+    "上の枠をクリックするとその部に飛べます（PDF）。日々の更新は第4部、困ったときは第13部、AIで作るときは第19部。","","ok");
+  s.addNotes("20部構成。通読不要。第4部＝日常、第13部＝非常時、第19部＝AI、という3点だけ覚えてもらう。");
 }
 
 /* 難易度の見方 */
