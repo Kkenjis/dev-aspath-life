@@ -34,11 +34,16 @@ const LV = {
   read:   { label:"読むだけ",     color:"4F6E7B", bg:"EEF2F4" },
 };
 
+const { 日本語で組む } = require("./日本語で組む.js");
+
 function makeDeck(title){
   const P = new pptx();
   P.layout = "LAYOUT_WIDE";
   P.author = "ASPATH";
   P.title  = title;
+  // 文字に言語指定が無いと、PDF変換時に中国語(簡体字)の字形が選ばれる。
+  // 「直」などが別の形で出るため、全テキストに ja-JP を付ける。詳細は 日本語で組む.js
+  日本語で組む(P);
   return P;
 }
 
@@ -89,7 +94,11 @@ Builder.prototype.box = function(s,x,y,w,h,title,body,tone){
   // フッターに重ならないよう、下端で止める。
   //   余裕があれば縮め、縮めると文字が入らない小さな枠は上へ逃がす。
   //   （各スライドで個別に高さを調整していたが、47枚で重なっていたため一括で担保する）
-  const MIN_H = body ? 0.72 : 0.46;   // 本文がある枠は、2行入る高さを確保する
+  const MIN_H = body ? 0.72 : 0.5;    // 本文がある枠は、2行入る高さを確保する
+  // 呼び出し側が低すぎる高さを指定していたら、ここで引き上げる。
+  //   低い枠に文字を入れると、枠からはみ出してフッターや次の要素に重なる。
+  //   （実際に h:0.24 の枠で、文字が部名の上に重なった）
+  if (h < MIN_H) h = MIN_H;
   if (y + h > SAFE_BOTTOM) {
     if (SAFE_BOTTOM - y >= MIN_H) h = SAFE_BOTTOM - y;
     else y = SAFE_BOTTOM - h;

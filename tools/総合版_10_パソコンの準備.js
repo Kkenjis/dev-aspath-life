@@ -235,15 +235,15 @@ function osTable(s, y0, rows, headColor){
   ];
   let y=1.5;
   chk.forEach(([t,how,ok],i)=>{
-    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:0.72,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
-    s.addShape(P.ShapeType.roundRect,{x:0.95,y:y+0.19,w:0.34,h:0.34,rectRadius:0.06,fill:{color:C.WHITE},line:{color:C.NAVY,width:1.3}});
-    s.addText(t,{x:1.45,y:y+0.02,w:2.6,h:0.68,fontSize:12,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
-    s.addText(how,{x:4.2,y:y+0.02,w:4.6,h:0.68,fontSize:10.5,color:C.INK,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
-    s.addShape(P.ShapeType.roundRect,{x:8.95,y:y+0.13,w:3.45,h:0.46,rectRadius:0.06,fill:{color:"EDF3F1"}});
-    s.addText(ok,{x:9.1,y:y+0.13,w:3.15,h:0.46,fontSize:10,color:C.GREEN,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
-    y+=0.78;
+    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:0.64,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
+    s.addShape(P.ShapeType.roundRect,{x:0.95,y:y+0.15,w:0.34,h:0.34,rectRadius:0.06,fill:{color:C.WHITE},line:{color:C.NAVY,width:1.3}});
+    s.addText(t,{x:1.45,y:y+0.02,w:2.6,h:0.6,fontSize:12,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
+    s.addText(how,{x:4.2,y:y+0.02,w:4.6,h:0.6,fontSize:10.5,color:C.INK,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
+    s.addShape(P.ShapeType.roundRect,{x:8.95,y:y+0.11,w:3.45,h:0.42,rectRadius:0.06,fill:{color:"EDF3F1"}});
+    s.addText(ok,{x:9.1,y:y+0.11,w:3.15,h:0.42,fontSize:10,color:C.GREEN,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
+    y+=0.70;
   });
-  B.box(s,0.65,y+0.06,11.97,0.6,"⑥だけは、必ず未ログインのスマートフォンで確認してください。ログイン中は、自分にだけ新しく見えます。","","warn");
+  B.box(s,0.65,y+0.1,11.97,0.62,"⑥だけは、必ず未ログインのスマートフォンで確認してください。ログイン中は、自分にだけ新しく見えます。","","warn");
   s.addNotes("この7つが通れば環境構築は終わり。⑥のログイン状態が最頻出の勘違い。");
 }
 

@@ -36,3 +36,6 @@ echo "④ 納品フォルダへ置く"
 cp -f "$OUT/$NAME.pptx" "$DEST/★$NAME.pptx"
 cp -f "$OUT/$NAME.pdf"  "$DEST/★$NAME.pdf"
 echo "   完了 → $DEST/★$NAME.pdf"
+
+echo "⑤ 文字の検査（重なり・隠れ・旧字・字形）"
+bash 納品PDFを検査.sh

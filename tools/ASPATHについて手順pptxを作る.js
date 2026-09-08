@@ -3,6 +3,8 @@ const { cover: _cover } = require("./ブランドヘッダー.js");
 const { brand: _brand } = require("./ブランドヘッダー.js");
 
 const pptx=require('pptxgenjs'); const P=new pptx(); P.layout='LAYOUT_WIDE';
+// 日本語の字形（JP）で出力する。付けないとPDF変換時に中国語の字形になる。
+require("./日本語で組む.js").日本語で組む(P);
 const NAVY='264653',SUN='DD8236',SUNL='F4A261',GREEN='2E7D32',GREY='5E7681',
       WHITE='FFFFFF',INK='1E2D34',RED='B85042';
 const F='Meiryo';

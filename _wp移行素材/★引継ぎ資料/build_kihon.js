@@ -20,6 +20,8 @@ const MUTED= "52707A";
 const FONT = "Meiryo";
 
 const p = new pptx();
+// 日本語の字形（JP）で出力する。付けないとPDF変換時に中国語の字形になる。
+require("../../tools/日本語で組む.js").日本語で組む(p);
 p.layout = "LAYOUT_WIDE";           // 13.3 x 7.5 inch
 p.author = "ASPATH";
 p.title  = "ASPATH サイト運用マニュアル 基本編";

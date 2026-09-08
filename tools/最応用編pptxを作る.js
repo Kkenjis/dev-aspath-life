@@ -9,6 +9,8 @@ const { brand: _brand } = require("./ブランドヘッダー.js");
 const pptx = require("pptxgenjs");
 
 const P = new pptx();
+// 日本語の字形（JP）で出力する。付けないとPDF変換時に中国語の字形になる。
+require("./日本語で組む.js").日本語で組む(P);
 P.layout = "LAYOUT_WIDE";
 P.author = "ASPATH";
 P.title  = "ASPATH サイト運用マニュアル 最応用編";
