@@ -113,8 +113,9 @@ function steps(s,arr,x,y,w,col,sz){
    ['締めくくり','文章4','—']];
  s.addTable([[{text:'場所',options:{bold:true}},{text:'直せるもの',options:{bold:true,color:GREEN}},{text:'触らないもの',options:{bold:true,color:SUN}}]].concat(rows),
   {x:.7,y:1.95,w:12.1,colW:[3.6,3.9,4.6],fontFace:F,fontSize:15,color:INK,
-   border:{type:'solid',color:'E2E6E8',pt:1},fill:{color:WHITE},rowH:.6,valign:'middle'});
- note(s,.7,6.0,12.1,.85,'全部で 文章52か所が直せます。触らないのは飾りの9か所だけです。','EDF6EE',GREEN,17);}
+   border:{type:'solid',color:'E2E6E8',pt:1},fill:{color:WHITE},rowH:.5,valign:'middle'});
+ // 8行×0.5＝4.0。下の帯は5.95より下に置くこと（0.6だと最終行が隠れた）
+ note(s,.7,6.05,12.1,.8,'全部で 文章52か所が直せます。触らないのは飾りの9か所だけです。','EDF6EE',GREEN,17);}
 
 /* --- 編集画面とサイトは見た目が違う --- */
 {const s=P.addSlide(); head(s,'編集画面は、サイトとは見た目が違います','ここを先にお伝えします');
