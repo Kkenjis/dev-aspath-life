@@ -508,7 +508,7 @@ function shot(s,file,bx,imgW,imgH,callouts,useCrop){
   ];
   let y = 1.6;
   items.forEach(([t, code, d]) => {
-    s.addShape(P.ShapeType.roundRect, { x: 0.65, y, w: 11.95, h: 1.1, rectRadius: 0.1, fill: { color: "FBEDEC" }, line: { color: RED, width: 1 } });
+    s.addShape(P.ShapeType.roundRect, { x: 0.65, y, w: 11.95, h: 1.1, rectRadius: 0.1, fill: { color: "F8EDEB" }, line: { color: RED, width: 1 } });
     s.addText("×", { x: 0.88, y: y + 0.32, w: 0.4, h: 0.4, align: "center", valign: "middle", fontSize: 20, bold: true, color: RED, fontFace: F, isTextBox: true, margin: 0 });
     s.addText(t, { x: 1.42, y: y + 0.12, w: 4.6, h: 0.35, fontSize: 14, bold: true, color: NAVY, fontFace: F, isTextBox: true, margin: 0 });
     s.addText(code, { x: 1.42, y: y + 0.5, w: 4.6, h: 0.38, fontSize: 11, color: RED, fontFace: MONO, isTextBox: true, margin: 0 });
@@ -711,7 +711,7 @@ function shot(s,file,bx,imgW,imgH,callouts,useCrop){
     s.addShape(P.ShapeType.roundRect, { x: 0.65, y, w: 11.97, h: 1.12, rectRadius: 0.1, fill: { color: i % 2 ? PAPER : "F7FAFA" }, line: { color: "DCE6E8", width: 1 } });
     s.addText(t, { x: 0.9, y: y + 0.11, w: 6.6, h: 0.34, fontSize: 13, bold: true, color: NAVY, fontFace: F, isTextBox: true, margin: 0 });
     s.addText(d, { x: 0.9, y: y + 0.47, w: 6.6, h: 0.56, fontSize: 11, color: MUTED, fontFace: F, isTextBox: true, margin: 0, lineSpacingMultiple: 1.15 });
-    s.addShape(P.ShapeType.roundRect, { x: 7.75, y: y + 0.2, w: 4.6, h: 0.72, rectRadius: 0.08, fill: { color: "EDF6EE" } });
+    s.addShape(P.ShapeType.roundRect, { x: 7.75, y: y + 0.2, w: 4.6, h: 0.72, rectRadius: 0.08, fill: { color: "EDF3F1" } });
     s.addText(fix, { x: 7.9, y: y + 0.25, w: 4.3, h: 0.62, fontSize: 11, color: GREEN, fontFace: F, isTextBox: true, margin: 0, lineSpacingMultiple: 1.15 });
     y += 1.24;
   });
@@ -942,7 +942,7 @@ groups.forEach(g=>{
   ];
   let y=1.65;
   fix.forEach(([t,where,how])=>{
-    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:1.5,rectRadius:0.1,fill:{color:"EDF6EE"},line:{color:GREEN,width:1}});
+    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:1.5,rectRadius:0.1,fill:{color:"EDF3F1"},line:{color:GREEN,width:1}});
     s.addText(t,{x:0.95,y:y+0.18,w:4.3,h:0.6,fontSize:14,bold:true,color:NAVY,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.2});
     s.addShape(P.ShapeType.roundRect,{x:5.4,y:y+0.28,w:2.5,h:0.9,rectRadius:0.08,fill:{color:WHITE}});
     s.addText(where,{x:5.5,y:y+0.34,w:2.3,h:0.78,align:"center",fontSize:11,color:GREEN,fontFace:MONO,isTextBox:true,margin:0,lineSpacingMultiple:1.2});
@@ -970,7 +970,7 @@ groups.forEach(g=>{
   let y=1.58;
   call.forEach(([t,d],i)=>{
     s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:0.6,rectRadius:0.08,
-      fill:{color:i%2?"FBEDEC":"FDF5F4"},line:{color:"E8CDCA",width:1}});
+      fill:{color:i%2?"F8EDEB":"FCF3F1"},line:{color:"E8CDCA",width:1}});
     s.addText("×",{x:0.88,y:y+0.13,w:0.3,h:0.34,align:"center",valign:"middle",
       fontSize:14,bold:true,color:RED,fontFace:F,isTextBox:true,margin:0});
     s.addText(t,{x:1.3,y:y+0.12,w:5.2,h:0.36,fontSize:12,bold:true,color:NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
@@ -1054,11 +1054,11 @@ const PAGES = [
   const ng=["医学的な正しさの最終判断","「治る」「改善する」などの効果の断定",
             "お客様の個人情報を入れた相談","料金・営業時間などの事実確認",
             "そのまま公開する（必ず読み直す）","サイトの設定を直接変えること"];
-  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.68,w:5.95,h:4.3,rectRadius:0.12,fill:{color:"EDF6EE"},line:{color:GREEN,width:1.2}});
+  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.68,w:5.95,h:4.3,rectRadius:0.12,fill:{color:"EDF3F1"},line:{color:GREEN,width:1.2}});
   s.addText("任せてよいこと",{x:0.95,y:1.88,w:5.4,h:0.4,fontSize:16,bold:true,color:GREEN,fontFace:F,isTextBox:true,margin:0});
   s.addText(ok.map((t,i)=>({text:t,options:{bullet:true,breakLine:i<ok.length-1}})),
     {x:0.95,y:2.35,w:5.4,h:3.45,fontSize:12,color:INK,fontFace:F,isTextBox:true,margin:0,paraSpaceAfter:6});
-  s.addShape(P.ShapeType.roundRect,{x:6.7,y:1.68,w:5.92,h:4.3,rectRadius:0.12,fill:{color:"FBEDEC"},line:{color:RED,width:1.2}});
+  s.addShape(P.ShapeType.roundRect,{x:6.7,y:1.68,w:5.92,h:4.3,rectRadius:0.12,fill:{color:"F8EDEB"},line:{color:RED,width:1.2}});
   s.addText("人が判断すること",{x:7.0,y:1.88,w:5.4,h:0.4,fontSize:16,bold:true,color:RED,fontFace:F,isTextBox:true,margin:0});
   s.addText(ng.map((t,i)=>({text:t,options:{bullet:true,breakLine:i<ng.length-1}})),
     {x:7.0,y:2.35,w:5.4,h:3.45,fontSize:12,color:INK,fontFace:F,isTextBox:true,margin:0,paraSpaceAfter:6});
@@ -1078,15 +1078,15 @@ const PAGES = [
     ["④","条件・制約","1500〜2500字／見出しは質問の形／効果の断定はしない"],
     ["⑤","出力の形","表形式で／箇条書きで／3案出して"],
   ];
-  let y=1.65;
+  let y=1.6;
   parts.forEach(([n,t,ex])=>{
-    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:0.9,rectRadius:0.1,fill:{color:"F7FAFA"},line:{color:"DCE6E8",width:1}});
-    s.addText(n,{x:0.85,y:y+0.25,w:0.42,h:0.4,align:"center",fontSize:17,bold:true,color:SUND,fontFace:F,isTextBox:true,margin:0});
-    s.addText(t,{x:1.4,y:y+0.27,w:2.9,h:0.36,fontSize:14,bold:true,color:NAVY,fontFace:F,isTextBox:true,margin:0});
-    s.addText(ex,{x:4.45,y:y+0.18,w:7.95,h:0.6,fontSize:11.5,color:MUTED,fontFace:MONO,isTextBox:true,margin:0,lineSpacingMultiple:1.15});
-    y+=1.0;
+    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:0.82,rectRadius:0.1,fill:{color:"F7FAFA"},line:{color:"DCE6E8",width:1}});
+    s.addText(n,{x:0.85,y:y+0.21,w:0.42,h:0.4,align:"center",fontSize:17,bold:true,color:SUND,fontFace:F,isTextBox:true,margin:0});
+    s.addText(t,{x:1.4,y:y+0.23,w:2.9,h:0.36,fontSize:14,bold:true,color:NAVY,fontFace:F,isTextBox:true,margin:0});
+    s.addText(ex,{x:4.45,y:y+0.14,w:7.95,h:0.58,fontSize:11.5,color:MUTED,fontFace:MONO,isTextBox:true,margin:0,lineSpacingMultiple:1.15});
+    y+=0.9;
   });
-  box(s,0.65,6.35,11.97,0.9,"うまくいかないときは、条件（④）を足してください",
+  box(s,0.65,6.2,11.97,0.9,"うまくいかないときは、条件（④）を足してください",
     "「もっと短く」「専門用語を減らして」「当事者が使う言葉で」など、後から追加で指示できます。会話は続けられます。","ok");
   s.addNotes("この型を覚えれば、どのAIでも使える。");
 }

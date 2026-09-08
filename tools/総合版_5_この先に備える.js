@@ -117,7 +117,7 @@ module.exports = function build(P, B){
 {
   const s=P.addSlide();
   B.head(s,"開発担当が離れたあとの体制","誰に何を頼めばよいか、を決めておきます",{lv:"read"});
-  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:3.83,h:2.9,rectRadius:0.12,fill:{color:"EDF6EE"},line:{color:C.GREEN,width:1.4}});
+  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:3.83,h:2.9,rectRadius:0.12,fill:{color:"EDF3F1"},line:{color:C.GREEN,width:1.4}});
   s.addText("山口様が続けること",{x:0.95,y:1.7,w:3.3,h:0.4,fontSize:15,bold:true,color:C.GREEN,fontFace:F,isTextBox:true,margin:0});
   s.addText("・記事とお知らせの投稿\n・お申し込みの確認\n・月1回の点検\n・Search Console の操作\n・Googleビジネスプロフィール\n・変更ログの記録",
     {x:0.95,y:2.2,w:3.3,h:2.0,fontSize:12,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.4});
@@ -127,7 +127,7 @@ module.exports = function build(P, B){
   s.addText("・固定ページ・TOPの文章\n・写真の差し替え\n・新しいページを作る\n・テーマの作り直し\n・プラグインの追加\n・この資料の更新",
     {x:5.02,y:2.2,w:3.3,h:2.0,fontSize:12,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.4});
 
-  s.addShape(P.ShapeType.roundRect,{x:8.79,y:1.5,w:3.83,h:2.9,rectRadius:0.12,fill:{color:"FBEDEC"},line:{color:C.RED,width:1.4}});
+  s.addShape(P.ShapeType.roundRect,{x:8.79,y:1.5,w:3.83,h:2.9,rectRadius:0.12,fill:{color:"F8EDEB"},line:{color:C.RED,width:1.4}});
   s.addText("外に頼むとき渡すもの",{x:9.09,y:1.7,w:3.3,h:0.4,fontSize:15,bold:true,color:C.RED,fontFace:F,isTextBox:true,margin:0});
   s.addText("・テーマZIPの最新版\n・GitHub の権限\n・サーバーの権限\n・この資料一式\n\nこの4つが揃っていれば、\nどの業者でも引き継げます。",
     {x:9.09,y:2.2,w:3.3,h:2.0,fontSize:12,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.4});
@@ -160,7 +160,7 @@ module.exports = function build(P, B){
     y+=1.0;
   });
   B.box(s,0.65,y+0.06,11.97,0.75,"この5つを回していれば、サイトは健全に保てます。",
-    "残りの15部は「そのとき必要になったら開く」ためのものです。","ok");
+    "残りの16部は「そのとき必要になったら開く」ためのものです。","ok");
   s.addNotes("最終的にはこの5つ。ここだけ覚えてもらえればよい。");
 }
 

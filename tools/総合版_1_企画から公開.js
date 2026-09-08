@@ -25,7 +25,7 @@ module.exports = function build(P, B){
 {
   const s=P.addSlide();
   B.head(s,"この資料の使い方","全部を読む必要はありません。必要な部だけ開いてください");
-  // 16部構成。1列だと入りきらないので、8部ずつの2段組みにしている。
+  // 17部構成。1列だと入りきらないので、2段組みにしている。
   const parts=[
     ["1","企画と設計","なぜ作ったか。何を決めたか",C.PURPLE],
     ["2","制作と仕組み","どういう作りになっているか",C.NAVY],
@@ -43,21 +43,22 @@ module.exports = function build(P, B){
     ["14","この夏に変わったこと","公開後の差分。本編より優先",C.PURPLE],
     ["15","TOPと固定ページを直す","実作業の手順。レクチャーの教材",C.SUND],
     ["16","この先に備える","資料の直し方・将来の懸念・体制",C.GREEN],
+    ["17","開発者への引き継ぎ","技術編。外注・引き継ぎはここだけで着手可",C.DEEP],
   ];
-  // 8件ずつの2段組み（左8・右8）
-  const col2 = (i)=> i<8 ? 0.65 : 6.72;
+  // 9件ずつの2段組み（左9・右8）
+  const col2 = (i)=> i<9 ? 0.65 : 6.72;
   parts.forEach(([n,t,d,col],i)=>{
-    const x = col2(i), y = 1.48 + (i%8)*0.60;
+    const x = col2(i), y = 1.46 + (i%9)*0.545;
     // PDF化したあとに、この四角をクリックできるようにする（しおりを付ける.py が使う）
-    B.links.push({ page: B.page, x, y, w: 5.9, h: 0.58, part: n });
-    s.addShape(P.ShapeType.roundRect,{x,y,w:5.9,h:0.58,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
-    s.addShape(P.ShapeType.roundRect,{x:x+0.18,y:y+0.09,w:0.88,h:0.4,rectRadius:0.08,fill:{color:col}});
-    s.addText("第"+n+"部",{x:x+0.18,y:y+0.09,w:0.88,h:0.4,align:"center",valign:"middle",
+    B.links.push({ page: B.page, x, y, w: 5.9, h: 0.525, part: n });
+    s.addShape(P.ShapeType.roundRect,{x,y,w:5.9,h:0.525,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
+    s.addShape(P.ShapeType.roundRect,{x:x+0.18,y:y+0.07,w:0.88,h:0.38,rectRadius:0.08,fill:{color:col}});
+    s.addText("第"+n+"部",{x:x+0.18,y:y+0.07,w:0.88,h:0.38,align:"center",valign:"middle",
       fontSize:10.5,bold:true,color:C.WHITE,fontFace:F,isTextBox:true,margin:0});
-    s.addText(t,{x:x+1.18,y:y+0.04,w:4.5,h:0.29,fontSize:12.5,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
-    s.addText(d,{x:x+1.18,y:y+0.30,w:4.5,h:0.25,fontSize:10,color:C.MUTED,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
+    s.addText(t,{x:x+1.18,y:y+0.02,w:4.5,h:0.28,fontSize:12,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
+    s.addText(d,{x:x+1.18,y:y+0.27,w:4.5,h:0.24,fontSize:9.5,color:C.MUTED,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
   });
-  B.box(s,0.65,6.32,11.97,0.60,
+  B.box(s,0.65,6.44,11.97,0.55,
     "上の枠をクリックするとその部に飛べます（PDF）。日々の更新は第4部、困ったときは第13部、公開後の変更は第14部。","","ok");
   s.addNotes("16部構成。通読不要。第4部＝日常、第13部＝非常時、第14部＝差分、という3点だけ覚えてもらう。");
 }
@@ -175,7 +176,7 @@ module.exports = function build(P, B){
   s.addText("変更前",{x:0.95,y:1.7,w:5.2,h:0.35,fontSize:13,bold:true,color:C.MUTED,fontFace:F,isTextBox:true,margin:0});
   s.addText("ASPATH・アスパス：\n鹿児島のパーキンソン病と脳卒中専門の\nトレーニングスタジオ",
     {x:0.95,y:2.15,w:5.2,h:1.3,fontSize:13.5,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.3});
-  s.addShape(P.ShapeType.roundRect,{x:6.82,y:1.5,w:5.8,h:2.3,rectRadius:0.12,fill:{color:"EDF6EE"},line:{color:C.GREEN,width:1.4}});
+  s.addShape(P.ShapeType.roundRect,{x:6.82,y:1.5,w:5.8,h:2.3,rectRadius:0.12,fill:{color:"EDF3F1"},line:{color:C.GREEN,width:1.4}});
   s.addText("変更後",{x:7.12,y:1.7,w:5.2,h:0.35,fontSize:13,bold:true,color:C.GREEN,fontFace:F,isTextBox:true,margin:0});
   s.addText("ASPATH｜\n鹿児島のパーキンソン病専門\nトレーニングスタジオ",
     {x:7.12,y:2.15,w:5.2,h:1.3,fontSize:13.5,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.3});
@@ -348,7 +349,7 @@ module.exports = function build(P, B){
     ["LIQUID SPEECH BALLOON","吹き出し表示"],["All-in-One WP Migration","バックアップ"],
     ["WP STAGING","検証用の複製"],["CloudSecure WP Security","不正ログイン対策"],
     ["Duplicate Page","ページの複製"],["LightStart","メンテナンス表示"],["Starter Templates","雛形（未使用）"]];
-  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:5.9,h:4.5,rectRadius:0.12,fill:{color:"FBEDEC"},line:{color:C.RED,width:1.2}});
+  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:5.9,h:4.5,rectRadius:0.12,fill:{color:"F8EDEB"},line:{color:C.RED,width:1.2}});
   s.addText("止めてはいけない（6個）",{x:0.95,y:1.7,w:5.3,h:0.4,fontSize:15,bold:true,color:C.RED,fontFace:F,isTextBox:true,margin:0});
   let yy=2.2;
   must.forEach(([n,d])=>{
@@ -487,7 +488,7 @@ module.exports = function build(P, B){
     s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:0.9,rectRadius:0.1,fill:{color:i%2?C.PAPER:"F7FAFA"},line:{color:C.LINE,width:1}});
     s.addText(t,{x:0.9,y:y+0.08,w:6.5,h:0.32,fontSize:12,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0});
     s.addText(d,{x:0.9,y:y+0.4,w:6.5,h:0.44,fontSize:10,color:C.MUTED,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.12});
-    s.addShape(P.ShapeType.roundRect,{x:7.65,y:y+0.15,w:4.7,h:0.58,rectRadius:0.08,fill:{color:"EDF6EE"}});
+    s.addShape(P.ShapeType.roundRect,{x:7.65,y:y+0.15,w:4.7,h:0.58,rectRadius:0.08,fill:{color:"EDF3F1"}});
     s.addText(fix,{x:7.8,y:y+0.2,w:4.4,h:0.48,fontSize:10.5,color:C.GREEN,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
     y+=0.98;
   });

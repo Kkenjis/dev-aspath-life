@@ -112,11 +112,11 @@ module.exports = function build(P, B){
 `<h3 class="wf-lead" data-en="Going out again">
   また、自分の足で出かけられる
 </h3>`,12);
-  s.addShape(P.ShapeType.roundRect,{x:0.65,y:3.6,w:3.68,h:1.35,rectRadius:0.1,fill:{color:"EDF6EE"},line:{color:C.GREEN,width:1.4}});
+  s.addShape(P.ShapeType.roundRect,{x:0.65,y:3.6,w:3.68,h:1.35,rectRadius:0.1,fill:{color:"EDF3F1"},line:{color:C.GREEN,width:1.4}});
   s.addText("○ 直してよい",{x:0.9,y:3.75,w:3.2,h:0.34,fontSize:14,bold:true,color:C.GREEN,fontFace:F,isTextBox:true,margin:0});
   s.addText("また、自分の足で出かけられる\n＝ < > で挟まれていない文字",
     {x:0.9,y:4.14,w:3.2,h:0.7,fontSize:11.5,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.3});
-  s.addShape(P.ShapeType.roundRect,{x:4.57,y:3.6,w:3.68,h:1.35,rectRadius:0.1,fill:{color:"FBEDEC"},line:{color:C.RED,width:1.4}});
+  s.addShape(P.ShapeType.roundRect,{x:4.57,y:3.6,w:3.68,h:1.35,rectRadius:0.1,fill:{color:"F8EDEB"},line:{color:C.RED,width:1.4}});
   s.addText("× 触らない",{x:4.82,y:3.75,w:3.2,h:0.34,fontSize:14,bold:true,color:C.RED,fontFace:F,isTextBox:true,margin:0});
   s.addText("<h3 …> や class=\"wf-lead\"\n＝ 見た目と仕組みの指定",
     {x:4.82,y:4.14,w:3.2,h:0.7,fontSize:11.5,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.3});

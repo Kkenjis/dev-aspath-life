@@ -116,7 +116,7 @@ const p = P, FONT = F;
   s.addText("① ご本人",{x:0.95,y:1.7,w:5.3,h:0.42,fontSize:18,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0});
   s.addText("パーキンソン病と診断された方。\n\n・診断直後で、何をすればいいか分からない\n・少しずつ進む変化に、言葉にできない不安がある\n・「できていたこと」が減っていくのがつらい\n\n→ 求めているのは、具体的な次の一歩。",
     {x:0.95,y:2.2,w:5.3,h:2.05,fontSize:12.5,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.3});
-  s.addShape(P.ShapeType.roundRect,{x:6.72,y:1.5,w:5.9,h:2.9,rectRadius:0.12,fill:{color:"EFEEF6"},line:{color:C.PURPLE,width:1.4}});
+  s.addShape(P.ShapeType.roundRect,{x:6.72,y:1.5,w:5.9,h:2.9,rectRadius:0.12,fill:{color:"EEF2F4"},line:{color:C.PURPLE,width:1.4}});
   s.addText("② ご家族",{x:7.02,y:1.7,w:5.3,h:0.42,fontSize:18,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0});
   s.addText("支えているご家族。実は、申し込みボタンを\n押すのはこちらの方が多い層です。\n\n・この先どうなるのか分からない\n・自分に何ができるのか分からない\n・自分の時間が持てない\n\n→ 求めているのは、安心と、任せられる相手。",
     {x:7.02,y:2.2,w:5.3,h:2.05,fontSize:12.5,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.3});
@@ -162,7 +162,7 @@ const p = P, FONT = F;
 {
   const s=P.addSlide();
   B.head(s,"なぜ表現に気をつけるのか","関係するのは、2つの法律です。要点だけ押さえれば十分です",{lv:"read"});
-  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:5.9,h:2.55,rectRadius:0.12,fill:{color:"FBEDEC"},line:{color:C.RED,width:1.4}});
+  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:5.9,h:2.55,rectRadius:0.12,fill:{color:"F8EDEB"},line:{color:C.RED,width:1.4}});
   s.addText("① 景品表示法",{x:0.95,y:1.7,w:5.3,h:0.42,fontSize:17,bold:true,color:C.RED,fontFace:F,isTextBox:true,margin:0});
   s.addText("「実際よりも良く見せてはいけない」という法律。\n\n・効果を断定する　→ 優良誤認\n・期限切れの割引を出したまま　→ 有利誤認\n\n違反すると、措置命令や課徴金の対象になります。",
     {x:0.95,y:2.2,w:5.3,h:1.7,fontSize:12.5,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.3});
@@ -192,9 +192,9 @@ const p = P, FONT = F;
   ];
   let y=1.5;
   rows.forEach(([ng,ok],i)=>{
-    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:5.5,h:0.6,rectRadius:0.08,fill:{color:"FBEDEC"},line:{color:"E8C9C6",width:1}});
+    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:5.5,h:0.6,rectRadius:0.08,fill:{color:"F8EDEB"},line:{color:"E8C9C6",width:1}});
     s.addText("× "+ng,{x:0.9,y:y+0.04,w:5.05,h:0.52,fontSize:12.5,color:C.RED,bold:true,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
-    s.addShape(P.ShapeType.roundRect,{x:6.42,y,w:6.2,h:0.6,rectRadius:0.08,fill:{color:"EDF6EE"},line:{color:"C6DFC8",width:1}});
+    s.addShape(P.ShapeType.roundRect,{x:6.42,y,w:6.2,h:0.6,rectRadius:0.08,fill:{color:"EDF3F1"},line:{color:"C6DFC8",width:1}});
     s.addText("○ "+ok,{x:6.67,y:y+0.04,w:5.75,h:0.52,fontSize:12.5,color:C.GREEN,bold:true,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
     y+=0.68;
   });

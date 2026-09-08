@@ -20,7 +20,7 @@ module.exports = function build(P, B){
 {
   const s=P.addSlide();
   B.head(s,"考え方 ─「調べる」と「直す」は別のこと","分けて考えると、できることが一気に増えます",{lv:"read"});
-  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:5.9,h:2.5,rectRadius:0.12,fill:{color:"EDF6EE"},line:{color:C.GREEN,width:1.4}});
+  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:5.9,h:2.5,rectRadius:0.12,fill:{color:"EDF3F1"},line:{color:C.GREEN,width:1.4}});
   s.addText("調べる",{x:0.95,y:1.7,w:5.3,h:0.45,fontSize:19,bold:true,color:C.GREEN,fontFace:F,isTextBox:true,margin:0});
   s.addText("サイトを読み取るだけ。何も書き換えません。\n\n失敗しても壊れないので、いくらでも試せます。\nここは、山口様がご自身でどんどんやって大丈夫です。",
     {x:0.95,y:2.25,w:5.3,h:1.6,fontSize:12.5,color:C.INK,fontFace:F,isTextBox:true,margin:0,lineSpacingMultiple:1.3});
@@ -171,7 +171,7 @@ console.log('おわり');`,10);
     "写真の差し替え","コメントの承認・スパム処理","カテゴリ・タグの追加","キャッシュを消す","バックアップを取る"];
   const ask=["ファイルを直接さわる作業","テーマZIPの作り直し","プラグインの追加・削除",
     "サーバーの設定","データベースの操作","スラッグ（URL）の変更","原因が分からないとき"];
-  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:5.95,h:4.35,rectRadius:0.12,fill:{color:"EDF6EE"},line:{color:C.GREEN,width:1.2}});
+  s.addShape(P.ShapeType.roundRect,{x:0.65,y:1.5,w:5.95,h:4.35,rectRadius:0.12,fill:{color:"EDF3F1"},line:{color:C.GREEN,width:1.2}});
   s.addText("ご自身でどうぞ",{x:0.95,y:1.7,w:5.4,h:0.42,fontSize:16,bold:true,color:C.GREEN,fontFace:F,isTextBox:true,margin:0});
   s.addText(own.map((t,i)=>({text:t,options:{bullet:true,breakLine:i<own.length-1}})),
     {x:0.95,y:2.2,w:5.4,h:3.5,fontSize:12,color:C.INK,fontFace:F,isTextBox:true,margin:0,paraSpaceAfter:6});

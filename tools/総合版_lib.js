@@ -3,20 +3,35 @@
 const pptx = require("pptxgenjs");
 const { brand } = require("./ブランドヘッダー.js");
 
+// ASPATH のコンセプトカラーだけで組む（2026-09-09 山口様ご要望）。
+//   もとは緑・紫・赤を混ぜていたが、資料全体が賑やかになりすぎていた。
+//   藍（#264653）を軸に濃淡をつくり、差し色は陽の橙（#F4A261）だけ。
+//   赤煉瓦（#B4453C）は「やってはいけない」を示す1色にだけ残す。
+//   ※ GREEN / PURPLE という名前は各部のコードが使っているのでそのまま残し、
+//     中身だけ藍系に差し替えている。名前を変えると全ファイルの書き換えになるため。
 const C = {
-  NAVY:"264653", DEEP:"1E3A44", SUN:"F4A261", SUND:"DD8236",
-  PAPER:"F4E9D8", WHITE:"FFFFFF", MUTED:"52707A", INK:"1E2D34",
-  RED:"B4453C", GREEN:"2E7D32", PURPLE:"5B5391", CODEBG:"F2F5F6",
+  NAVY:"264653",   // 主色。見出し・帯・番号
+  DEEP:"1E3A44",   // 主色の濃い方
+  SUN:"F4A261",    // 差し色（陽）
+  SUND:"DD8236",   // 差し色の濃い方
+  PAPER:"F4E9D8",  // 紙色の地
+  WHITE:"FFFFFF",
+  MUTED:"52707A",  // 補足の文字
+  INK:"1E2D34",    // 本文
+  RED:"B4453C",    // 「してはいけない」専用
+  GREEN:"3A6B5F",  // もと緑 → 藍寄りの深緑（「これでよい」の意味は残す）
+  PURPLE:"4F6E7B", // もと紫 → 藍の明るい方
+  CODEBG:"F2F5F6",
   LINE:"DCE6E8", PAPERLINE:"E2D5BE",
 };
 const F = "Meiryo", MONO = "Consolas";
 
 // 難易度（山口様が「自分がやる話か」を一目で判断できるようにする）
 const LV = {
-  easy:   { label:"やさしい",     color:"2E7D32", bg:"EDF6EE" },
+  easy:   { label:"やさしい",     color:"3A6B5F", bg:"EDF3F1" },
   step:   { label:"慣れたら",     color:"DD8236", bg:"FDF0E6" },
-  together:{ label:"一緒にやる",  color:"B4453C", bg:"FBEDEC" },
-  read:   { label:"読むだけ",     color:"5B5391", bg:"EFEEF6" },
+  together:{ label:"一緒にやる",  color:"B4453C", bg:"F8EDEB" },
+  read:   { label:"読むだけ",     color:"4F6E7B", bg:"EEF2F4" },
 };
 
 function makeDeck(title){
@@ -79,8 +94,8 @@ Builder.prototype.box = function(s,x,y,w,h,title,body,tone){
     if (SAFE_BOTTOM - y >= MIN_H) h = SAFE_BOTTOM - y;
     else y = SAFE_BOTTOM - h;
   }
-  const m={warn:{bg:"FDF0E6",bar:C.SUND,mk:"!"},ng:{bg:"FBEDEC",bar:C.RED,mk:"×"},
-           ok:{bg:"EDF6EE",bar:C.GREEN,mk:"✓"},info:{bg:C.PAPER,bar:C.NAVY,mk:"i"}};
+  const m={warn:{bg:"FDF0E6",bar:C.SUND,mk:"!"},ng:{bg:"F8EDEB",bar:C.RED,mk:"×"},
+           ok:{bg:"EDF3F1",bar:C.GREEN,mk:"✓"},info:{bg:C.PAPER,bar:C.NAVY,mk:"i"}};
   const c=m[tone||"info"];
   s.addShape(P.ShapeType.roundRect,{x,y,w,h,rectRadius:0.12,fill:{color:c.bg},line:{color:c.bar,width:1.2}});
   // 枠が薄いときは、丸印が枠からはみ出さないよう上に寄せる
@@ -154,8 +169,11 @@ Builder.prototype.partCover = function(s, num, title, lines, tone){
     charSpacing:3,fontFace:F,isTextBox:true,margin:0});
   s.addText(title,{x:2.5,y:2.35,w:9.8,h:0.85,fontSize:33,bold:true,color:C.WHITE,
     fontFace:F,valign:"middle",isTextBox:true,margin:0});
+  // 箇条書きは上寄せを明示する。指定しないと、行数が多いときに
+  // 変換ソフトが上下中央に寄せてしまい、上の見出しと重なる（実際に起きた）。
   s.addText(lines.map((l,i)=>({text:l,options:{bullet:true,breakLine:i<lines.length-1}})),
-    {x:2.55,y:3.5,w:9.6,h:2.4,fontSize:14,color:"CFE0E4",fontFace:F,isTextBox:true,margin:0,paraSpaceAfter:7});
+    {x:2.55,y:3.42,w:9.6,h:3.4,fontSize:14,color:"CFE0E4",fontFace:F,isTextBox:true,
+     margin:0,paraSpaceAfter:7,valign:"top"});
   s.addText(String(this.page),{x:12.45,y:7.20,w:0.45,h:0.24,align:"right",
     fontSize:10.5,color:"7E969E",fontFace:F,isTextBox:true,margin:0});
 };
