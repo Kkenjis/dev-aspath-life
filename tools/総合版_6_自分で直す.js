@@ -146,14 +146,14 @@ module.exports = function build(P, B){
   ];
   let y=1.5;
   rows.forEach(([t,f,k])=>{
-    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:0.6,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
-    s.addText(t,{x:0.95,y:y+0.04,w:4.3,h:0.52,fontSize:13,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
-    s.addText(f,{x:5.35,y:y+0.04,w:2.5,h:0.52,fontSize:12,color:C.MUTED,fontFace:MONO,isTextBox:true,margin:0,valign:"middle"});
-    s.addShape(P.ShapeType.roundRect,{x:7.95,y:y+0.11,w:4.4,h:0.38,rectRadius:0.08,fill:{color:C.CODEBG}});
-    s.addText(k,{x:8.1,y:y+0.11,w:4.1,h:0.38,fontSize:12,color:C.INK,fontFace:MONO,isTextBox:true,margin:0,valign:"middle"});
-    y+=0.66;
+    s.addShape(P.ShapeType.roundRect,{x:0.65,y,w:11.97,h:0.55,rectRadius:0.08,fill:{color:"F7FAFA"},line:{color:C.LINE,width:1}});
+    s.addText(t,{x:0.95,y:y+0.02,w:4.3,h:0.5,fontSize:13,bold:true,color:C.NAVY,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
+    s.addText(f,{x:5.35,y:y+0.02,w:2.5,h:0.5,fontSize:12,color:C.MUTED,fontFace:MONO,isTextBox:true,margin:0,valign:"middle"});
+    s.addShape(P.ShapeType.roundRect,{x:7.95,y:y+0.09,w:4.4,h:0.36,rectRadius:0.08,fill:{color:C.CODEBG}});
+    s.addText(k,{x:8.1,y:y+0.09,w:4.1,h:0.36,fontSize:12,color:C.INK,fontFace:MONO,isTextBox:true,margin:0,valign:"middle"});
+    y+=0.60;
   });
-  B.box(s,0.65,y+0.06,11.97,0.6,"金額や年数を直すときは、第10部「変えたら、全ページ直すもの」も必ず見てください。","","warn");
+  B.box(s,0.65,y+0.1,11.97,0.6,"金額や年数を直すときは、第10部「変えたら、全ページ直すもの」も必ず見てください。","","warn");
   s.addNotes("実際に手を動かす場所の索引。レクチャーではTOPのキャッチコピーを題材にする。");
 }
 

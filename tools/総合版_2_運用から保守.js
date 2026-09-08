@@ -38,8 +38,8 @@ function heading(s, num, text){
     fill:{color:v.bg},line:{color:v.color,width:1.2}});
   s.addText(v.label,{x:10.45,y:0.58,w:2.17,h:0.42,align:"center",valign:"middle",
     fontSize:11.5,bold:true,color:v.color,fontFace:F,isTextBox:true,margin:0});
-  if(B.part) s.addText(B.part,{x:0.6,y:6.95,w:6,h:0.28,fontSize:10,color:"A8B4B8",fontFace:F,isTextBox:true,margin:0});
-  s.addText(String(B.page),{x:12.45,y:6.95,w:0.45,h:0.28,align:"right",fontSize:10.5,color:"A8B4B8",fontFace:F,isTextBox:true,margin:0});
+  if(B.part) s.addText(B.part,{x:0.6,y:7.20,w:6,h:0.24,fontSize:10,color:"A8B4B8",fontFace:F,isTextBox:true,margin:0});
+  s.addText(String(B.page),{x:12.45,y:7.20,w:0.45,h:0.24,align:"right",fontSize:10.5,color:"A8B4B8",fontFace:F,isTextBox:true,margin:0});
 }
 function box(s,x,y,w,h,t,b,tone){ B.box(s,x,y,w,h,t,b,tone); }
 function note(s,x,y,w,h,t,b,tone){ B.box(s,x,y,w,h,t,b,tone); }
@@ -783,6 +783,59 @@ function shot(s,file,bx,imgW,imgH,callouts,useCrop){
   box(s,8.35,5.1,4.27,1.7,"貼れないと言われたら",
     "「許可する」と出たら、案内どおり allow pasting と打ってからもう一度貼ってください。","warn");
   s.addNotes("初回だけ Chrome が貼り付けをブロックする。allow pasting の入力が必要。");
+}
+
+/* ══════ 4b 点検スクリプト本体（そのまま貼れる短縮版） ══════ */
+{
+  const s=P.addSlide();
+  head(s,"点検スクリプト ─ そのまま貼ってください","このページの枠の中を、全部コピーして Console に貼り、Enter",{lv:"step"});
+  B.code(s,0.6,1.50,12.13,5.02,"",
+`const PAGES = ['/','/about/','/services/','/access/','/contact/','/faq/','/column/','/campaign/','/taimentraining/',
+  '/onlineaspath/','/shinsenaspath/','/aspathkouen/','/sukumiashitaisaku/','/taikannunndou/','/undouwooboeruparkinson/'];
+const NOINDEX_OK = ['/faq/'];                            // 検索に出さないのが正しいページ
+const OLD_WORDS  = ['脳卒中専門','ASPATH・アスパス：'];   // 残っていたらNGの言葉
+const rows = [];
+for (const u of PAGES) {
+  try {
+    const r = await fetch(u + '?t=' + Date.now(), { cache:'no-store', credentials:'omit' });
+    const h = await r.text();
+    const d = new DOMParser().parseFromString(h, 'text/html');
+    const g = (q,a) => { const e = d.querySelector(q); return e ? e.getAttribute(a) : ''; };
+    const title = (d.querySelector('title') || { textContent:'' }).textContent.trim();
+    const desc = g('meta[name="description"]','content') || '';
+    const robots = g('meta[name="robots"]','content') || '';
+    const h1 = d.querySelectorAll('h1').length, ng = [];
+    if (r.status !== 200) ng.push('状態' + r.status);
+    if (!title.length || title.length > 60) ng.push('題名' + title.length + '字');
+    if (desc.length < 60 || desc.length > 160) ng.push('説明' + desc.length + '字');
+    if (/noindex/.test(robots) !== NOINDEX_OK.includes(u)) ng.push('noindex');
+    if (!g('link[rel="canonical"]','href')) ng.push('canonical無し');
+    if (h1 !== 1) ng.push('H1が' + h1 + '個');
+    OLD_WORDS.forEach(w => { if (h.includes(w)) ng.push('「' + w + '」残存'); });
+    rows.push({ URL:u, 判定: ng.length ? '× ' + ng.join(' / ') : '○', 題名:title.length, 説明:desc.length });
+  } catch (e) { rows.push({ URL:u, 判定:'× 取得できず', 題名:0, 説明:0 }); }
+}
+console.table(rows);  console.log('×の数：' + rows.filter(x => x.判定[0] === '×').length + ' / ' + rows.length + ' ページ');`, 9);
+  box(s, 0.6, 6.60, 12.13, 0.5,
+    "1行目の PAGES に、記事が増えたぶんの URL を足していけば、そのまま使い続けられます。", "", "ok");
+  s.addNotes("ここを丸ごとコピーしてもらう。9ptで全体が1画面に入る。動作は2026-09-08に本番で検証済み。");
+}
+
+/* ══════ 4c もっと詳しく調べたいとき ══════ */
+{
+  const s=P.addSlide();
+  head(s,"もっと詳しく調べたいとき","前ページは要点だけの短縮版です。全項目は別ファイルにあります",{lv:"read"});
+  B.rows(s,0.65,1.5,11.97,[
+    ["短縮版（前のページ）","15ページ × 7項目。PDFから直接コピーできます。毎月の点検はこれで足ります"],
+    ["完全版","ASPATHサイト点検スクリプト.js（★引継ぎ資料フォルダ）。18項目・5グループ。メモ帳で開いて全部コピー"],
+    ["完全版で増える項目","転送（301）が効いているか／消したページが404になっているか／構造化データ／サイトマップの件数／画像の更新の印"],
+    ["使い分け","毎月＝短縮版。テーマを入れ替えた直後や、大きく直したあと＝完全版"],
+  ],0.78,3.4,12);
+  box(s,0.65,4.75,5.85,2.15,"結果に「×」が出ても、あわてないでください",
+    "点検は「気づくための道具」です。×が出たこと自体は失敗ではありません。\n\n次のページから、×の種類ごとに\n「自分で直せるもの」と\n「連絡いただきたいもの」に分けてあります。","ok");
+  box(s,6.72,4.75,5.9,2.15,"2026年9月8日の実行例",
+    "短縮版を本番で流したところ、コラム5記事の著者プロフィールに\n「パーキンソン病と脳卒中専門トレーニングスタジオ」\nという古い表記が残っているのを検出しました。\n\nこの一文は記事本文の中にあります。","warn");
+  s.addNotes("短縮版と完全版の使い分け。実際に見つかった例を出して、道具の有効性を示す。");
 }
 
 /* ══════ 5-9 点検18項目 ══════ */

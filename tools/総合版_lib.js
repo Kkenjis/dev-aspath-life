@@ -60,20 +60,33 @@ Builder.prototype.head = function(s, t, sub, opt){
   if (sub) s.addText(sub,{x:0.62,y:0.96,w:12.1,h:0.36,fontSize:13.5,
     color:o.dark?"C9D6DA":C.MUTED,fontFace:F,isTextBox:true,margin:0});
   // フッター：部名 と 通し番号
-  if(this.part) s.addText(this.part,{x:0.6,y:6.95,w:6,h:0.28,fontSize:10,
+  if(this.part) s.addText(this.part,{x:0.6,y:7.20,w:6,h:0.24,fontSize:10,
     color:o.dark?"7E969E":"A8B4B8",fontFace:F,isTextBox:true,margin:0});
-  s.addText(String(this.page),{x:12.45,y:6.95,w:0.45,h:0.28,align:"right",
+  s.addText(String(this.page),{x:12.45,y:7.20,w:0.45,h:0.24,align:"right",
     fontSize:10.5,color:o.dark?"7E969E":"A8B4B8",fontFace:F,isTextBox:true,margin:0});
 };
 
+// スライド下端の安全線。ここから下はフッター（部名・ページ番号）の場所。
+const SAFE_BOTTOM = 7.16;
+
 Builder.prototype.box = function(s,x,y,w,h,title,body,tone){
   const P=this.P;
+  // フッターに重ならないよう、下端で止める。
+  //   余裕があれば縮め、縮めると文字が入らない小さな枠は上へ逃がす。
+  //   （各スライドで個別に高さを調整していたが、47枚で重なっていたため一括で担保する）
+  const MIN_H = body ? 0.72 : 0.46;   // 本文がある枠は、2行入る高さを確保する
+  if (y + h > SAFE_BOTTOM) {
+    if (SAFE_BOTTOM - y >= MIN_H) h = SAFE_BOTTOM - y;
+    else y = SAFE_BOTTOM - h;
+  }
   const m={warn:{bg:"FDF0E6",bar:C.SUND,mk:"!"},ng:{bg:"FBEDEC",bar:C.RED,mk:"×"},
            ok:{bg:"EDF6EE",bar:C.GREEN,mk:"✓"},info:{bg:C.PAPER,bar:C.NAVY,mk:"i"}};
   const c=m[tone||"info"];
   s.addShape(P.ShapeType.roundRect,{x,y,w,h,rectRadius:0.12,fill:{color:c.bg},line:{color:c.bar,width:1.2}});
-  s.addShape(P.ShapeType.ellipse,{x:x+0.24,y:y+0.22,w:0.34,h:0.34,fill:{color:c.bar}});
-  s.addText(c.mk,{x:x+0.24,y:y+0.22,w:0.34,h:0.34,align:"center",valign:"middle",
+  // 枠が薄いときは、丸印が枠からはみ出さないよう上に寄せる
+  const iy = y + Math.min(0.22, Math.max(0.06, (h - 0.34) / 2));
+  s.addShape(P.ShapeType.ellipse,{x:x+0.24,y:iy,w:0.34,h:0.34,fill:{color:c.bar}});
+  s.addText(c.mk,{x:x+0.24,y:iy,w:0.34,h:0.34,align:"center",valign:"middle",
     fontSize:14,bold:true,color:C.WHITE,fontFace:F,isTextBox:true,margin:0});
   s.addText([{text:title,options:{bold:true,color:C.NAVY,fontSize:13.5,breakLine:!!body}},
              {text:body||"",options:{color:C.INK,fontSize:11.5}}],
@@ -143,7 +156,7 @@ Builder.prototype.partCover = function(s, num, title, lines, tone){
     fontFace:F,valign:"middle",isTextBox:true,margin:0});
   s.addText(lines.map((l,i)=>({text:l,options:{bullet:true,breakLine:i<lines.length-1}})),
     {x:2.55,y:3.5,w:9.6,h:2.4,fontSize:14,color:"CFE0E4",fontFace:F,isTextBox:true,margin:0,paraSpaceAfter:7});
-  s.addText(String(this.page),{x:12.45,y:6.95,w:0.45,h:0.28,align:"right",
+  s.addText(String(this.page),{x:12.45,y:7.20,w:0.45,h:0.24,align:"right",
     fontSize:10.5,color:"7E969E",fontFace:F,isTextBox:true,margin:0});
 };
 

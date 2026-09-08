@@ -134,7 +134,7 @@ require("./総合版_5_この先に備える.js")(P, B);
     { x: 1.25, y: 4.55, w: 10.8, h: 1.1, fontSize: 14, color: "DCE7EA", fontFace: F, isTextBox: true, margin: 0, lineSpacingMultiple: 1.35 });
   s.addText("2026年9月　ASPATH ウェブサイト 総合ドキュメント",
     { x: 0.9, y: 6.3, w: 11.5, h: 0.4, fontSize: 12, color: "9FBAC1", fontFace: F, isTextBox: true, margin: 0 });
-  s.addText(String(B.page), { x: 12.45, y: 6.95, w: 0.45, h: 0.28, align: "right", fontSize: 10.5, color: "7E969E", fontFace: F, isTextBox: true, margin: 0 });
+  s.addText(String(B.page), { x: 12.45, y: 7.20, w: 0.45, h: 0.24, align: "right", fontSize: 10.5, color: "7E969E", fontFace: F, isTextBox: true, margin: 0 });
   s.addNotes("締め。困ったら聞いてよい、を最後に置く。");
 }
 
