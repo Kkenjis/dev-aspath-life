@@ -3,29 +3,37 @@
 const { C, F, MONO, makeDeck, Builder } = require("./総合版_lib.js");
 const { LOGO_LIGHT, RATIO } = require("./ブランドヘッダー.js");
 
+// 各部のファイル。順番がそのまま資料の並びになる。
+const PARTS = [
+  "./総合版_1_企画から公開.js",        // 第0部〜第3部（企画・設計・制作・公開）
+  "./総合版_2_運用から保守.js",        // 第4部〜第7部（運用・壊さない触り方・点検・AI活用）
+  "./総合版_3_自分でやる_集客.js",      // 第8部〜第9部（開発者の作業を自分で・集客）
+  "./総合版_4_事業と守り.js",          // 第10部〜第14部（事業・法令・作法・リスク・差分）
+  "./総合版_6_自分で直す.js",          // 第15部（TOPと固定ページを自分で直す）
+  "./総合版_5_この先に備える.js",       // 第16部（資料の保守・将来のリスク・体制）
+  "./総合版_7_開発者向け.js",          // 第17部（開発者への引き継ぎ・技術編）
+  "./総合版_8_これから作る方へ.js",     // 第18部（同じように専門をお持ちの方へ）
+  "./総合版_9_AIと作る.js",           // 第19部（バイブコーディングと実例プロンプト）
+  "./総合版_10_パソコンの準備.js",      // 第20部（OS別の準備）
+];
+
+// ── 1回目：各部の扉に書いた「この部で扱うこと」を集めるためだけに、いったん組み立てる。
+//    巻頭のもくじを、扉の箇条書きから自動で作るため。二重管理を避ける目的。
+//    このデッキは書き出さずに捨てる。
+const scanB = new Builder(makeDeck("scan"));
+{
+  const scanP = scanB.P;
+  PARTS.forEach(f => require(f)(scanP, scanB));
+}
+const TOPICS = scanB.partTopics;
+
+// ── 2回目：本番
 const P = makeDeck("ASPATH ウェブサイト 総合ドキュメント");
 const B = new Builder(P);
+B.detailToc = TOPICS;      // 巻頭のもくじが、これを読んで各部の内容を並べる
 
-// 第0部〜第3部（企画・設計・制作・公開）
-require("./総合版_1_企画から公開.js")(P, B);
-// 第4部〜第7部（運用・壊さない触り方・点検と保守・AI活用）
-require("./総合版_2_運用から保守.js")(P, B);
-// 第8部〜第9部（開発者の作業を自分でやる・集客の仕組み）
-require("./総合版_3_自分でやる_集客.js")(P, B);
-// 第10部〜第14部（事業の情報・法令と表現・作法・リスク対応・差分）
-require("./総合版_4_事業と守り.js")(P, B);
-// 第15部（TOPと固定ページを自分で直す）
-require("./総合版_6_自分で直す.js")(P, B);
-// 第16部（資料の保守・将来のリスク・体制）
-require("./総合版_5_この先に備える.js")(P, B);
-// 第17部（開発者への引き継ぎ・技術編）
-require("./総合版_7_開発者向け.js")(P, B);
-// 第18部（これから作る方へ ─ 同じように専門をお持ちの方向け）
-require("./総合版_8_これから作る方へ.js")(P, B);
-// 第19部（AIと一緒に作る・バイブコーディングと実例プロンプト）
-require("./総合版_9_AIと作る.js")(P, B);
-// 第20部（パソコンの準備・OS別）
-require("./総合版_10_パソコンの準備.js")(P, B);
+require(PARTS[0])(P, B);
+PARTS.slice(1).forEach(f => require(f)(P, B));
 
 /* ══════════════ 巻末 ══════════════ */
 {
@@ -157,9 +165,10 @@ require("./総合版_10_パソコンの準備.js")(P, B);
   const fs = require("fs");
   const tocPage = (B.links[0] && B.links[0].page) || 2;   // 目次スライドのページ番号
   fs.writeFileSync("/tmp/deck9/総合版_toc.json", JSON.stringify({
-    total: B.page, tocPage, toc: B.toc, links: B.links
+    total: B.page, tocPage, toc: B.toc, links: B.links, homeLinks: B.homeLinks
   }, null, 1), "utf-8");
-  console.log("しおり情報:", B.toc.length, "件 ／ 目次リンク", B.links.length, "件 ／ 目次はP" + tocPage);
+  console.log("しおり情報:", B.toc.length, "件 ／ 目次リンク", B.links.length,
+              "件 ／ もくじへ戻る", B.homeLinks.length, "件 ／ 目次はP" + tocPage);
 }
 
 P.writeFile({ fileName: "/tmp/deck9/ASPATH_ウェブサイト総合ドキュメント.pptx" })

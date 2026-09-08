@@ -67,14 +67,28 @@ def add_links(doc, data):
         page.insert_link({"kind": pymupdf.LINK_GOTO, "from": r, "page": target - 1})
         n_link += 1
 
-    # ② 全ページのページ番号（右下）→ 目次へ戻る
+    # ② 全ページ → 目次へ戻る
+    #    右下の「▲ もくじへ」の札（homeLinks）と、右下のページ番号の、両方を押せるようにする。
     tp = int(data.get("tocPage", 0))
     if 1 <= tp <= doc.page_count:
+        done = set()
+        for hl in data.get("homeLinks", []):
+            pno = int(hl["page"]) - 1
+            if not (0 <= pno < doc.page_count) or pno == tp - 1:
+                continue
+            page = doc[pno]
+            sx, sy = scale(page)
+            r = pymupdf.Rect(hl["x"] * sx, hl["y"] * sy,
+                             (hl["x"] + hl["w"]) * sx, (hl["y"] + hl["h"]) * sy)
+            page.insert_link({"kind": pymupdf.LINK_GOTO, "from": r, "page": tp - 1})
+            done.add(pno)
+            n_link += 1
+        # ページ番号のほうは、札の有無にかかわらず全ページに付ける
         for i, page in enumerate(doc, 1):
             if i == tp:
                 continue
             sx, sy = scale(page)
-            r = pymupdf.Rect(12.35 * sx, 6.90 * sy, 12.95 * sx, 7.30 * sy)
+            r = pymupdf.Rect(12.35 * sx, 7.14 * sy, 12.95 * sx, 7.46 * sy)
             page.insert_link({"kind": pymupdf.LINK_GOTO, "from": r, "page": tp - 1})
             n_link += 1
     return n_link

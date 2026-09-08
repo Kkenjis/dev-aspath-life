@@ -57,7 +57,23 @@ function Builder(P){
   //   links: 目次スライドに貼るクリック領域（inch単位。PDF化後にptへ換算する）
   this.toc = [];
   this.links = [];
+  // 全ページに置く「もくじへ戻る」の当たり判定（PDF化後にリンクを貼る）
+  this.homeLinks = [];
+  // 各部の扉で書いた「この部で扱うこと」を集めておき、巻頭のもくじに流用する
+  this.partTopics = [];
 }
+
+// 右下に「もくじへ」の小さな札を置き、クリック領域を記録する。
+//   PDFでは、ここを押すと「この資料の使い方」のページに戻れる。
+const HOME = { x: 10.72, y: 7.17, w: 1.62, h: 0.27 };
+Builder.prototype.homeChip = function(s, dark){
+  const P = this.P;
+  s.addShape(P.ShapeType.roundRect,{x:HOME.x,y:HOME.y,w:HOME.w,h:HOME.h,rectRadius:0.135,
+    fill:{color: dark ? "27505C" : "F2F5F6"}, line:{color: dark ? "3E6B78" : "DCE6E8", width:1}});
+  s.addText("▲ 使い方・もくじ",{x:HOME.x,y:HOME.y,w:HOME.w,h:HOME.h,align:"center",valign:"middle",
+    fontSize:8.5, color: dark ? "AFC8CE" : "6B838B", fontFace:F, isTextBox:true, margin:0});
+  this.homeLinks.push({ page: this.page, x: HOME.x, y: HOME.y, w: HOME.w, h: HOME.h });
+};
 
 Builder.prototype.head = function(s, t, sub, opt){
   const o = opt || {};
@@ -84,6 +100,7 @@ Builder.prototype.head = function(s, t, sub, opt){
     color:o.dark?"7E969E":"A8B4B8",fontFace:F,isTextBox:true,margin:0});
   s.addText(String(this.page),{x:12.45,y:7.20,w:0.45,h:0.24,align:"right",
     fontSize:10.5,color:o.dark?"7E969E":"A8B4B8",fontFace:F,isTextBox:true,margin:0});
+  this.homeChip(s, !!o.dark);
 };
 
 // スライド下端の安全線。ここから下はフッター（部名・ページ番号）の場所。
@@ -169,6 +186,8 @@ Builder.prototype.partCover = function(s, num, title, lines, tone){
   this.page++;
   this.part = isNum ? (label + "　" + title) : title;
   this.toc.push({ level: 1, title: this.part, page: this.page, part: String(num) });
+  // 巻頭の「もくじ」で、この部が何を扱うかを出すために控えておく
+  this.partTopics.push({ num: String(num), title: title, lines: lines.slice(), tone: tone || C.SUN });
   s.background={color:C.NAVY};
   brand(s, true);
   s.addShape(P.ShapeType.roundRect,{x:1.0,y:2.0,w:1.15,h:1.15,rectRadius:0.575,fill:{color:tone||C.SUN}});
@@ -185,6 +204,7 @@ Builder.prototype.partCover = function(s, num, title, lines, tone){
      margin:0,paraSpaceAfter:7,valign:"top"});
   s.addText(String(this.page),{x:12.45,y:7.20,w:0.45,h:0.24,align:"right",
     fontSize:10.5,color:"7E969E",fontFace:F,isTextBox:true,margin:0});
+  this.homeChip(s, true);
 };
 
 module.exports = { pptx, C, F, MONO, LV, makeDeck, Builder };

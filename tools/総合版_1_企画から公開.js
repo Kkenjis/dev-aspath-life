@@ -62,9 +62,12 @@ module.exports = function build(P, B){
     s.addText(d,{x:x+1.14,y:y+0.24,w:4.6,h:0.22,fontSize:9,color:C.MUTED,fontFace:F,isTextBox:true,margin:0,valign:"middle"});
   });
   B.box(s,0.65,6.5,11.97,0.62,
-    "上の枠をクリックするとその部に飛べます（PDF）。日々の更新は第4部、困ったときは第13部、AIで作るときは第19部。","","ok");
+    "枠を押すとその部に飛べます（PDF）。次のページに、各部で扱うことの一覧があります。","","ok");
   s.addNotes("20部構成。通読不要。第4部＝日常、第13部＝非常時、第19部＝AI、という3点だけ覚えてもらう。");
 }
+
+/* もくじ（各部で扱うこと）── 章に入る前の見取り図 */
+require("./総合版_もくじ.js")(P, B);
 
 /* 難易度の見方 */
 {
